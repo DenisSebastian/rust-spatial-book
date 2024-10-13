@@ -1,0 +1,27 @@
+{
+    "id": "4739F086",
+    "path": "~/Documents/Rust/books/rust-book-es/src/ch01-03-hello-cargo.md",
+    "project_path": null,
+    "type": "markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1728773918723.0,
+    "source_on_save": false,
+    "relative_order": 15,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "269,0",
+        "scrollLine": "248",
+        "marks": "<:269,0\n>:272,-1"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1728770172,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1728770172,
+    "read_only": false,
+    "read_only_alternatives": []
+}

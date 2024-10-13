@@ -1,0 +1,27 @@
+{
+    "id": "5C47026C",
+    "path": "~/Documents/Rust/books/rust-book-spatial/functional.qmd",
+    "project_path": "functional.qmd",
+    "type": "quarto_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1728784952099.0,
+    "source_on_save": false,
+    "relative_order": 16,
+    "properties": {
+        "rmdVisualMode": "false",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "1,0",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1728784962,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1728784962712,
+    "read_only": false,
+    "read_only_alternatives": []
+}

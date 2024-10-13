@@ -1,0 +1,58 @@
+project:
+  type: book
+
+book:
+  title: "Rust Espacial"
+  subtitle: "Procesos y Operaciones Espaciales Avanzadas"
+  # affiliation-title: "Universidad Adolfo Ibáñez - Chile"
+  author: "Denis Berroeta González (denis.berroeta@uai.cl)"
+  date: "2024-10-05"
+  language: "es"
+  # number-sections: 3
+  page-footer:
+    left: "Copyright 2024, Denis Berroeta"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - install.qmd
+    - concepts.qmd
+    - ownership.qmd
+    - struct.qmd
+    - production.qmd
+    - spatial_chapter.qmd
+    - functional.qmd
+    - languages.qmd
+    # chapters:
+    #   - tarea_1.qmd
+    #   - tarea_2.qmd
+    # - part:
+    # chapters: spatial_chapter.qmd
+       # - spatial_objects.qmd
+      #   - espacial_r.qmd
+          #   - luces_nocturnas.qmd
+          #- john_snow.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    html-math-method: katex
+    css: styles/style.css
+    fig-align: "center"
+    fig-cap-location: "margin"
+    tab-cap-location: "left"
+    mailto: "denis.berroeta@uai.cl"
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+
+execute:
+  warning: false
+  eval: false
+
+editor: source
+always_allow_html: true
+
+
+

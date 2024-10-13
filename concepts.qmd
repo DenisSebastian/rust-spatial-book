@@ -1,0 +1,22 @@
+# Conceptos Básicos
+
+Este capítulo cubre conceptos que aparecen en casi todos los lenguajes de
+programación y cómo funcionan en Rust. Muchos lenguajes de programación tienen
+mucho en común en su núcleo. Ninguno de los conceptos presentados en este
+capítulo son únicos de Rust, pero los discutiremos en el contexto de Rust y
+explicaremos las convenciones alrededor de su uso.
+
+Específicamente, aprenderás sobre variables, tipos básicos, funciones,
+comentarios y flujo de control. Estas bases estarán en todos los programas de Rust, y aprenderlas temprano te dará un núcleo fuerte para comenzar.
+
+
+
+## Variables y Mutabilidad
+
+## Tipos de Datos
+
+## Funciones
+
+## Comentarios
+
+## Flujos de Control

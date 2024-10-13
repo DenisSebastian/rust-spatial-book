@@ -1,0 +1,27 @@
+{
+    "id": "146FB0B2",
+    "path": "~/Documents/Rust/books/rust-book-spatial/_quarto.yml",
+    "project_path": "_quarto.yml",
+    "type": "yaml",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1728772020205.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "41,25",
+        "scrollLine": "29",
+        "marks": "<:23,6\n>:23,6"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1728788909,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1728788909373,
+    "read_only": false,
+    "read_only_alternatives": []
+}

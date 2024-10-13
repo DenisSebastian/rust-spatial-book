@@ -1,0 +1,252 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Rust Espacial",
+    "section": "",
+    "text": "1 Prefacio",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Prefacio</span>"
+    ]
+  },
+  {
+    "objectID": "concepts.html",
+    "href": "concepts.html",
+    "title": "4  Conceptos Básicos",
+    "section": "",
+    "text": "4.1 Variables y Mutabilidad",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Conceptos Básicos</span>"
+    ]
+  },
+  {
+    "objectID": "concepts.html#tipos-de-datos",
+    "href": "concepts.html#tipos-de-datos",
+    "title": "4  Conceptos Básicos",
+    "section": "4.2 Tipos de Datos",
+    "text": "4.2 Tipos de Datos",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Conceptos Básicos</span>"
+    ]
+  },
+  {
+    "objectID": "concepts.html#funciones",
+    "href": "concepts.html#funciones",
+    "title": "4  Conceptos Básicos",
+    "section": "4.3 Funciones",
+    "text": "4.3 Funciones",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Conceptos Básicos</span>"
+    ]
+  },
+  {
+    "objectID": "concepts.html#comentarios",
+    "href": "concepts.html#comentarios",
+    "title": "4  Conceptos Básicos",
+    "section": "4.4 Comentarios",
+    "text": "4.4 Comentarios",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Conceptos Básicos</span>"
+    ]
+  },
+  {
+    "objectID": "concepts.html#flujos-de-control",
+    "href": "concepts.html#flujos-de-control",
+    "title": "4  Conceptos Básicos",
+    "section": "4.5 Flujos de Control",
+    "text": "4.5 Flujos de Control",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Conceptos Básicos</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#creditos",
+    "href": "index.html#creditos",
+    "title": "Rust Espacial",
+    "section": "1.1 Creditos",
+    "text": "1.1 Creditos\nMuchos conceptos y ejemplos obtenidos del libro “El Lenguaje de Programación Rust” creado por Steve Klabnik y Carol Nichols, con contribuciones de la Comunidad Rust",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Prefacio</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#créditos",
+    "href": "index.html#créditos",
+    "title": "Rust Espacial",
+    "section": "Créditos",
+    "text": "Créditos\nMuchos conceptos y ejemplos obtenidos del libro “El Lenguaje de Programación Rust” creado por Steve Klabnik y Carol Nichols, con contribuciones de la Comunidad Rust",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Prefacio</span>"
+    ]
+  },
+  {
+    "objectID": "install.html",
+    "href": "install.html",
+    "title": "3  Instalación",
+    "section": "",
+    "text": "3.1 Intalar Rust\nEl primer paso es instalar Rust. Descargaremos Rust a través de rustup, una herramienta de línea de comandos para administrar las versiones de Rust y las herramientas asociadas. Necesitarás una conexión a Internet para la descarga.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalación</span>"
+    ]
+  },
+  {
+    "objectID": "install.html#instalar-cargo",
+    "href": "install.html#instalar-cargo",
+    "title": "3  Instalación",
+    "section": "3.3 Instalar Cargo",
+    "text": "3.3 Instalar Cargo\nCargo es el sistema de compilación y administrador de paquetes de Rust. La mayoría de los Rustaceans usan esta herramienta para administrar sus proyectos Rust porque Cargo maneja muchas tareas para ti, como compilar tu código, descargar las bibliotecas de las que depende tu código y compilar esas bibliotecas. (Llamamos dependencias a las bibliotecas de las que depende tu código).\nLos programas Rust más simples, como el que hemos escrito hasta ahora, no tienen dependencias. Si hubiéramos construido el proyecto “¡Hola, mundo!” con Cargo, sólo usaría la parte de Cargo que maneja la compilación de tu código. A medida que escribas programas Rust más complejos, agregarás dependencias, y si comienzas un proyecto usando Cargo, agregar dependencias será mucho más fácil de hacer.\nDebido a que la gran mayoría de los proyectos Rust usan Cargo, el resto de este libro asume que también estás usando Cargo. Cargo viene instalado con Rust si usaste los instaladores oficiales que se discuten en la sección [“Installation”][installation]. Si instalaste Rust a través de algunos otros medios, verifica si Cargo está instalado ingresando lo siguiente en tu terminal:\n$ cargo --version\nSi ves un número de versión, ¡lo tienes! Si ves un error, como command not found, consulta la documentación de tu método de instalación para determinar cómo instalar Cargo por separado.\n\n3.3.1 Creación de un proyecto con Cargo\nVamos a crear un nuevo proyecto usando Cargo y ver cómo difiere de nuestro proyecto original “¡Hola, mundo!”. Navega de vuelta a tu directorio proyectos (o dondequiera que hayas decidido almacenar tu código). Luego, en cualquier sistema operativo, ejecuta lo siguiente:\n$ cargo new hello_cargo\n$ cd hello_cargo\nEl primer comando crea un nuevo directorio y proyecto llamado hello_cargo. Hemos nombrado a nuestro proyecto hello_cargo, y Cargo crea sus archivos en un directorio con el mismo nombre.\nVe al directorio hello_cargo y lista los archivos. Verás que Cargo ha generado dos archivos y un directorio para nosotros: un archivo Cargo.toml y un directorio src con un archivo main.rs dentro.\nTambién ha inicializado un nuevo repositorio Git junto con un archivo .gitignore. Los archivos Git no se generarán si ejecutas cargo new dentro de un repositorio Git existente; puedes anular este comportamiento usando cargo new --vcs=git.\n\nNota: Git es un sistema de control de versiones común. Puedes cambiar cargo new para usar un sistema de control de versiones diferente o ningún sistema de control de versiones usando la bandera --vcs. Ejecuta cargo new --help para ver las opciones disponibles.\n\nAbre Cargo.toml en tu editor de texto de elección. Debería verse similar al código del Listado 1-2.\n\n[package]\nname = \"hello_cargo\"\nversion = \"0.1.0\"\nedition = \"2021\"\n\n# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html\n\n[dependencies]\n\nEste archivo está en el formato TOML (Tom’s Obvious, Minimal Language), que es el formato de configuración de Cargo.\nLa primera línea, [package], es un encabezado de sección que indica que las siguientes declaraciones están configurando un paquete. A medida que agreguemos más información a este archivo, agregaremos otras secciones.\nLas próximas tres líneas establecen la información de configuración que Cargo necesita para compilar tu programa: el nombre, la versión y la edición de Rust que se usará. Hablaremos sobre la entrada edition en [Apéndice E][appendix-e] .\nLa última línea, [dependencies], es el comienzo de una sección para que enumere cualquier dependencia de tu proyecto. En Rust, los paquetes de código se denominan crates. No necesitaremos otros crates para este proyecto, pero lo haremos en el primer proyecto del Capítulo 2, por lo que usaremos esta sección de dependencias hasta entonces.\nAhora abre src/main.rs y echa un vistazo:\nNombre de archivo: src/main.rs\nfn main() {\n    println!(\"Hello, world!\");\n}\n¡Cargo ha generado un programa “Hello, world!”/“¡Hola, mundo!” para ti, ¡igual que el que escribimos enl Listado 1-1! Hasta ahora, las diferencias entre nuestro proyecto y el proyecto generado por Cargo son que Cargo colocó el código en el directorio src y tenemos un archivo de configuración Cargo.toml en el directorio superior.\nCargo espera que tus archivos de origen vivan dentro del directorio src. El directorio del proyecto de nivel superior es solo para archivos README, información de licencia, archivos de configuración y cualquier otra cosa que no esté relacionada con tu código. Usar Cargo te ayuda a organizar tus proyectos. Hay un lugar para todo, y todo está en su lugar.\nSi comenzaste un proyecto que no usa Cargo, como hicimos con el proyecto “¡Hola, mundo!”, puedes convertirlo en un proyecto que sí use Cargo. Mueve el código del proyecto al directorio src y crea un archivo Cargo.toml adecuado.\n\n\n3.3.2 Construir y ejecutar un proyecto de Cargo\nAhora veamos qué es diferente cuando construimos y ejecutamos el programa “¡Hola, mundo!” con Cargo. ¡Desde tu directorio hello_cargo, construye tu proyecto ingresando el siguiente comando:\n$ cargo build\n   Compiling hello_cargo v0.1.0 (file:///projects/hello_cargo)\n    Finished dev [unoptimized + debuginfo] target(s) in 2.85 secs\nEste comando crea un archivo ejecutable en target/debug/hello_cargo (o *target_cargo.exe* en Windows) en lugar de en tu directorio actual. Debido a que la compilación predeterminada es una compilación de depuración, Cargo coloca el binario en un directorio llamado debug. Puedes llamar al ejecutable con este comando:\n$ ./target/debug/hello_cargo # o .\\target\\debug\\hello_cargo.exe en Windows\nHello, world!\nSi todo va bien, Hello, world! debería imprimirse en la terminal. Ejecutar cargo build por primera vez también hace que Cargo cree un nuevo archivo en el nivel superior: Cargo.lock. Este archivo rastrea las versiones exactas de las dependencias de tu proyecto. Este proyecto no tiene dependencias, por lo que el archivo es un poco escaso. Nunca necesitarás cambiar este archivo manualmente; Cargo administra su contenido para ti.\nAcabamos de construir un proyecto con cargo build y ejecutarlo con ./target/debug/hello_cargo, pero también podemos usar cargo run para compilar el código y luego llamar al ejecutable resultante en un solo comando:\n$ cargo run\n    Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs\n     Running `target/debug/hello_cargo`\nHello, world!\nUsar cargo run es más conveniente que tener que recordar ejecutar cargo build y luego usar la ruta completa al binario, por lo que la mayoría de los desarrolladores usan cargo run.\nTen en cuenta que esta vez no vimos salida que indicara que Cargo estaba compilando hello_cargo. Cargo supo que los archivos no habían cambiado, por lo que no volvió a construir, sino que solo ejecutó el binario. Si hubieras modificado tu código fuente, Cargo habría reconstruido el proyecto antes de ejecutarlo, y habrías visto esta salida:\n$ cargo run\n   Compiling hello_cargo v0.1.0 (file:///projects/hello_cargo)\n    Finished dev [unoptimized + debuginfo] target(s) in 0.33 secs\n     Running `target/debug/hello_cargo`\nHello, world!\nCargo también proporciona un comando llamado cargo check. Este comando comprueba rápidamente tu código para asegurarse de que compila, pero no produce un ejecutable:\n$ cargo check\n   Checking hello_cargo v0.1.0 (file:///projects/hello_cargo)\n    Finished dev [unoptimized + debuginfo] target(s) in 0.32 secs\n¿Por qué no querrías un ejecutable? A menudo, cargo check es mucho más rápido que cargo build porque omite el paso de producir un ejecutable. Si estás verificando continuamente tu trabajo mientras escribes el código, usar cargo check acelerará el proceso de informarte si tu proyecto todavía aún está compilando. ¡Por lo tanto, muchos Rustaceans ejecutan cargo check periódicamente mientras escriben su programa para asegurarse de que compila! Luego ejecutan cargo build cuando están listos para usar el ejecutable.\nResumamos lo que hemos aprendido hasta ahora sobre Cargo:\n\nPodemos crear un proyecto usando cargo new.\nPodemos construir un proyecto usando cargo build.\nPodemos construir y ejecutar un proyecto en un solo paso usando cargo run.\nPodemos construir un proyecto sin producir un binario para verificar errores usando cargo check.\nEn lugar de guardar el resultado de la compilación en el mismo directorio que nuestro código, Cargo lo almacena en el directorio target/debug.\n\nUna ventaja adicional de usar Cargo es que los comandos son los mismos sin importar en qué sistema operativo estés trabajando. Por lo tanto, en este punto, ya no proporcionaremos instrucciones específicas para Linux y macOS versus Windows.\n\n\n3.3.3 Construyendo una versión de lanzamiento\nCuando tu proyecto finalmente esté listo para su lanzamiento, puedes usar cargo build --release para compilarlo con optimizaciones. Este comando creará un ejecutable en target/release en lugar de target/debug. Las optimizaciones hacen que tu código Rust se ejecute más rápido, pero al activarlos se alarga el tiempo que tarda tu programa en compilarse. Es por eso que hay dos perfiles diferentes: uno para el desarrollo, cuando deseas reconstruir rápidamente y con frecuencia, y otro para construir el programa final que le darás al usuario, que no se reconstruirá repetidamente y que se ejecutará lo más rápido posible. Si estás midiendo el tiempo de ejecución de tu código, asegúrate de ejecutar cargo build --release y realizar la prueba de rendimiento con el ejecutable en target/release.\n\n\n3.3.4 Cargo como convención\nCon proyectos simples, Cargo no proporciona mucho valor por sobre sólo usar rustc, pero demostrará su valor a medida que tus programas se vuelvan más intrincados. Una vez que los programas crecen a múltiples archivos o necesitan una dependencia, es mucho más fácil dejar que Cargo coordine la construcción.\nAunque el proyecto hello_cargo es simple, ahora usas muchas de las herramientas reales que usarás en el resto de tu carrera en Rust. De hecho, para trabajar en cualquier proyecto existente, puedes usar los siguientes comandos para verificar el código usando Git, cambiar al directorio del proyecto y construir:\n$ git clone example.org/someproject\n$ cd someproject\n$ cargo build\nPara obtener más información sobre Cargo, consulta su documentación.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalación</span>"
+    ]
+  },
+  {
+    "objectID": "install.html#estensiones-para-vs-code",
+    "href": "install.html#estensiones-para-vs-code",
+    "title": "3  Instalación",
+    "section": "3.4 Estensiones para VS Code",
+    "text": "3.4 Estensiones para VS Code",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalación</span>"
+    ]
+  },
+  {
+    "objectID": "install.html#intalar-rust",
+    "href": "install.html#intalar-rust",
+    "title": "3  Instalación",
+    "section": "",
+    "text": "3.1.1 Instalación de rustup en Linux o macOS\nSi estás utilizando Linux o macOS, abre una terminal y escribe lo siguiente\ncurl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh\nEl comando descarga un script y comienza la instalación de la herramienta rustup, que instala la última versión estable de Rust. Es posible que se te solicite tu contraseña. Si la instalación es exitosa, aparecerá la siguiente línea:\nRust is installed now. Great!\nTambién necesitarás un enlazador, que es un programa que Rust utiliza para unir sus salidas compiladas en un solo archivo. Es probable que ya lo tengas. Si obtienes errores de enlace, debes instalar un compilador C, que generalmente incluye un enlazador. Un compilador C también es útil porque algunos paquetes comunes de Rust dependen de código C y necesitarán un compilador C.\nEn macOS, puedes obtener un compilador C ejecutando:\nxcode-select --install\nLos usuarios de Linux deben instalar generalmente GCC o Clang, según la documentación de su distribución. Por ejemplo, si usas Ubuntu, puede instalar el paquete build-essential.\n\n\n3.1.2 Instalación de rustup en Windows\nEn Windows, ve a https://www.rust-lang.org/tools/install y sigue las instrucciones para instalar Rust. En algún momento de la instalación, recibirás un mensaje para instalar Visual Studio. Este provee un linker y las bibliotecas nativas necesarias para compilar programas.\nPara obtener las herramientas de compilación, deberás instalar Visual Studio. Cuando se te pregunte qué paquetes de trabajo instalar, incluye:\n\n“Desarrollo de escritorio con C ++”\nEl SDK de Windows 10 o 11\nEl componente de paquete de idioma inglés, junto con cualquier otro paquete de idioma de tu elección\n\nEl resto de este libro usa comandos que funcionan tanto en cmd.exe como en PowerShell. Si hay diferencias específicas, explicaremos cuál usar.\n\n\n3.1.3 Solución de problemas\nPara verificar si has instalado Rust correctamente, abra una shell y escribe esta línea:\n$ rustc --version\nDeberías ver el número de versión, el hash de confirmación y la fecha de confirmación de la última versión estable que se ha publicado, en el siguiente formato:\nrustc x.y.z (abcabcabc yyyy-mm-dd)\nSi ves esta información, ¡has instalado Rust correctamente! Si no ves esta información, verifica que Rust esté en la variable de sistema %PATH% de la siguiente manera.\nEn Windows CMD, usa:\n&gt; echo %PATH%\nEn PowerShell, usa:\n&gt; echo $env:Path\nEn Linux y macOS, usa:\n$ echo $PATH\n\n\n3.1.4 Actualización y desinstalación\nUna vez que Rust se instala a través de rustup, actualizar a una versión recién lanzada es fácil. Desde tu shell, ejecuta el siguiente script de actualización:\n$ rustup update\nPara desinstalar Rust y rustup, ejecuta el siguiente script de desinstalación desde tu shell:\n$ rustup self uninstall\n\n\n3.1.5 Documentación local\nLa instalación de Rust también incluye una copia local de la documentación para que puedas leerla sin conexión. Ejecuta rustup doc para abrir la documentación local en tu navegador.\nEn cualquier momento en que se proporcione un tipo o una función de la biblioteca estándar y no estés seguro de lo que hace o cómo usarlo, usa la documentación de la interfaz de programación de aplicaciones (API) para averiguarlo.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalación</span>"
+    ]
+  },
+  {
+    "objectID": "install.html#hello-world",
+    "href": "install.html#hello-world",
+    "title": "3  Instalación",
+    "section": "3.2 Hello World",
+    "text": "3.2 Hello World\nAhora que has instalado Rust, es hora de escribir tu primer programa en Rust. Es tradicional cuando se aprende un nuevo lenguaje escribir un pequeño programa que imprima el texto ¡Hola, mundo! en la pantalla.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalación</span>"
+    ]
+  },
+  {
+    "objectID": "install.html#extensiones-para-vs-code",
+    "href": "install.html#extensiones-para-vs-code",
+    "title": "3  Instalación",
+    "section": "3.4 Extensiones para VS Code",
+    "text": "3.4 Extensiones para VS Code\nPuede encontrar e instalar la extensión rust-analyzer desde VS Code a través de la vista Extensiones (⇧⌘X) y buscando rust-analyzer. Debe instalar la versión de lanzamiento.\n\n\n\nExtensión para Visual Studio Code llamada rust-analyzer\n\n\nPuedes consultar la documentación de la extensión en https://rust-analyzer.github.io.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalación</span>"
+    ]
+  },
+  {
+    "objectID": "spatial_chapter.html",
+    "href": "spatial_chapter.html",
+    "title": "8  Rust Espacial",
+    "section": "",
+    "text": "Rust es ideal para el análisis o procesamiento espacial debido a su alto rendimiento, manejo eficiente de memoria y seguridad. En comparación con lenguajes como Python o R, Rust ofrece una ejecución más rápida y un control explícito sobre los recursos del sistema, lo que es crucial para procesar grandes volúmenes de datos espaciales o trabajar con imágenes satelitales. Además, su sistema de manejo de memoria sin recolector de basura permite minimizar el consumo de recursos, algo vital en tareas geoespaciales intensivas como el procesamiento de modelos de elevación digital (DEM) o la indexación espacial.\nOtra ventaja clave de Rust es su seguridad en tiempo de compilación, lo que reduce errores comunes como los desbordamientos de buffer o condiciones de carrera, que pueden ser problemáticos en lenguajes como C++ o Python. Esto lo convierte en una excelente opción para desarrollar aplicaciones robustas y escalables para análisis espacial, donde el rendimiento y la precisión son cruciales. A largo plazo, Rust también facilita la integración con otras tecnologías de alto rendimiento como GPUs, lo que permite mejorar significativamente los tiempos de procesamiento en tareas complejas como simulaciones o renderizado de grandes mapas interactivos.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Rust Espacial</span>"
+    ]
+  },
+  {
+    "objectID": "languages.html",
+    "href": "languages.html",
+    "title": "10  Otros Lenguajes",
+    "section": "",
+    "text": "10.1 Rust y R\nextendr - A safe and user-friendly R extension interface using Rust\nextendr_api",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Otros Lenguajes</span>"
+    ]
+  },
+  {
+    "objectID": "languages.html#rust-y-python",
+    "href": "languages.html#rust-y-python",
+    "title": "10  Otros Lenguajes",
+    "section": "10.2 Rust y Python",
+    "text": "10.2 Rust y Python",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Otros Lenguajes</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#por-qué-rust",
+    "href": "index.html#por-qué-rust",
+    "title": "Rust Espacial",
+    "section": "1.1 ¿Por qué Rust?",
+    "text": "1.1 ¿Por qué Rust?\nRust es un lenguaje de programación moderno que combina alto rendimiento con una seguridad de memoria excepcional, lo que lo convierte en una herramienta poderosa para desarrolladores que trabajan en diversos dominios, desde sistemas de bajo nivel hasta aplicaciones web. A diferencia de lenguajes tradicionales, Rust ofrece una experiencia fluida, eliminando errores comunes como desbordamientos de memoria y condiciones de carrera. Es como conducir un automóvil con tecnología avanzada de asistencia: puedes concentrarte en alcanzar tus objetivos mientras Rust se asegura de mantenerte seguro en el camino, evitando los errores típicos del desarrollo y brindándote un control total.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Prefacio</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#por-qué-rust-espacial",
+    "href": "index.html#por-qué-rust-espacial",
+    "title": "Rust Espacial",
+    "section": "1.2 ¿Por qué Rust Espacial?",
+    "text": "1.2 ¿Por qué Rust Espacial?\nCuando se trata de problemas espaciales del territorio, Rust brilla al permitir un control minucioso sobre la administración de recursos, lo que es crucial cuando trabajamos con grandes volúmenes de datos geoespaciales o imágenes satelitales. Este libro está diseñado para mostrar cómo Rust puede ser una herramienta clave para resolver problemas espaciales complejos, ofreciendo rendimiento sin comprometer la seguridad o la claridad del código. A través de ejemplos prácticos, aprenderás a aprovechar Rust para abordar desafíos en análisis espacial, desde la manipulación de grandes datasets hasta la creación de sistemas altamente eficientes para el procesamiento geoespacial.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Prefacio</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#por-qué-rust-para-análisis-espacial",
+    "href": "index.html#por-qué-rust-para-análisis-espacial",
+    "title": "Rust Espacial",
+    "section": "1.2 ¿Por qué Rust para análisis espacial?",
+    "text": "1.2 ¿Por qué Rust para análisis espacial?\nRust destaca en la resolución de problemas espaciales gracias a su control eficiente sobre la administración de recursos, lo que es crucial cuando se procesan grandes volúmenes de datos geoespaciales o imágenes satelitales. Este libro está diseñado para demostrar cómo Rust puede convertirse en una herramienta esencial para abordar desafíos espaciales complejos, ofreciendo un equilibrio perfecto entre rendimiento, seguridad y claridad en el código. A través de ejemplos prácticos, aprenderás a utilizar Rust para enfrentar tareas de análisis espacial, desde la manipulación de vastos conjuntos de datos hasta la construcción de sistemas altamente optimizados para el procesamiento geoespacial, todo con el poder y la eficiencia de este lenguaje.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Prefacio</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "2  Introducción",
+    "section": "",
+    "text": "2.1 ¿Qué es Rust?\nRust es un lenguaje de programación de sistemas que prioriza el rendimiento, la seguridad y la concurrencia sin sacrificar la experiencia del desarrollador. Su diseño se enfoca en evitar errores comunes como las condiciones de carrera, desbordamientos de memoria y fugas de recursos, todo mientras mantiene la flexibilidad de los lenguajes de bajo nivel. Al ofrecer un control preciso sobre la memoria sin necesidad de un recolector de basura, Rust se ha convertido en una opción favorita tanto para el desarrollo de sistemas críticos como para aplicaciones de alto rendimiento, desde servidores web hasta sistemas embebidos.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#descripción-del-libro",
+    "href": "intro.html#descripción-del-libro",
+    "title": "2  Introducción",
+    "section": "2.3 Descripción del Libro",
+    "text": "2.3 Descripción del Libro\nEste libro está diseñado para guiar al lector desde la instalación de Rust hasta su aplicación en análisis espacial, proporcionando una base sólida en el lenguaje y sus conceptos clave. Comenzamos con el Capítulo 3: Instalación, donde te ayudaremos a configurar tu entorno de trabajo. A continuación, en el Capítulo 4: Conceptos Básicos, introducimos los fundamentos del lenguaje, necesarios para entender los ejemplos prácticos. Luego, el Capítulo 5: Ownership explora el sistema de propiedad de Rust, que es esencial para manejar la memoria de manera eficiente. El Capítulo 6: Struct presenta la construcción de estructuras de datos personalizadas, un aspecto clave en la creación de modelos complejos. En el Capítulo 7: Rust en Producción, discutimos las mejores prácticas para llevar proyectos de Rust al entorno productivo, asegurando que tu código sea escalable y mantenible. Posteriormente, en el Capítulo 8: Rust Espacial, nos adentramos en la aplicación de Rust para resolver problemas espaciales complejos, mostrando su capacidad para manejar grandes volúmenes de datos geoespaciales. En el Capítulo 9: Programación Funcional, exploramos cómo Rust incorpora paradigmas funcionales para simplificar la manipulación de datos y mejorar la legibilidad del código. Finalmente, en el Capítulo 10: Otros Lenguajes, comparamos Rust con otros lenguajes populares en el ámbito del análisis espacial, como R y Python, destacando sus ventajas y desventajas.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#perfil-del-lector",
+    "href": "intro.html#perfil-del-lector",
+    "title": "2  Introducción",
+    "section": "2.4 Perfil del Lector",
+    "text": "2.4 Perfil del Lector\nEste libro está orientado a profesionales con experiencia intermedia o avanzada en programación, que tengan nociones de otros lenguajes como Python, R o C++. Si ya has trabajado con lenguajes de programación y estás buscando expandir tu conocimiento hacia Rust, este libro es para ti. No es necesario ser un experto en análisis espacial, pero se espera que tengas una comprensión básica de los principios de programación y estés familiarizado con la resolución de problemas complejos.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#resumen",
+    "href": "intro.html#resumen",
+    "title": "2  Introducción",
+    "section": "2.5 Resumen",
+    "text": "2.5 Resumen\nEn resumen, este libro te guiará a través de los fundamentos de Rust, proporcionándote las habilidades necesarias para aplicar el lenguaje en la resolución de problemas espaciales. Desde la instalación hasta la programación funcional, cada capítulo está diseñado para ofrecerte una comprensión progresiva del lenguaje y su uso práctico. Al final, habrás adquirido las herramientas para implementar soluciones eficientes y robustas en Rust, ya sea en el análisis espacial o en otros campos de alta demanda técnica.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#objetivos",
+    "href": "intro.html#objetivos",
+    "title": "2  Introducción",
+    "section": "2.2 Objetivos",
+    "text": "2.2 Objetivos\n\nObjetivo General\nEl objetivo principal de este libro es proporcionar a los lectores una comprensión sólida y práctica de Rust, enfocándose en su aplicación para la resolución de problemas espaciales y geoespaciales. A lo largo del libro, los lectores adquirirán las habilidades necesarias para desarrollar soluciones eficientes, robustas y seguras, utilizando Rust como herramienta fundamental en el análisis espacial.\n\n\nObjetivos Específicos\n\nIntroducir los conceptos fundamentales de Rust: Explicar de manera clara los principios básicos del lenguaje, como su sistema de ownership, estructuras de datos y programación funcional, para que el lector pueda aplicarlos en diferentes contextos.\nDemostrar la aplicación de Rust en problemas espaciales: Proporcionar ejemplos prácticos y detallados que muestren cómo Rust puede ser utilizado para procesar grandes volúmenes de datos geoespaciales, optimizando tanto el rendimiento como la eficiencia.\nComparar Rust con otros lenguajes usados en análisis espacial: Ofrecer una visión comparativa de Rust frente a lenguajes como Python y R, resaltando las ventajas y casos en los que Rust puede ser una mejor opción en la resolución de problemas complejos de análisis espacial.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción</span>"
+    ]
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "index.qmd": {
+    "index.html": "1c48d7f8"
+  },
+  "references.qmd": {
+    "references.html": "533e0727"
+  },
+  "install.qmd": {
+    "install.html": "c88e6d8d"
+  },
+  "concepts.qmd": {
+    "concepts.html": "7993332a"
+  },
+  "ownership.qmd": {
+    "ownership.html": "df717a6e"
+  },
+  "struct.qmd": {
+    "struct.html": "85be5eb7"
+  },
+  "intro.qmd": {
+    "intro.html": "ca922262"
+  },
+  "production.qmd": {
+    "production.html": "b51bae34"
+  },
+  "spatial_chapter.qmd": {
+    "spatial_chapter.html": "5bb0fe00"
+  },
+  "functional.qmd": {
+    "functional.html": "b8f1f297"
+  },
+  "languages.qmd": {
+    "languages.html": "24c34292"
+  }
+}

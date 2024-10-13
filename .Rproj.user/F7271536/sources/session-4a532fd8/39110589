@@ -1,0 +1,32 @@
+{
+    "id": "39110589",
+    "path": "~/Documents/Rust/books/rust-book-spatial/intro.qmd",
+    "project_path": "intro.qmd",
+    "type": "quarto_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1728773050278.0,
+    "source_on_save": false,
+    "relative_order": 12,
+    "properties": {
+        "rmdVisualMode": "false",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "11,35",
+        "scrollLine": "9",
+        "rmdVisualWrapConfigured": "true",
+        "docOutlineVisible": "0",
+        "rmdVisualCollapsedChunks": "",
+        "rmdVisualModeLocation": "33:46",
+        "marks": "<:15,26\n>:15,39"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1728787588,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1728787588902,
+    "read_only": false,
+    "read_only_alternatives": []
+}
