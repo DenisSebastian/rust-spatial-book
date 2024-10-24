@@ -1,0 +1,8 @@
+---
+title: "Optimización"
+---
+
+- Optimización: Dado que Rust se centra en la eficiencia, sería útil dedicar tiempo a estrategias de optimización específicas para análisis espaciales, como el manejo eficiente de memoria y concurrencia.
+	
+- Testing y Benchmarking: En algún punto del libro, podrías agregar una sección sobre cómo probar y medir el rendimiento del código en Rust, especialmente relevante para aplicaciones espaciales que a menudo manejan grandes volúmenes de datos.
+	

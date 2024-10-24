@@ -22,6 +22,8 @@ book:
     - spatial_chapter.qmd
     - functional.qmd
     - languages.qmd
+    - optimization.qmd
+
     # chapters:
     #   - tarea_1.qmd
     #   - tarea_2.qmd

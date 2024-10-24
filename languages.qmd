@@ -8,3 +8,15 @@
 
 
 ## Rust y Python
+
+
+## FFI (Foreign Function Interface)
+
+Explicar cómo Rust se puede integrar con otros lenguajes, especialmente si se piensa en interoperabilidad con Python o R.
+
+## Binding de librerías
+
+Cómo crear bindings en Rust para aprovechar librerías de otros lenguajes para análisis espacial.
+
+
+

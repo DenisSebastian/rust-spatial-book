@@ -1,3 +1,12 @@
 ---
 title: "Struct"
 ---
+
+
+## Enums
+
+Para complementar los structs, sería útil explicar los enums en Rust y su uso con match.
+
+## Traits
+
+Explicación de cómo los traits permiten una programación orientada a interfaces.

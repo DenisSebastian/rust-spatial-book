@@ -1,1 +1,16 @@
 # Ownership
+
+
+## Definción
+
+## Referencias y Préstamos
+
+## Slices
+
+## Lifetime annotations
+
+Las anotaciones de tiempo de vida (lifetimes) son cruciales en Rust y se deberían cubrir al hablar de referencias y préstamos.
+
+## Borrow checker
+
+Aunque mencionas referencias y préstamos, sería útil dedicar un espacio para explicar en profundidad cómo funciona el borrow checker.

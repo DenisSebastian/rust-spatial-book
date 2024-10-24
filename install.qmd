@@ -412,13 +412,18 @@ Para obtener más información sobre Cargo, consulta [su documentación][cargo].
 
 ## Extensiones para VS Code
 
+
+
+
+
 Puede encontrar e instalar la extensión rust-analyzer desde VS Code a través de la vista Extensiones (⇧⌘X) y buscando `rust-analyzer`. Debe instalar la versión de lanzamiento.
 
 ![Extensión para Visual Studio Code llamada [rust-analyzer](https://code.visualstudio.com/docs/languages/rust)](images/Rust with VS Code.png)
 
 
-
-
 Puedes consultar la documentación de la extensión en [https://rust-analyzer.github.io](https://rust-analyzer.github.io).
+
+
+https://www.youtube.com/watch?v=Vde3-UUZAvU
 
 

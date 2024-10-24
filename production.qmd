@@ -1,1 +1,7 @@
 # Rust en Producción
+
+
+
+## Ejemplo Scraping
+
+Incluir una subcategoría sobre cómo gestionar concurrencia con Rust usando async/await, ya que el rendimiento concurrente es clave en procesos de scraping.

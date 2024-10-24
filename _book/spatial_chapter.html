@@ -169,6 +169,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./optimization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -179,7 +185,27 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#objetos-espaciales" id="toc-objetos-espaciales" class="nav-link active" data-scroll-target="#objetos-espaciales"><span class="header-section-number">8.1</span> Objetos Espaciales</a>
+  <ul class="collapse">
+  <li><a href="#vectores" id="toc-vectores" class="nav-link" data-scroll-target="#vectores"><span class="header-section-number">8.1.1</span> Vectores</a></li>
+  <li><a href="#raster" id="toc-raster" class="nav-link" data-scroll-target="#raster"><span class="header-section-number">8.1.2</span> Raster</a></li>
+  </ul></li>
+  <li><a href="#procesos-espaciales" id="toc-procesos-espaciales" class="nav-link" data-scroll-target="#procesos-espaciales"><span class="header-section-number">8.2</span> Procesos Espaciales</a></li>
+  <li><a href="#ddbb-espaciales" id="toc-ddbb-espaciales" class="nav-link" data-scroll-target="#ddbb-espaciales"><span class="header-section-number">8.3</span> DDBB Espaciales</a></li>
+  <li><a href="#algoritmos" id="toc-algoritmos" class="nav-link" data-scroll-target="#algoritmos"><span class="header-section-number">8.4</span> Algoritmos</a>
+  <ul class="collapse">
+  <li><a href="#triangulación-de-delaunay" id="toc-triangulación-de-delaunay" class="nav-link" data-scroll-target="#triangulación-de-delaunay"><span class="header-section-number">8.4.1</span> Triangulación de Delaunay</a></li>
+  <li><a href="#voronoi" id="toc-voronoi" class="nav-link" data-scroll-target="#voronoi"><span class="header-section-number">8.4.2</span> Voronoi</a></li>
+  <li><a href="#geocoding" id="toc-geocoding" class="nav-link" data-scroll-target="#geocoding"><span class="header-section-number">8.4.3</span> Geocoding</a></li>
+  <li><a href="#geohash" id="toc-geohash" class="nav-link" data-scroll-target="#geohash"><span class="header-section-number">8.4.4</span> [[Geohash]]</a></li>
+  <li><a href="#r-tree" id="toc-r-tree" class="nav-link" data-scroll-target="#r-tree"><span class="header-section-number">8.4.5</span> r-tree</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -205,8 +231,47 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Rust es ideal para el análisis o procesamiento espacial debido a su alto rendimiento, manejo eficiente de memoria y seguridad. En comparación con lenguajes como Python o R, Rust ofrece una ejecución más rápida y un control explícito sobre los recursos del sistema, lo que es crucial para procesar grandes volúmenes de datos espaciales o trabajar con imágenes satelitales. Además, su sistema de manejo de memoria sin recolector de basura permite minimizar el consumo de recursos, algo vital en tareas geoespaciales intensivas como el procesamiento de modelos de elevación digital (DEM) o la indexación espacial.</p>
 <p>Otra ventaja clave de Rust es su seguridad en tiempo de compilación, lo que reduce errores comunes como los desbordamientos de buffer o condiciones de carrera, que pueden ser problemáticos en lenguajes como C++ o Python. Esto lo convierte en una excelente opción para desarrollar aplicaciones robustas y escalables para análisis espacial, donde el rendimiento y la precisión son cruciales. A largo plazo, Rust también facilita la integración con otras tecnologías de alto rendimiento como GPUs, lo que permite mejorar significativamente los tiempos de procesamiento en tareas complejas como simulaciones o renderizado de grandes mapas interactivos.</p>
+<section id="objetos-espaciales" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="objetos-espaciales"><span class="header-section-number">8.1</span> Objetos Espaciales</h2>
+<section id="vectores" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="vectores"><span class="header-section-number">8.1.1</span> Vectores</h3>
+</section>
+<section id="raster" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="raster"><span class="header-section-number">8.1.2</span> Raster</h3>
+<p>Explicar cómo manejar objetos espaciales en formato geojson o tiff.</p>
+<p>Introducir alguna librería como geo o gdal para procesar estos tipos de datos.</p>
+</section>
+</section>
+<section id="procesos-espaciales" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="procesos-espaciales"><span class="header-section-number">8.2</span> Procesos Espaciales</h2>
+<p>Transformaciones geográficas: Explicar cómo realizar reproyecciones y transformaciones de coordenadas.</p>
+<p>Intersecciones espaciales: Cómo calcular intersecciones entre objetos espaciales (polígonos, líneas).</p>
+</section>
+<section id="ddbb-espaciales" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="ddbb-espaciales"><span class="header-section-number">8.3</span> DDBB Espaciales</h2>
+</section>
+<section id="algoritmos" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="algoritmos"><span class="header-section-number">8.4</span> Algoritmos</h2>
+<section id="triangulación-de-delaunay" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="triangulación-de-delaunay"><span class="header-section-number">8.4.1</span> Triangulación de Delaunay</h3>
+<p>Útil para algunos tipos de análisis espacial.</p>
+</section>
+<section id="voronoi" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="voronoi"><span class="header-section-number">8.4.2</span> Voronoi</h3>
+<p>Otro algoritmo que puede complementar la creación de celdas espaciales.</p>
+</section>
+<section id="geocoding" class="level3" data-number="8.4.3">
+<h3 data-number="8.4.3" class="anchored" data-anchor-id="geocoding"><span class="header-section-number">8.4.3</span> Geocoding</h3>
+</section>
+<section id="geohash" class="level3" data-number="8.4.4">
+<h3 data-number="8.4.4" class="anchored" data-anchor-id="geohash"><span class="header-section-number">8.4.4</span> [[Geohash]]</h3>
+</section>
+<section id="r-tree" class="level3" data-number="8.4.5">
+<h3 data-number="8.4.5" class="anchored" data-anchor-id="r-tree"><span class="header-section-number">8.4.5</span> r-tree</h3>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
