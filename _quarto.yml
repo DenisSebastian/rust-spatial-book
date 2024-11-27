@@ -43,7 +43,6 @@ book:
         - spatial_chapter.qmd
     - part: "Anexos"
       chapters:
-        - tarea_1.qmd
         - functional.qmd
         - languages.qmd
 
@@ -67,7 +66,7 @@ format:
     fig-cap-location: "margin"
     tab-cap-location: "left"
     mailto: "denis.berroeta@uai.cl"
-    code-block-bg: true
+    code-block-bg: "#f0f0f0"
     code-block-border-left: "#31BAE9"
 
 execute:

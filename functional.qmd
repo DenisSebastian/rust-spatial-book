@@ -1,4 +1,4 @@
-# Programación Funcional
+# Programación Funcional {.unnumbered}
 
 
 Además de una explicación de los conceptos básicos de la programación funcional (map, filter, fold), podrías incluir:

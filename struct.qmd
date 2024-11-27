@@ -1,12 +1,212 @@
 ---
-title: "Struct"
+subtitle: "Diseñando una Ciudad en Rust"
 ---
 
+# Structs, Enums y Traits
 
-## Enums
+Rust ofrece herramientas poderosas para organizar datos y definir comportamientos. Los **Structs**, **Enums**, y **Traits** son fundamentales para escribir código limpio, eficiente y mantenible.
 
-Para complementar los structs, sería útil explicar los enums en Rust y su uso con match.
+En este capítulo, exploraremos cómo estos tres conceptos funcionan y se relacionan, utilizando la analogía de una **ciudad** para facilitar su comprensión.
 
-## Traits
 
-Explicación de cómo los traits permiten una programación orientada a interfaces.
+
+## Structs: Los Planos de los Edificios
+
+### ¿Qué son los Structs?
+
+Un `struct` es una **estructura de datos** que agrupa múltiples valores bajo un solo nombre. Estos valores, conocidos como **campos**, pueden ser de diferentes tipos. Los structs se utilizan para representar entidades concretas, como objetos del mundo real o elementos lógicos.
+
+### Tipos de Structs
+
+Rust ofrece tres tipos principales de structs:
+
+1. **Structs Nombrados**: Tienen campos con nombres explícitos.
+2. **Structs Tuple**: Contienen valores sin nombres específicos.
+3. **Structs Unitarios**: No contienen campos y sirven como marcadores o identificadores.
+
+**Relación con el Código**
+
+Los structs son fundamentales para modelar datos complejos. Permiten agrupar atributos relacionados de forma estructurada.
+
+
+::: {.callout-tip}
+##  🕋 Analogía: Un Plano Arquitectónico
+
+
+Piensa en un struct como el plano de un edificio. Este plano describe características como:
+
+- Nombre del edificio
+- Número de pisos
+- Color
+:::
+
+
+Cada struct es un plano único que define cómo construir un tipo de edificio.
+
+
+Ejemplo de Structs
+
+```rust
+// Struct nombrado
+struct Edificio {
+    nombre: String,
+    pisos: u32,
+    color: String,
+}
+
+// Struct tuple
+struct Coordenadas(f64, f64);
+
+// Struct unitario
+struct SeñalDeTrafico;
+```
+
+---
+
+## Enums: Tipos de Edificios en la Ciudad
+
+### ¿Qué son los Enums?
+
+Un `enum` es un tipo de dato que representa un conjunto de **variantes**. Cada variante puede almacenar datos asociados, lo que permite modelar diferentes estados o tipos dentro de un mismo contexto.
+
+**Relación con el Código**
+
+Los enums son ideales para manejar situaciones en las que un valor puede tener múltiples formas o estados. Además, permiten incluir datos adicionales en cada variante.
+
+::: {.callout-tip}
+##  🕋 Analogía: Un Catálogo de Tipos de Edificios
+
+
+Imagina que el enum es un catálogo de edificios en la ciudad. Cada variante describe un tipo de edificio:
+
+- Una casa con habitaciones y un jardín.
+- Un hospital con camas y un área de emergencias.
+- Una oficina con empleados y pisos.
+:::
+
+
+Ejemplo de Enums
+
+```rust
+enum TipoDeEdificio {
+    Casa { habitaciones: u32, jardin: bool },
+    Hospital { camas: u32, tiene_emergencias: bool },
+    Oficina { empleados: u32, pisos: u32 },
+}
+```
+
+
+## Traits: Las Habilidades de los Edificios
+
+### ¿Qué son los Traits?
+
+Un `trait` define un conjunto de **métodos** que un tipo debe implementar. Son similares a interfaces en otros lenguajes y permiten compartir comportamientos entre tipos diferentes.
+
+**Relación con el Código**
+
+Los traits permiten que diferentes tipos, como structs y enums, compartan comportamientos. También son esenciales para el polimorfismo en Rust.
+
+
+
+::: {.callout-tip}
+##  🕋 Analogía: Funcionalidades de los Edificios
+
+Un trait es como una funcionalidad que los edificios pueden adoptar:
+
+- Algunos edificios tienen luces automáticas.
+- Otros pueden ser resistentes a terremotos.
+- Algunos tienen ascensores.
+
+Cada edificio puede implementar uno o más traits según las funcionalidades que necesita.
+:::
+
+Ejemplo de Traits
+
+```rust
+trait Habilidad {
+    fn activar_funcion(&self) -> String;
+}
+
+impl Habilidad for Edificio {
+    fn activar_funcion(&self) -> String {
+        format!("El edificio {} activa sus luces automáticas.", self.nombre)
+    }
+}
+```
+
+---
+
+## Ejemplo Integrado: Diseñando una Ciudad con Structs, Enums y Traits
+
+Combinemos estos tres conceptos para diseñar una ciudad con edificios, tipos de edificios y habilidades compartidas.
+
+Código de Ejemplo
+
+```rust
+// Struct para representar un edificio
+struct Edificio {
+    nombre: String,
+    pisos: u32,
+}
+
+// Enum para representar tipos de edificios
+enum TipoDeEdificio {
+    Casa,
+    Hospital,
+    Oficina,
+}
+
+// Trait para definir habilidades
+trait Habilidad {
+    fn activar_funcion(&self) -> String;
+}
+
+// Implementación del Trait para Struct
+impl Habilidad for Edificio {
+    fn activar_funcion(&self) -> String {
+        format!("El edificio {} activa sus luces automáticas.", self.nombre)
+    }
+}
+
+// Implementación del Trait para Enum
+impl Habilidad for TipoDeEdificio {
+    fn activar_funcion(&self) -> String {
+        match self {
+            TipoDeEdificio::Casa => "La casa utiliza energía renovable.".to_string(),
+            TipoDeEdificio::Hospital => "El hospital activa su sistema de emergencias.".to_string(),
+            TipoDeEdificio::Oficina => "La oficina enciende su aire acondicionado.".to_string(),
+        }
+    }
+}
+
+fn main() {
+    let edificio = Edificio {
+        nombre: "Edificio Central".to_string(),
+        pisos: 10,
+    };
+
+    let tipo = TipoDeEdificio::Hospital;
+
+    println!("{}", edificio.activar_funcion());
+    println!("{}", tipo.activar_funcion());
+}
+```
+
+**Salida**
+
+```console
+El edificio Edificio Central activa sus luces automáticas.
+El hospital activa su sistema de emergencias.
+```
+
+---
+
+## Conclusión
+
+En Rust, **Structs, Enums y Traits** trabajan juntos para organizar datos y definir comportamientos. Usando la analogía de una ciudad:
+
+- Los structs son los planos de los edificios.
+- Los enums son los tipos de edificios que puedes construir.
+- Los traits son las habilidades que los edificios pueden tener.
+
+Esta combinación permite crear software modular, claro y extensible, al igual que diseñar una ciudad bien planificada.

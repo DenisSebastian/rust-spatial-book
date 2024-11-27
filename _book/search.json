@@ -307,12 +307,12 @@
   {
     "objectID": "struct.html",
     "href": "struct.html",
-    "title": "13  Struct",
+    "title": "13  Structs, Enums y Traits",
     "section": "",
-    "text": "13.1 Enums\nPara complementar los structs, sería útil explicar los enums en Rust y su uso con match.",
+    "text": "13.1 Structs: Los Planos de los Edificios",
     "crumbs": [
       "Conceptos Avanzados",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Struct</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
     ]
   },
   {
@@ -329,12 +329,12 @@
   {
     "objectID": "production.html",
     "href": "production.html",
-    "title": "8  Producción",
+    "title": "15  Scraping",
     "section": "",
-    "text": "8.1 Ejemplo Scraping\nIncluir una subcategoría sobre cómo gestionar concurrencia con Rust usando async/await, ya que el rendimiento concurrente es clave en procesos de scraping.",
+    "text": "15.1 Ejemplo Scraping\nIncluir una subcategoría sobre cómo gestionar concurrencia con Rust usando async/await, ya que el rendimiento concurrente es clave en procesos de scraping.",
     "crumbs": [
-      "Rust en Producción",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Producción</span>"
+      "Práctica",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Scraping</span>"
     ]
   },
   {
@@ -390,51 +390,56 @@
   {
     "objectID": "functional.html",
     "href": "functional.html",
-    "title": "7  Programación Funcional",
+    "title": "Programación Funcional",
     "section": "",
     "text": "Además de una explicación de los conceptos básicos de la programación funcional (map, filter, fold), podrías incluir:\n\nIteradores y closures: Cómo la programación funcional se aplica a operaciones sobre datos espaciales.\nComposición de funciones: Explicar cómo utilizar funciones puras en el contexto espacial.",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Programación Funcional</span>"
+      "Anexos",
+      "Programación Funcional"
     ]
   },
   {
     "objectID": "languages.html",
     "href": "languages.html",
-    "title": "10  Otros Lenguajes",
+    "title": "Otros Lenguajes",
     "section": "",
-    "text": "10.1 Rust y R\nextendr - A safe and user-friendly R extension interface using Rust\nextendr_api",
+    "text": "Rust y R\nextendr - A safe and user-friendly R extension interface using Rust\nextendr_api",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Otros Lenguajes</span>"
+      "Anexos",
+      "Otros Lenguajes"
     ]
   },
   {
     "objectID": "languages.html#rust-y-python",
     "href": "languages.html#rust-y-python",
-    "title": "10  Otros Lenguajes",
-    "section": "10.2 Rust y Python",
-    "text": "10.2 Rust y Python",
+    "title": "Otros Lenguajes",
+    "section": "Rust y Python",
+    "text": "Rust y Python",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Otros Lenguajes</span>"
+      "Anexos",
+      "Otros Lenguajes"
     ]
   },
   {
     "objectID": "languages.html#ffi-foreign-function-interface",
     "href": "languages.html#ffi-foreign-function-interface",
-    "title": "10  Otros Lenguajes",
-    "section": "10.3 FFI (Foreign Function Interface)",
-    "text": "10.3 FFI (Foreign Function Interface)\nExplicar cómo Rust se puede integrar con otros lenguajes, especialmente si se piensa en interoperabilidad con Python o R.",
+    "title": "Otros Lenguajes",
+    "section": "FFI (Foreign Function Interface)",
+    "text": "FFI (Foreign Function Interface)\nExplicar cómo Rust se puede integrar con otros lenguajes, especialmente si se piensa en interoperabilidad con Python o R.",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Otros Lenguajes</span>"
+      "Anexos",
+      "Otros Lenguajes"
     ]
   },
   {
     "objectID": "languages.html#binding-de-librerías",
     "href": "languages.html#binding-de-librerías",
-    "title": "10  Otros Lenguajes",
-    "section": "10.4 Binding de librerías",
-    "text": "10.4 Binding de librerías\nCómo crear bindings en Rust para aprovechar librerías de otros lenguajes para análisis espacial.",
+    "title": "Otros Lenguajes",
+    "section": "Binding de librerías",
+    "text": "Binding de librerías\nCómo crear bindings en Rust para aprovechar librerías de otros lenguajes para análisis espacial.",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Otros Lenguajes</span>"
+      "Anexos",
+      "Otros Lenguajes"
     ]
   },
   {
@@ -780,45 +785,45 @@
   {
     "objectID": "tarea_1.html",
     "href": "tarea_1.html",
-    "title": "15  Tarea 1",
+    "title": "Tarea 1",
     "section": "",
-    "text": "15.1 Parte 1",
+    "text": "Parte 1",
     "crumbs": [
       "Tareas",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Tarea 1</span>"
+      "Tarea 1"
     ]
   },
   {
     "objectID": "tarea_1.html#parte-2",
     "href": "tarea_1.html#parte-2",
-    "title": "15  Tarea 1",
-    "section": "15.2 Parte 2",
-    "text": "15.2 Parte 2\n\nCada animal será un struct por separado\nEl Enum seguirá teniendo la lista de animales, cada opción del enum debe contener el struct de su respectivo animal\nDiseñar un Trait que permita obtener la velocidad maxima y minima de un animal\nDiseñar una función que de entrada sean cualquiera de los struct de los animales, y retornar cual es el animal que puede ir más rápido (Nota: esta función puede fallar)\nProbar el perro Salvaje y el Perro robot",
+    "title": "Tarea 1",
+    "section": "Parte 2",
+    "text": "Parte 2\n\nCada animal será un struct por separado\nEl Enum seguirá teniendo la lista de animales, cada opción del enum debe contener el struct de su respectivo animal\nDiseñar un Trait que permita obtener la velocidad maxima y minima de un animal\nDiseñar una función que de entrada sean cualquiera de los struct de los animales, y retornar cual es el animal que puede ir más rápido (Nota: esta función puede fallar)\nProbar el perro Salvaje y el Perro robot",
     "crumbs": [
       "Tareas",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Tarea 1</span>"
+      "Tarea 1"
     ]
   },
   {
     "objectID": "tarea_1.html#parte-3",
     "href": "tarea_1.html#parte-3",
-    "title": "15  Tarea 1",
-    "section": "15.3 Parte 3",
-    "text": "15.3 Parte 3\n\nComplementar la tarea 1 y 2 con el siguiente ajuste a todas las funciones que pueden fallar de la siguiente manera.\nSi la función falla retorna un Result&lt;Algo Bien, Algo Falló&gt;\nW debe ser un Enum el cual liste en cada función, las posibilidades de cómo puede fallar.\nEste nuevo Enum que lista errores, debe ser el retorno de su respectiva función estilo: Result&lt;T, Custom_Error_Enum&gt;\nActualizar el código para que retorne el tipo de error correspondiente. Hacer esto a todas las funciones que pueden fallar.\n\n\n\n\n\n\n\nHint\n\n\n\nSi una puede fallar, y queremos que retorne una cadena de texto como Error, se puede hacer de la siguiente manera.\nResult&lt;Algo, String&gt;",
+    "title": "Tarea 1",
+    "section": "Parte 3",
+    "text": "Parte 3\n\nComplementar la tarea 1 y 2 con el siguiente ajuste a todas las funciones que pueden fallar de la siguiente manera.\nSi la función falla retorna un Result&lt;Algo Bien, Algo Falló&gt;\nW debe ser un Enum el cual liste en cada función, las posibilidades de cómo puede fallar.\nEste nuevo Enum que lista errores, debe ser el retorno de su respectiva función estilo: Result&lt;T, Custom_Error_Enum&gt;\nActualizar el código para que retorne el tipo de error correspondiente. Hacer esto a todas las funciones que pueden fallar.\n\n\n\n\n\n\n\nHint\n\n\n\nSi una puede fallar, y queremos que retorne una cadena de texto como Error, se puede hacer de la siguiente manera.\nResult&lt;Algo, String&gt;",
     "crumbs": [
       "Tareas",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Tarea 1</span>"
+      "Tarea 1"
     ]
   },
   {
     "objectID": "tarea_1.html#parte-1",
     "href": "tarea_1.html#parte-1",
-    "title": "15  Tarea 1",
+    "title": "Tarea 1",
     "section": "",
-    "text": "15.1.1 Enunciado 1\n\nCrear un Enum que contenga diferentes animales\nImplementar en el Enum una función la cual entregue la velocidad máxima del animal específico\nImplementar en el Enum una función la cual entregue la velocidad mínima del animal específico\nImplementar en el enum al menos los siguientes:\n\nPerro salvaje de a 40km/h a 70km/h\nPerro casa de a 20km/h a 50Km/h\nPerro robot que finge ser un perro de a 40km/h a 70km/h\n\nDiseñar una función que tenga de entrada una velocidad máxima y una velocidad mínima, la función debe retornar en caso que exista, el animal que es capaz de correr en ese rango de velocidad (Nota: esta función puede fallar).\n\n\n\n15.1.2 Desarrollo 1\nPlan:\n\nRepresentaremos los diferentes animales con variantes del enum.\nSe implementarán métodos para obtener la velocidad mínima y máxima de cada variante.\nDiseñaremos una función que reciba una velocidad mínima y máxima, y retorne el animal que cumpla con esos límites o un error si no existe.\nSe evaluará la función y manejar casos donde no haya animales que cumplan con el rango de velocidad.\n\nImplementación:\nPaso 0:\nSe crea el proyecto utilizando cargo en la terminal:\ncargo new tarea_1\nPaso 1:\nDefinimos el Enum con variantes para los diferentes animales\n#[derive(Debug, Clone)]\nenum Animal {\n    PerroSalvaje,\n    PerroCasa,\n    PerroRobot,\n}\n\nAnimal no tiene implementado el trait Clone\n\nPaso 2:\nSe implementarán métodos para obtener la velocidad mínima y máxima de cada variante.\n\nDebe retornar la velocidad máxima de cada animal\nDebe retornar la velocidad mínima de cada animal\n\n// Implementación de métodos para el Enum Animal\nimpl Animal {\n    // Método que retorna la velocidad máxima de cada animal\n    fn velocidad_maxima(&self) -&gt; u32 {\n        match self {\n            Animal::PerroSalvaje =&gt; 70,\n            Animal::PerroCasa =&gt; 50,\n            Animal::PerroRobot =&gt; 70,\n        }\n    }\n\n    // Método que retorna la velocidad mínima de cada animal\n    fn velocidad_minima(&self) -&gt; u32 {\n        match self {\n            Animal::PerroSalvaje =&gt; 40,\n            Animal::PerroCasa =&gt; 20,\n            Animal::PerroRobot =&gt; 40,\n        }\n    }\n}\nPaso 3:\nCrear una función buscar_animal_por_rango que reciba una velocidad mínima y máxima, y retorne el animal que cumpla con esos límites o un error si no existe.\n// Función que busca un animal capaz de correr en un rango de velocidad\nfn buscar_animal_por_rango(vel_min: u32, vel_max: u32) -&gt; Option&lt;Animal&gt; {\n    // Iteramos sobre las variantes del enum para encontrar un animal que cumpla el rango\n    let animales = [Animal::PerroSalvaje, Animal::PerroCasa, Animal::PerroRobot];\n\n    for animal in &animales {\n        if animal.velocidad_minima() &gt;= vel_min && animal.velocidad_maxima() &lt;= vel_max {\n            return Some(animal.clone());\n        }\n    }\n    None\n}\nPaso 4\nFinalmente se evaluará la función y manejar casos donde no haya animales que cumplan con el rango de velocidad.\n\n// Función principal para probar la implementación\nfn main() {\n    let vel_min = 30;\n    let vel_max = 60;\n\n    match buscar_animal_por_rango(vel_min, vel_max) {\n        Some(animal) =&gt; println!(\"Animal encontrado: {:?}\", animal),\n        None =&gt; println!(\"No se encontró ningún animal para el rango dado.\"),\n    }\n}\nResultados Test 1:\n\nvel_min = 30\nvel_max = 60\n\n cargo run\n   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.49s\n     Running `target/debug/tarea_1`\nNo se encontró ningún animal para el rango dado.\nResultados Test 2:\n\nvel_min = 15\nvel_max = 55\n\n&gt; cargo run\n   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.71s\n     Running `target/debug/tarea_1`\nAnimal encontrado: PerroCasa\nResultados Test 3:\n\nvel_min = 35\nvel_max = 80\n\n&gt; cargo run\n   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.81s\n     Running `target/debug/tarea_1`\nAnimal encontrado: PerroSalvaje\nLa función como está diseñada actualmente retorna el primer animal que cumple la condición y termina la búsqueda debido al al uso del return dentro de ciclo For. Pendiente de corregir..",
+    "text": "Enunciado 1\n\nCrear un Enum que contenga diferentes animales\nImplementar en el Enum una función la cual entregue la velocidad máxima del animal específico\nImplementar en el Enum una función la cual entregue la velocidad mínima del animal específico\nImplementar en el enum al menos los siguientes:\n\nPerro salvaje de a 40km/h a 70km/h\nPerro casa de a 20km/h a 50Km/h\nPerro robot que finge ser un perro de a 40km/h a 70km/h\n\nDiseñar una función que tenga de entrada una velocidad máxima y una velocidad mínima, la función debe retornar en caso que exista, el animal que es capaz de correr en ese rango de velocidad (Nota: esta función puede fallar).\n\n\n\nDesarrollo 1\nPlan:\n\nRepresentaremos los diferentes animales con variantes del enum.\nSe implementarán métodos para obtener la velocidad mínima y máxima de cada variante.\nDiseñaremos una función que reciba una velocidad mínima y máxima, y retorne el animal que cumpla con esos límites o un error si no existe.\nSe evaluará la función y manejar casos donde no haya animales que cumplan con el rango de velocidad.\n\nImplementación:\nPaso 0:\nSe crea el proyecto utilizando cargo en la terminal:\ncargo new tarea_1\nPaso 1:\nDefinimos el Enum con variantes para los diferentes animales\n#[derive(Debug, Clone)]\nenum Animal {\n    PerroSalvaje,\n    PerroCasa,\n    PerroRobot,\n}\n\nAnimal no tiene implementado el trait Clone\n\nPaso 2:\nSe implementarán métodos para obtener la velocidad mínima y máxima de cada variante.\n\nDebe retornar la velocidad máxima de cada animal\nDebe retornar la velocidad mínima de cada animal\n\n// Implementación de métodos para el Enum Animal\nimpl Animal {\n    // Método que retorna la velocidad máxima de cada animal\n    fn velocidad_maxima(&self) -&gt; u32 {\n        match self {\n            Animal::PerroSalvaje =&gt; 70,\n            Animal::PerroCasa =&gt; 50,\n            Animal::PerroRobot =&gt; 70,\n        }\n    }\n\n    // Método que retorna la velocidad mínima de cada animal\n    fn velocidad_minima(&self) -&gt; u32 {\n        match self {\n            Animal::PerroSalvaje =&gt; 40,\n            Animal::PerroCasa =&gt; 20,\n            Animal::PerroRobot =&gt; 40,\n        }\n    }\n}\nPaso 3:\nCrear una función buscar_animal_por_rango que reciba una velocidad mínima y máxima, y retorne el animal que cumpla con esos límites o un error si no existe.\n// Función que busca un animal capaz de correr en un rango de velocidad\nfn buscar_animal_por_rango(vel_min: u32, vel_max: u32) -&gt; Option&lt;Animal&gt; {\n    // Iteramos sobre las variantes del enum para encontrar un animal que cumpla el rango\n    let animales = [Animal::PerroSalvaje, Animal::PerroCasa, Animal::PerroRobot];\n\n    for animal in &animales {\n        if animal.velocidad_minima() &gt;= vel_min && animal.velocidad_maxima() &lt;= vel_max {\n            return Some(animal.clone());\n        }\n    }\n    None\n}\nPaso 4\nFinalmente se evaluará la función y manejar casos donde no haya animales que cumplan con el rango de velocidad.\n\n// Función principal para probar la implementación\nfn main() {\n    let vel_min = 30;\n    let vel_max = 60;\n\n    match buscar_animal_por_rango(vel_min, vel_max) {\n        Some(animal) =&gt; println!(\"Animal encontrado: {:?}\", animal),\n        None =&gt; println!(\"No se encontró ningún animal para el rango dado.\"),\n    }\n}\nResultados Test 1:\n\nvel_min = 30\nvel_max = 60\n\n cargo run\n   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.49s\n     Running `target/debug/tarea_1`\nNo se encontró ningún animal para el rango dado.\nResultados Test 2:\n\nvel_min = 15\nvel_max = 55\n\n&gt; cargo run\n   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.71s\n     Running `target/debug/tarea_1`\nAnimal encontrado: PerroCasa\nResultados Test 3:\n\nvel_min = 35\nvel_max = 80\n\n&gt; cargo run\n   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.81s\n     Running `target/debug/tarea_1`\nAnimal encontrado: PerroSalvaje\nLa función como está diseñada actualmente retorna el primer animal que cumple la condición y termina la búsqueda debido al al uso del return dentro de ciclo For. Pendiente de corregir..",
     "crumbs": [
       "Tareas",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Tarea 1</span>"
+      "Tarea 1"
     ]
   },
   {
@@ -830,6 +835,61 @@
     "crumbs": [
       "Tareas",
       "<span class='chapter-number'>18</span>  <span class='chapter-title'>Tarea 1</span>"
+    ]
+  },
+  {
+    "objectID": "struct.html#structs-los-planos-de-los-edificios",
+    "href": "struct.html#structs-los-planos-de-los-edificios",
+    "title": "13  Structs, Enums y Traits",
+    "section": "",
+    "text": "13.1.1 ¿Qué son los Structs?\nUn struct es una estructura de datos que agrupa múltiples valores bajo un solo nombre. Estos valores, conocidos como campos, pueden ser de diferentes tipos. Los structs se utilizan para representar entidades concretas, como objetos del mundo real o elementos lógicos.\n\n\n13.1.2 Tipos de Structs\nRust ofrece tres tipos principales de structs:\n\nStructs Nombrados: Tienen campos con nombres explícitos.\nStructs Tuple: Contienen valores sin nombres específicos.\nStructs Unitarios: No contienen campos y sirven como marcadores o identificadores.\n\nRelación con el Código\nLos structs son fundamentales para modelar datos complejos. Permiten agrupar atributos relacionados de forma estructurada.\n\n\n\n\n\n\n🕋 Analogía: Un Plano Arquitectónico\n\n\n\nPiensa en un struct como el plano de un edificio. Este plano describe características como:\n\nNombre del edificio\nNúmero de pisos\nColor\n\n\n\nCada struct es un plano único que define cómo construir un tipo de edificio.\nEjemplo de Structs\n// Struct nombrado\nstruct Edificio {\n    nombre: String,\n    pisos: u32,\n    color: String,\n}\n\n// Struct tuple\nstruct Coordenadas(f64, f64);\n\n// Struct unitario\nstruct SeñalDeTrafico;",
+    "crumbs": [
+      "Conceptos Avanzados",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
+    ]
+  },
+  {
+    "objectID": "struct.html#enums-tipos-de-edificios-en-la-ciudad",
+    "href": "struct.html#enums-tipos-de-edificios-en-la-ciudad",
+    "title": "13  Structs, Enums y Traits",
+    "section": "13.2 Enums: Tipos de Edificios en la Ciudad",
+    "text": "13.2 Enums: Tipos de Edificios en la Ciudad\n\n13.2.1 ¿Qué son los Enums?\nUn enum es un tipo de dato que representa un conjunto de variantes. Cada variante puede almacenar datos asociados, lo que permite modelar diferentes estados o tipos dentro de un mismo contexto.\nRelación con el Código\nLos enums son ideales para manejar situaciones en las que un valor puede tener múltiples formas o estados. Además, permiten incluir datos adicionales en cada variante.\n\n\n\n\n\n\n🕋 Analogía: Un Catálogo de Tipos de Edificios\n\n\n\nImagina que el enum es un catálogo de edificios en la ciudad. Cada variante describe un tipo de edificio:\n\nUna casa con habitaciones y un jardín.\nUn hospital con camas y un área de emergencias.\nUna oficina con empleados y pisos.\n\n\n\nEjemplo de Enums\nenum TipoDeEdificio {\n    Casa { habitaciones: u32, jardin: bool },\n    Hospital { camas: u32, tiene_emergencias: bool },\n    Oficina { empleados: u32, pisos: u32 },\n}",
+    "crumbs": [
+      "Conceptos Avanzados",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
+    ]
+  },
+  {
+    "objectID": "struct.html#traits-las-habilidades-de-los-edificios",
+    "href": "struct.html#traits-las-habilidades-de-los-edificios",
+    "title": "13  Structs, Enums y Traits",
+    "section": "13.3 Traits: Las Habilidades de los Edificios",
+    "text": "13.3 Traits: Las Habilidades de los Edificios\n\n13.3.1 ¿Qué son los Traits?\nUn trait define un conjunto de métodos que un tipo debe implementar. Son similares a interfaces en otros lenguajes y permiten compartir comportamientos entre tipos diferentes.\nRelación con el Código\nLos traits permiten que diferentes tipos, como structs y enums, compartan comportamientos. También son esenciales para el polimorfismo en Rust.\n\n\n\n\n\n\n🕋 Analogía: Funcionalidades de los Edificios\n\n\n\nUn trait es como una funcionalidad que los edificios pueden adoptar:\n\nAlgunos edificios tienen luces automáticas.\nOtros pueden ser resistentes a terremotos.\nAlgunos tienen ascensores.\n\nCada edificio puede implementar uno o más traits según las funcionalidades que necesita.\n\n\nEjemplo de Traits\ntrait Habilidad {\n    fn activar_funcion(&self) -&gt; String;\n}\n\nimpl Habilidad for Edificio {\n    fn activar_funcion(&self) -&gt; String {\n        format!(\"El edificio {} activa sus luces automáticas.\", self.nombre)\n    }\n}",
+    "crumbs": [
+      "Conceptos Avanzados",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
+    ]
+  },
+  {
+    "objectID": "struct.html#ejemplo-integrado-diseñando-una-ciudad-con-structs-enums-y-traits",
+    "href": "struct.html#ejemplo-integrado-diseñando-una-ciudad-con-structs-enums-y-traits",
+    "title": "13  Structs, Enums y Traits",
+    "section": "13.4 Ejemplo Integrado: Diseñando una Ciudad con Structs, Enums y Traits",
+    "text": "13.4 Ejemplo Integrado: Diseñando una Ciudad con Structs, Enums y Traits\nCombinemos estos tres conceptos para diseñar una ciudad con edificios, tipos de edificios y habilidades compartidas.\nCódigo de Ejemplo\n// Struct para representar un edificio\nstruct Edificio {\n    nombre: String,\n    pisos: u32,\n}\n\n// Enum para representar tipos de edificios\nenum TipoDeEdificio {\n    Casa,\n    Hospital,\n    Oficina,\n}\n\n// Trait para definir habilidades\ntrait Habilidad {\n    fn activar_funcion(&self) -&gt; String;\n}\n\n// Implementación del Trait para Struct\nimpl Habilidad for Edificio {\n    fn activar_funcion(&self) -&gt; String {\n        format!(\"El edificio {} activa sus luces automáticas.\", self.nombre)\n    }\n}\n\n// Implementación del Trait para Enum\nimpl Habilidad for TipoDeEdificio {\n    fn activar_funcion(&self) -&gt; String {\n        match self {\n            TipoDeEdificio::Casa =&gt; \"La casa utiliza energía renovable.\".to_string(),\n            TipoDeEdificio::Hospital =&gt; \"El hospital activa su sistema de emergencias.\".to_string(),\n            TipoDeEdificio::Oficina =&gt; \"La oficina enciende su aire acondicionado.\".to_string(),\n        }\n    }\n}\n\nfn main() {\n    let edificio = Edificio {\n        nombre: \"Edificio Central\".to_string(),\n        pisos: 10,\n    };\n\n    let tipo = TipoDeEdificio::Hospital;\n\n    println!(\"{}\", edificio.activar_funcion());\n    println!(\"{}\", tipo.activar_funcion());\n}\nSalida\nEl edificio Edificio Central activa sus luces automáticas.\nEl hospital activa su sistema de emergencias.",
+    "crumbs": [
+      "Conceptos Avanzados",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
+    ]
+  },
+  {
+    "objectID": "struct.html#conclusión",
+    "href": "struct.html#conclusión",
+    "title": "13  Structs, Enums y Traits",
+    "section": "13.5 Conclusión",
+    "text": "13.5 Conclusión\nEn Rust, Structs, Enums y Traits trabajan juntos para organizar datos y definir comportamientos. Usando la analogía de una ciudad:\n\nLos structs son los planos de los edificios.\nLos enums son los tipos de edificios que puedes construir.\nLos traits son las habilidades que los edificios pueden tener.\n\nEsta combinación permite crear software modular, claro y extensible, al igual que diseñar una ciudad bien planificada.",
+    "crumbs": [
+      "Conceptos Avanzados",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
     ]
   }
 ]

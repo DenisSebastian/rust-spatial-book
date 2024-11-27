@@ -1,4 +1,4 @@
-# Otros Lenguajes
+# Otros Lenguajes {.unnumbered}
 
 ## Rust y R
 
