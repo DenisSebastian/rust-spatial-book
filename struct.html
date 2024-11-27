@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Rust Espacial - 6&nbsp; Struct</title>
+<title>Rust Espacial - 13&nbsp; Structs, Enums y Traits</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./production.html" rel="next">
+<link href="./tarea_1.html" rel="next">
 <link href="./ownership.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -82,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./struct.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Struct</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./adv_concepts.html">Conceptos Avanzados</a></li><li class="breadcrumb-item"><a href="./struct.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Structs, Enums y Traits</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -125,54 +159,179 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalación</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conceptos Básicos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conceptos Básicos</span></span></a>
+  <a href="./variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Variables y Mutabilidad</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./flow_control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Control de Flujo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scope.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bloques y Ámbitos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./funcions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funciones</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./macros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Macros</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./iterators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Iteradores</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./closures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./errors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./adv_concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conceptos Avanzados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ownership.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ownership</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./struct.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Struct</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Structs, Enums y Traits</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Tareas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tarea_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tarea 1</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Práctica</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./production.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Rust en Producción</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Scraping</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./spatial_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./functional.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./languages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Otros Lenguajes</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Optimización y Paralelización</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./optimization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Rust Espacial</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./spatial_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text">Anexos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programación Funcional</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./languages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Otros Lenguajes</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -189,17 +348,31 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#enums" id="toc-enums" class="nav-link active" data-scroll-target="#enums"><span class="header-section-number">6.1</span> Enums</a></li>
-  <li><a href="#traits" id="toc-traits" class="nav-link" data-scroll-target="#traits"><span class="header-section-number">6.2</span> Traits</a></li>
+  <li><a href="#structs-los-planos-de-los-edificios" id="toc-structs-los-planos-de-los-edificios" class="nav-link active" data-scroll-target="#structs-los-planos-de-los-edificios"><span class="header-section-number">13.1</span> Structs: Los Planos de los Edificios</a>
+  <ul class="collapse">
+  <li><a href="#qué-son-los-structs" id="toc-qué-son-los-structs" class="nav-link" data-scroll-target="#qué-son-los-structs"><span class="header-section-number">13.1.1</span> ¿Qué son los Structs?</a></li>
+  <li><a href="#tipos-de-structs" id="toc-tipos-de-structs" class="nav-link" data-scroll-target="#tipos-de-structs"><span class="header-section-number">13.1.2</span> Tipos de Structs</a></li>
+  </ul></li>
+  <li><a href="#enums-tipos-de-edificios-en-la-ciudad" id="toc-enums-tipos-de-edificios-en-la-ciudad" class="nav-link" data-scroll-target="#enums-tipos-de-edificios-en-la-ciudad"><span class="header-section-number">13.2</span> Enums: Tipos de Edificios en la Ciudad</a>
+  <ul class="collapse">
+  <li><a href="#qué-son-los-enums" id="toc-qué-son-los-enums" class="nav-link" data-scroll-target="#qué-son-los-enums"><span class="header-section-number">13.2.1</span> ¿Qué son los Enums?</a></li>
+  </ul></li>
+  <li><a href="#traits-las-habilidades-de-los-edificios" id="toc-traits-las-habilidades-de-los-edificios" class="nav-link" data-scroll-target="#traits-las-habilidades-de-los-edificios"><span class="header-section-number">13.3</span> Traits: Las Habilidades de los Edificios</a>
+  <ul class="collapse">
+  <li><a href="#qué-son-los-traits" id="toc-qué-son-los-traits" class="nav-link" data-scroll-target="#qué-son-los-traits"><span class="header-section-number">13.3.1</span> ¿Qué son los Traits?</a></li>
+  </ul></li>
+  <li><a href="#ejemplo-integrado-diseñando-una-ciudad-con-structs-enums-y-traits" id="toc-ejemplo-integrado-diseñando-una-ciudad-con-structs-enums-y-traits" class="nav-link" data-scroll-target="#ejemplo-integrado-diseñando-una-ciudad-con-structs-enums-y-traits"><span class="header-section-number">13.4</span> Ejemplo Integrado: Diseñando una Ciudad con Structs, Enums y Traits</a></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">13.5</span> Conclusión</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./adv_concepts.html">Conceptos Avanzados</a></li><li class="breadcrumb-item"><a href="./struct.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Structs, Enums y Traits</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Struct</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Structs, Enums y Traits</span></h1>
+<p class="subtitle lead">Diseñando una Ciudad en Rust</p>
 </div>
 
 
@@ -216,13 +389,196 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="enums" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="enums"><span class="header-section-number">6.1</span> Enums</h2>
-<p>Para complementar los structs, sería útil explicar los enums en Rust y su uso con match.</p>
+<p>Rust ofrece herramientas poderosas para organizar datos y definir comportamientos. Los <strong>Structs</strong>, <strong>Enums</strong>, y <strong>Traits</strong> son fundamentales para escribir código limpio, eficiente y mantenible.</p>
+<p>En este capítulo, exploraremos cómo estos tres conceptos funcionan y se relacionan, utilizando la analogía de una <strong>ciudad</strong> para facilitar su comprensión.</p>
+<section id="structs-los-planos-de-los-edificios" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="structs-los-planos-de-los-edificios"><span class="header-section-number">13.1</span> Structs: Los Planos de los Edificios</h2>
+<section id="qué-son-los-structs" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="qué-son-los-structs"><span class="header-section-number">13.1.1</span> ¿Qué son los Structs?</h3>
+<p>Un <code>struct</code> es una <strong>estructura de datos</strong> que agrupa múltiples valores bajo un solo nombre. Estos valores, conocidos como <strong>campos</strong>, pueden ser de diferentes tipos. Los structs se utilizan para representar entidades concretas, como objetos del mundo real o elementos lógicos.</p>
 </section>
-<section id="traits" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="traits"><span class="header-section-number">6.2</span> Traits</h2>
-<p>Explicación de cómo los traits permiten una programación orientada a interfaces.</p>
+<section id="tipos-de-structs" class="level3" data-number="13.1.2">
+<h3 data-number="13.1.2" class="anchored" data-anchor-id="tipos-de-structs"><span class="header-section-number">13.1.2</span> Tipos de Structs</h3>
+<p>Rust ofrece tres tipos principales de structs:</p>
+<ol type="1">
+<li><strong>Structs Nombrados</strong>: Tienen campos con nombres explícitos.</li>
+<li><strong>Structs Tuple</strong>: Contienen valores sin nombres específicos.</li>
+<li><strong>Structs Unitarios</strong>: No contienen campos y sirven como marcadores o identificadores.</li>
+</ol>
+<p><strong>Relación con el Código</strong></p>
+<p>Los structs son fundamentales para modelar datos complejos. Permiten agrupar atributos relacionados de forma estructurada.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🕋 Analogía: Un Plano Arquitectónico
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Piensa en un struct como el plano de un edificio. Este plano describe características como:</p>
+<ul>
+<li>Nombre del edificio</li>
+<li>Número de pisos</li>
+<li>Color</li>
+</ul>
+</div>
+</div>
+<p>Cada struct es un plano único que define cómo construir un tipo de edificio.</p>
+<p>Ejemplo de Structs</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Struct nombrado</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Edificio <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    nombre<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    pisos<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    color<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Struct tuple</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Coordenadas(<span class="dt">f64</span><span class="op">,</span> <span class="dt">f64</span>)<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">// Struct unitario</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> SeñalDeTrafico<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="enums-tipos-de-edificios-en-la-ciudad" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="enums-tipos-de-edificios-en-la-ciudad"><span class="header-section-number">13.2</span> Enums: Tipos de Edificios en la Ciudad</h2>
+<section id="qué-son-los-enums" class="level3" data-number="13.2.1">
+<h3 data-number="13.2.1" class="anchored" data-anchor-id="qué-son-los-enums"><span class="header-section-number">13.2.1</span> ¿Qué son los Enums?</h3>
+<p>Un <code>enum</code> es un tipo de dato que representa un conjunto de <strong>variantes</strong>. Cada variante puede almacenar datos asociados, lo que permite modelar diferentes estados o tipos dentro de un mismo contexto.</p>
+<p><strong>Relación con el Código</strong></p>
+<p>Los enums son ideales para manejar situaciones en las que un valor puede tener múltiples formas o estados. Además, permiten incluir datos adicionales en cada variante.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🕋 Analogía: Un Catálogo de Tipos de Edificios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Imagina que el enum es un catálogo de edificios en la ciudad. Cada variante describe un tipo de edificio:</p>
+<ul>
+<li>Una casa con habitaciones y un jardín.</li>
+<li>Un hospital con camas y un área de emergencias.</li>
+<li>Una oficina con empleados y pisos.</li>
+</ul>
+</div>
+</div>
+<p>Ejemplo de Enums</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> TipoDeEdificio <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    Casa <span class="op">{</span> habitaciones<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span> jardin<span class="op">:</span> <span class="dt">bool</span> <span class="op">},</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    Hospital <span class="op">{</span> camas<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span> tiene_emergencias<span class="op">:</span> <span class="dt">bool</span> <span class="op">},</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    Oficina <span class="op">{</span> empleados<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span> pisos<span class="op">:</span> <span class="dt">u32</span> <span class="op">},</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="traits-las-habilidades-de-los-edificios" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="traits-las-habilidades-de-los-edificios"><span class="header-section-number">13.3</span> Traits: Las Habilidades de los Edificios</h2>
+<section id="qué-son-los-traits" class="level3" data-number="13.3.1">
+<h3 data-number="13.3.1" class="anchored" data-anchor-id="qué-son-los-traits"><span class="header-section-number">13.3.1</span> ¿Qué son los Traits?</h3>
+<p>Un <code>trait</code> define un conjunto de <strong>métodos</strong> que un tipo debe implementar. Son similares a interfaces en otros lenguajes y permiten compartir comportamientos entre tipos diferentes.</p>
+<p><strong>Relación con el Código</strong></p>
+<p>Los traits permiten que diferentes tipos, como structs y enums, compartan comportamientos. También son esenciales para el polimorfismo en Rust.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🕋 Analogía: Funcionalidades de los Edificios
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un trait es como una funcionalidad que los edificios pueden adoptar:</p>
+<ul>
+<li>Algunos edificios tienen luces automáticas.</li>
+<li>Otros pueden ser resistentes a terremotos.</li>
+<li>Algunos tienen ascensores.</li>
+</ul>
+<p>Cada edificio puede implementar uno o más traits según las funcionalidades que necesita.</p>
+</div>
+</div>
+<p>Ejemplo de Traits</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> Habilidad <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> activar_funcion(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">String</span><span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Habilidad <span class="cf">for</span> Edificio <span class="op">{</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> activar_funcion(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">String</span> <span class="op">{</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="pp">format!</span>(<span class="st">"El edificio {} activa sus luces automáticas."</span><span class="op">,</span> <span class="kw">self</span><span class="op">.</span>nombre)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="ejemplo-integrado-diseñando-una-ciudad-con-structs-enums-y-traits" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="ejemplo-integrado-diseñando-una-ciudad-con-structs-enums-y-traits"><span class="header-section-number">13.4</span> Ejemplo Integrado: Diseñando una Ciudad con Structs, Enums y Traits</h2>
+<p>Combinemos estos tres conceptos para diseñar una ciudad con edificios, tipos de edificios y habilidades compartidas.</p>
+<p>Código de Ejemplo</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Struct para representar un edificio</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Edificio <span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    nombre<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    pisos<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Enum para representar tipos de edificios</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> TipoDeEdificio <span class="op">{</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    Casa<span class="op">,</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    Hospital<span class="op">,</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    Oficina<span class="op">,</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">// Trait para definir habilidades</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> Habilidad <span class="op">{</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> activar_funcion(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">String</span><span class="op">;</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co">// Implementación del Trait para Struct</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Habilidad <span class="cf">for</span> Edificio <span class="op">{</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> activar_funcion(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">String</span> <span class="op">{</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        <span class="pp">format!</span>(<span class="st">"El edificio {} activa sus luces automáticas."</span><span class="op">,</span> <span class="kw">self</span><span class="op">.</span>nombre)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co">// Implementación del Trait para Enum</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Habilidad <span class="cf">for</span> TipoDeEdificio <span class="op">{</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> activar_funcion(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">String</span> <span class="op">{</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">match</span> <span class="kw">self</span> <span class="op">{</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>            <span class="pp">TipoDeEdificio::</span>Casa <span class="op">=&gt;</span> <span class="st">"La casa utiliza energía renovable."</span><span class="op">.</span>to_string()<span class="op">,</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>            <span class="pp">TipoDeEdificio::</span>Hospital <span class="op">=&gt;</span> <span class="st">"El hospital activa su sistema de emergencias."</span><span class="op">.</span>to_string()<span class="op">,</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>            <span class="pp">TipoDeEdificio::</span>Oficina <span class="op">=&gt;</span> <span class="st">"La oficina enciende su aire acondicionado."</span><span class="op">.</span>to_string()<span class="op">,</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> edificio <span class="op">=</span> Edificio <span class="op">{</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>        nombre<span class="op">:</span> <span class="st">"Edificio Central"</span><span class="op">.</span>to_string()<span class="op">,</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>        pisos<span class="op">:</span> <span class="dv">10</span><span class="op">,</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> tipo <span class="op">=</span> <span class="pp">TipoDeEdificio::</span>Hospital<span class="op">;</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> edificio<span class="op">.</span>activar_funcion())<span class="op">;</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> tipo<span class="op">.</span>activar_funcion())<span class="op">;</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Salida</strong></p>
+<pre class="console"><code>El edificio Edificio Central activa sus luces automáticas.
+El hospital activa su sistema de emergencias.</code></pre>
+<hr>
+</section>
+<section id="conclusión" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">13.5</span> Conclusión</h2>
+<p>En Rust, <strong>Structs, Enums y Traits</strong> trabajan juntos para organizar datos y definir comportamientos. Usando la analogía de una ciudad:</p>
+<ul>
+<li>Los structs son los planos de los edificios.</li>
+<li>Los enums son los tipos de edificios que puedes construir.</li>
+<li>Los traits son las habilidades que los edificios pueden tener.</li>
+</ul>
+<p>Esta combinación permite crear software modular, claro y extensible, al igual que diseñar una ciudad bien planificada.</p>
 
 
 </section>
@@ -639,13 +995,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ownership.html" class="pagination-link" aria-label="Ownership">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ownership</span></span>
+      <a href="./ownership.html" class="pagination-link" aria-label="Ownership y Borrowing">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./production.html" class="pagination-link" aria-label="Rust en Producción">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Rust en Producción</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./tarea_1.html" class="pagination-link" aria-label="Tarea 1">
+        <span class="nav-page-text">Tarea 1</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

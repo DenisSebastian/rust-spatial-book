@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Denis Berroeta González (denis.berroeta@uai.cl)">
-<meta name="dcterms.date" content="2024-10-05">
 
-<title>Rust Espacial</title>
+<title>Rust Espacial - Tarea 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,7 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro.html" rel="next">
+<link href="./production.html" rel="next">
+<link href="./struct.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -83,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Prefacio</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tarea_1.html">Tareas</a></li><li class="breadcrumb-item"><a href="./tarea_1.html">Tarea 1</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -110,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Prefacio</span></span></a>
   </div>
 </li>
@@ -219,7 +252,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tarea_1.html" class="sidebar-item-text sidebar-link">
+  <a href="./tarea_1.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Tarea 1</span></a>
   </div>
 </li>
@@ -315,41 +348,29 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#prefacio" id="toc-prefacio" class="nav-link active" data-scroll-target="#prefacio"><span class="header-section-number">1</span> Prefacio</a>
+  <li><a href="#parte-1" id="toc-parte-1" class="nav-link active" data-scroll-target="#parte-1">Parte 1</a>
   <ul class="collapse">
-  <li><a href="#por-qué-rust" id="toc-por-qué-rust" class="nav-link" data-scroll-target="#por-qué-rust"><span class="header-section-number">1.1</span> ¿Por qué Rust?</a></li>
-  <li><a href="#por-qué-rust-para-análisis-espacial" id="toc-por-qué-rust-para-análisis-espacial" class="nav-link" data-scroll-target="#por-qué-rust-para-análisis-espacial"><span class="header-section-number">1.2</span> ¿Por qué Rust para análisis espacial?</a></li>
-  <li><a href="#créditos" id="toc-créditos" class="nav-link" data-scroll-target="#créditos">Créditos</a></li>
+  <li><a href="#enunciado-1" id="toc-enunciado-1" class="nav-link" data-scroll-target="#enunciado-1">Enunciado 1</a></li>
+  <li><a href="#desarrollo-1" id="toc-desarrollo-1" class="nav-link" data-scroll-target="#desarrollo-1">Desarrollo 1</a></li>
   </ul></li>
+  <li><a href="#parte-2" id="toc-parte-2" class="nav-link" data-scroll-target="#parte-2">Parte 2</a></li>
+  <li><a href="#parte-3" id="toc-parte-3" class="nav-link" data-scroll-target="#parte-3">Parte 3</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./tarea_1.html">Tareas</a></li><li class="breadcrumb-item"><a href="./tarea_1.html">Tarea 1</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Rust Espacial</h1>
-<p class="subtitle lead">Procesos y Operaciones Espaciales Avanzadas</p>
+<h1 class="title">Tarea 1</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Denis Berroeta González (denis.berroeta@uai.cl) </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">October 5, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -359,27 +380,168 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="prefacio" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Prefacio</h1>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/rust-spatial.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
-</figure>
+<section id="parte-1" class="level2">
+<h2 class="anchored" data-anchor-id="parte-1">Parte 1</h2>
+<section id="enunciado-1" class="level3">
+<h3 class="anchored" data-anchor-id="enunciado-1">Enunciado 1</h3>
+<ul>
+<li>Crear un <code>Enum</code> que contenga diferentes animales</li>
+<li>Implementar en el <code>Enum</code> una función la cual entregue la velocidad máxima del animal específico</li>
+<li>Implementar en el <code>Enum</code> una función la cual entregue la velocidad mínima del animal específico</li>
+<li>Implementar en el enum al menos los siguientes:
+<ul>
+<li>Perro salvaje de a <code>40km/h</code> a <code>70km/h</code></li>
+<li>Perro casa de a <code>20km/h</code> a <code>50Km/h</code></li>
+<li>Perro robot que finge ser un perro de a <code>40km/h</code> a <code>70km/h</code></li>
+</ul></li>
+<li>Diseñar una función que tenga de entrada una velocidad máxima y una velocidad mínima, la función debe retornar en caso que exista, el animal que es capaz de correr en ese rango de velocidad (Nota: esta función puede fallar).</li>
+</ul>
+</section>
+<section id="desarrollo-1" class="level3">
+<h3 class="anchored" data-anchor-id="desarrollo-1">Desarrollo 1</h3>
+<p><strong>Plan:</strong></p>
+<ol type="1">
+<li>Representaremos los diferentes animales con variantes del enum.</li>
+<li>Se implementarán métodos para obtener la velocidad mínima y máxima de cada variante.</li>
+<li>Diseñaremos una función que reciba una velocidad mínima y máxima, y retorne el animal que cumpla con esos límites o un error si no existe.</li>
+<li>Se evaluará la función y manejar casos donde no haya animales que cumplan con el rango de velocidad.</li>
+</ol>
+<p><strong>Implementación:</strong></p>
+<p><strong>Paso 0:</strong></p>
+<p>Se crea el proyecto utilizando cargo en la terminal:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cargo</span> new tarea_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Paso 1:</strong></p>
+<p>Definimos el Enum con variantes para los diferentes animales</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>derive<span class="at">(</span><span class="bu">Debug</span><span class="op">,</span> <span class="bu">Clone</span><span class="at">)]</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> Animal <span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    PerroSalvaje<span class="op">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    PerroCasa<span class="op">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    PerroRobot<span class="op">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Animal no tiene implementado el <code>trait</code> <code>Clone</code></li>
+</ul>
+<p><strong>Paso 2:</strong></p>
+<p>Se implementarán métodos para obtener la velocidad mínima y máxima de cada variante.</p>
+<ul>
+<li>Debe retornar la velocidad máxima de cada animal</li>
+<li>Debe retornar la velocidad mínima de cada animal</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Implementación de métodos para el Enum Animal</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Animal <span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Método que retorna la velocidad máxima de cada animal</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> velocidad_maxima(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">u32</span> <span class="op">{</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">match</span> <span class="kw">self</span> <span class="op">{</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            <span class="pp">Animal::</span>PerroSalvaje <span class="op">=&gt;</span> <span class="dv">70</span><span class="op">,</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            <span class="pp">Animal::</span>PerroCasa <span class="op">=&gt;</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>            <span class="pp">Animal::</span>PerroRobot <span class="op">=&gt;</span> <span class="dv">70</span><span class="op">,</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Método que retorna la velocidad mínima de cada animal</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> velocidad_minima(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">u32</span> <span class="op">{</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">match</span> <span class="kw">self</span> <span class="op">{</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>            <span class="pp">Animal::</span>PerroSalvaje <span class="op">=&gt;</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>            <span class="pp">Animal::</span>PerroCasa <span class="op">=&gt;</span> <span class="dv">20</span><span class="op">,</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>            <span class="pp">Animal::</span>PerroRobot <span class="op">=&gt;</span> <span class="dv">40</span><span class="op">,</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Paso 3:</strong></p>
+<p>Crear una función buscar_animal_por_rango que reciba una velocidad mínima y máxima, y retorne el animal que cumpla con esos límites o un error si no existe.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Función que busca un animal capaz de correr en un rango de velocidad</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> buscar_animal_por_rango(vel_min<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span> vel_max<span class="op">:</span> <span class="dt">u32</span>) <span class="op">-&gt;</span> <span class="dt">Option</span><span class="op">&lt;</span>Animal<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Iteramos sobre las variantes del enum para encontrar un animal que cumpla el rango</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> animales <span class="op">=</span> [<span class="pp">Animal::</span>PerroSalvaje<span class="op">,</span> <span class="pp">Animal::</span>PerroCasa<span class="op">,</span> <span class="pp">Animal::</span>PerroRobot]<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> animal <span class="kw">in</span> <span class="op">&amp;</span>animales <span class="op">{</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> animal<span class="op">.</span>velocidad_minima() <span class="op">&gt;=</span> vel_min <span class="op">&amp;&amp;</span> animal<span class="op">.</span>velocidad_maxima() <span class="op">&lt;=</span> vel_max <span class="op">{</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="cn">Some</span>(animal<span class="op">.</span>clone())<span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="cn">None</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Paso 4</strong></p>
+<p>Finalmente se evaluará la función y manejar casos donde no haya animales que cumplan con el rango de velocidad.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Función principal para probar la implementación</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> vel_min <span class="op">=</span> <span class="dv">30</span><span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> vel_max <span class="op">=</span> <span class="dv">60</span><span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> buscar_animal_por_rango(vel_min<span class="op">,</span> vel_max) <span class="op">{</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Some</span>(animal) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Animal encontrado: {:?}"</span><span class="op">,</span> animal)<span class="op">,</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="cn">None</span> <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"No se encontró ningún animal para el rango dado."</span>)<span class="op">,</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Resultados Test 1:</strong></p>
+<ul>
+<li>vel_min = 30</li>
+<li>vel_max = 60</li>
+</ul>
+<pre class="console"><code> cargo run
+   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.49s
+     Running `target/debug/tarea_1`
+No se encontró ningún animal para el rango dado.</code></pre>
+<p>Resultados Test 2:</p>
+<ul>
+<li>vel_min = 15</li>
+<li>vel_max = 55</li>
+</ul>
+<pre class="console"><code>&gt; cargo run
+   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.71s
+     Running `target/debug/tarea_1`
+Animal encontrado: PerroCasa</code></pre>
+<p>Resultados Test 3:</p>
+<ul>
+<li>vel_min = 35</li>
+<li>vel_max = 80</li>
+</ul>
+<pre class="console"><code>&gt; cargo run
+   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.81s
+     Running `target/debug/tarea_1`
+Animal encontrado: PerroSalvaje</code></pre>
+<p>La función como está diseñada actualmente retorna el primer animal que cumple la condición y termina la búsqueda debido al al uso del <code>return</code> dentro de ciclo <code>For.</code> Pendiente de corregir..</p>
+</section>
+</section>
+<section id="parte-2" class="level2">
+<h2 class="anchored" data-anchor-id="parte-2">Parte 2</h2>
+<ul>
+<li>Cada animal será un struct por separado</li>
+<li>El <code>Enum</code> seguirá teniendo la lista de animales, cada opción del enum debe contener el struct de su respectivo animal</li>
+<li>Diseñar un <code>Trait</code> que permita obtener la velocidad maxima y minima de un animal</li>
+<li>Diseñar una función que de entrada sean cualquiera de los struct de los animales, y retornar cual es el animal que puede ir más rápido (Nota: esta función puede fallar)</li>
+<li>Probar el perro Salvaje y el Perro robot</li>
+</ul>
+</section>
+<section id="parte-3" class="level2">
+<h2 class="anchored" data-anchor-id="parte-3">Parte 3</h2>
+<ul>
+<li>Complementar la tarea 1 y 2 con el siguiente ajuste a todas las funciones que pueden fallar de la siguiente manera.</li>
+<li>Si la función falla retorna un <code>Result&lt;Algo Bien, Algo Falló&gt;</code></li>
+<li><code>W</code> debe ser un Enum el cual liste en cada función, las posibilidades de cómo puede fallar.</li>
+<li>Este nuevo <code>Enum</code> que lista errores, debe ser el retorno de su respectiva función estilo: <code>Result&lt;T, Custom_Error_Enum&gt;</code></li>
+<li>Actualizar el código para que retorne el tipo de error correspondiente. Hacer esto a todas las funciones que pueden fallar.</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<section id="por-qué-rust" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="por-qué-rust"><span class="header-section-number">1.1</span> ¿Por qué Rust?</h2>
-<p>Rust es un lenguaje de programación moderno que combina alto rendimiento con una seguridad de memoria excepcional, lo que lo convierte en una herramienta poderosa para desarrolladores que trabajan en diversos dominios, desde sistemas de bajo nivel hasta aplicaciones web. A diferencia de lenguajes tradicionales, Rust ofrece una experiencia fluida, eliminando errores comunes como desbordamientos de memoria y condiciones de carrera. Es como conducir un automóvil con tecnología avanzada de asistencia: puedes concentrarte en alcanzar tus objetivos mientras Rust se asegura de mantenerte seguro en el camino, evitando los errores típicos del desarrollo y brindándote un control total.</p>
-</section>
-<section id="por-qué-rust-para-análisis-espacial" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="por-qué-rust-para-análisis-espacial"><span class="header-section-number">1.2</span> ¿Por qué Rust para análisis espacial?</h2>
-<p>Rust destaca en la resolución de problemas espaciales gracias a su control eficiente sobre la administración de recursos, lo que es crucial cuando se procesan grandes volúmenes de datos geoespaciales o imágenes satelitales. Este libro está diseñado para demostrar cómo Rust puede convertirse en una herramienta esencial para abordar desafíos espaciales complejos, ofreciendo un equilibrio perfecto entre rendimiento, seguridad y claridad en el código. A través de ejemplos prácticos, aprenderás a utilizar Rust para enfrentar tareas de análisis espacial, desde la manipulación de vastos conjuntos de datos hasta la construcción de sistemas altamente optimizados para el procesamiento geoespacial, todo con el poder y la eficiencia de este lenguaje.</p>
-</section>
-<section id="créditos" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="créditos">Créditos</h2>
-<p>Muchos conceptos y ejemplos obtenidos del libro <em>“<a href="https://book.rustlang-es.org">El Lenguaje de Programación Rust</a>”</em> creado por Steve Klabnik y Carol Nichols, con contribuciones de la Comunidad Rust</p>
+<div class="callout-title-container flex-fill">
+Hint
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Si una puede fallar, y queremos que retorne una cadena de texto como Error, se puede hacer de la siguiente manera.</p>
+<p><code>Result&lt;Algo, String&gt;</code></p>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -794,10 +956,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./struct.html" class="pagination-link" aria-label="Structs, Enums y Traits">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Structs, Enums y Traits</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro.html" class="pagination-link" aria-label="Introducción">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introducción</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./production.html" class="pagination-link" aria-label="Scraping">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Scraping</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

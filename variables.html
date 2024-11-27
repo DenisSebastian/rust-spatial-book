@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Denis Berroeta González (denis.berroeta@uai.cl)">
-<meta name="dcterms.date" content="2024-10-05">
 
-<title>Rust Espacial</title>
+<title>Rust Espacial - 4&nbsp; Variables y Mutabilidad</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,7 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro.html" rel="next">
+<link href="./flow_control.html" rel="next">
+<link href="./concepts.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -83,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Prefacio</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concepts.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./variables.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Variables y Mutabilidad</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -110,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Prefacio</span></span></a>
   </div>
 </li>
@@ -137,7 +170,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./variables.html" class="sidebar-item-text sidebar-link">
+  <a href="./variables.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Variables y Mutabilidad</span></span></a>
   </div>
 </li>
@@ -315,41 +348,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#prefacio" id="toc-prefacio" class="nav-link active" data-scroll-target="#prefacio"><span class="header-section-number">1</span> Prefacio</a>
+  <li><a href="#tipos-de-datos-básicos" id="toc-tipos-de-datos-básicos" class="nav-link active" data-scroll-target="#tipos-de-datos-básicos"><span class="header-section-number">4.1</span> Tipos de datos básicos</a>
   <ul class="collapse">
-  <li><a href="#por-qué-rust" id="toc-por-qué-rust" class="nav-link" data-scroll-target="#por-qué-rust"><span class="header-section-number">1.1</span> ¿Por qué Rust?</a></li>
-  <li><a href="#por-qué-rust-para-análisis-espacial" id="toc-por-qué-rust-para-análisis-espacial" class="nav-link" data-scroll-target="#por-qué-rust-para-análisis-espacial"><span class="header-section-number">1.2</span> ¿Por qué Rust para análisis espacial?</a></li>
-  <li><a href="#créditos" id="toc-créditos" class="nav-link" data-scroll-target="#créditos">Créditos</a></li>
+  <li><a href="#tipos-escalares" id="toc-tipos-escalares" class="nav-link" data-scroll-target="#tipos-escalares"><span class="header-section-number">4.1.1</span> Tipos Escalares</a></li>
   </ul></li>
+  <li><a href="#tipos-compuestos" id="toc-tipos-compuestos" class="nav-link" data-scroll-target="#tipos-compuestos"><span class="header-section-number">4.2</span> Tipos Compuestos</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concepts.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./variables.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Variables y Mutabilidad</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Rust Espacial</h1>
-<p class="subtitle lead">Procesos y Operaciones Espaciales Avanzadas</p>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Variables y Mutabilidad</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Denis Berroeta González (denis.berroeta@uai.cl) </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">October 5, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -359,27 +378,148 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="prefacio" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Prefacio</h1>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/rust-spatial.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
-</figure>
-</div>
-<section id="por-qué-rust" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="por-qué-rust"><span class="header-section-number">1.1</span> ¿Por qué Rust?</h2>
-<p>Rust es un lenguaje de programación moderno que combina alto rendimiento con una seguridad de memoria excepcional, lo que lo convierte en una herramienta poderosa para desarrolladores que trabajan en diversos dominios, desde sistemas de bajo nivel hasta aplicaciones web. A diferencia de lenguajes tradicionales, Rust ofrece una experiencia fluida, eliminando errores comunes como desbordamientos de memoria y condiciones de carrera. Es como conducir un automóvil con tecnología avanzada de asistencia: puedes concentrarte en alcanzar tus objetivos mientras Rust se asegura de mantenerte seguro en el camino, evitando los errores típicos del desarrollo y brindándote un control total.</p>
+<p>En Rust, las variables son inmutables por defecto, lo que promueve la seguridad y la concurrencia. Esto significa que una vez que se asigna un valor a una variable, no puede ser cambiado. Sin embargo, Rust permite optar por variables mutables si es necesario.</p>
+<p>Por ejemplo, el siguiente código da un error porque intenta reasignar un valor a la variable x sin hacerla mutable:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"El valor de x es: {x}"</span>)<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="dv">6</span><span class="op">;</span> <span class="co">// Error: no se puede asignar dos veces a una variable inmutable.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Este error es útil porque garantiza que no modifiquemos accidentalmente variables que deben permanecer inmutables, lo que puede causar errores difíciles de detectar.</p>
+<p>Si necesitas cambiar el valor de una variable, puedes hacerla mutable usando <code>mut</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> x <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"El valor de x es: {x}"</span>)<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> <span class="dv">6</span><span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"El nuevo valor de x es: {x}"</span>)<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Con <code>mut</code>, el valor de <code>x</code> puede cambiar de 5 a 6. La mutabilidad es útil en muchos casos, pero usar variables inmutables puede ayudar a evitar errores y hacer que tu código sea más fácil de entender.</p>
+<section id="tipos-de-datos-básicos" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="tipos-de-datos-básicos"><span class="header-section-number">4.1</span> Tipos de datos básicos</h2>
+<p>Rust es un lenguaje fuertemente tipado, lo que significa que cada valor debe tener un tipo específico. Estos tipos se dividen principalmente en dos categorías: tipos escalares y tipos compuestos. En esta sección, nos centraremos en los tipos escalares, que representan un valor único.</p>
+<section id="tipos-escalares" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="tipos-escalares"><span class="header-section-number">4.1.1</span> Tipos Escalares</h3>
+<p>Los tipos escalares incluyen enteros, números de coma flotante, caracteres y booleanos. A continuación, se presenta una tabla con los principales tipos de datos y ejemplos de sus valores literales:</p>
+<table class="table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 41%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tipo</th>
+<th>Sintaxis</th>
+<th>Ejemplos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Enteros con signo</td>
+<td>i8, i16, i32, i64, i128, isize</td>
+<td>-10, 0, 1_000, 123_i64</td>
+</tr>
+<tr class="even">
+<td>Enteros sin signo</td>
+<td>u8, u16, u32, u64, u128, usize</td>
+<td>0, 123, 10_u16</td>
+</tr>
+<tr class="odd">
+<td>Números de coma flotante</td>
+<td>f32, f64</td>
+<td>3.14, -10.0e20, 2_f32</td>
+</tr>
+<tr class="even">
+<td>Valores escalares Unicode</td>
+<td>char</td>
+<td>‘a’, ‘α’, ‘∞’</td>
+</tr>
+<tr class="odd">
+<td>Booleanos</td>
+<td>bool</td>
+<td>true, false</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ancho de los Tipos</strong></p>
+<p>Cada tipo tiene un tamaño específico en memoria:</p>
+<ul>
+<li><code>iN</code>, <code>uN</code>, y <code>fN</code> tienen un ancho de N bits.</li>
+<li><code>isize</code> y <code>usize</code> tienen el ancho de un puntero, lo que depende de la arquitectura del sistema (generalmente 32 o 64 bits).</li>
+<li><code>char</code> tiene un tamaño de 32 bits, lo que permite representar cualquier carácter Unicode.</li>
+<li><code>bool</code> ocupa 8 bits de espacio en memoria.</li>
+</ul>
+<p>Ejemplo de Uso</p>
+<p>Podemos ver cómo se utilizan estos tipos de datos en un programa simple:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> entero_con_signo<span class="op">:</span> <span class="dt">i32</span> <span class="op">=</span> <span class="op">-</span><span class="dv">500</span><span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> entero_sin_signo<span class="op">:</span> <span class="dt">u32</span> <span class="op">=</span> <span class="dv">300</span><span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> flotante<span class="op">:</span> <span class="dt">f64</span> <span class="op">=</span> <span class="dv">3.1415</span><span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> caracter<span class="op">:</span> <span class="dt">char</span> <span class="op">=</span> <span class="ch">'∞'</span><span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> booleano<span class="op">:</span> <span class="dt">bool</span> <span class="op">=</span> <span class="cn">true</span><span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Entero con signo: {}"</span><span class="op">,</span> entero_con_signo)<span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Entero sin signo: {}"</span><span class="op">,</span> entero_sin_signo)<span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Flotante: {}"</span><span class="op">,</span> flotante)<span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Carácter: {}"</span><span class="op">,</span> caracter)<span class="op">;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Booleano: {}"</span><span class="op">,</span> booleano)<span class="op">;</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Este ejemplo muestra cómo declarar y utilizar los diferentes tipos de datos en Rust, cada uno con su correspondiente tipo y valor literal.</p>
 </section>
-<section id="por-qué-rust-para-análisis-espacial" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="por-qué-rust-para-análisis-espacial"><span class="header-section-number">1.2</span> ¿Por qué Rust para análisis espacial?</h2>
-<p>Rust destaca en la resolución de problemas espaciales gracias a su control eficiente sobre la administración de recursos, lo que es crucial cuando se procesan grandes volúmenes de datos geoespaciales o imágenes satelitales. Este libro está diseñado para demostrar cómo Rust puede convertirse en una herramienta esencial para abordar desafíos espaciales complejos, ofreciendo un equilibrio perfecto entre rendimiento, seguridad y claridad en el código. A través de ejemplos prácticos, aprenderás a utilizar Rust para enfrentar tareas de análisis espacial, desde la manipulación de vastos conjuntos de datos hasta la construcción de sistemas altamente optimizados para el procesamiento geoespacial, todo con el poder y la eficiencia de este lenguaje.</p>
 </section>
-<section id="créditos" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="créditos">Créditos</h2>
-<p>Muchos conceptos y ejemplos obtenidos del libro <em>“<a href="https://book.rustlang-es.org">El Lenguaje de Programación Rust</a>”</em> creado por Steve Klabnik y Carol Nichols, con contribuciones de la Comunidad Rust</p>
+<section id="tipos-compuestos" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="tipos-compuestos"><span class="header-section-number">4.2</span> Tipos Compuestos</h2>
+<dl>
+<dt>Tuplas</dt>
+<dd>
+<p>Agrupan múltiples valores de diferentes tipos en una única entidad. La longitud de una tupla es fija, y los tipos de los elementos pueden variar.</p>
+</dd>
+</dl>
+<p>Ejemplo de tupla:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> tupla<span class="op">:</span> (<span class="dt">i32</span><span class="op">,</span> <span class="dt">f64</span><span class="op">,</span> <span class="dt">char</span>) <span class="op">=</span> (<span class="dv">500</span><span class="op">,</span> <span class="dv">6.4</span><span class="op">,</span> <span class="ch">'a'</span>)<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> (x<span class="op">,</span> y<span class="op">,</span> z) <span class="op">=</span> tupla<span class="op">;</span>  <span class="co">// Destructuring para acceder a los valores</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl>
+<dt>Arreglos (Arrays)</dt>
+<dd>
+<p>Los arreglos contienen múltiples valores del mismo tipo. A diferencia de los vectores, los arreglos tienen una longitud fija que no puede cambiar.</p>
+</dd>
+</dl>
+<p>Ejemplo de arreglo:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> arreglo<span class="op">:</span> [<span class="dt">i32</span><span class="op">;</span> <span class="dv">5</span>] <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">;</span>  <span class="co">// Un arreglo de 5 enteros</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> primer_elemento <span class="op">=</span> arreglo[<span class="dv">0</span>]<span class="op">;</span>  <span class="co">// Acceder al primer elemento</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Aquí tienes una tabla para los tipos compuestos:</p>
+<table class="table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 31%">
+<col style="width: 47%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tipo</th>
+<th>Sintaxis</th>
+<th>Ejemplos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tuplas</td>
+<td>(T1, T2, T3, …)</td>
+<td>(500, 6.4, ‘a’)</td>
+</tr>
+<tr class="even">
+<td>Arreglos</td>
+<td>[T; N] (T es tipo, N es tamaño)</td>
+<td>[1, 2, 3, 4, 5], [3.14; 3] (inicializa con 3.14 tres veces)</td>
+</tr>
+</tbody>
+</table>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -794,10 +934,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./concepts.html" class="pagination-link" aria-label="Conceptos Básicos">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Conceptos Básicos</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro.html" class="pagination-link" aria-label="Introducción">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introducción</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./flow_control.html" class="pagination-link" aria-label="Control de  Flujo">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Control de Flujo</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
