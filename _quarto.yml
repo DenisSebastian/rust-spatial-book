@@ -15,17 +15,38 @@ book:
     - index.qmd
     - intro.qmd
     - install.qmd
-    - concepts.qmd
-    - ownership.qmd
-    - struct.qmd
-    - production.qmd
-    - spatial_chapter.qmd
-    - functional.qmd
-    - languages.qmd
-    - optimization.qmd
+    - part: concepts.qmd
+      chapters:
+        - variables.qmd
+        - flow_control.qmd
+        - scope.qmd
+        - funcions.qmd
+        - macros.qmd
+        - iterators.qmd
+        - closures.qmd
+        - errors.qmd
+    - part: adv_concepts.qmd
+      chapters:
+        - ownership.qmd
+        - struct.qmd
+    - part: "Tareas"
+      chapters:
+        - tarea_1.qmd
+    - part: "Práctica"
+      chapters:
+        - production.qmd
+    - part: "Optimización y Paralelización"
+      chapters:
+        - optimization.qmd
+    - part: "Rust Espacial"
+      chapters:
+        - spatial_chapter.qmd
+    - part: "Anexos"
+      chapters:
+        - tarea_1.qmd
+        - functional.qmd
+        - languages.qmd
 
-    # chapters:
-    #   - tarea_1.qmd
     #   - tarea_2.qmd
     # - part:
     # chapters: spatial_chapter.qmd

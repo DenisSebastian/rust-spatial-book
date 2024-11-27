@@ -34,5 +34,35 @@
   },
   "optimization.qmd": {
     "optimization.html": "de5c45b5"
+  },
+  "tarea_1.qmd": {
+    "tarea_1.html": "b9a6f90b"
+  },
+  "variables.qmd": {
+    "variables.html": "043e5f86"
+  },
+  "flow_control.qmd": {
+    "flow_control.html": "3c9e2d98"
+  },
+  "scope.qmd": {
+    "scope.html": "6fe02e76"
+  },
+  "funcions.qmd": {
+    "funcions.html": "ae1e12c9"
+  },
+  "macros.qmd": {
+    "macros.html": "2815a958"
+  },
+  "iterators.qmd": {
+    "iterators.html": "714f16e8"
+  },
+  "closures.qmd": {
+    "closures.html": "e021633a"
+  },
+  "errors.qmd": {
+    "errors.html": "6a9bbf96"
+  },
+  "adv_concepts.qmd": {
+    "adv_concepts.html": "c2588620"
   }
 }

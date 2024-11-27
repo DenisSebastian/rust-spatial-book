@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Rust Espacial - 5&nbsp; Ownership</title>
+<title>Rust Espacial - 12&nbsp; Ownership y Borrowing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./struct.html" rel="next">
-<link href="./concepts.html" rel="prev">
+<link href="./adv_concepts.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -82,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ownership.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ownership</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./adv_concepts.html">Conceptos Avanzados</a></li><li class="breadcrumb-item"><a href="./ownership.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -125,46 +159,166 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalación</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conceptos Básicos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conceptos Básicos</span></span></a>
+  <a href="./variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Variables y Mutabilidad</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./flow_control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Control de Flujo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scope.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bloques y Ámbitos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./funcions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funciones</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./macros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Macros</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./iterators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Iteradores</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./closures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./errors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./adv_concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conceptos Avanzados</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ownership.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ownership</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./struct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Struct</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Struct</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Rust en Producción</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./production.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Rust en Producción</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Producción</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./optimization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Rust Espacial</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./spatial_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Otros Lenguajes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./languages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Otros Lenguajes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Tareas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tarea_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Tarea 1</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functional.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./languages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Otros Lenguajes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -183,20 +337,28 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#definción" id="toc-definción" class="nav-link active" data-scroll-target="#definción"><span class="header-section-number">5.1</span> Definción</a></li>
-  <li><a href="#referencias-y-préstamos" id="toc-referencias-y-préstamos" class="nav-link" data-scroll-target="#referencias-y-préstamos"><span class="header-section-number">5.2</span> Referencias y Préstamos</a></li>
-  <li><a href="#slices" id="toc-slices" class="nav-link" data-scroll-target="#slices"><span class="header-section-number">5.3</span> Slices</a></li>
-  <li><a href="#lifetime-annotations" id="toc-lifetime-annotations" class="nav-link" data-scroll-target="#lifetime-annotations"><span class="header-section-number">5.4</span> Lifetime annotations</a></li>
-  <li><a href="#borrow-checker" id="toc-borrow-checker" class="nav-link" data-scroll-target="#borrow-checker"><span class="header-section-number">5.5</span> Borrow checker</a></li>
+  <li><a href="#definción" id="toc-definción" class="nav-link active" data-scroll-target="#definción"><span class="header-section-number">12.1</span> Definción</a></li>
+  <li><a href="#ownership" id="toc-ownership" class="nav-link" data-scroll-target="#ownership"><span class="header-section-number">12.2</span> Ownership</a></li>
+  <li><a href="#borrowing" id="toc-borrowing" class="nav-link" data-scroll-target="#borrowing"><span class="header-section-number">12.3</span> Borrowing</a></li>
+  <li><a href="#lifetimes" id="toc-lifetimes" class="nav-link" data-scroll-target="#lifetimes"><span class="header-section-number">12.4</span> Lifetimes</a></li>
+  <li><a href="#resumen-visual" id="toc-resumen-visual" class="nav-link" data-scroll-target="#resumen-visual"><span class="header-section-number">12.5</span> Resumen Visual</a></li>
+  <li><a href="#slices" id="toc-slices" class="nav-link" data-scroll-target="#slices"><span class="header-section-number">12.6</span> Slices</a></li>
+  <li><a href="#borrow-checker" id="toc-borrow-checker" class="nav-link" data-scroll-target="#borrow-checker"><span class="header-section-number">12.7</span> Borrow Checker</a></li>
+  <li><a href="#errores-comunes-y-cómo-evitarlos" id="toc-errores-comunes-y-cómo-evitarlos" class="nav-link" data-scroll-target="#errores-comunes-y-cómo-evitarlos"><span class="header-section-number">12.8</span> Errores Comunes y Cómo Evitarlos</a>
+  <ul class="collapse">
+  <li><a href="#uso-después-de-transferencia" id="toc-uso-después-de-transferencia" class="nav-link" data-scroll-target="#uso-después-de-transferencia"><span class="header-section-number">12.8.1</span> Uso después de transferencia</a></li>
+  <li><a href="#conflictos-en-préstamos-mutables" id="toc-conflictos-en-préstamos-mutables" class="nav-link" data-scroll-target="#conflictos-en-préstamos-mutables"><span class="header-section-number">12.8.2</span> Conflictos en préstamos mutables</a></li>
+  <li><a href="#referencias-a-datos-no-válidos" id="toc-referencias-a-datos-no-válidos" class="nav-link" data-scroll-target="#referencias-a-datos-no-válidos"><span class="header-section-number">12.8.3</span> Referencias a datos no válidos</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./adv_concepts.html">Conceptos Avanzados</a></li><li class="breadcrumb-item"><a href="./ownership.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ownership</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></h1>
 </div>
 
 
@@ -213,24 +375,331 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="definción" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="definción"><span class="header-section-number">5.1</span> Definción</h2>
+<p>El sistema de <strong>Ownership</strong> (propiedad) y <strong>Borrowing</strong> (préstamo) es el corazón de Rust y lo que garantiza su <strong>seguridad en memoria</strong> sin necesidad de un recolector de basura. Aunque puede sonar complejo al principio, usando analogías simples podemos descomponerlo en conceptos fáciles de entender.</p>
+<section id="definción" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="definción"><span class="header-section-number">12.1</span> Definción</h2>
+<p>El ownership es un conjunto de reglas que definen cómo un programa de Rust administra la memoria. Todos los programas tienen que administrar la forma en que usan la memoria de un computador mientras se ejecutan. Algunos lenguajes tienen recolección de basura que busca regularmente la memoria que ya no se usa mientras el programa se ejecuta; en otros lenguajes, el programador debe asignar y liberar la memoria explícitamente. Rust usa un tercer enfoque: la memoria se administra a través de un sistema de ownership con un conjunto de reglas que el compilador verifica. Si alguna de las reglas se viola, el programa no se compilará. Ninguna de las características del ownership ralentizará su programa mientras se ejecuta.</p>
 </section>
-<section id="referencias-y-préstamos" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="referencias-y-préstamos"><span class="header-section-number">5.2</span> Referencias y Préstamos</h2>
+<section id="ownership" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="ownership"><span class="header-section-number">12.2</span> Ownership</h2>
+<p>En Rust, cada valor tiene un <strong>dueño</strong>. Piensa en una mochila que contiene un objeto (datos). Solo <strong>una persona</strong> puede ser dueña de esa mochila en un momento dado.</p>
+<p><strong>Reglas de Ownership</strong></p>
+<ol type="1">
+<li>Cada valor en Rust tiene un <strong>dueño único</strong>.</li>
+<li>Cuando el dueño “deja de existir” (sale de su alcance), los datos se eliminan automáticamente (<strong>drop</strong>).</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🧳 Analogía “El Dueño de la Mochila”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Imagina que tienes una mochila que representa la memoria en Rust. Solo tú puedes poseer esa mochila. Si decides pasar la mochila a otra persona, ya no puedes usarla, porque ahora esa persona es la nueva dueña.</p>
+</div>
+</div>
+<p>Ejemplo en Código</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> mochila <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"Mis pertenencias"</span>)<span class="op">;</span> <span class="co">// La mochila tiene un dueño</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> nueva_mochila <span class="op">=</span> mochila<span class="op">;</span> <span class="co">// La propiedad se transfiere</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// println!("{}", mochila); // Error: "mochila" ya no es válida.</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> nueva_mochila)<span class="op">;</span> <span class="co">// Ahora "nueva_mochila" es el dueño.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="slices" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="slices"><span class="header-section-number">5.3</span> Slices</h2>
+<section id="borrowing" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="borrowing"><span class="header-section-number">12.3</span> Borrowing</h2>
+<p>A veces, en lugar de transferir completamente la propiedad, necesitas <strong>prestar</strong> tu mochila a alguien más. En Rust, esto se logra usando <strong>referencias</strong>.</p>
+<p><strong>Reglas de Borrowing</strong></p>
+<ol type="1">
+<li>Puedes <strong>prestar tu mochila</strong> (crear una referencia) sin transferir la propiedad.</li>
+<li>Hay dos tipos de préstamos:
+<ul>
+<li><strong>Préstamos inmutables</strong> (<code>&amp;</code>): Puedes prestar tu mochila para mirarla, pero nadie puede modificarla.</li>
+<li><strong>Préstamos mutables</strong> (<code>&amp;mut</code>): Puedes prestar tu mochila para que la modifiquen, pero solo a una persona a la vez.</li>
+</ul></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🧳 Analogía: “Préstamos Temporales”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Préstamo inmutable</strong>: Prestas tu mochila a un amigo para que la mire, pero no puede tocar nada dentro.</li>
+<li><strong>Préstamo mutable</strong>: Prestas tu mochila a un amigo, pero le adviertes que nadie más puede tocarla mientras él la tenga.</li>
+</ul>
+</div>
+</div>
+<p>Ejemplo en Código</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> mochila <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"Mis pertenencias"</span>)<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Préstamo inmutable</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> referencia <span class="op">=</span> <span class="op">&amp;</span>mochila<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> referencia)<span class="op">;</span> <span class="co">// Puedo mirar el contenido.</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> mochila)<span class="op">;</span> <span class="co">// Y todavía soy el dueño.</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Préstamo mutable</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> mochila_mutable <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"Mochila vieja"</span>)<span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> referencia_mutable <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> mochila_mutable<span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    referencia_mutable<span class="op">.</span>push_str(<span class="st">" actualizada"</span>)<span class="op">;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> referencia_mutable)<span class="op">;</span> <span class="co">// Mochila modificada.</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="lifetime-annotations" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="lifetime-annotations"><span class="header-section-number">5.4</span> Lifetime annotations</h2>
-<p>Las anotaciones de tiempo de vida (lifetimes) son cruciales en Rust y se deberían cubrir al hablar de referencias y préstamos.</p>
+<section id="lifetimes" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="lifetimes"><span class="header-section-number">12.4</span> Lifetimes</h2>
+<p>Cuando prestas algo, el tiempo que alguien lo tiene debe ser <strong>claro</strong> para evitar conflictos. En Rust, esto se maneja con las <strong>lifetimes</strong>.</p>
+<p><strong>Reglas Básicas</strong> 1. Un préstamo no puede durar más que el dueño original. 2. El compilador verifica que todos los préstamos sean seguros.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🧳 Analogía: “Duración del Préstamo”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Imagina que tu amigo tiene que devolverte la mochila antes de que tú te vayas de la reunión, o ambos estarán en problemas.</p>
+</div>
+</div>
+<p>Ejemplo en Código</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> mochila <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"Mis cosas"</span>)<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> referencia <span class="op">=</span> <span class="op">&amp;</span>mochila<span class="op">;</span> <span class="co">// El préstamo es válido aquí.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> referencia)<span class="op">;</span> <span class="co">// Todavía puedo usar la referencia.</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Cuando la mochila "muere", la referencia también deja de ser válida.</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="borrow-checker" class="level2" data-number="5.5">
-<h2 data-number="5.5" class="anchored" data-anchor-id="borrow-checker"><span class="header-section-number">5.5</span> Borrow checker</h2>
-<p>Aunque mencionas referencias y préstamos, sería útil dedicar un espacio para explicar en profundidad cómo funciona el borrow checker.</p>
+<section id="resumen-visual" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="resumen-visual"><span class="header-section-number">12.5</span> Resumen Visual</h2>
+<table class="table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 45%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concepto</th>
+<th>Analogía</th>
+<th>Código</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ownership</td>
+<td>Mochila transferida a otro dueño.</td>
+<td><code>let b = a;</code></td>
+</tr>
+<tr class="even">
+<td>Borrowing</td>
+<td>Mochila prestada temporalmente.</td>
+<td><code>let b = &amp;a;</code></td>
+</tr>
+<tr class="odd">
+<td>Borrowing mutable</td>
+<td>Mochila prestada para modificarla.</td>
+<td><code>let b = &amp;mut a;</code></td>
+</tr>
+<tr class="even">
+<td>Lifetimes</td>
+<td>Tiempo límite del préstamo.</td>
+<td><code>let r = &amp;x;</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="slices" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="slices"><span class="header-section-number">12.6</span> Slices</h2>
+<p>En Rust, los <strong>slices</strong> son una forma especial de préstamo, que permite acceder a una parte de una colección (como un array o un <code>String</code>) sin transferir la propiedad ni copiar los datos.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🧳 Analogía: “Un vistazo a la mochila”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Imagina que estás en una sala de reuniones con mochilas (que representan los datos): 1. El <strong>inspector</strong> verifica que solo haya <strong>un dueño por mochila</strong>. 2. Si alguien toma prestada una mochila (una referencia): - Si es un préstamo inmutable, otras personas pueden mirar, pero nadie puede modificar. - Si es un préstamo mutable, nadie más puede mirar ni tocar hasta que se devuelva. 3. Al final, el inspector revisa que nadie intente usar una mochila que ya no está en la sala (lifetime expirado).</p>
+</div>
+</div>
+<ul>
+<li>Un <strong>slice inmutable</strong> es como prestar tu mochila abierta y decir: “Mira solo lo que está en el bolsillo lateral”, pero no puedes tocar ni cambiar nada.</li>
+<li>Un <strong>slice mutable</strong> es como prestar el bolsillo lateral y permitir que lo reorganicen, pero sin tocar el resto de la mochila.</li>
+</ul>
+<p>Ejemplo: Slice Inmutable</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> array <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> slice <span class="op">=</span> <span class="op">&amp;</span>array[<span class="dv">1</span><span class="op">..</span><span class="dv">4</span>]<span class="op">;</span> <span class="co">// Slice inmutable que incluye los elementos 2, 3, 4</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> slice)<span class="op">;</span> <span class="co">// Imprime: [2, 3, 4]</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> array)<span class="op">;</span> <span class="co">// La colección original sigue siendo accesible</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ejemplo: Slice Mutable</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> array <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> slice <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> array[<span class="dv">1</span><span class="op">..</span><span class="dv">4</span>]<span class="op">;</span> <span class="co">// Slice mutable</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    slice[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">10</span><span class="op">;</span> <span class="co">// Modifico solo el primer elemento del slice</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> slice)<span class="op">;</span> <span class="co">// Imprime: [10, 3, 4]</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> array)<span class="op">;</span> <span class="co">// Imprime: [1, 10, 3, 4, 5] (el array original también cambia)</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Relación con Ownership y Borrowing</strong></p>
+<p>Los slices son <strong>referencias</strong> (<code>&amp;</code> o <code>&amp;mut</code>), lo que significa que respetan todas las reglas de <strong>ownership</strong> y <strong>borrowing</strong>:</p>
+<ol type="1">
+<li><strong>Ownership</strong>:
+<ul>
+<li>El slice nunca toma posesión de los datos; solo los presta temporalmente.</li>
+</ul></li>
+<li><strong>Borrowing</strong>:
+<ul>
+<li>Siguen las mismas reglas que las referencias:
+<ul>
+<li>Un slice mutable (<code>&amp;mut</code>) y otro slice o referencia no pueden coexistir.</li>
+<li>Los slices no pueden durar más que la colección original de la que provienen.</li>
+</ul></li>
+</ul></li>
+</ol>
+<p>Ejemplo: Regla de Borrowing con Slices</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> array <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> slice <span class="op">=</span> <span class="op">&amp;</span>array[<span class="dv">1</span><span class="op">..</span><span class="dv">4</span>]<span class="op">;</span> <span class="co">// Préstamo inmutable</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// let mutable_slice = &amp;mut array[2..4]; // Error: No puedes mutar mientras hay un préstamo inmutable activo</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> slice)<span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Los slices son herramientas poderosas para acceder a partes de datos sin necesidad de copiar ni transferir propiedad, lo que los hace eficientes y seguros. Son una extensión directa del sistema de <strong>ownership y borrowing</strong>, y demuestran cómo Rust optimiza el manejo de datos respetando la seguridad de memoria.</p>
+</section>
+<section id="borrow-checker" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="borrow-checker"><span class="header-section-number">12.7</span> Borrow Checker</h2>
+<p>El <strong>Borrow Checker</strong> es una herramienta interna del compilador de Rust que garantiza que todas las reglas de <strong>ownership</strong>, <strong>borrowing</strong> y <strong>lifetimes</strong> se respeten en tiempo de compilación. Esto asegura que los programas sean seguros en memoria y libres de errores comunes como referencias colgantes o conflictos de préstamos.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🧳 Analogía: “El inspector en la sala de reuniones”
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Imagina que estás en una sala de reuniones con mochilas (que representan los datos):</p>
+<ol type="1">
+<li>El <strong>inspector</strong> verifica que solo haya <strong>un dueño por mochila</strong>.</li>
+<li>Si alguien toma prestada una mochila (una referencia):
+<ul>
+<li>Si es un préstamo inmutable, otras personas pueden mirar, pero nadie puede modificar.</li>
+<li>Si es un préstamo mutable, nadie más puede mirar ni tocar hasta que se devuelva.</li>
+</ul></li>
+<li>Al final, el inspector revisa que nadie intente usar una mochila que ya no está en la sala (lifetime expirado).</li>
+</ol>
+</div>
+</div>
+<p><strong>¿Qué valida el Borrow Checker?</strong></p>
+<ol type="1">
+<li><strong>Ownership</strong>:
+<ul>
+<li>Cada valor tiene un único dueño.</li>
+<li>Los valores se liberan automáticamente cuando su dueño sale de alcance.</li>
+</ul></li>
+<li><strong>Borrowing</strong>:
+<ul>
+<li>Permite múltiples préstamos inmutables o un único préstamo mutable, pero no ambos a la vez.</li>
+</ul></li>
+<li><strong>Lifetimes</strong>:
+<ul>
+<li>Las referencias no deben vivir más tiempo que el valor original.</li>
+</ul></li>
+</ol>
+<p>Ejemplo de Borrow Checker en Acción</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> mochila <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"Mis cosas"</span>)<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Préstamos inmutables</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> prestamo1 <span class="op">=</span> <span class="op">&amp;</span>mochila<span class="op">;</span> </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> prestamo2 <span class="op">=</span> <span class="op">&amp;</span>mochila<span class="op">;</span> </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{}, {}"</span><span class="op">,</span> prestamo1<span class="op">,</span> prestamo2)<span class="op">;</span> <span class="co">// Esto es válido</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Préstamo mutable conflictivo</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// let prestamo_mutable = &amp;mut mochila; </span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Error: No puedes tener préstamos mutables e inmutables al mismo tiempo</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ejemplo de Error con Borrow Checker</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> referencia<span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> mochila <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"Temporal"</span>)<span class="op">;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        referencia <span class="op">=</span> <span class="op">&amp;</span>mochila<span class="op">;</span> <span class="co">// Error: La referencia vive más que el valor original</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// println!("{}", referencia); // El Borrow Checker impide este uso.</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El <strong>Borrow Checker</strong> actúa como un inspector que asegura que:</p>
+<ul>
+<li>Los datos sean usados de manera segura y eficiente.</li>
+<li>No haya referencias colgantes ni conflictos de acceso.</li>
+</ul>
+<p>Gracias al Borrow Checker, Rust garantiza seguridad de memoria en tiempo de compilación, haciendo innecesario un recolector de basura y optimizando el rendimiento del programa.</p>
+</section>
+<section id="errores-comunes-y-cómo-evitarlos" class="level2" data-number="12.8">
+<h2 data-number="12.8" class="anchored" data-anchor-id="errores-comunes-y-cómo-evitarlos"><span class="header-section-number">12.8</span> Errores Comunes y Cómo Evitarlos</h2>
+<section id="uso-después-de-transferencia" class="level3" data-number="12.8.1">
+<h3 data-number="12.8.1" class="anchored" data-anchor-id="uso-después-de-transferencia"><span class="header-section-number">12.8.1</span> Uso después de transferencia</h3>
+<ul>
+<li><strong>Error</strong>: Usar un valor después de transferir su propiedad.</li>
+<li><strong>Ejemplo</strong>:</li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>      <span class="kw">let</span> mochila <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"Mis pertenencias"</span>)<span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>      <span class="kw">let</span> nueva_mochila <span class="op">=</span> mochila<span class="op">;</span> <span class="co">// Propiedad transferida</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>      <span class="co">// println!("{}", mochila); // Error: "mochila" ya no es válida.</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>Solución</strong>: Revisa si has movido el valor o usa referencias si necesitas acceder a él.</li>
+</ul>
+</section>
+<section id="conflictos-en-préstamos-mutables" class="level3" data-number="12.8.2">
+<h3 data-number="12.8.2" class="anchored" data-anchor-id="conflictos-en-préstamos-mutables"><span class="header-section-number">12.8.2</span> Conflictos en préstamos mutables</h3>
+<ul>
+<li><strong>Error</strong>: Prestar un valor de forma mutable mientras tienes préstamos inmutables activos.</li>
+<li><strong>Ejemplo</strong>:</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>      <span class="kw">let</span> <span class="kw">mut</span> mochila <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"Mis cosas"</span>)<span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>      <span class="kw">let</span> referencia1 <span class="op">=</span> <span class="op">&amp;</span>mochila<span class="op">;</span> <span class="co">// Préstamo inmutable</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>      <span class="kw">let</span> referencia2 <span class="op">=</span> <span class="op">&amp;</span><span class="kw">mut</span> mochila<span class="op">;</span> <span class="co">// Error: No puedes prestar de forma mutable mientras hay un préstamo inmutable</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>Solución</strong>: Asegúrate de que no hay múltiples accesos conflictivos al mismo tiempo.</li>
+</ul>
+</section>
+<section id="referencias-a-datos-no-válidos" class="level3" data-number="12.8.3">
+<h3 data-number="12.8.3" class="anchored" data-anchor-id="referencias-a-datos-no-válidos"><span class="header-section-number">12.8.3</span> Referencias a datos no válidos</h3>
+<ul>
+<li><strong>Error</strong>: Crear una referencia que vive más que el valor original.</li>
+<li><strong>Ejemplo</strong>:</li>
+</ul>
+<div class="sourceCode" id="cb11"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>      <span class="kw">let</span> referencia<span class="op">;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>          <span class="kw">let</span> mochila <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"Temporal"</span>)<span class="op">;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>          referencia <span class="op">=</span> <span class="op">&amp;</span>mochila<span class="op">;</span> <span class="co">// Error: La referencia vive más que el valor original</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>      <span class="co">// println!("{}", referencia); // No válido</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>Solución</strong>: Asegúrate de que los préstamos no duren más que el valor original.</li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -645,13 +1114,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./concepts.html" class="pagination-link" aria-label="Conceptos Básicos">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conceptos Básicos</span></span>
+      <a href="./adv_concepts.html" class="pagination-link" aria-label="Conceptos Avanzados">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Conceptos Avanzados</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./struct.html" class="pagination-link" aria-label="Struct">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Struct</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Struct</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,0 +1,121 @@
+---
+title: "Macros"
+---
+
+
+En Rust, las macros son una poderosa característica que permite escribir código que genera otros fragmentos de código durante la compilación. Las macros permiten realizar tareas repetitivas, trabajar con estructuras complejas y proporcionar una mayor flexibilidad que las funciones estándar.
+
+A diferencia de las funciones, las macros pueden aceptar un número variable de argumentos y no están limitadas a trabajar solo con tipos específicos. Además, las macros en Rust se expanden antes de que el código sea compilado, lo que las hace útiles para metaprogramación.
+
+**Macros vs Funciones**
+
+Aunque las macros y las funciones pueden parecer similares, tienen algunas diferencias clave:
+
+- Funciones: Se ejecutan en tiempo de ejecución y trabajan con parámetros de tipos específicos.
+
+- Macros: Se expanden en código en tiempo de compilación, lo que permite generar fragmentos de código personalizados.
+
+Por ejemplo, una función recibe un número fijo de argumentos de un tipo determinado, mientras que una macro puede manejar un número variable de argumentos de cualquier tipo. La exclamación `!` es lo que distingue a las macros de las funciones.
+
+
+**Macros Más Comunes**
+
+Rust incluye varias macros predefinidas que son ampliamente utilizadas. Algunas de las más comunes son:
+
+`println!`: Imprime un mensaje formateado en la consola.
+
+```rust
+fn main() {
+    println!("Hola, mundo!");
+}
+```
+
+`vec!`: Crea un vector con elementos iniciales.
+
+```rust
+fn main() {
+    let v = vec![1, 2, 3];
+    println!("{:?}", v);
+}
+
+```
+
+La macro vec! permite crear un vector con varios elementos sin tener que declarar su tipo explícitamente.
+
+
+**Defincición de Macros**
+
+Las macros se definen usando el macro sistema macro_rules!. A continuación, un ejemplo básico de cómo definir una macro que acepta dos expresiones y las imprime:
+
+```rust
+macro_rules! saludar {
+    ($nombre:expr) => {
+        println!("Hola, {}!", $nombre);
+    };
+}
+
+fn main() {
+    saludar!("Rust");
+}
+```
+
+Aquí, saludar! es la macro que toma un único argumento de tipo expresión ($nombre:expr) y genera una llamada a println! con ese argumento. El uso de $nombre:expr es parte de la sintaxis de las macros en Rust, que permite definir patrones y expandir el código.
+
+**Macros con Múltiples Patrones**
+
+Las macros pueden manejar múltiples patrones de entrada, lo que les permite comportarse de manera diferente dependiendo de cuántos o qué tipos de argumentos se les pasen:
+
+
+```rust
+macro_rules! sumar {
+    ($a:expr, $b:expr) => {
+        println!("La suma es: {}", $a + $b);
+    };
+    ($a:expr, $b:expr, $c:expr) => {
+        println!("La suma es: {}", $a + $b + $c);
+    };
+}
+
+fn main() {
+    sumar!(2, 3);         // La suma es: 5
+    sumar!(2, 3, 4);      // La suma es: 9
+}
+
+```
+
+En este ejemplo, la macro sumar! puede aceptar dos o tres argumentos y ejecutará una acción diferente según el número de parámetros proporcionados.
+
+
+**Macros Recursivas**
+
+Rust también permite la creación de macros recursivas, que pueden llamarse a sí mismas hasta cumplir una condición. Esto es útil cuando necesitas generar estructuras de código repetitivas.
+
+```rust
+macro_rules! contador {
+    ($primero:expr) => {
+        println!("{}", $primero);
+    };
+    ($primero:expr, $($resto:expr),*) => {
+        println!("{}", $primero);
+        contador!($($resto),*);
+    };
+}
+
+fn main() {
+    contador!(1, 2, 3, 4, 5);
+}
+```
+
+Este ejemplo imprime cada número en una nueva línea, y la macro se llama recursivamente hasta que solo queda un argumento.
+
+**Cuándo Usar Macros**
+
+Las macros son útiles cuando:
+
+* Necesitas generar código repetitivo.
+* Quieres aceptar una cantidad variable de argumentos o tipos de entrada.
+* Quieres realizar optimizaciones en tiempo de compilación.
+
+Sin embargo, las macros deben usarse con cuidado, ya que pueden hacer que el código sea más difícil de leer y depurar debido a su naturaleza de metaprogramación. Se recomienda usarlas solo cuando las funciones no sean suficientes para el caso en cuestión.
+
+

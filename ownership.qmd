@@ -1,16 +1,308 @@
-# Ownership
+# Ownership y Borrowing
 
+
+El sistema de **Ownership** (propiedad) y **Borrowing** (préstamo) es el corazón de Rust y lo que garantiza su **seguridad en memoria** sin necesidad de un recolector de basura. Aunque puede sonar complejo al principio, usando analogías simples podemos descomponerlo en conceptos fáciles de entender.
 
 ## Definción
 
-## Referencias y Préstamos
+El ownership es un conjunto de reglas que definen cómo un programa de Rust administra la memoria. Todos los programas tienen que administrar la forma en que usan la memoria de un computador mientras se ejecutan. Algunos lenguajes tienen recolección de basura que busca regularmente la memoria que ya no se usa mientras el programa se ejecuta; en otros lenguajes, el programador debe asignar y liberar la memoria explícitamente. Rust usa un tercer enfoque: la memoria se administra a través de un sistema de ownership con un conjunto de reglas que el compilador verifica. Si alguna de las reglas se viola, el programa no se compilará. Ninguna de las características del ownership ralentizará su programa mientras se ejecuta.
+
+
+## Ownership
+
+En Rust, cada valor tiene un **dueño**. Piensa en una mochila que contiene un objeto (datos). Solo **una persona** puede ser dueña de esa mochila en un momento dado.
+
+**Reglas de Ownership**
+
+1. Cada valor en Rust tiene un **dueño único**.
+2. Cuando el dueño "deja de existir" (sale de su alcance), los datos se eliminan automáticamente (**drop**).
+
+
+::: {.callout-tip}
+## 🧳 Analogía "El Dueño de la Mochila"
+
+Imagina que tienes una mochila que representa la memoria en Rust. Solo tú puedes poseer esa mochila. Si decides pasar la mochila a otra persona, ya no puedes usarla, porque ahora esa persona es la nueva dueña.
+:::
+
+Ejemplo en Código
+
+```rust
+fn main() {
+    let mochila = String::from("Mis pertenencias"); // La mochila tiene un dueño
+    let nueva_mochila = mochila; // La propiedad se transfiere
+    // println!("{}", mochila); // Error: "mochila" ya no es válida.
+    println!("{}", nueva_mochila); // Ahora "nueva_mochila" es el dueño.
+}
+```
+
+## Borrowing
+
+A veces, en lugar de transferir completamente la propiedad, necesitas **prestar** tu mochila a alguien más. En Rust, esto se logra usando **referencias**.
+
+**Reglas de Borrowing**
+
+1. Puedes **prestar tu mochila** (crear una referencia) sin transferir la propiedad.
+2. Hay dos tipos de préstamos:
+   - **Préstamos inmutables** (`&`): Puedes prestar tu mochila para mirarla, pero nadie puede modificarla.
+   - **Préstamos mutables** (`&mut`): Puedes prestar tu mochila para que la modifiquen, pero solo a una persona a la vez.
+
+
+::: {.callout-tip}
+## 🧳 Analogía: "Préstamos Temporales"
+
+- **Préstamo inmutable**: Prestas tu mochila a un amigo para que la mire, pero no puede tocar nada dentro.
+- **Préstamo mutable**: Prestas tu mochila a un amigo, pero le adviertes que nadie más puede tocarla mientras él la tenga.
+:::
+
+
+
+Ejemplo en Código
+
+```rust
+fn main() {
+    let mochila = String::from("Mis pertenencias");
+    
+    // Préstamo inmutable
+    let referencia = &mochila;
+    println!("{}", referencia); // Puedo mirar el contenido.
+    println!("{}", mochila); // Y todavía soy el dueño.
+
+    // Préstamo mutable
+    let mut mochila_mutable = String::from("Mochila vieja");
+    let referencia_mutable = &mut mochila_mutable;
+    referencia_mutable.push_str(" actualizada");
+    println!("{}", referencia_mutable); // Mochila modificada.
+}
+```
+
+
+## Lifetimes
+
+Cuando prestas algo, el tiempo que alguien lo tiene debe ser **claro** para evitar conflictos. En Rust, esto se maneja con las **lifetimes**.
+
+**Reglas Básicas**
+1. Un préstamo no puede durar más que el dueño original.
+2. El compilador verifica que todos los préstamos sean seguros.
+
+
+::: {.callout-tip}
+## 🧳 Analogía: "Duración del Préstamo"
+
+Imagina que tu amigo tiene que devolverte la mochila antes de que tú te vayas de la reunión, o ambos estarán en problemas.
+:::
+
+
+
+
+Ejemplo en Código
+
+```rust
+fn main() {
+    let mochila = String::from("Mis cosas");
+    let referencia = &mochila; // El préstamo es válido aquí.
+    println!("{}", referencia); // Todavía puedo usar la referencia.
+
+    // Cuando la mochila "muere", la referencia también deja de ser válida.
+}
+```
+
+## Resumen Visual
+
+
+| Concepto          | Analogía                             | Código                   |
+|--------------------|--------------------------------------|--------------------------|
+| Ownership          | Mochila transferida a otro dueño.   | `let b = a;`            |
+| Borrowing          | Mochila prestada temporalmente.     | `let b = &a;`           |
+| Borrowing mutable  | Mochila prestada para modificarla.  | `let b = &mut a;`       |
+| Lifetimes          | Tiempo límite del préstamo.         | `let r = &x;`           |
+
+
 
 ## Slices
 
-## Lifetime annotations
+En Rust, los **slices** son una forma especial de préstamo, que permite acceder a una parte de una colección (como un array o un `String`) sin transferir la propiedad ni copiar los datos.
 
-Las anotaciones de tiempo de vida (lifetimes) son cruciales en Rust y se deberían cubrir al hablar de referencias y préstamos.
+::: {.callout-tip}
+## 🧳 Analogía: "Un vistazo a la mochila"
 
-## Borrow checker
+Imagina que estás en una sala de reuniones con mochilas (que representan los datos):
+1. El **inspector** verifica que solo haya **un dueño por mochila**.
+2. Si alguien toma prestada una mochila (una referencia):
+   - Si es un préstamo inmutable, otras personas pueden mirar, pero nadie puede modificar.
+   - Si es un préstamo mutable, nadie más puede mirar ni tocar hasta que se devuelva.
+3. Al final, el inspector revisa que nadie intente usar una mochila que ya no está en la sala (lifetime expirado).
 
-Aunque mencionas referencias y préstamos, sería útil dedicar un espacio para explicar en profundidad cómo funciona el borrow checker.
+:::
+
+- Un **slice inmutable** es como prestar tu mochila abierta y decir: “Mira solo lo que está en el bolsillo lateral”, pero no puedes tocar ni cambiar nada.
+- Un **slice mutable** es como prestar el bolsillo lateral y permitir que lo reorganicen, pero sin tocar el resto de la mochila.
+
+Ejemplo: Slice Inmutable
+
+```rust
+fn main() {
+    let array = [1, 2, 3, 4, 5];
+    let slice = &array[1..4]; // Slice inmutable que incluye los elementos 2, 3, 4
+    println!("{:?}", slice); // Imprime: [2, 3, 4]
+    println!("{:?}", array); // La colección original sigue siendo accesible
+}
+```
+
+Ejemplo: Slice Mutable
+
+```rust
+fn main() {
+    let mut array = [1, 2, 3, 4, 5];
+    let slice = &mut array[1..4]; // Slice mutable
+    slice[0] = 10; // Modifico solo el primer elemento del slice
+    println!("{:?}", slice); // Imprime: [10, 3, 4]
+    println!("{:?}", array); // Imprime: [1, 10, 3, 4, 5] (el array original también cambia)
+}
+```
+
+**Relación con Ownership y Borrowing**
+
+Los slices son **referencias** (`&` o `&mut`), lo que significa que respetan todas las reglas de **ownership** y **borrowing**:
+
+1. **Ownership**:
+   - El slice nunca toma posesión de los datos; solo los presta temporalmente.
+
+2. **Borrowing**:
+   - Siguen las mismas reglas que las referencias:
+     - Un slice mutable (`&mut`) y otro slice o referencia no pueden coexistir.
+     - Los slices no pueden durar más que la colección original de la que provienen.
+
+Ejemplo: Regla de Borrowing con Slices
+
+```rust
+fn main() {
+    let mut array = [1, 2, 3, 4, 5];
+    let slice = &array[1..4]; // Préstamo inmutable
+    // let mutable_slice = &mut array[2..4]; // Error: No puedes mutar mientras hay un préstamo inmutable activo
+    println!("{:?}", slice);
+}
+```
+
+Los slices son herramientas poderosas para acceder a partes de datos sin necesidad de copiar ni transferir propiedad, lo que los hace eficientes y seguros. Son una extensión directa del sistema de **ownership y borrowing**, y demuestran cómo Rust optimiza el manejo de datos respetando la seguridad de memoria.
+
+
+
+## Borrow Checker
+
+El **Borrow Checker** es una herramienta interna del compilador de Rust que garantiza que todas las reglas de **ownership**, **borrowing** y **lifetimes** se respeten en tiempo de compilación. Esto asegura que los programas sean seguros en memoria y libres de errores comunes como referencias colgantes o conflictos de préstamos.
+
+
+::: {.callout-tip}
+## 🧳 Analogía: "El inspector en la sala de reuniones"
+
+Imagina que estás en una sala de reuniones con mochilas (que representan los datos):
+
+1. El **inspector** verifica que solo haya **un dueño por mochila**.
+2. Si alguien toma prestada una mochila (una referencia):
+   - Si es un préstamo inmutable, otras personas pueden mirar, pero nadie puede modificar.
+   - Si es un préstamo mutable, nadie más puede mirar ni tocar hasta que se devuelva.
+3. Al final, el inspector revisa que nadie intente usar una mochila que ya no está en la sala (lifetime expirado).
+:::
+
+
+
+
+**¿Qué valida el Borrow Checker?**
+
+1. **Ownership**:
+   - Cada valor tiene un único dueño.
+   - Los valores se liberan automáticamente cuando su dueño sale de alcance.
+2. **Borrowing**:
+   - Permite múltiples préstamos inmutables o un único préstamo mutable, pero no ambos a la vez.
+3. **Lifetimes**:
+   - Las referencias no deben vivir más tiempo que el valor original.
+
+Ejemplo de Borrow Checker en Acción
+
+```rust
+fn main() {
+    let mut mochila = String::from("Mis cosas");
+
+    // Préstamos inmutables
+    let prestamo1 = &mochila; 
+    let prestamo2 = &mochila; 
+    println!("{}, {}", prestamo1, prestamo2); // Esto es válido
+
+    // Préstamo mutable conflictivo
+    // let prestamo_mutable = &mut mochila; 
+    // Error: No puedes tener préstamos mutables e inmutables al mismo tiempo
+}
+```
+
+Ejemplo de Error con Borrow Checker
+
+```rust
+fn main() {
+    let referencia;
+    {
+        let mochila = String::from("Temporal");
+        referencia = &mochila; // Error: La referencia vive más que el valor original
+    }
+    // println!("{}", referencia); // El Borrow Checker impide este uso.
+}
+```
+
+El **Borrow Checker** actúa como un inspector que asegura que:
+
+- Los datos sean usados de manera segura y eficiente.
+- No haya referencias colgantes ni conflictos de acceso.
+
+Gracias al Borrow Checker, Rust garantiza seguridad de memoria en tiempo de compilación, haciendo innecesario un recolector de basura y optimizando el rendimiento del programa.
+
+
+
+## Errores Comunes y Cómo Evitarlos
+
+
+### Uso después de transferencia
+
+- **Error**: Usar un valor después de transferir su propiedad.
+- **Ejemplo**:
+
+```rust
+  fn main() {
+      let mochila = String::from("Mis pertenencias");
+      let nueva_mochila = mochila; // Propiedad transferida
+      // println!("{}", mochila); // Error: "mochila" ya no es válida.
+  }
+```
+- **Solución**: Revisa si has movido el valor o usa referencias si necesitas acceder a él.
+
+
+### Conflictos en préstamos mutables
+
+- **Error**: Prestar un valor de forma mutable mientras tienes préstamos inmutables activos.
+- **Ejemplo**:
+
+```rust
+  fn main() {
+      let mut mochila = String::from("Mis cosas");
+      let referencia1 = &mochila; // Préstamo inmutable
+      let referencia2 = &mut mochila; // Error: No puedes prestar de forma mutable mientras hay un préstamo inmutable
+  }
+```
+- **Solución**: Asegúrate de que no hay múltiples accesos conflictivos al mismo tiempo.
+
+
+### Referencias a datos no válidos
+
+- **Error**: Crear una referencia que vive más que el valor original.
+- **Ejemplo**:
+
+```rust
+  fn main() {
+      let referencia;
+      {
+          let mochila = String::from("Temporal");
+          referencia = &mochila; // Error: La referencia vive más que el valor original
+      }
+      // println!("{}", referencia); // No válido
+  }
+```
+
+- **Solución**: Asegúrate de que los préstamos no duren más que el valor original.

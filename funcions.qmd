@@ -1,0 +1,114 @@
+---
+title: "Funciones"
+---
+
+
+En Rust, las funciones son un componente clave para organizar y reutilizar código. Permiten dividir el programa en partes más pequeñas y manejables. Toda función en Rust debe estar declarada con el tipo de datos que espera recibir (parámetros) y el tipo de dato que devolverá (si corresponde).
+
+Definición de Funciones
+
+La sintaxis básica para definir una función en Rust es la siguiente:
+
+``` rust
+fn nombre_de_la_funcion(parámetros: tipo) -> tipo_de_retorno {
+    // cuerpo de la función
+}
+```
+
+-   **fn**: Indica que estamos declarando una función.
+-   **nombre_de_la_funcion**: El nombre de la función, que sigue las convenciones de estilo `snake_case`.
+-   **parámetros**: Una lista de parámetros opcionales que la función toma como entrada.
+-   **tipo_de_retorno**: El tipo de valor que la función devolverá (si no devuelve nada, se omite).
+-   El **cuerpo de la función** es donde se especifica el comportamiento.
+
+
+Ejemplo Simple de Función
+
+Aquí tienes un ejemplo de una función que toma dos números enteros como parámetros y devuelve su suma:
+
+```rust
+fn sumar(a: i32, b: i32) -> i32 {
+    a + b  // El valor de retorno es la última expresión
+}
+
+fn main() {
+    let resultado = sumar(5, 3);
+    println!("El resultado es: {resultado}");
+}
+```
+
+En este ejemplo:
+
+- La función devuelve un valor de tipo `i32`, que es la suma de a y b.
+- La última expresión dentro de una función se devuelve automáticamente si no se termina con un punto y coma.
+
+**Parámetros**
+
+Los parámetros se definen dentro de los paréntesis cuando declaras una función, especificando tanto el nombre como el tipo de dato. Puedes pasar múltiples parámetros:
+
+```rust
+fn multiplicar(x: i32, y: i32) -> i32 {
+    x * y
+}
+```
+Rust requiere que especifiques el tipo de todos los parámetros de la función.
+
+**Valores de Retorno**
+
+Una función puede devolver un valor usando una expresión o una instrucción `return` opcional. En Rust, la última expresión en el cuerpo de la función sin punto y coma se devuelve automáticamente.
+
+```rust
+fn cuadrado(x: i32) -> i32 {
+    return x * x;  // También puedes usar `return` explícitamente
+}
+```
+
+Si no deseas que la función devuelva un valor, puedes omitir la flecha `->` y el tipo de retorno, lo que significa que la función devolverá la unidad `()`:
+
+```rust
+fn saludar() {
+    println!("Hola, mundo!");
+}
+```
+
+
+**Funciones con Referencias**
+
+Rust también permite pasar referencias a las funciones, lo que es útil cuando no deseas transferir la propiedad de un valor. Las referencias permiten que la función lea el valor sin tomar posesión de él:
+
+
+```rust
+fn longitud(texto: &String) -> usize {
+    texto.len()
+}
+```
+
+
+En este ejemplo, &String indica que la función toma una referencia al valor en lugar de transferir su propiedad.
+
+**Funciones Anidadas**
+
+Puedes definir funciones dentro de otras funciones en Rust, lo que se llama funciones anidadas. Esto puede ser útil para encapsular lógica específica dentro de un contexto limitado:
+
+```rust
+fn main() {
+    fn interna() {
+        println!("Esta es una función anidada");
+    }
+
+    interna();  // Llamando a la función anidada
+}
+```
+
+**Funciones con Tipos Genéricos**
+
+Rust permite que las funciones acepten tipos genéricos, lo que hace que las funciones sean más flexibles y reutilizables. Por ejemplo:
+
+
+```rust
+fn imprimir_dos_veces<T: std::fmt::Debug>(x: T) {
+    println!("{:?} {:?}", x, x);
+}
+```
+
+Aquí, `T` es un tipo genérico, y `std::fmt::Debug` es un trait que indica que el tipo debe poder imprimirse con `{:?}`.

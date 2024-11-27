@@ -1,0 +1,68 @@
+# Manejo de errores
+
+En Rust, el manejo de errores se divide en dos categorías principales: errores recuperables (gestionados con Result) y errores irrecuperables (gestionados con panic!).
+
+Result: Errores Recuperables
+
+El tipo Result es usado cuando una operación puede tener éxito o fallar. Tiene dos variantes:
+
+- Ok(T): Representa un éxito y contiene un valor.
+- Err(E): Representa un error y contiene información del mismo.
+
+Ejemplo básico:
+
+```rust
+use std::fs::File;
+
+fn main() {
+    let archivo = File::open("archivo.txt");
+
+    match archivo {
+        Ok(_) => println!("Archivo abierto."),
+        Err(e) => println!("Error: {}", e),
+    }
+}
+```
+
+También puedes usar el operador ? para simplificar el manejo de errores, propagando el error si ocurre:
+
+```rust
+fn leer_archivo() -> Result<String, std::io::Error> {
+    let mut archivo = File::open("archivo.txt")?;
+    let mut contenido = String::new();
+    archivo.read_to_string(&mut contenido)?;
+    Ok(contenido)
+}
+```
+
+**Option: Valores Opcionales**
+
+Option es usado para manejar valores que pueden estar presentes o no. Tiene dos variantes:
+
+- Some(T): Representa un valor.
+- None: Representa la ausencia de un valor.
+
+Ejemplo:
+
+```rust
+fn dividir(dividendo: f64, divisor: f64) -> Option<f64> {
+    if divisor == 0.0 {
+        None
+    } else {
+        Some(dividendo / divisor)
+    }
+}
+```
+
+**panic!: Errores Irrecuperables**
+
+Cuando ocurre un error grave del que el programa no puede recuperarse, se usa panic! para detener la ejecución:
+
+
+```rust
+fn main() {
+    panic!("¡Error grave!");
+}
+```
+
+

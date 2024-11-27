@@ -1,0 +1,117 @@
+---
+title: "Control de  Flujo"
+---
+
+
+
+En Rust, el control de flujos permite dirigir la ejecución del programa basándose en condiciones y repeticiones. Rust ofrece varias estructuras para controlar el flujo de la ejecución del código, como if para condiciones y bucles para repetir bloques de código.
+
+Aquí tienes una tabla con las operaciones lógicas y su sintaxis en Rust, qué se utilizan en control de flujos:
+
+| **Operación** | **Símbolo** | **Descripción** | **Ejemplo** |
+|---------------|---------------|----------------------------|---------------|
+| **AND lógico** | `&&` | Verdadero si ambas expresiones son verdaderas | `true && false` (devuelve `false`) |
+| **OR lógico** | `||` | Verdadero si al menos una expresión es verdadera | `true || false` (devuelve `true`) |
+| **NOT lógico** | `!` | Invierte el valor de verdad de una expresión | `!true` (devuelve `false`) |
+| **Igualdad** | `==` | Verdadero si ambas expresiones son iguales | `5 == 5` (devuelve `true`) |
+| **Desigualdad** | `!=` | Verdadero si ambas expresiones no son iguales | `5 != 6` (devuelve `true`) |
+| **Mayor que** | `>` | Verdadero si la primera expresión es mayor que la segunda | `6 > 3` (devuelve `true`) |
+| **Menor que** | `<` | Verdadero si la primera expresión es menor que la segunda | `3 < 5` (devuelve `true`) |
+| **Mayor o igual que** | `>=` | Verdadero si la primera expresión es mayor o igual a la segunda | `5 >= 5` (devuelve `true`) |
+| **Menor o igual que** | `<=` | Verdadero si la primera expresión es menor o igual a la segunda | `3 <= 4` (devuelve `true`) |
+
+## Expresión if
+
+En Rust, la expresión if evalúa una condición booleana y ejecuta un bloque de código dependiendo de si la condición es verdadera (true) o falsa (false). A diferencia de otros lenguajes, if en Rust es una expresión, lo que significa que puede devolver un valor.
+
+``` rust
+fn main() {
+    let numero = 5;
+
+    if numero > 3 {
+        println!("El número es mayor que 3.");
+    } else {
+        println!("El número es 3 o menor.");
+    }
+}
+```
+
+También se puede usar la expresión if para asignar valores:
+
+``` rust
+let condicion = true;
+let numero = if condicion { 5 } else { 6 };
+```
+
+Es importante recordar que las ramas del if deben devolver el mismo tipo.
+
+## Bucles
+
+Rust proporciona tres tipos de bucles: `loop`, `while`, y `for`.
+
+`loop`
+
+:   Ejecuta un bloque de código indefinidamente hasta que se detenga explícitamente con una instrucción break.
+
+``` rust
+fn main() {
+    let mut contador = 0;
+
+    loop {
+        contador += 1;
+        println!("Contador: {contador}");
+
+        if contador == 5 {
+            break;  // Detiene el bucle cuando contador es 5
+        }
+    }
+}
+```
+
+`while`
+
+:   Ejecuta un bloque de código mientras una condición booleana sea verdadera.
+
+``` rust
+fn main() {
+    let mut numero = 3;
+
+    while numero != 0 {
+        println!("{numero}");
+        numero -= 1;
+    }
+}
+```
+
+`for`
+
+:   Recorre elementos de una colección o un rango.
+
+``` rust
+fn main() {
+    for numero in 1..4 {
+        println!("{numero}");
+    }
+}
+```
+
+## break y continue
+
+`break`: Termina el bucle inmediatamente.
+
+`continue`: Salta al siguiente ciclo del bucle sin ejecutar el resto del bloque actual.
+
+Ejemplo combinando ambos:
+
+``` rust
+fn main() {
+    for numero in 1..10 {
+        if numero == 5 {
+            continue;  // Salta cuando número es 5
+        } else if numero == 8 {
+            break;  // Termina el bucle cuando número es 8
+        }
+        println!("Número: {numero}");
+    }
+}
+```

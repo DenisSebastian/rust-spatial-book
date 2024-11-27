@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Rust Espacial - 2&nbsp; Introducción</title>
+<title>Rust Espacial - 8&nbsp; Macros</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./install.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./ownership.html" rel="next">
+<link href="./funcions.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -82,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introducción</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concepts.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./macros.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Macros</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -115,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link active">
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introducción</span></span></a>
   </div>
 </li>
@@ -125,34 +159,10 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalación</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conceptos Básicos</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./ownership.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ownership</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./struct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Struct</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./functional.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Rust en Producción</span></a>
+            <a href="./concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conceptos Básicos</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -160,22 +170,58 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./production.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Producción</span></span></a>
+  <a href="./variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Variables y Mutabilidad</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./optimization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
+  <a href="./flow_control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Control de Flujo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scope.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bloques y Ámbitos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./funcions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funciones</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./macros.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Macros</span></span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ownership.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ownership</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./struct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Struct</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Rust Espacial</span></a>
+ <span class="menu-text">Rust en Producción</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -183,8 +229,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./spatial_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
+  <a href="./production.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Producción</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./optimization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
   </div>
 </li>
       </ul>
@@ -192,7 +244,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Otros Lenguajes</span></a>
+ <span class="menu-text">Rust Espacial</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -200,8 +252,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./languages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otros Lenguajes</span></span></a>
+  <a href="./spatial_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
   </div>
 </li>
       </ul>
@@ -209,7 +261,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Tareas</span></a>
+ <span class="menu-text">Otros Lenguajes</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -217,8 +269,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./languages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Otros Lenguajes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Tareas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./tarea_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Tarea 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Tarea 1</span></span></a>
   </div>
 </li>
       </ul>
@@ -235,28 +304,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#qué-es-rust" id="toc-qué-es-rust" class="nav-link active" data-scroll-target="#qué-es-rust"><span class="header-section-number">2.1</span> ¿Qué es Rust?</a></li>
-  <li><a href="#objetivos" id="toc-objetivos" class="nav-link" data-scroll-target="#objetivos"><span class="header-section-number">2.2</span> Objetivos</a>
-  <ul class="collapse">
-  <li><a href="#objetivo-general" id="toc-objetivo-general" class="nav-link" data-scroll-target="#objetivo-general">Objetivo General</a></li>
-  <li><a href="#objetivos-específicos" id="toc-objetivos-específicos" class="nav-link" data-scroll-target="#objetivos-específicos">Objetivos Específicos</a></li>
-  </ul></li>
-  <li><a href="#descripción-del-libro" id="toc-descripción-del-libro" class="nav-link" data-scroll-target="#descripción-del-libro"><span class="header-section-number">2.3</span> Descripción del Libro</a></li>
-  <li><a href="#perfil-del-lector" id="toc-perfil-del-lector" class="nav-link" data-scroll-target="#perfil-del-lector"><span class="header-section-number">2.4</span> Perfil del Lector</a></li>
-  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="header-section-number">2.5</span> Resumen</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concepts.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./macros.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Macros</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introducción</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Macros</span></h1>
 </div>
 
 
@@ -273,44 +328,81 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="qué-es-rust" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="qué-es-rust"><span class="header-section-number">2.1</span> ¿Qué es Rust?</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/rust-logo2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="150"></p>
-</figure>
-</div>
-<p>Rust es un lenguaje de programación de sistemas que prioriza el rendimiento, la seguridad y la concurrencia sin sacrificar la experiencia del desarrollador. Su diseño se enfoca en evitar errores comunes como las condiciones de carrera, desbordamientos de memoria y fugas de recursos, todo mientras mantiene la flexibilidad de los lenguajes de bajo nivel. Al ofrecer un control preciso sobre la memoria sin necesidad de un recolector de basura, Rust se ha convertido en una opción favorita tanto para el desarrollo de sistemas críticos como para aplicaciones de alto rendimiento, desde servidores web hasta sistemas embebidos.</p>
-</section>
-<section id="objetivos" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="objetivos"><span class="header-section-number">2.2</span> Objetivos</h2>
-<section id="objetivo-general" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="objetivo-general">Objetivo General</h3>
-<p>El objetivo principal de este libro es proporcionar a los lectores una comprensión sólida y práctica de Rust, enfocándose en su aplicación para la resolución de problemas espaciales y geoespaciales. A lo largo del libro, los lectores adquirirán las habilidades necesarias para desarrollar soluciones eficientes, robustas y seguras, utilizando Rust como herramienta fundamental en el análisis espacial.</p>
-</section>
-<section id="objetivos-específicos" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="objetivos-específicos">Objetivos Específicos</h3>
-<ol type="1">
-<li><p>Introducir los conceptos fundamentales de Rust: Explicar de manera clara los principios básicos del lenguaje, como su sistema de ownership, estructuras de datos y programación funcional, para que el lector pueda aplicarlos en diferentes contextos.</p></li>
-<li><p>Demostrar la aplicación de Rust en problemas espaciales: Proporcionar ejemplos prácticos y detallados que muestren cómo Rust puede ser utilizado para procesar grandes volúmenes de datos geoespaciales, optimizando tanto el rendimiento como la eficiencia.</p></li>
-<li><p>Comparar Rust con otros lenguajes usados en análisis espacial: Ofrecer una visión comparativa de Rust frente a lenguajes como Python y R, resaltando las ventajas y casos en los que Rust puede ser una mejor opción en la resolución de problemas complejos de análisis espacial.</p></li>
-</ol>
-</section>
-</section>
-<section id="descripción-del-libro" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="descripción-del-libro"><span class="header-section-number">2.3</span> Descripción del Libro</h2>
-<p>Este libro está diseñado para guiar al lector desde la instalación de Rust hasta su aplicación en análisis espacial, proporcionando una base sólida en el lenguaje y sus conceptos clave. Comenzamos con el Capítulo 3: Instalación, donde te ayudaremos a configurar tu entorno de trabajo. A continuación, en el Capítulo 4: Conceptos Básicos, introducimos los fundamentos del lenguaje, necesarios para entender los ejemplos prácticos. Luego, el Capítulo 5: Ownership explora el sistema de propiedad de Rust, que es esencial para manejar la memoria de manera eficiente. El Capítulo 6: Struct presenta la construcción de estructuras de datos personalizadas, un aspecto clave en la creación de modelos complejos. En el Capítulo 7: Rust en Producción, discutimos las mejores prácticas para llevar proyectos de Rust al entorno productivo, asegurando que tu código sea escalable y mantenible. Posteriormente, en el Capítulo 8: Rust Espacial, nos adentramos en la aplicación de Rust para resolver problemas espaciales complejos, mostrando su capacidad para manejar grandes volúmenes de datos geoespaciales. En el Capítulo 9: Programación Funcional, exploramos cómo Rust incorpora paradigmas funcionales para simplificar la manipulación de datos y mejorar la legibilidad del código. Finalmente, en el Capítulo 10: Otros Lenguajes, comparamos Rust con otros lenguajes populares en el ámbito del análisis espacial, como R y Python, destacando sus ventajas y desventajas.</p>
-</section>
-<section id="perfil-del-lector" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="perfil-del-lector"><span class="header-section-number">2.4</span> Perfil del Lector</h2>
-<p>Este libro está orientado a profesionales con experiencia intermedia o avanzada en programación, que tengan nociones de otros lenguajes como Python, R o C++. Si ya has trabajado con lenguajes de programación y estás buscando expandir tu conocimiento hacia Rust, este libro es para ti. No es necesario ser un experto en análisis espacial, pero se espera que tengas una comprensión básica de los principios de programación y estés familiarizado con la resolución de problemas complejos.</p>
-</section>
-<section id="resumen" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="resumen"><span class="header-section-number">2.5</span> Resumen</h2>
-<p>En resumen, este libro te guiará a través de los fundamentos de Rust, proporcionándote las habilidades necesarias para aplicar el lenguaje en la resolución de problemas espaciales. Desde la instalación hasta la programación funcional, cada capítulo está diseñado para ofrecerte una comprensión progresiva del lenguaje y su uso práctico. Al final, habrás adquirido las herramientas para implementar soluciones eficientes y robustas en Rust, ya sea en el análisis espacial o en otros campos de alta demanda técnica.</p>
+<p>En Rust, las macros son una poderosa característica que permite escribir código que genera otros fragmentos de código durante la compilación. Las macros permiten realizar tareas repetitivas, trabajar con estructuras complejas y proporcionar una mayor flexibilidad que las funciones estándar.</p>
+<p>A diferencia de las funciones, las macros pueden aceptar un número variable de argumentos y no están limitadas a trabajar solo con tipos específicos. Además, las macros en Rust se expanden antes de que el código sea compilado, lo que las hace útiles para metaprogramación.</p>
+<p><strong>Macros vs Funciones</strong></p>
+<p>Aunque las macros y las funciones pueden parecer similares, tienen algunas diferencias clave:</p>
+<ul>
+<li><p>Funciones: Se ejecutan en tiempo de ejecución y trabajan con parámetros de tipos específicos.</p></li>
+<li><p>Macros: Se expanden en código en tiempo de compilación, lo que permite generar fragmentos de código personalizados.</p></li>
+</ul>
+<p>Por ejemplo, una función recibe un número fijo de argumentos de un tipo determinado, mientras que una macro puede manejar un número variable de argumentos de cualquier tipo. La exclamación <code>!</code> es lo que distingue a las macros de las funciones.</p>
+<p><strong>Macros Más Comunes</strong></p>
+<p>Rust incluye varias macros predefinidas que son ampliamente utilizadas. Algunas de las más comunes son:</p>
+<p><code>println!</code>: Imprime un mensaje formateado en la consola.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Hola, mundo!"</span>)<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>vec!</code>: Crea un vector con elementos iniciales.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> v <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> v)<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La macro vec! permite crear un vector con varios elementos sin tener que declarar su tipo explícitamente.</p>
+<p><strong>Defincición de Macros</strong></p>
+<p>Las macros se definen usando el macro sistema macro_rules!. A continuación, un ejemplo básico de cómo definir una macro que acepta dos expresiones y las imprime:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">macro_rules!</span> saludar <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    (<span class="op">$</span>nombre<span class="op">:</span>expr) <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"Hola, {}!"</span><span class="op">,</span> <span class="op">$</span>nombre)<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">saludar!</span>(<span class="st">"Rust"</span>)<span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Aquí, saludar! es la macro que toma un único argumento de tipo expresión ($nombre:expr) y genera una llamada a println! con ese argumento. El uso de $nombre:expr es parte de la sintaxis de las macros en Rust, que permite definir patrones y expandir el código.</p>
+<p><strong>Macros con Múltiples Patrones</strong></p>
+<p>Las macros pueden manejar múltiples patrones de entrada, lo que les permite comportarse de manera diferente dependiendo de cuántos o qué tipos de argumentos se les pasen:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">macro_rules!</span> sumar <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    (<span class="op">$</span>a<span class="op">:</span>expr<span class="op">,</span> <span class="op">$</span>b<span class="op">:</span>expr) <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"La suma es: {}"</span><span class="op">,</span> <span class="op">$</span>a <span class="op">+</span> <span class="op">$</span>b)<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    (<span class="op">$</span>a<span class="op">:</span>expr<span class="op">,</span> <span class="op">$</span>b<span class="op">:</span>expr<span class="op">,</span> <span class="op">$</span>c<span class="op">:</span>expr) <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"La suma es: {}"</span><span class="op">,</span> <span class="op">$</span>a <span class="op">+</span> <span class="op">$</span>b <span class="op">+</span> <span class="op">$</span>c)<span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="pp">sumar!</span>(<span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>)<span class="op">;</span>         <span class="co">// La suma es: 5</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="pp">sumar!</span>(<span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span>)<span class="op">;</span>      <span class="co">// La suma es: 9</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En este ejemplo, la macro sumar! puede aceptar dos o tres argumentos y ejecutará una acción diferente según el número de parámetros proporcionados.</p>
+<p><strong>Macros Recursivas</strong></p>
+<p>Rust también permite la creación de macros recursivas, que pueden llamarse a sí mismas hasta cumplir una condición. Esto es útil cuando necesitas generar estructuras de código repetitivas.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="pp">macro_rules!</span> contador <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    (<span class="op">$</span>primero<span class="op">:</span>expr) <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> <span class="op">$</span>primero)<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    (<span class="op">$</span>primero<span class="op">:</span>expr<span class="op">,</span> <span class="op">$</span>(<span class="op">$</span>resto<span class="op">:</span>expr)<span class="op">,*</span>) <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> <span class="op">$</span>primero)<span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="pp">contador!</span>(<span class="op">$</span>(<span class="op">$</span>resto)<span class="op">,*</span>)<span class="op">;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="pp">contador!</span>(<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>)<span class="op">;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Este ejemplo imprime cada número en una nueva línea, y la macro se llama recursivamente hasta que solo queda un argumento.</p>
+<p><strong>Cuándo Usar Macros</strong></p>
+<p>Las macros son útiles cuando:</p>
+<ul>
+<li>Necesitas generar código repetitivo.</li>
+<li>Quieres aceptar una cantidad variable de argumentos o tipos de entrada.</li>
+<li>Quieres realizar optimizaciones en tiempo de compilación.</li>
+</ul>
+<p>Sin embargo, las macros deben usarse con cuidado, ya que pueden hacer que el código sea más difícil de leer y depurar debido a su naturaleza de metaprogramación. Se recomienda usarlas solo cuando las funciones no sean suficientes para el caso en cuestión.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -724,13 +816,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Prefacio">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Prefacio</span></span>
+      <a href="./funcions.html" class="pagination-link" aria-label="Funciones">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funciones</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./install.html" class="pagination-link" aria-label="Instalación">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalación</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ownership.html" class="pagination-link" aria-label="Ownership">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Ownership</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Rust Espacial - Conceptos Básicos</title>
+<title>Rust Espacial - 10&nbsp; Closures</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./variables.html" rel="next">
-<link href="./install.html" rel="prev">
+<link href="./ownership.html" rel="next">
+<link href="./iterators.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -82,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concepts.html">Conceptos Básicos</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concepts.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./closures.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closures</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -127,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./concepts.html" class="sidebar-item-text sidebar-link active">
+            <a href="./concepts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Conceptos Básicos</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -172,14 +206,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./closures.html" class="sidebar-item-text sidebar-link">
+  <a href="./closures.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closures</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./errors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></span></a>
   </div>
 </li>
       </ul>
@@ -187,13 +215,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ownership.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ownership</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Ownership</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./struct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Struct</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Struct</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -208,13 +236,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./production.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Producción</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Producción</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./optimization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
   </div>
 </li>
       </ul>
@@ -231,7 +259,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./spatial_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
   </div>
 </li>
       </ul>
@@ -248,7 +276,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./languages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Otros Lenguajes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Otros Lenguajes</span></span></a>
   </div>
 </li>
       </ul>
@@ -265,7 +293,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tarea_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Tarea 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Tarea 1</span></span></a>
   </div>
 </li>
       </ul>
@@ -273,7 +301,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functional.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -293,9 +321,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concepts.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./closures.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closures</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Conceptos Básicos</h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closures</span></h1>
 </div>
 
 
@@ -312,8 +340,118 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Este capítulo cubre conceptos que aparecen en casi todos los lenguajes de programación y cómo funcionan en Rust. Muchos lenguajes de programación tienen mucho en común en su núcleo. Ninguno de los conceptos presentados en este capítulo son únicos de Rust, pero los discutiremos en el contexto de Rust y explicaremos las convenciones alrededor de su uso.</p>
-<p>Específicamente, aprenderás sobre variables, tipos básicos, funciones, comentarios y flujo de control. Estas bases estarán en todos los programas de Rust, y aprenderlas temprano te dará un núcleo fuerte para comenzar.</p>
+<p>Un closure (o cierre) en Rust es una función anónima que puede capturar variables del entorno en el que se define. Los closures son muy flexibles y pueden aceptar parámetros, devolver valores y, a diferencia de las funciones normales, pueden capturar y utilizar variables que no se les pasan explícitamente.</p>
+<p>Los closures se definen usando la siguiente sintaxis:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">|</span>parametros<span class="op">|</span> expresión</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Son comunes en Rust para trabajar con iteradores y otras operaciones funcionales, como map y filter.</p>
+<p><strong>Definición Básica</strong></p>
+<p>Aquí tienes un ejemplo básico de un closure que suma dos números:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> suma <span class="op">=</span> <span class="op">|</span>a<span class="op">,</span> b<span class="op">|</span> a <span class="op">+</span> b<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"La suma es: {}"</span><span class="op">,</span> suma(<span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>))<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En este ejemplo:</p>
+<ul>
+<li><code>|a, b|</code> es la lista de parámetros del closure.</li>
+<li><code>a + b</code> es la expresión que se ejecuta cuando se llama al closure.</li>
+<li>Se llama al closure con suma(2, 3), y el resultado es 5.</li>
+</ul>
+<p><strong>Captura de Variables</strong></p>
+<p>Una característica clave de los closures es su capacidad para capturar variables del entorno en el que fueron definidos. Pueden capturar variables por referencia, por préstamo mutable o por posesión, dependiendo de cómo se utilicen.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dv">4</span><span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> closure <span class="op">=</span> <span class="op">|</span>y<span class="op">|</span> x <span class="op">+</span> y<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Resultado: {}"</span><span class="op">,</span> closure(<span class="dv">3</span>))<span class="op">;</span>  <span class="co">// Imprime 7</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En este caso, el closure closure captura la variable x del entorno y la utiliza en su cuerpo.</p>
+<p><strong>Closures que Capturan por Referencia, Mutable y por Posesión</strong></p>
+<p>Los closures pueden capturar variables de diferentes maneras:</p>
+<dl>
+<dt>Por referencia</dt>
+<dd>
+El closure accede a la variable sin tomar posesión de ella.
+</dd>
+</dl>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> capturar_x <span class="op">=</span> <span class="op">||</span> <span class="pp">println!</span>(<span class="st">"x: {}"</span><span class="op">,</span> x)<span class="op">;</span>  <span class="co">// Captura `x` por referencia</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    capturar_x()<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl>
+<dt>Por mutabilidad</dt>
+<dd>
+El closure puede modificar la variable.
+</dd>
+</dl>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> x <span class="op">=</span> <span class="dv">5</span><span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> modificar_x <span class="op">=</span> <span class="op">||</span> x <span class="op">+=</span> <span class="dv">1</span><span class="op">;</span>  <span class="co">// Captura `x` por mutabilidad</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    modificar_x()<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"x: {}"</span><span class="op">,</span> x)<span class="op">;</span>  <span class="co">// Imprime 6</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl>
+<dt>Por posesión</dt>
+<dd>
+El closure toma posesión de la variable, lo que impide su uso fuera del closure.
+</dd>
+</dl>
+<div class="sourceCode" id="cb6"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> x <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"Hola"</span>)<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> capturar_x <span class="op">=</span> <span class="op">||</span> <span class="op">{</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> _y <span class="op">=</span> x<span class="op">;</span>  <span class="co">// Captura `x` por posesión</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    capturar_x()<span class="op">;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Aquí `x` ya no es accesible porque fue capturado por posesión</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Closures con Tipos y Anotaciones de Parámetros</strong></p>
+<p>En la mayoría de los casos, Rust puede inferir los tipos de los parámetros de un closure, por lo que no es necesario especificarlos. Sin embargo, también puedes hacerlo explícitamente si lo deseas:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> suma <span class="op">=</span> <span class="op">|</span>a<span class="op">:</span> <span class="dt">i32</span><span class="op">,</span> b<span class="op">:</span> <span class="dt">i32</span><span class="op">|</span> <span class="op">-&gt;</span> <span class="dt">i32</span> <span class="op">{</span> a <span class="op">+</span> b <span class="op">};</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"La suma es: {}"</span><span class="op">,</span> suma(<span class="dv">10</span><span class="op">,</span> <span class="dv">5</span>))<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En este caso, hemos anotado los tipos de los parámetros (i32) y el tipo de retorno del closure (i32).</p>
+<p>Closures y Funciones</p>
+<p>A diferencia de las funciones, los closures pueden capturar variables del entorno. Sin embargo, los closures y las funciones comparten algunas similitudes. Los closures se pueden almacenar en variables, pasar como argumentos o devolver desde otras funciones, al igual que las funciones.</p>
+<p>Los closures también pueden ser pasados como parámetros a funciones que esperan un trait como <code>Fn</code>, <code>FnMut</code>, o <code>FnOnce</code></p>
+<p><strong>Traits Fn, FnMut, y FnOnce</strong></p>
+<p>Rust proporciona tres traits principales para closures, dependiendo de cómo el closure maneje las variables capturadas:</p>
+<ol type="1">
+<li>Fn: El closure no modifica ni toma posesión de las variables que captura. Se llama múltiples veces sin efectos secundarios.</li>
+<li>FnMut: El closure puede modificar las variables que captura, pero no toma posesión de ellas. Se llama múltiples veces, pero puede tener efectos secundarios.</li>
+<li>FnOnce: El closure toma posesión de las variables que captura, por lo que solo puede ser llamado una vez.</li>
+</ol>
+<p>Por ejemplo:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> ejecutar_closure<span class="op">&lt;</span>F<span class="op">&gt;</span>(f<span class="op">:</span> F) </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    F<span class="op">:</span> <span class="bu">Fn</span>(<span class="dt">i32</span>) <span class="op">-&gt;</span> <span class="dt">i32</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Resultado: {}"</span><span class="op">,</span> f(<span class="dv">5</span>))<span class="op">;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> closure <span class="op">=</span> <span class="op">|</span>x<span class="op">|</span> x <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    ejecutar_closure(closure)<span class="op">;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Aquí, ejecutar_closure acepta un parámetro F que implementa el trait Fn, lo que permite pasarle closures que no modifican las variables capturadas.</p>
+<p><strong>Closures como Retorno</strong></p>
+<p>También puedes devolver un closure desde una función, utilizando el trait adecuado:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> crear_closure() <span class="op">-&gt;</span> <span class="kw">impl</span> <span class="bu">Fn</span>(<span class="dt">i32</span>) <span class="op">-&gt;</span> <span class="dt">i32</span> <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">|</span>x<span class="op">|</span> x <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> mi_closure <span class="op">=</span> crear_closure()<span class="op">;</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Resultado: {}"</span><span class="op">,</span> mi_closure(<span class="dv">10</span>))<span class="op">;</span>  <span class="co">// Imprime 11</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Aquí, la función crear_closure devuelve un closure que toma un entero y devuelve ese entero incrementado en uno.</p>
+<p><strong>Closures en Iteradores</strong></p>
+<p>Los closures son ampliamente utilizados en operaciones con iteradores, como map, filter, fold, entre otros. Estos métodos aceptan closures para realizar operaciones sobre cada elemento de una colección.</p>
+<p>Por ejemplo, el uso de un closure con map para elevar al cuadrado los números de un vector:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> numeros <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span>]<span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> cuadrados<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">i32</span><span class="op">&gt;</span> <span class="op">=</span> numeros<span class="op">.</span>iter()<span class="op">.</span>map(<span class="op">|</span>x<span class="op">|</span> x <span class="op">*</span> x)<span class="op">.</span>collect()<span class="op">;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> cuadrados)<span class="op">;</span>  <span class="co">// Imprime [1, 4, 9, 16]</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 
@@ -729,13 +867,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./install.html" class="pagination-link" aria-label="Instalación">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalación</span></span>
+      <a href="./iterators.html" class="pagination-link" aria-label="Iteradores">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Iteradores</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./variables.html" class="pagination-link" aria-label="Variables y Mutabilidad">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Variables y Mutabilidad</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ownership.html" class="pagination-link" aria-label="Ownership">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Ownership</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

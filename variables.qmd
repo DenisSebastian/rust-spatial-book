@@ -1,0 +1,115 @@
+# Variables y Mutabilidad
+
+En Rust, las variables son inmutables por defecto, lo que promueve la seguridad y la concurrencia. Esto significa que una vez que se asigna un valor a una variable, no puede ser cambiado. Sin embargo, Rust permite optar por variables mutables si es necesario.
+
+Por ejemplo, el siguiente código da un error porque intenta reasignar un valor a la variable x sin hacerla mutable:
+
+``` rust
+
+fn main() {
+    let x = 5;
+    println!("El valor de x es: {x}");
+    x = 6; // Error: no se puede asignar dos veces a una variable inmutable.
+}
+```
+
+Este error es útil porque garantiza que no modifiquemos accidentalmente variables que deben permanecer inmutables, lo que puede causar errores difíciles de detectar.
+
+Si necesitas cambiar el valor de una variable, puedes hacerla mutable usando `mut`:
+
+``` rust
+
+fn main() {
+    let mut x = 5;
+    println!("El valor de x es: {x}");
+    x = 6;
+    println!("El nuevo valor de x es: {x}");
+}
+
+```
+
+Con `mut`, el valor de `x` puede cambiar de 5 a 6. La mutabilidad es útil en muchos casos, pero usar variables inmutables puede ayudar a evitar errores y hacer que tu código sea más fácil de entender.
+
+## Tipos de datos básicos
+
+Rust es un lenguaje fuertemente tipado, lo que significa que cada valor debe tener un tipo específico. Estos tipos se dividen principalmente en dos categorías: tipos escalares y tipos compuestos. En esta sección, nos centraremos en los tipos escalares, que representan un valor único.
+
+### Tipos Escalares
+
+Los tipos escalares incluyen enteros, números de coma flotante, caracteres y booleanos. A continuación, se presenta una tabla con los principales tipos de datos y ejemplos de sus valores literales:
+
+| Tipo | Sintaxis | Ejemplos |
+|--------------------|------------------------------|----------------------|
+| Enteros con signo | i8, i16, i32, i64, i128, isize | -10, 0, 1_000, 123_i64 |
+| Enteros sin signo | u8, u16, u32, u64, u128, usize | 0, 123, 10_u16 |
+| Números de coma flotante | f32, f64 | 3.14, -10.0e20, 2_f32 |
+| Valores escalares Unicode | char | 'a', 'α', '∞' |
+| Booleanos | bool | true, false |
+
+**Ancho de los Tipos**
+
+Cada tipo tiene un tamaño específico en memoria:
+
+-   `iN`, `uN`, y `fN` tienen un ancho de N bits.
+-   `isize` y `usize` tienen el ancho de un puntero, lo que depende de la arquitectura del sistema (generalmente 32 o 64 bits).
+-   `char` tiene un tamaño de 32 bits, lo que permite representar cualquier carácter Unicode.
+-   `bool` ocupa 8 bits de espacio en memoria.
+
+Ejemplo de Uso
+
+Podemos ver cómo se utilizan estos tipos de datos en un programa simple:
+
+``` rust
+fn main() {
+    let entero_con_signo: i32 = -500;
+    let entero_sin_signo: u32 = 300;
+    let flotante: f64 = 3.1415;
+    let caracter: char = '∞';
+    let booleano: bool = true;
+    
+    println!("Entero con signo: {}", entero_con_signo);
+    println!("Entero sin signo: {}", entero_sin_signo);
+    println!("Flotante: {}", flotante);
+    println!("Carácter: {}", caracter);
+    println!("Booleano: {}", booleano);
+}
+```
+
+Este ejemplo muestra cómo declarar y utilizar los diferentes tipos de datos en Rust, cada uno con su correspondiente tipo y valor literal.
+
+
+
+## Tipos Compuestos
+
+Tuplas
+
+:   Agrupan múltiples valores de diferentes tipos en una única entidad. La longitud de una tupla es fija, y los tipos de los elementos pueden variar.
+
+Ejemplo de tupla:
+
+``` rust
+
+let tupla: (i32, f64, char) = (500, 6.4, 'a');
+let (x, y, z) = tupla;  // Destructuring para acceder a los valores
+```
+
+Arreglos (Arrays)
+
+:   Los arreglos contienen múltiples valores del mismo tipo. A diferencia de los vectores, los arreglos tienen una longitud fija que no puede cambiar.
+
+Ejemplo de arreglo:
+
+``` rust
+
+let arreglo: [i32; 5] = [1, 2, 3, 4, 5];  // Un arreglo de 5 enteros
+let primer_elemento = arreglo[0];  // Acceder al primer elemento
+```
+
+Aquí tienes una tabla para los tipos compuestos:
+
+| Tipo | Sintaxis | Ejemplos |
+|---------------|-----------------------|----------------------------------|
+| Tuplas | (T1, T2, T3, ...) | (500, 6.4, 'a') |
+| Arreglos | \[T; N\] (T es tipo, N es tamaño) | \[1, 2, 3, 4, 5\], \[3.14; 3\] (inicializa con 3.14 tres veces) |
+
+

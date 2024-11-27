@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Rust Espacial - 2&nbsp; Introducción</title>
+<title>Rust Espacial - 7&nbsp; Funciones</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./install.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./macros.html" rel="next">
+<link href="./scope.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -82,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introducción</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concepts.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./funcions.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funciones</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -115,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link active">
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introducción</span></span></a>
   </div>
 </li>
@@ -125,34 +159,10 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalación</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Conceptos Básicos</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./ownership.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ownership</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./struct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Struct</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./functional.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Rust en Producción</span></a>
+            <a href="./concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conceptos Básicos</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -160,22 +170,58 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./production.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Producción</span></span></a>
+  <a href="./variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Variables y Mutabilidad</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./optimization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
+  <a href="./flow_control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Control de Flujo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scope.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bloques y Ámbitos</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./funcions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funciones</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./macros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Macros</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./iterators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Iteradores</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./closures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./errors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Rust Espacial</span></a>
+            <a href="./adv_concepts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conceptos Avanzados</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -183,8 +229,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./spatial_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
+  <a href="./ownership.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ownership</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./struct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Struct</span></span></a>
   </div>
 </li>
       </ul>
@@ -192,7 +244,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Otros Lenguajes</span></a>
+ <span class="menu-text">Rust en Producción</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -200,8 +252,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./languages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Otros Lenguajes</span></span></a>
+  <a href="./production.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Producción</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./optimization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
   </div>
 </li>
       </ul>
@@ -209,7 +267,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Tareas</span></a>
+ <span class="menu-text">Rust Espacial</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -217,12 +275,52 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tarea_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Tarea 1</span></span></a>
+  <a href="./spatial_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Otros Lenguajes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./languages.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Otros Lenguajes</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Tareas</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tarea_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Tarea 1</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./functional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -235,28 +333,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#qué-es-rust" id="toc-qué-es-rust" class="nav-link active" data-scroll-target="#qué-es-rust"><span class="header-section-number">2.1</span> ¿Qué es Rust?</a></li>
-  <li><a href="#objetivos" id="toc-objetivos" class="nav-link" data-scroll-target="#objetivos"><span class="header-section-number">2.2</span> Objetivos</a>
-  <ul class="collapse">
-  <li><a href="#objetivo-general" id="toc-objetivo-general" class="nav-link" data-scroll-target="#objetivo-general">Objetivo General</a></li>
-  <li><a href="#objetivos-específicos" id="toc-objetivos-específicos" class="nav-link" data-scroll-target="#objetivos-específicos">Objetivos Específicos</a></li>
-  </ul></li>
-  <li><a href="#descripción-del-libro" id="toc-descripción-del-libro" class="nav-link" data-scroll-target="#descripción-del-libro"><span class="header-section-number">2.3</span> Descripción del Libro</a></li>
-  <li><a href="#perfil-del-lector" id="toc-perfil-del-lector" class="nav-link" data-scroll-target="#perfil-del-lector"><span class="header-section-number">2.4</span> Perfil del Lector</a></li>
-  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="header-section-number">2.5</span> Resumen</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./concepts.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./funcions.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funciones</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introducción</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funciones</span></h1>
 </div>
 
 
@@ -273,44 +357,72 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="qué-es-rust" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="qué-es-rust"><span class="header-section-number">2.1</span> ¿Qué es Rust?</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/rust-logo2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="150"></p>
-</figure>
-</div>
-<p>Rust es un lenguaje de programación de sistemas que prioriza el rendimiento, la seguridad y la concurrencia sin sacrificar la experiencia del desarrollador. Su diseño se enfoca en evitar errores comunes como las condiciones de carrera, desbordamientos de memoria y fugas de recursos, todo mientras mantiene la flexibilidad de los lenguajes de bajo nivel. Al ofrecer un control preciso sobre la memoria sin necesidad de un recolector de basura, Rust se ha convertido en una opción favorita tanto para el desarrollo de sistemas críticos como para aplicaciones de alto rendimiento, desde servidores web hasta sistemas embebidos.</p>
-</section>
-<section id="objetivos" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="objetivos"><span class="header-section-number">2.2</span> Objetivos</h2>
-<section id="objetivo-general" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="objetivo-general">Objetivo General</h3>
-<p>El objetivo principal de este libro es proporcionar a los lectores una comprensión sólida y práctica de Rust, enfocándose en su aplicación para la resolución de problemas espaciales y geoespaciales. A lo largo del libro, los lectores adquirirán las habilidades necesarias para desarrollar soluciones eficientes, robustas y seguras, utilizando Rust como herramienta fundamental en el análisis espacial.</p>
-</section>
-<section id="objetivos-específicos" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="objetivos-específicos">Objetivos Específicos</h3>
-<ol type="1">
-<li><p>Introducir los conceptos fundamentales de Rust: Explicar de manera clara los principios básicos del lenguaje, como su sistema de ownership, estructuras de datos y programación funcional, para que el lector pueda aplicarlos en diferentes contextos.</p></li>
-<li><p>Demostrar la aplicación de Rust en problemas espaciales: Proporcionar ejemplos prácticos y detallados que muestren cómo Rust puede ser utilizado para procesar grandes volúmenes de datos geoespaciales, optimizando tanto el rendimiento como la eficiencia.</p></li>
-<li><p>Comparar Rust con otros lenguajes usados en análisis espacial: Ofrecer una visión comparativa de Rust frente a lenguajes como Python y R, resaltando las ventajas y casos en los que Rust puede ser una mejor opción en la resolución de problemas complejos de análisis espacial.</p></li>
-</ol>
-</section>
-</section>
-<section id="descripción-del-libro" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="descripción-del-libro"><span class="header-section-number">2.3</span> Descripción del Libro</h2>
-<p>Este libro está diseñado para guiar al lector desde la instalación de Rust hasta su aplicación en análisis espacial, proporcionando una base sólida en el lenguaje y sus conceptos clave. Comenzamos con el Capítulo 3: Instalación, donde te ayudaremos a configurar tu entorno de trabajo. A continuación, en el Capítulo 4: Conceptos Básicos, introducimos los fundamentos del lenguaje, necesarios para entender los ejemplos prácticos. Luego, el Capítulo 5: Ownership explora el sistema de propiedad de Rust, que es esencial para manejar la memoria de manera eficiente. El Capítulo 6: Struct presenta la construcción de estructuras de datos personalizadas, un aspecto clave en la creación de modelos complejos. En el Capítulo 7: Rust en Producción, discutimos las mejores prácticas para llevar proyectos de Rust al entorno productivo, asegurando que tu código sea escalable y mantenible. Posteriormente, en el Capítulo 8: Rust Espacial, nos adentramos en la aplicación de Rust para resolver problemas espaciales complejos, mostrando su capacidad para manejar grandes volúmenes de datos geoespaciales. En el Capítulo 9: Programación Funcional, exploramos cómo Rust incorpora paradigmas funcionales para simplificar la manipulación de datos y mejorar la legibilidad del código. Finalmente, en el Capítulo 10: Otros Lenguajes, comparamos Rust con otros lenguajes populares en el ámbito del análisis espacial, como R y Python, destacando sus ventajas y desventajas.</p>
-</section>
-<section id="perfil-del-lector" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="perfil-del-lector"><span class="header-section-number">2.4</span> Perfil del Lector</h2>
-<p>Este libro está orientado a profesionales con experiencia intermedia o avanzada en programación, que tengan nociones de otros lenguajes como Python, R o C++. Si ya has trabajado con lenguajes de programación y estás buscando expandir tu conocimiento hacia Rust, este libro es para ti. No es necesario ser un experto en análisis espacial, pero se espera que tengas una comprensión básica de los principios de programación y estés familiarizado con la resolución de problemas complejos.</p>
-</section>
-<section id="resumen" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="resumen"><span class="header-section-number">2.5</span> Resumen</h2>
-<p>En resumen, este libro te guiará a través de los fundamentos de Rust, proporcionándote las habilidades necesarias para aplicar el lenguaje en la resolución de problemas espaciales. Desde la instalación hasta la programación funcional, cada capítulo está diseñado para ofrecerte una comprensión progresiva del lenguaje y su uso práctico. Al final, habrás adquirido las herramientas para implementar soluciones eficientes y robustas en Rust, ya sea en el análisis espacial o en otros campos de alta demanda técnica.</p>
+<p>En Rust, las funciones son un componente clave para organizar y reutilizar código. Permiten dividir el programa en partes más pequeñas y manejables. Toda función en Rust debe estar declarada con el tipo de datos que espera recibir (parámetros) y el tipo de dato que devolverá (si corresponde).</p>
+<p>Definición de Funciones</p>
+<p>La sintaxis básica para definir una función en Rust es la siguiente:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> nombre_de_la_funcion(parámetros<span class="op">:</span> tipo) <span class="op">-&gt;</span> tipo_de_retorno <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// cuerpo de la función</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><strong>fn</strong>: Indica que estamos declarando una función.</li>
+<li><strong>nombre_de_la_funcion</strong>: El nombre de la función, que sigue las convenciones de estilo <code>snake_case</code>.</li>
+<li><strong>parámetros</strong>: Una lista de parámetros opcionales que la función toma como entrada.</li>
+<li><strong>tipo_de_retorno</strong>: El tipo de valor que la función devolverá (si no devuelve nada, se omite).</li>
+<li>El <strong>cuerpo de la función</strong> es donde se especifica el comportamiento.</li>
+</ul>
+<p>Ejemplo Simple de Función</p>
+<p>Aquí tienes un ejemplo de una función que toma dos números enteros como parámetros y devuelve su suma:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> sumar(a<span class="op">:</span> <span class="dt">i32</span><span class="op">,</span> b<span class="op">:</span> <span class="dt">i32</span>) <span class="op">-&gt;</span> <span class="dt">i32</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    a <span class="op">+</span> b  <span class="co">// El valor de retorno es la última expresión</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> resultado <span class="op">=</span> sumar(<span class="dv">5</span><span class="op">,</span> <span class="dv">3</span>)<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"El resultado es: {resultado}"</span>)<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En este ejemplo:</p>
+<ul>
+<li>La función devuelve un valor de tipo <code>i32</code>, que es la suma de a y b.</li>
+<li>La última expresión dentro de una función se devuelve automáticamente si no se termina con un punto y coma.</li>
+</ul>
+<p><strong>Parámetros</strong></p>
+<p>Los parámetros se definen dentro de los paréntesis cuando declaras una función, especificando tanto el nombre como el tipo de dato. Puedes pasar múltiples parámetros:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> multiplicar(x<span class="op">:</span> <span class="dt">i32</span><span class="op">,</span> y<span class="op">:</span> <span class="dt">i32</span>) <span class="op">-&gt;</span> <span class="dt">i32</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">*</span> y</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Rust requiere que especifiques el tipo de todos los parámetros de la función.</p>
+<p><strong>Valores de Retorno</strong></p>
+<p>Una función puede devolver un valor usando una expresión o una instrucción <code>return</code> opcional. En Rust, la última expresión en el cuerpo de la función sin punto y coma se devuelve automáticamente.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> cuadrado(x<span class="op">:</span> <span class="dt">i32</span>) <span class="op">-&gt;</span> <span class="dt">i32</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">*</span> x<span class="op">;</span>  <span class="co">// También puedes usar `return` explícitamente</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Si no deseas que la función devuelva un valor, puedes omitir la flecha <code>-&gt;</code> y el tipo de retorno, lo que significa que la función devolverá la unidad <code>()</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> saludar() <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Hola, mundo!"</span>)<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Funciones con Referencias</strong></p>
+<p>Rust también permite pasar referencias a las funciones, lo que es útil cuando no deseas transferir la propiedad de un valor. Las referencias permiten que la función lea el valor sin tomar posesión de él:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> longitud(texto<span class="op">:</span> <span class="op">&amp;</span><span class="dt">String</span>) <span class="op">-&gt;</span> <span class="dt">usize</span> <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    texto<span class="op">.</span>len()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En este ejemplo, &amp;String indica que la función toma una referencia al valor en lugar de transferir su propiedad.</p>
+<p><strong>Funciones Anidadas</strong></p>
+<p>Puedes definir funciones dentro de otras funciones en Rust, lo que se llama funciones anidadas. Esto puede ser útil para encapsular lógica específica dentro de un contexto limitado:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> interna() <span class="op">{</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"Esta es una función anidada"</span>)<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    interna()<span class="op">;</span>  <span class="co">// Llamando a la función anidada</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Funciones con Tipos Genéricos</strong></p>
+<p>Rust permite que las funciones acepten tipos genéricos, lo que hace que las funciones sean más flexibles y reutilizables. Por ejemplo:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> imprimir_dos_veces<span class="op">&lt;</span>T<span class="op">:</span> <span class="pp">std::fmt::</span><span class="bu">Debug</span><span class="op">&gt;</span>(x<span class="op">:</span> T) <span class="op">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{:?} {:?}"</span><span class="op">,</span> x<span class="op">,</span> x)<span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Aquí, <code>T</code> es un tipo genérico, y <code>std::fmt::Debug</code> es un trait que indica que el tipo debe poder imprimirse con <code>{:?}</code>.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -724,13 +836,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Prefacio">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Prefacio</span></span>
+      <a href="./scope.html" class="pagination-link" aria-label="Bloques y Ámbitos">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bloques y Ámbitos</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./install.html" class="pagination-link" aria-label="Instalación">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Instalación</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./macros.html" class="pagination-link" aria-label="Macros">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Macros</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

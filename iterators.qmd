@@ -1,0 +1,182 @@
+---
+title: "Iteradores"
+---
+
+Un iterador es una estructura que permite recorrer una secuencia de elementos, como un arreglo, una lista o cualquier colección de datos, uno a la vez. En Rust, los iteradores son una herramienta poderosa y flexible, que se pueden usar para manipular y procesar colecciones de manera eficiente y expresiva.
+
+**¿Qué es un Iterador?**
+
+En Rust, un iterador es cualquier tipo que implemente el trait Iterator. Los iteradores proporcionan dos funciones principales:
+
+next
+: Proporciona acceso al siguiente elemento en la secuencia. Cuando no hay más elementos, devuelve None.
+
+Métodos de adaptación
+: Métodos como map, filter, y collect que permiten transformar los iteradores.
+
+Ejemplo básico de uso de next:
+
+```rust
+fn main() {
+    let numeros = vec![1, 2, 3];
+    let mut iter = numeros.iter();
+
+    println!("{:?}", iter.next());  // Imprime Some(1)
+    println!("{:?}", iter.next());  // Imprime Some(2)
+    println!("{:?}", iter.next());  // Imprime Some(3)
+    println!("{:?}", iter.next());  // Imprime None
+}
+```
+
+**Crear un Iterador**
+
+La mayoría de las colecciones en Rust pueden convertirse en iteradores usando el método iter. Para iterar sobre un vector o un array:
+
+```rust
+fn main() {
+    let numeros = vec![1, 2, 3, 4, 5];
+    
+    for numero in numeros.iter() {
+        println!("{}", numero);
+    }
+}
+```
+
+En este caso, `numeros.iter()` devuelve un iterador sobre el vector numeros. El ciclo for se encarga de llamar a `next` por nosotros y obtiene cada elemento en la secuencia.
+
+**Métodos de Adaptación de Iteradores**
+
+Rust proporciona varios métodos de iterador que permiten transformar, filtrar y combinar secuencias de manera eficiente. Estos métodos no consumen el iterador, sino que devuelven un nuevo iterador, lo que permite encadenarlos de manera elegante.
+
+Algunos de los métodos más comunes son:
+
+`map`
+: Aplica una función a cada elemento y devuelve un nuevo iterador con los resultados.
+
+```rust
+fn main() {
+    let numeros = vec![1, 2, 3, 4];
+    let cuadrados: Vec<i32> = numeros.iter().map(|x| x * x).collect();
+    println!("{:?}", cuadrados);  // Imprime [1, 4, 9, 16]
+}
+```
+
+`filter`
+: Filtra elementos según una condición.
+
+```rust
+fn main() {
+    let numeros = vec![1, 2, 3, 4, 5];
+    let pares: Vec<i32> = numeros.iter().filter(|&&x| x % 2 == 0).collect();
+    println!("{:?}", pares);  // Imprime [2, 4]
+}
+```
+
+`collect`
+: Convierte un iterador en una colección, como un `Vec`, un HashMap, entre otros.
+
+
+```rust
+fn main() {
+    let numeros = vec![1, 2, 3, 4];
+    let resultado: Vec<i32> = numeros.iter().map(|x| x + 1).collect();
+    println!("{:?}", resultado);  // Imprime [2, 3, 4, 5]
+}
+```
+
+`enumerate`
+: Asigna un índice a cada elemento del iterador.
+
+```rust
+fn main() {
+    let numeros = vec!["a", "b", "c"];
+    for (i, letra) in numeros.iter().enumerate() {
+        println!("Índice: {}, Letra: {}", i, letra);
+    }
+}
+```
+
+
+**Consumo de Iteradores**
+
+Algunos métodos de iterador consumen el iterador, lo que significa que una vez que el método ha sido ejecutado, el iterador ya no puede ser utilizado. Algunos ejemplos de métodos que consumen iteradores son:
+
+`sum`
+: Calcula la suma de todos los elementos de un iterador numérico.
+	
+```rust
+fn main() {
+    let numeros = vec![1, 2, 3, 4];
+    let suma: i32 = numeros.iter().sum();
+    println!("La suma es: {}", suma);  // Imprime 10
+}
+```
+
+`find`
+: Busca el primer elemento que cumpla con una condición.
+
+```rust
+fn main() {
+    let numeros = vec![1, 2, 3, 4];
+    if let Some(num) = numeros.iter().find(|&&x| x == 3) {
+        println!("Número encontrado: {}", num);  // Imprime 3
+    }
+}
+```
+
+
+**Iteradores Inmutables y Mutables**
+
+Rust te permite crear tanto iteradores inmutables como iteradores mutables. Los iteradores inmutables (iter()) te permiten acceder a los elementos de una colección sin modificarla, mientras que los iteradores mutables (iter_mut()) te permiten modificar los elementos mientras los recorres.
+
+```rust
+fn main() {
+    let mut numeros = vec![1, 2, 3, 4];
+
+    for num in numeros.iter_mut() {
+        *num += 1;
+    }
+    
+    println!("{:?}", numeros);  // Imprime [2, 3, 4, 5]
+}
+```
+
+**Creación de Iteradores Personalizados**
+
+Además de usar los iteradores integrados, también puedes implementar el trait Iterator para crear tus propios iteradores personalizados. Esto te permite definir cómo deben comportarse tus estructuras de datos al ser iteradas.
+
+```rust
+struct Contador {
+    actual: u32,
+    limite: u32,
+}
+
+impl Contador {
+    fn nuevo(limite: u32) -> Contador {
+        Contador { actual: 0, limite }
+    }
+}
+
+impl Iterator for Contador {
+    type Item = u32;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.actual < self.limite {
+            self.actual += 1;
+            Some(self.actual)
+        } else {
+            None
+        }
+    }
+}
+
+fn main() {
+    let mut contador = Contador::nuevo(5);
+
+    while let Some(valor) = contador.next() {
+        println!("{}", valor);
+    }
+}
+```
+En este ejemplo, se define un iterador personalizado Contador que genera una secuencia de números de 1 a limite.
+

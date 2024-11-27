@@ -1,0 +1,68 @@
+---
+title: "Bloques y Ámbitos"
+---
+
+
+En Rust, un bloque es un conjunto de declaraciones y expresiones encerradas entre llaves `{}`, que define un ámbito o scope. Los bloques permiten organizar el código y controlar la visibilidad y la duración de las variables.
+
+## Bloques
+
+Un bloque es simplemente un conjunto de instrucciones encerradas entre `{}`. Puedes usarlos en funciones, if, while, for y otras estructuras de control de flujo. Por ejemplo:
+
+``` rust
+
+fn main() {
+    let x = 5;
+    let y = {
+        let x = 3;
+        x + 1  // Este bloque devuelve 4
+    };
+    
+    println!("El valor de y es: {y}");  // Imprime 4
+}
+```
+
+En este caso, el valor de y se asigna al resultado del bloque {}, que devuelve 4. Dentro del bloque, el valor de x es 3, pero fuera del bloque sigue siendo 5. Esto demuestra cómo los bloques crean un nuevo ámbito.
+
+## Ámbitos (Scope)
+
+Cada variable tiene un ámbito, que es el área del código donde la variable está visible y disponible para su uso. El ámbito comienza cuando se declara la variable y termina cuando el bloque que contiene la variable finaliza.
+
+``` rust
+fn main() {
+    let x = 5; // El ámbito de `x` comienza aquí
+
+    {
+        let y = 10;  // El ámbito de `y` comienza aquí
+        println!("Dentro del bloque: x = {x}, y = {y}");
+    }  // El ámbito de `y` termina aquí
+
+    // Aquí, `y` ya no es accesible, pero `x` aún lo es
+    println!("Fuera del bloque: x = {x}");
+}
+```
+
+En el ejemplo anterior, y solo existe dentro del bloque interno. Intentar acceder a y fuera de ese bloque resultaría en un error, ya que su ámbito ha terminado. Sin embargo, x sigue accesible porque fue declarada en un ámbito más amplio (el bloque principal).
+
+## Sombra de Variables (Variable Shadowing)
+
+Rust permite sombras de variables, lo que significa que puedes declarar una nueva variable con el mismo nombre en un nuevo bloque, y esta nueva variable “sombrea” la anterior.
+
+``` rust
+fn main() {
+    let x = 5;
+
+    {
+        let x = x * 2;  // Esta nueva `x` sombrea la anterior
+        println!("El valor de x dentro del bloque es: {x}");  // Imprime 10
+    }
+
+    println!("El valor de x fuera del bloque es: {x}");  // Imprime 5
+}
+```
+
+La variable x dentro del bloque es independiente de la x fuera del bloque, y la versión de x fuera del bloque no se ve afectada por los cambios realizados dentro del bloque interno.
+
+## Duración de Vida (Lifetimes)
+
+El ámbito también está relacionado con el concepto de duración de vida en Rust, que se refiere a cuánto tiempo vive una referencia o variable. Aunque no se necesita usar anotaciones de tiempo de vida en muchos casos, se volverán importantes cuando trabajes con referencias y prestamistas en bloques más complejos.
