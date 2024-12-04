@@ -150,309 +150,6 @@
     ]
   },
   {
-    "objectID": "concepts.html#variables-y-mutabilidad",
-    "href": "concepts.html#variables-y-mutabilidad",
-    "title": "Conceptos Básicos",
-    "section": "",
-    "text": "fn main() {\n    let x = 5;\n    println!(\"El valor de x es: {x}\");\n    x = 6; // Error: no se puede asignar dos veces a una variable inmutable.\n}\n\n\n\nfn main() {\n    let mut x = 5;\n    println!(\"El valor de x es: {x}\");\n    x = 6;\n    println!(\"El nuevo valor de x es: {x}\");\n}",
-    "crumbs": [
-      "Conceptos Básicos"
-    ]
-  },
-  {
-    "objectID": "concepts.html#tipos-de-datos-básicos",
-    "href": "concepts.html#tipos-de-datos-básicos",
-    "title": "Conceptos Básicos",
-    "section": "Tipos de datos básicos",
-    "text": "Tipos de datos básicos\nRust es un lenguaje fuertemente tipado, lo que significa que cada valor debe tener un tipo específico. Estos tipos se dividen principalmente en dos categorías: tipos escalares y tipos compuestos. En esta sección, nos centraremos en los tipos escalares, que representan un valor único.\n\nTipos Escalares\nLos tipos escalares incluyen enteros, números de coma flotante, caracteres y booleanos. A continuación, se presenta una tabla con los principales tipos de datos y ejemplos de sus valores literales:\n\n\n\n\n\n\n\n\nTipo\nSintaxis\nEjemplos\n\n\n\n\nEnteros con signo\ni8, i16, i32, i64, i128, isize\n-10, 0, 1_000, 123_i64\n\n\nEnteros sin signo\nu8, u16, u32, u64, u128, usize\n0, 123, 10_u16\n\n\nNúmeros de coma flotante\nf32, f64\n3.14, -10.0e20, 2_f32\n\n\nValores escalares Unicode\nchar\n‘a’, ‘α’, ‘∞’\n\n\nBooleanos\nbool\ntrue, false\n\n\n\nAncho de los Tipos\nCada tipo tiene un tamaño específico en memoria:\n\niN, uN, y fN tienen un ancho de N bits.\nisize y usize tienen el ancho de un puntero, lo que depende de la arquitectura del sistema (generalmente 32 o 64 bits).\nchar tiene un tamaño de 32 bits, lo que permite representar cualquier carácter Unicode.\nbool ocupa 8 bits de espacio en memoria.\n\nEjemplo de Uso\nPodemos ver cómo se utilizan estos tipos de datos en un programa simple:\nfn main() {\n    let entero_con_signo: i32 = -500;\n    let entero_sin_signo: u32 = 300;\n    let flotante: f64 = 3.1415;\n    let caracter: char = '∞';\n    let booleano: bool = true;\n    \n    println!(\"Entero con signo: {}\", entero_con_signo);\n    println!(\"Entero sin signo: {}\", entero_sin_signo);\n    println!(\"Flotante: {}\", flotante);\n    println!(\"Carácter: {}\", caracter);\n    println!(\"Booleano: {}\", booleano);\n}\nEste ejemplo muestra cómo declarar y utilizar los diferentes tipos de datos en Rust, cada uno con su correspondiente tipo y valor literal.",
-    "crumbs": [
-      "Conceptos Básicos"
-    ]
-  },
-  {
-    "objectID": "concepts.html#control-de-flujos",
-    "href": "concepts.html#control-de-flujos",
-    "title": "Conceptos Básicos",
-    "section": "",
-    "text": "Operación\nSímbolo\nDescripción\nEjemplo\n\n\n\n\nAND lógico\n&&\nVerdadero si ambas expresiones son verdaderas\ntrue && false (devuelve false)\n\n\nOR lógico\n||\nVerdadero si al menos una expresión es verdadera\ntrue || false (devuelve true)\n\n\nNOT lógico\n!\nInvierte el valor de verdad de una expresión\n!true (devuelve false)\n\n\nIgualdad\n==\nVerdadero si ambas expresiones son iguales\n5 == 5 (devuelve true)\n\n\nDesigualdad\n!=\nVerdadero si ambas expresiones no son iguales\n5 != 6 (devuelve true)\n\n\nMayor que\n&gt;\nVerdadero si la primera expresión es mayor que la segunda\n6 &gt; 3 (devuelve true)\n\n\nMenor que\n&lt;\nVerdadero si la primera expresión es menor que la segunda\n3 &lt; 5 (devuelve true)\n\n\nMayor o igual que\n&gt;=\nVerdadero si la primera expresión es mayor o igual a la segunda\n5 &gt;= 5 (devuelve true)\n\n\nMenor o igual que\n&lt;=\nVerdadero si la primera expresión es menor o igual a la segunda\n3 &lt;= 4 (devuelve true)\n\n\n\n\nExpresión if\nEn Rust, la expresión if evalúa una condición booleana y ejecuta un bloque de código dependiendo de si la condición es verdadera (true) o falsa (false). A diferencia de otros lenguajes, if en Rust es una expresión, lo que significa que puede devolver un valor.\nfn main() {\n    let numero = 5;\n\n    if numero &gt; 3 {\n        println!(\"El número es mayor que 3.\");\n    } else {\n        println!(\"El número es 3 o menor.\");\n    }\n}\nTambién se puede usar la expresión if para asignar valores:\nlet condicion = true;\nlet numero = if condicion { 5 } else { 6 };\nEs importante recordar que las ramas del if deben devolver el mismo tipo.\n\n\nBucles\nRust proporciona tres tipos de bucles: loop, while, y for.\n\nloop\n\nEjecuta un bloque de código indefinidamente hasta que se detenga explícitamente con una instrucción break.\n\n\nfn main() {\n    let mut contador = 0;\n\n    loop {\n        contador += 1;\n        println!(\"Contador: {contador}\");\n\n        if contador == 5 {\n            break;  // Detiene el bucle cuando contador es 5\n        }\n    }\n}\n\nwhile\n\nEjecuta un bloque de código mientras una condición booleana sea verdadera.\n\n\nfn main() {\n    let mut numero = 3;\n\n    while numero != 0 {\n        println!(\"{numero}\");\n        numero -= 1;\n    }\n}\n\nfor\n\nRecorre elementos de una colección o un rango.\n\n\nfn main() {\n    for numero in 1..4 {\n        println!(\"{numero}\");\n    }\n}\n\n\nbreak y continue\nbreak: Termina el bucle inmediatamente.\ncontinue: Salta al siguiente ciclo del bucle sin ejecutar el resto del bloque actual.\nEjemplo combinando ambos:\nfn main() {\n    for numero in 1..10 {\n        if numero == 5 {\n            continue;  // Salta cuando número es 5\n        } else if numero == 8 {\n            break;  // Termina el bucle cuando número es 8\n        }\n        println!(\"Número: {numero}\");\n    }\n}",
-    "crumbs": [
-      "Conceptos Básicos"
-    ]
-  },
-  {
-    "objectID": "concepts.html#bloques-y-ámbitos",
-    "href": "concepts.html#bloques-y-ámbitos",
-    "title": "Conceptos Básicos",
-    "section": "Bloques y Ámbitos",
-    "text": "Bloques y Ámbitos\nEn Rust, un bloque es un conjunto de declaraciones y expresiones encerradas entre llaves {}, que define un ámbito o scope. Los bloques permiten organizar el código y controlar la visibilidad y la duración de las variables.\n\nBloques\nUn bloque es simplemente un conjunto de instrucciones encerradas entre {}. Puedes usarlos en funciones, if, while, for y otras estructuras de control de flujo. Por ejemplo:\n\nfn main() {\n    let x = 5;\n    let y = {\n        let x = 3;\n        x + 1  // Este bloque devuelve 4\n    };\n    \n    println!(\"El valor de y es: {y}\");  // Imprime 4\n}\nEn este caso, el valor de y se asigna al resultado del bloque {}, que devuelve 4. Dentro del bloque, el valor de x es 3, pero fuera del bloque sigue siendo 5. Esto demuestra cómo los bloques crean un nuevo ámbito.\n\n\nÁmbitos (Scope)\nCada variable tiene un ámbito, que es el área del código donde la variable está visible y disponible para su uso. El ámbito comienza cuando se declara la variable y termina cuando el bloque que contiene la variable finaliza.\nfn main() {\n    let x = 5; // El ámbito de `x` comienza aquí\n\n    {\n        let y = 10;  // El ámbito de `y` comienza aquí\n        println!(\"Dentro del bloque: x = {x}, y = {y}\");\n    }  // El ámbito de `y` termina aquí\n\n    // Aquí, `y` ya no es accesible, pero `x` aún lo es\n    println!(\"Fuera del bloque: x = {x}\");\n}\nEn el ejemplo anterior, y solo existe dentro del bloque interno. Intentar acceder a y fuera de ese bloque resultaría en un error, ya que su ámbito ha terminado. Sin embargo, x sigue accesible porque fue declarada en un ámbito más amplio (el bloque principal).\n\n\nSombra de Variables (Variable Shadowing)\nRust permite sombras de variables, lo que significa que puedes declarar una nueva variable con el mismo nombre en un nuevo bloque, y esta nueva variable “sombrea” la anterior.\nfn main() {\n    let x = 5;\n\n    {\n        let x = x * 2;  // Esta nueva `x` sombrea la anterior\n        println!(\"El valor de x dentro del bloque es: {x}\");  // Imprime 10\n    }\n\n    println!(\"El valor de x fuera del bloque es: {x}\");  // Imprime 5\n}\nLa variable x dentro del bloque es independiente de la x fuera del bloque, y la versión de x fuera del bloque no se ve afectada por los cambios realizados dentro del bloque interno.\n\n\nDuración de Vida (Lifetimes)\nEl ámbito también está relacionado con el concepto de duración de vida en Rust, que se refiere a cuánto tiempo vive una referencia o variable. Aunque no se necesita usar anotaciones de tiempo de vida en muchos casos, se volverán importantes cuando trabajes con referencias y prestamistas en bloques más complejos.",
-    "crumbs": [
-      "Conceptos Básicos"
-    ]
-  },
-  {
-    "objectID": "concepts.html#funciones",
-    "href": "concepts.html#funciones",
-    "title": "Conceptos Básicos",
-    "section": "",
-    "text": "fn nombre_de_la_funcion(parámetros: tipo) -&gt; tipo_de_retorno {\n    // cuerpo de la función\n}\n\nfn: Indica que estamos declarando una función.\nnombre_de_la_funcion: El nombre de la función, que sigue las convenciones de estilo snake_case.\nparámetros: Una lista de parámetros opcionales que la función toma como entrada.\ntipo_de_retorno: El tipo de valor que la función devolverá (si no devuelve nada, se omite).\nEl cuerpo de la función es donde se especifica el comportamiento.\n\n\n\nfn sumar(a: i32, b: i32) -&gt; i32 {\n    a + b  // El valor de retorno es la última expresión\n}\n\nfn main() {\n    let resultado = sumar(5, 3);\n    println!(\"El resultado es: {resultado}\");\n}\n\n\nLa función devuelve un valor de tipo i32, que es la suma de a y b.\nLa última expresión dentro de una función se devuelve automáticamente si no se termina con un punto y coma.\n\n\n\nfn multiplicar(x: i32, y: i32) -&gt; i32 {\n    x * y\n}\n\n\n\nfn cuadrado(x: i32) -&gt; i32 {\n    return x * x;  // También puedes usar `return` explícitamente\n}\n\nfn saludar() {\n    println!(\"Hola, mundo!\");\n}\n\n\nfn longitud(texto: &String) -&gt; usize {\n    texto.len()\n}\n\n\n\nfn main() {\n    fn interna() {\n        println!(\"Esta es una función anidada\");\n    }\n\n    interna();  // Llamando a la función anidada\n}\n\n\nfn imprimir_dos_veces&lt;T: std::fmt::Debug&gt;(x: T) {\n    println!(\"{:?} {:?}\", x, x);\n}",
-    "crumbs": [
-      "Conceptos Básicos"
-    ]
-  },
-  {
-    "objectID": "concepts.html#macros",
-    "href": "concepts.html#macros",
-    "title": "Conceptos Básicos",
-    "section": "",
-    "text": "Funciones: Se ejecutan en tiempo de ejecución y trabajan con parámetros de tipos específicos.\nMacros: Se expanden en código en tiempo de compilación, lo que permite generar fragmentos de código personalizados.\n\n\n\n\n\nfn main() {\n    println!(\"Hola, mundo!\");\n}\n\nfn main() {\n    let v = vec![1, 2, 3];\n    println!(\"{:?}\", v);\n}\n\n\n\nmacro_rules! saludar {\n    ($nombre:expr) =&gt; {\n        println!(\"Hola, {}!\", $nombre);\n    };\n}\n\nfn main() {\n    saludar!(\"Rust\");\n}\n\n\n\nmacro_rules! sumar {\n    ($a:expr, $b:expr) =&gt; {\n        println!(\"La suma es: {}\", $a + $b);\n    };\n    ($a:expr, $b:expr, $c:expr) =&gt; {\n        println!(\"La suma es: {}\", $a + $b + $c);\n    };\n}\n\nfn main() {\n    sumar!(2, 3);         // La suma es: 5\n    sumar!(2, 3, 4);      // La suma es: 9\n}\n\n\n\nmacro_rules! contador {\n    ($primero:expr) =&gt; {\n        println!(\"{}\", $primero);\n    };\n    ($primero:expr, $($resto:expr),*) =&gt; {\n        println!(\"{}\", $primero);\n        contador!($($resto),*);\n    };\n}\n\nfn main() {\n    contador!(1, 2, 3, 4, 5);\n}\n\n\n\n\nNecesitas generar código repetitivo.\nQuieres aceptar una cantidad variable de argumentos o tipos de entrada.\nQuieres realizar optimizaciones en tiempo de compilación.",
-    "crumbs": [
-      "Conceptos Básicos"
-    ]
-  },
-  {
-    "objectID": "concepts.html#tipos-compuestos",
-    "href": "concepts.html#tipos-compuestos",
-    "title": "Conceptos Básicos",
-    "section": "",
-    "text": "Tuplas\n\nAgrupan múltiples valores de diferentes tipos en una única entidad. La longitud de una tupla es fija, y los tipos de los elementos pueden variar.\n\n\n\n\nlet tupla: (i32, f64, char) = (500, 6.4, 'a');\nlet (x, y, z) = tupla;  // Destructuring para acceder a los valores\n\nArreglos (Arrays)\n\nLos arreglos contienen múltiples valores del mismo tipo. A diferencia de los vectores, los arreglos tienen una longitud fija que no puede cambiar.\n\n\n\n\nlet arreglo: [i32; 5] = [1, 2, 3, 4, 5];  // Un arreglo de 5 enteros\nlet primer_elemento = arreglo[0];  // Acceder al primer elemento\n\n\n\n\n\n\n\n\n\nTipo\nSintaxis\nEjemplos\n\n\n\n\nTuplas\n(T1, T2, T3, …)\n(500, 6.4, ‘a’)\n\n\nArreglos\n[T; N] (T es tipo, N es tamaño)\n[1, 2, 3, 4, 5], [3.14; 3] (inicializa con 3.14 tres veces)",
-    "crumbs": [
-      "Conceptos Básicos"
-    ]
-  },
-  {
-    "objectID": "concepts.html#iteradores",
-    "href": "concepts.html#iteradores",
-    "title": "Conceptos Básicos",
-    "section": "Iteradores",
-    "text": "Iteradores\nUn iterador es una estructura que permite recorrer una secuencia de elementos, como un arreglo, una lista o cualquier colección de datos, uno a la vez. En Rust, los iteradores son una herramienta poderosa y flexible, que se pueden usar para manipular y procesar colecciones de manera eficiente y expresiva.\n¿Qué es un Iterador?\nEn Rust, un iterador es cualquier tipo que implemente el trait Iterator. Los iteradores proporcionan dos funciones principales:\n\nnext\n\nProporciona acceso al siguiente elemento en la secuencia. Cuando no hay más elementos, devuelve None.\n\nMétodos de adaptación\n\nMétodos como map, filter, y collect que permiten transformar los iteradores.\n\n\nEjemplo básico de uso de next:\nfn main() {\n    let numeros = vec![1, 2, 3];\n    let mut iter = numeros.iter();\n\n    println!(\"{:?}\", iter.next());  // Imprime Some(1)\n    println!(\"{:?}\", iter.next());  // Imprime Some(2)\n    println!(\"{:?}\", iter.next());  // Imprime Some(3)\n    println!(\"{:?}\", iter.next());  // Imprime None\n}\nCrear un Iterador\nLa mayoría de las colecciones en Rust pueden convertirse en iteradores usando el método iter. Para iterar sobre un vector o un array:\nfn main() {\n    let numeros = vec![1, 2, 3, 4, 5];\n    \n    for numero in numeros.iter() {\n        println!(\"{}\", numero);\n    }\n}\nEn este caso, numeros.iter() devuelve un iterador sobre el vector numeros. El ciclo for se encarga de llamar a next por nosotros y obtiene cada elemento en la secuencia.\nMétodos de Adaptación de Iteradores\nRust proporciona varios métodos de iterador que permiten transformar, filtrar y combinar secuencias de manera eficiente. Estos métodos no consumen el iterador, sino que devuelven un nuevo iterador, lo que permite encadenarlos de manera elegante.\nAlgunos de los métodos más comunes son:\n\nmap\n\nAplica una función a cada elemento y devuelve un nuevo iterador con los resultados.\n\n\nfn main() {\n    let numeros = vec![1, 2, 3, 4];\n    let cuadrados: Vec&lt;i32&gt; = numeros.iter().map(|x| x * x).collect();\n    println!(\"{:?}\", cuadrados);  // Imprime [1, 4, 9, 16]\n}\n\nfilter\n\nFiltra elementos según una condición.\n\n\nfn main() {\n    let numeros = vec![1, 2, 3, 4, 5];\n    let pares: Vec&lt;i32&gt; = numeros.iter().filter(|&&x| x % 2 == 0).collect();\n    println!(\"{:?}\", pares);  // Imprime [2, 4]\n}\n\ncollect\n\nConvierte un iterador en una colección, como un Vec, un HashMap, entre otros.\n\n\nfn main() {\n    let numeros = vec![1, 2, 3, 4];\n    let resultado: Vec&lt;i32&gt; = numeros.iter().map(|x| x + 1).collect();\n    println!(\"{:?}\", resultado);  // Imprime [2, 3, 4, 5]\n}\n\nenumerate\n\nAsigna un índice a cada elemento del iterador.\n\n\nfn main() {\n    let numeros = vec![\"a\", \"b\", \"c\"];\n    for (i, letra) in numeros.iter().enumerate() {\n        println!(\"Índice: {}, Letra: {}\", i, letra);\n    }\n}\nConsumo de Iteradores\nAlgunos métodos de iterador consumen el iterador, lo que significa que una vez que el método ha sido ejecutado, el iterador ya no puede ser utilizado. Algunos ejemplos de métodos que consumen iteradores son:\n\nsum\n\nCalcula la suma de todos los elementos de un iterador numérico.\n\n\nfn main() {\n    let numeros = vec![1, 2, 3, 4];\n    let suma: i32 = numeros.iter().sum();\n    println!(\"La suma es: {}\", suma);  // Imprime 10\n}\n\nfind\n\nBusca el primer elemento que cumpla con una condición.\n\n\nfn main() {\n    let numeros = vec![1, 2, 3, 4];\n    if let Some(num) = numeros.iter().find(|&&x| x == 3) {\n        println!(\"Número encontrado: {}\", num);  // Imprime 3\n    }\n}\nIteradores Inmutables y Mutables\nRust te permite crear tanto iteradores inmutables como iteradores mutables. Los iteradores inmutables (iter()) te permiten acceder a los elementos de una colección sin modificarla, mientras que los iteradores mutables (iter_mut()) te permiten modificar los elementos mientras los recorres.\nfn main() {\n    let mut numeros = vec![1, 2, 3, 4];\n\n    for num in numeros.iter_mut() {\n        *num += 1;\n    }\n    \n    println!(\"{:?}\", numeros);  // Imprime [2, 3, 4, 5]\n}\nCreación de Iteradores Personalizados\nAdemás de usar los iteradores integrados, también puedes implementar el trait Iterator para crear tus propios iteradores personalizados. Esto te permite definir cómo deben comportarse tus estructuras de datos al ser iteradas.\nstruct Contador {\n    actual: u32,\n    limite: u32,\n}\n\nimpl Contador {\n    fn nuevo(limite: u32) -&gt; Contador {\n        Contador { actual: 0, limite }\n    }\n}\n\nimpl Iterator for Contador {\n    type Item = u32;\n\n    fn next(&mut self) -&gt; Option&lt;Self::Item&gt; {\n        if self.actual &lt; self.limite {\n            self.actual += 1;\n            Some(self.actual)\n        } else {\n            None\n        }\n    }\n}\n\nfn main() {\n    let mut contador = Contador::nuevo(5);\n\n    while let Some(valor) = contador.next() {\n        println!(\"{}\", valor);\n    }\n}\nEn este ejemplo, se define un iterador personalizado Contador que genera una secuencia de números de 1 a limite.",
-    "crumbs": [
-      "Conceptos Básicos"
-    ]
-  },
-  {
-    "objectID": "concepts.html#closures",
-    "href": "concepts.html#closures",
-    "title": "Conceptos Básicos",
-    "section": "Closures",
-    "text": "Closures\nUn closure (o cierre) en Rust es una función anónima que puede capturar variables del entorno en el que se define. Los closures son muy flexibles y pueden aceptar parámetros, devolver valores y, a diferencia de las funciones normales, pueden capturar y utilizar variables que no se les pasan explícitamente.\nLos closures se definen usando la siguiente sintaxis:\n|parametros| expresión\nSon comunes en Rust para trabajar con iteradores y otras operaciones funcionales, como map y filter.\nDefinición Básica\nAquí tienes un ejemplo básico de un closure que suma dos números:\nfn main() {\n    let suma = |a, b| a + b;\n    println!(\"La suma es: {}\", suma(2, 3));\n}\nEn este ejemplo:\n\n|a, b| es la lista de parámetros del closure.\na + b es la expresión que se ejecuta cuando se llama al closure.\nSe llama al closure con suma(2, 3), y el resultado es 5.\n\nCaptura de Variables\nUna característica clave de los closures es su capacidad para capturar variables del entorno en el que fueron definidos. Pueden capturar variables por referencia, por préstamo mutable o por posesión, dependiendo de cómo se utilicen.\nfn main() {\n    let x = 4;\n    let closure = |y| x + y;\n    println!(\"Resultado: {}\", closure(3));  // Imprime 7\n}\nEn este caso, el closure closure captura la variable x del entorno y la utiliza en su cuerpo.\nClosures que Capturan por Referencia, Mutable y por Posesión\nLos closures pueden capturar variables de diferentes maneras:\n\nPor referencia\n\nEl closure accede a la variable sin tomar posesión de ella.\n\n\nfn main() {\n    let x = 5;\n    let capturar_x = || println!(\"x: {}\", x);  // Captura `x` por referencia\n    capturar_x();\n}\n\nPor mutabilidad\n\nEl closure puede modificar la variable.\n\n\nfn main() {\n    let mut x = 5;\n    let mut modificar_x = || x += 1;  // Captura `x` por mutabilidad\n    modificar_x();\n    println!(\"x: {}\", x);  // Imprime 6\n}\n\nPor posesión\n\nEl closure toma posesión de la variable, lo que impide su uso fuera del closure.\n\n\nfn main() {\n    let x = String::from(\"Hola\");\n    let capturar_x = || {\n        let _y = x;  // Captura `x` por posesión\n    };\n    capturar_x();\n    // Aquí `x` ya no es accesible porque fue capturado por posesión\n}\nClosures con Tipos y Anotaciones de Parámetros\nEn la mayoría de los casos, Rust puede inferir los tipos de los parámetros de un closure, por lo que no es necesario especificarlos. Sin embargo, también puedes hacerlo explícitamente si lo deseas:\nfn main() {\n    let suma = |a: i32, b: i32| -&gt; i32 { a + b };\n    println!(\"La suma es: {}\", suma(10, 5));\n}\nEn este caso, hemos anotado los tipos de los parámetros (i32) y el tipo de retorno del closure (i32).\nClosures y Funciones\nA diferencia de las funciones, los closures pueden capturar variables del entorno. Sin embargo, los closures y las funciones comparten algunas similitudes. Los closures se pueden almacenar en variables, pasar como argumentos o devolver desde otras funciones, al igual que las funciones.\nLos closures también pueden ser pasados como parámetros a funciones que esperan un trait como Fn, FnMut, o FnOnce\nTraits Fn, FnMut, y FnOnce\nRust proporciona tres traits principales para closures, dependiendo de cómo el closure maneje las variables capturadas:\n\nFn: El closure no modifica ni toma posesión de las variables que captura. Se llama múltiples veces sin efectos secundarios.\nFnMut: El closure puede modificar las variables que captura, pero no toma posesión de ellas. Se llama múltiples veces, pero puede tener efectos secundarios.\nFnOnce: El closure toma posesión de las variables que captura, por lo que solo puede ser llamado una vez.\n\nPor ejemplo:\nfn ejecutar_closure&lt;F&gt;(f: F) \nwhere\n    F: Fn(i32) -&gt; i32 \n{\n    println!(\"Resultado: {}\", f(5));\n}\n\nfn main() {\n    let closure = |x| x + 1;\n    ejecutar_closure(closure);\n}\nAquí, ejecutar_closure acepta un parámetro F que implementa el trait Fn, lo que permite pasarle closures que no modifican las variables capturadas.\nClosures como Retorno\nTambién puedes devolver un closure desde una función, utilizando el trait adecuado:\nfn crear_closure() -&gt; impl Fn(i32) -&gt; i32 {\n    |x| x + 1\n}\n\nfn main() {\n    let mi_closure = crear_closure();\n    println!(\"Resultado: {}\", mi_closure(10));  // Imprime 11\n}\nAquí, la función crear_closure devuelve un closure que toma un entero y devuelve ese entero incrementado en uno.\nClosures en Iteradores\nLos closures son ampliamente utilizados en operaciones con iteradores, como map, filter, fold, entre otros. Estos métodos aceptan closures para realizar operaciones sobre cada elemento de una colección.\nPor ejemplo, el uso de un closure con map para elevar al cuadrado los números de un vector:\nfn main() {\n    let numeros = vec![1, 2, 3, 4];\n    let cuadrados: Vec&lt;i32&gt; = numeros.iter().map(|x| x * x).collect();\n    println!(\"{:?}\", cuadrados);  // Imprime [1, 4, 9, 16]\n}",
-    "crumbs": [
-      "Conceptos Básicos"
-    ]
-  },
-  {
-    "objectID": "concepts.html#manejo-de-errores",
-    "href": "concepts.html#manejo-de-errores",
-    "title": "Conceptos Básicos",
-    "section": "",
-    "text": "Ok(T): Representa un éxito y contiene un valor.\nErr(E): Representa un error y contiene información del mismo.\n\n\nuse std::fs::File;\n\nfn main() {\n    let archivo = File::open(\"archivo.txt\");\n\n    match archivo {\n        Ok(_) =&gt; println!(\"Archivo abierto.\"),\n        Err(e) =&gt; println!(\"Error: {}\", e),\n    }\n}\n\nfn leer_archivo() -&gt; Result&lt;String, std::io::Error&gt; {\n    let mut archivo = File::open(\"archivo.txt\")?;\n    let mut contenido = String::new();\n    archivo.read_to_string(&mut contenido)?;\n    Ok(contenido)\n}\n\n\n\nSome(T): Representa un valor.\nNone: Representa la ausencia de un valor.\n\n\nfn dividir(dividendo: f64, divisor: f64) -&gt; Option&lt;f64&gt; {\n    if divisor == 0.0 {\n        None\n    } else {\n        Some(dividendo / divisor)\n    }\n}\n\n\nfn main() {\n    panic!(\"¡Error grave!\");\n}",
-    "crumbs": [
-      "Conceptos Básicos"
-    ]
-  },
-  {
-    "objectID": "ownership.html",
-    "href": "ownership.html",
-    "title": "12  Ownership y Borrowing",
-    "section": "",
-    "text": "12.1 Definción\nEl ownership es un conjunto de reglas que definen cómo un programa de Rust administra la memoria. Todos los programas tienen que administrar la forma en que usan la memoria de un computador mientras se ejecutan. Algunos lenguajes tienen recolección de basura que busca regularmente la memoria que ya no se usa mientras el programa se ejecuta; en otros lenguajes, el programador debe asignar y liberar la memoria explícitamente. Rust usa un tercer enfoque: la memoria se administra a través de un sistema de ownership con un conjunto de reglas que el compilador verifica. Si alguna de las reglas se viola, el programa no se compilará. Ninguna de las características del ownership ralentizará su programa mientras se ejecuta.",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#referencias-y-préstamos",
-    "href": "ownership.html#referencias-y-préstamos",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.3 Referencias y Préstamos",
-    "text": "12.3 Referencias y Préstamos",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#slices",
-    "href": "ownership.html#slices",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.6 Slices",
-    "text": "12.6 Slices\nEn Rust, los slices son una forma especial de préstamo, que permite acceder a una parte de una colección (como un array o un String) sin transferir la propiedad ni copiar los datos.\n\n\n\n\n\n\n🧳 Analogía: “Un vistazo a la mochila”\n\n\n\nImagina que estás en una sala de reuniones con mochilas (que representan los datos): 1. El inspector verifica que solo haya un dueño por mochila. 2. Si alguien toma prestada una mochila (una referencia): - Si es un préstamo inmutable, otras personas pueden mirar, pero nadie puede modificar. - Si es un préstamo mutable, nadie más puede mirar ni tocar hasta que se devuelva. 3. Al final, el inspector revisa que nadie intente usar una mochila que ya no está en la sala (lifetime expirado).\n\n\n\nUn slice inmutable es como prestar tu mochila abierta y decir: “Mira solo lo que está en el bolsillo lateral”, pero no puedes tocar ni cambiar nada.\nUn slice mutable es como prestar el bolsillo lateral y permitir que lo reorganicen, pero sin tocar el resto de la mochila.\n\nEjemplo: Slice Inmutable\nfn main() {\n    let array = [1, 2, 3, 4, 5];\n    let slice = &array[1..4]; // Slice inmutable que incluye los elementos 2, 3, 4\n    println!(\"{:?}\", slice); // Imprime: [2, 3, 4]\n    println!(\"{:?}\", array); // La colección original sigue siendo accesible\n}\nEjemplo: Slice Mutable\nfn main() {\n    let mut array = [1, 2, 3, 4, 5];\n    let slice = &mut array[1..4]; // Slice mutable\n    slice[0] = 10; // Modifico solo el primer elemento del slice\n    println!(\"{:?}\", slice); // Imprime: [10, 3, 4]\n    println!(\"{:?}\", array); // Imprime: [1, 10, 3, 4, 5] (el array original también cambia)\n}\nRelación con Ownership y Borrowing\nLos slices son referencias (& o &mut), lo que significa que respetan todas las reglas de ownership y borrowing:\n\nOwnership:\n\nEl slice nunca toma posesión de los datos; solo los presta temporalmente.\n\nBorrowing:\n\nSiguen las mismas reglas que las referencias:\n\nUn slice mutable (&mut) y otro slice o referencia no pueden coexistir.\nLos slices no pueden durar más que la colección original de la que provienen.\n\n\n\nEjemplo: Regla de Borrowing con Slices\nfn main() {\n    let mut array = [1, 2, 3, 4, 5];\n    let slice = &array[1..4]; // Préstamo inmutable\n    // let mutable_slice = &mut array[2..4]; // Error: No puedes mutar mientras hay un préstamo inmutable activo\n    println!(\"{:?}\", slice);\n}\nLos slices son herramientas poderosas para acceder a partes de datos sin necesidad de copiar ni transferir propiedad, lo que los hace eficientes y seguros. Son una extensión directa del sistema de ownership y borrowing, y demuestran cómo Rust optimiza el manejo de datos respetando la seguridad de memoria.",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#lifetime-annotations",
-    "href": "ownership.html#lifetime-annotations",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.8 Lifetime annotations",
-    "text": "12.8 Lifetime annotations\nLas anotaciones de tiempo de vida (lifetimes) son cruciales en Rust y se deberían cubrir al hablar de referencias y préstamos.",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#borrow-checker",
-    "href": "ownership.html#borrow-checker",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.7 Borrow Checker",
-    "text": "12.7 Borrow Checker\nEl Borrow Checker es una herramienta interna del compilador de Rust que garantiza que todas las reglas de ownership, borrowing y lifetimes se respeten en tiempo de compilación. Esto asegura que los programas sean seguros en memoria y libres de errores comunes como referencias colgantes o conflictos de préstamos.\n\n\n\n\n\n\n🧳 Analogía: “El inspector en la sala de reuniones”\n\n\n\nImagina que estás en una sala de reuniones con mochilas (que representan los datos):\n\nEl inspector verifica que solo haya un dueño por mochila.\nSi alguien toma prestada una mochila (una referencia):\n\nSi es un préstamo inmutable, otras personas pueden mirar, pero nadie puede modificar.\nSi es un préstamo mutable, nadie más puede mirar ni tocar hasta que se devuelva.\n\nAl final, el inspector revisa que nadie intente usar una mochila que ya no está en la sala (lifetime expirado).\n\n\n\n¿Qué valida el Borrow Checker?\n\nOwnership:\n\nCada valor tiene un único dueño.\nLos valores se liberan automáticamente cuando su dueño sale de alcance.\n\nBorrowing:\n\nPermite múltiples préstamos inmutables o un único préstamo mutable, pero no ambos a la vez.\n\nLifetimes:\n\nLas referencias no deben vivir más tiempo que el valor original.\n\n\nEjemplo de Borrow Checker en Acción\nfn main() {\n    let mut mochila = String::from(\"Mis cosas\");\n\n    // Préstamos inmutables\n    let prestamo1 = &mochila; \n    let prestamo2 = &mochila; \n    println!(\"{}, {}\", prestamo1, prestamo2); // Esto es válido\n\n    // Préstamo mutable conflictivo\n    // let prestamo_mutable = &mut mochila; \n    // Error: No puedes tener préstamos mutables e inmutables al mismo tiempo\n}\nEjemplo de Error con Borrow Checker\nfn main() {\n    let referencia;\n    {\n        let mochila = String::from(\"Temporal\");\n        referencia = &mochila; // Error: La referencia vive más que el valor original\n    }\n    // println!(\"{}\", referencia); // El Borrow Checker impide este uso.\n}\nEl Borrow Checker actúa como un inspector que asegura que:\n\nLos datos sean usados de manera segura y eficiente.\nNo haya referencias colgantes ni conflictos de acceso.\n\nGracias al Borrow Checker, Rust garantiza seguridad de memoria en tiempo de compilación, haciendo innecesario un recolector de basura y optimizando el rendimiento del programa.",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "struct.html",
-    "href": "struct.html",
-    "title": "13  Structs, Enums y Traits",
-    "section": "",
-    "text": "13.1 Structs: Los Planos de los Edificios",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
-    ]
-  },
-  {
-    "objectID": "struct.html#traits",
-    "href": "struct.html#traits",
-    "title": "13  Struct",
-    "section": "13.2 Traits",
-    "text": "13.2 Traits\nExplicación de cómo los traits permiten una programación orientada a interfaces.",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Struct</span>"
-    ]
-  },
-  {
-    "objectID": "production.html",
-    "href": "production.html",
-    "title": "15  Scraping",
-    "section": "",
-    "text": "15.1 Ejemplo Scraping\nIncluir una subcategoría sobre cómo gestionar concurrencia con Rust usando async/await, ya que el rendimiento concurrente es clave en procesos de scraping.",
-    "crumbs": [
-      "Práctica",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Scraping</span>"
-    ]
-  },
-  {
-    "objectID": "spatial_chapter.html",
-    "href": "spatial_chapter.html",
-    "title": "8  Rust Espacial",
-    "section": "",
-    "text": "8.1 Objetos Espaciales",
-    "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Rust Espacial</span>"
-    ]
-  },
-  {
-    "objectID": "spatial_chapter.html#objetos-espaciales",
-    "href": "spatial_chapter.html#objetos-espaciales",
-    "title": "8  Rust Espacial",
-    "section": "",
-    "text": "8.1.1 Vectores\n\n\n8.1.2 Raster\nExplicar cómo manejar objetos espaciales en formato geojson o tiff.\nIntroducir alguna librería como geo o gdal para procesar estos tipos de datos.",
-    "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Rust Espacial</span>"
-    ]
-  },
-  {
-    "objectID": "spatial_chapter.html#procesos-espaciales",
-    "href": "spatial_chapter.html#procesos-espaciales",
-    "title": "8  Rust Espacial",
-    "section": "8.2 Procesos Espaciales",
-    "text": "8.2 Procesos Espaciales\nTransformaciones geográficas: Explicar cómo realizar reproyecciones y transformaciones de coordenadas.\nIntersecciones espaciales: Cómo calcular intersecciones entre objetos espaciales (polígonos, líneas).",
-    "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Rust Espacial</span>"
-    ]
-  },
-  {
-    "objectID": "spatial_chapter.html#ddbb-espaciales",
-    "href": "spatial_chapter.html#ddbb-espaciales",
-    "title": "8  Rust Espacial",
-    "section": "8.3 DDBB Espaciales",
-    "text": "8.3 DDBB Espaciales",
-    "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Rust Espacial</span>"
-    ]
-  },
-  {
-    "objectID": "spatial_chapter.html#algoritmos",
-    "href": "spatial_chapter.html#algoritmos",
-    "title": "8  Rust Espacial",
-    "section": "8.4 Algoritmos",
-    "text": "8.4 Algoritmos\n\n8.4.1 Triangulación de Delaunay\nÚtil para algunos tipos de análisis espacial.\n\n\n8.4.2 Voronoi\nOtro algoritmo que puede complementar la creación de celdas espaciales.\n\n\n8.4.3 Geocoding\n\n\n8.4.4 [[Geohash]]\n\n\n8.4.5 r-tree",
-    "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Rust Espacial</span>"
-    ]
-  },
-  {
-    "objectID": "functional.html",
-    "href": "functional.html",
-    "title": "Programación Funcional",
-    "section": "",
-    "text": "Además de una explicación de los conceptos básicos de la programación funcional (map, filter, fold), podrías incluir:\n\nIteradores y closures: Cómo la programación funcional se aplica a operaciones sobre datos espaciales.\nComposición de funciones: Explicar cómo utilizar funciones puras en el contexto espacial.",
-    "crumbs": [
-      "Anexos",
-      "Programación Funcional"
-    ]
-  },
-  {
-    "objectID": "languages.html",
-    "href": "languages.html",
-    "title": "Otros Lenguajes",
-    "section": "",
-    "text": "Rust y R\nextendr - A safe and user-friendly R extension interface using Rust\nextendr_api",
-    "crumbs": [
-      "Anexos",
-      "Otros Lenguajes"
-    ]
-  },
-  {
-    "objectID": "languages.html#rust-y-python",
-    "href": "languages.html#rust-y-python",
-    "title": "Otros Lenguajes",
-    "section": "Rust y Python",
-    "text": "Rust y Python",
-    "crumbs": [
-      "Anexos",
-      "Otros Lenguajes"
-    ]
-  },
-  {
-    "objectID": "languages.html#ffi-foreign-function-interface",
-    "href": "languages.html#ffi-foreign-function-interface",
-    "title": "Otros Lenguajes",
-    "section": "FFI (Foreign Function Interface)",
-    "text": "FFI (Foreign Function Interface)\nExplicar cómo Rust se puede integrar con otros lenguajes, especialmente si se piensa en interoperabilidad con Python o R.",
-    "crumbs": [
-      "Anexos",
-      "Otros Lenguajes"
-    ]
-  },
-  {
-    "objectID": "languages.html#binding-de-librerías",
-    "href": "languages.html#binding-de-librerías",
-    "title": "Otros Lenguajes",
-    "section": "Binding de librerías",
-    "text": "Binding de librerías\nCómo crear bindings en Rust para aprovechar librerías de otros lenguajes para análisis espacial.",
-    "crumbs": [
-      "Anexos",
-      "Otros Lenguajes"
-    ]
-  },
-  {
-    "objectID": "optimization.html",
-    "href": "optimization.html",
-    "title": "11  Optimización",
-    "section": "",
-    "text": "Testing y Benchmarking: En algún punto del libro, podrías agregar una sección sobre cómo probar y medir el rendimiento del código en Rust, especialmente relevante para aplicaciones espaciales que a menudo manejan grandes volúmenes de datos.\nOptimización: Dado que Rust se centra en la eficiencia, sería útil dedicar tiempo a estrategias de optimización específicas para análisis espaciales, como el manejo eficiente de memoria y concurrencia.",
-    "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Optimización</span>"
-    ]
-  },
-  {
     "objectID": "variables.html",
     "href": "variables.html",
     "title": "4  Variables y Mutabilidad",
@@ -469,6 +166,17 @@
     "title": "4  Variables y Mutabilidad",
     "section": "",
     "text": "4.1.1 Tipos Escalares\nLos tipos escalares incluyen enteros, números de coma flotante, caracteres y booleanos. A continuación, se presenta una tabla con los principales tipos de datos y ejemplos de sus valores literales:\n\n\n\n\n\n\n\n\nTipo\nSintaxis\nEjemplos\n\n\n\n\nEnteros con signo\ni8, i16, i32, i64, i128, isize\n-10, 0, 1_000, 123_i64\n\n\nEnteros sin signo\nu8, u16, u32, u64, u128, usize\n0, 123, 10_u16\n\n\nNúmeros de coma flotante\nf32, f64\n3.14, -10.0e20, 2_f32\n\n\nValores escalares Unicode\nchar\n‘a’, ‘α’, ‘∞’\n\n\nBooleanos\nbool\ntrue, false\n\n\n\nAncho de los Tipos\nCada tipo tiene un tamaño específico en memoria:\n\niN, uN, y fN tienen un ancho de N bits.\nisize y usize tienen el ancho de un puntero, lo que depende de la arquitectura del sistema (generalmente 32 o 64 bits).\nchar tiene un tamaño de 32 bits, lo que permite representar cualquier carácter Unicode.\nbool ocupa 8 bits de espacio en memoria.\n\nEjemplo de Uso\nPodemos ver cómo se utilizan estos tipos de datos en un programa simple:\nfn main() {\n    let entero_con_signo: i32 = -500;\n    let entero_sin_signo: u32 = 300;\n    let flotante: f64 = 3.1415;\n    let caracter: char = '∞';\n    let booleano: bool = true;\n    \n    println!(\"Entero con signo: {}\", entero_con_signo);\n    println!(\"Entero sin signo: {}\", entero_sin_signo);\n    println!(\"Flotante: {}\", flotante);\n    println!(\"Carácter: {}\", caracter);\n    println!(\"Booleano: {}\", booleano);\n}\nEste ejemplo muestra cómo declarar y utilizar los diferentes tipos de datos en Rust, cada uno con su correspondiente tipo y valor literal.",
+    "crumbs": [
+      "Conceptos Básicos",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Variables y Mutabilidad</span>"
+    ]
+  },
+  {
+    "objectID": "variables.html#tipos-compuestos",
+    "href": "variables.html#tipos-compuestos",
+    "title": "4  Variables y Mutabilidad",
+    "section": "4.2 Tipos Compuestos",
+    "text": "4.2 Tipos Compuestos\n\nTuplas\n\nAgrupan múltiples valores de diferentes tipos en una única entidad. La longitud de una tupla es fija, y los tipos de los elementos pueden variar.\n\n\nEjemplo de tupla:\n\nlet tupla: (i32, f64, char) = (500, 6.4, 'a');\nlet (x, y, z) = tupla;  // Destructuring para acceder a los valores\n\nArreglos (Arrays)\n\nLos arreglos contienen múltiples valores del mismo tipo. A diferencia de los vectores, los arreglos tienen una longitud fija que no puede cambiar.\n\n\nEjemplo de arreglo:\n\nlet arreglo: [i32; 5] = [1, 2, 3, 4, 5];  // Un arreglo de 5 enteros\nlet primer_elemento = arreglo[0];  // Acceder al primer elemento\nAquí tienes una tabla para los tipos compuestos:\n\n\n\n\n\n\n\n\nTipo\nSintaxis\nEjemplos\n\n\n\n\nTuplas\n(T1, T2, T3, …)\n(500, 6.4, ‘a’)\n\n\nArreglos\n[T; N] (T es tipo, N es tamaño)\n[1, 2, 3, 4, 5], [3.14; 3] (inicializa con 3.14 tres veces)",
     "crumbs": [
       "Conceptos Básicos",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Variables y Mutabilidad</span>"
@@ -596,17 +304,6 @@
     ]
   },
   {
-    "objectID": "variables.html#tipos-compuestos",
-    "href": "variables.html#tipos-compuestos",
-    "title": "4  Variables y Mutabilidad",
-    "section": "4.2 Tipos Compuestos",
-    "text": "4.2 Tipos Compuestos\n\nTuplas\n\nAgrupan múltiples valores de diferentes tipos en una única entidad. La longitud de una tupla es fija, y los tipos de los elementos pueden variar.\n\n\nEjemplo de tupla:\n\nlet tupla: (i32, f64, char) = (500, 6.4, 'a');\nlet (x, y, z) = tupla;  // Destructuring para acceder a los valores\n\nArreglos (Arrays)\n\nLos arreglos contienen múltiples valores del mismo tipo. A diferencia de los vectores, los arreglos tienen una longitud fija que no puede cambiar.\n\n\nEjemplo de arreglo:\n\nlet arreglo: [i32; 5] = [1, 2, 3, 4, 5];  // Un arreglo de 5 enteros\nlet primer_elemento = arreglo[0];  // Acceder al primer elemento\nAquí tienes una tabla para los tipos compuestos:\n\n\n\n\n\n\n\n\nTipo\nSintaxis\nEjemplos\n\n\n\n\nTuplas\n(T1, T2, T3, …)\n(500, 6.4, ‘a’)\n\n\nArreglos\n[T; N] (T es tipo, N es tamaño)\n[1, 2, 3, 4, 5], [3.14; 3] (inicializa con 3.14 tres veces)",
-    "crumbs": [
-      "Conceptos Básicos",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Variables y Mutabilidad</span>"
-    ]
-  },
-  {
     "objectID": "iterators.html",
     "href": "iterators.html",
     "title": "9  Iteradores",
@@ -640,132 +337,11 @@
     ]
   },
   {
-    "objectID": "ownership.html#definción",
-    "href": "ownership.html#definción",
-    "title": "12  Ownership",
+    "objectID": "ownership.html",
+    "href": "ownership.html",
+    "title": "12  Ownership y Borrowing",
     "section": "",
-    "text": "Analogía con un libro\n\n\n\nLa analogía es que el ownership es como la propiedad de un objeto, por ejemplo si tienes un libro, el libro es tuyo. Si lo prestas a alguien, el libro sigue siendo tuyo, pero ahora el libro esta en posesión de otra persona. Cuando te devuelven el libro, el libro regresa a tu posesión.",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#ownership-el-dueño-de-la-mochila",
-    "href": "ownership.html#ownership-el-dueño-de-la-mochila",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.2 Ownership: “El Dueño de la Mochila”",
-    "text": "12.2 Ownership: “El Dueño de la Mochila”\nEn Rust, cada valor tiene un dueño. Piensa en una mochila que contiene un objeto (datos). Solo una persona puede ser dueña de esa mochila en un momento dado.\nReglas de Ownership\n\nCada valor en Rust tiene un dueño único.\nCuando el dueño “deja de existir” (sale de su alcance), los datos se eliminan automáticamente (drop).\n\n\n\n\n\n\n\n🧳 Analogía “El Dueño de la Mochila”\n\n\n\nImagina que tienes una mochila que representa la memoria en Rust. Solo tú puedes poseer esa mochila. Si decides pasar la mochila a otra persona, ya no puedes usarla, porque ahora esa persona es la nueva dueña.\n\n\nEjemplo en Código\nfn main() {\n    let mochila = String::from(\"Mis pertenencias\"); // La mochila tiene un dueño\n    let nueva_mochila = mochila; // La propiedad se transfiere\n    // println!(\"{}\", mochila); // Error: \"mochila\" ya no es válida.\n    println!(\"{}\", nueva_mochila); // Ahora \"nueva_mochila\" es el dueño.\n}",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#borrowing-préstamos-temporales",
-    "href": "ownership.html#borrowing-préstamos-temporales",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.3 Borrowing: “Préstamos Temporales”",
-    "text": "12.3 Borrowing: “Préstamos Temporales”\nA veces, en lugar de transferir completamente la propiedad, necesitas prestar tu mochila a alguien más. En Rust, esto se logra usando referencias.\nReglas de Borrowing\n\nPuedes prestar tu mochila (crear una referencia) sin transferir la propiedad.\nHay dos tipos de préstamos:\n\nPréstamos inmutables (&): Puedes prestar tu mochila para mirarla, pero nadie puede modificarla.\nPréstamos mutables (&mut): Puedes prestar tu mochila para que la modifiquen, pero solo a una persona a la vez.\n\n\n\n\n\n\n\n\n🧳 Analogía: “Préstamos Temporales”\n\n\n\n\nPréstamo inmutable: Prestas tu mochila a un amigo para que la mire, pero no puede tocar nada dentro.\nPréstamo mutable: Prestas tu mochila a un amigo, pero le adviertes que nadie más puede tocarla mientras él la tenga.\n\n\n\nEjemplo en Código\nfn main() {\n    let mochila = String::from(\"Mis pertenencias\");\n    \n    // Préstamo inmutable\n    let referencia = &mochila;\n    println!(\"{}\", referencia); // Puedo mirar el contenido.\n    println!(\"{}\", mochila); // Y todavía soy el dueño.\n\n    // Préstamo mutable\n    let mut mochila_mutable = String::from(\"Mochila vieja\");\n    let referencia_mutable = &mut mochila_mutable;\n    referencia_mutable.push_str(\" actualizada\");\n    println!(\"{}\", referencia_mutable); // Mochila modificada.\n}",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#lifetimes-duración-del-préstamo",
-    "href": "ownership.html#lifetimes-duración-del-préstamo",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.4 Lifetimes: “Duración del Préstamo”",
-    "text": "12.4 Lifetimes: “Duración del Préstamo”\nCuando prestas algo, el tiempo que alguien lo tiene debe ser claro para evitar conflictos. En Rust, esto se maneja con las lifetimes.\nReglas Básicas 1. Un préstamo no puede durar más que el dueño original. 2. El compilador verifica que todos los préstamos sean seguros.\n\n\n\n\n\n\n🧳 Analogía: “Duración del Préstamo”\n\n\n\nImagina que tu amigo tiene que devolverte la mochila antes de que tú te vayas de la reunión, o ambos estarán en problemas.\n\n\nEjemplo en Código\nfn main() {\n    let mochila = String::from(\"Mis cosas\");\n    let referencia = &mochila; // El préstamo es válido aquí.\n    println!(\"{}\", referencia); // Todavía puedo usar la referencia.\n\n    // Cuando la mochila \"muere\", la referencia también deja de ser válida.\n}",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#resumen",
-    "href": "ownership.html#resumen",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.5 Resumen",
-    "text": "12.5 Resumen\n\n\n\n\n\n\n\n\nConcepto\nAnalogía\nCódigo\n\n\n\n\nOwnership\nMochila transferida a otro dueño.\nlet b = a;\n\n\nBorrowing\nMochila prestada temporalmente.\nlet b = &a;\n\n\nBorrowing mutable\nMochila prestada para modificarla.\nlet b = &mut a;\n\n\nLifetimes\nTiempo límite del préstamo.\nlet r = &x;",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#errores-comunes-y-cómo-evitarlos",
-    "href": "ownership.html#errores-comunes-y-cómo-evitarlos",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.8 Errores Comunes y Cómo Evitarlos",
-    "text": "12.8 Errores Comunes y Cómo Evitarlos\n\n12.8.1 Uso después de transferencia\n\nError: Usar un valor después de transferir su propiedad.\nEjemplo:\n\n  fn main() {\n      let mochila = String::from(\"Mis pertenencias\");\n      let nueva_mochila = mochila; // Propiedad transferida\n      // println!(\"{}\", mochila); // Error: \"mochila\" ya no es válida.\n  }\n\nSolución: Revisa si has movido el valor o usa referencias si necesitas acceder a él.\n\n\n\n12.8.2 Conflictos en préstamos mutables\n\nError: Prestar un valor de forma mutable mientras tienes préstamos inmutables activos.\nEjemplo:\n\n  fn main() {\n      let mut mochila = String::from(\"Mis cosas\");\n      let referencia1 = &mochila; // Préstamo inmutable\n      let referencia2 = &mut mochila; // Error: No puedes prestar de forma mutable mientras hay un préstamo inmutable\n  }\n\nSolución: Asegúrate de que no hay múltiples accesos conflictivos al mismo tiempo.\n\n\n\n12.8.3 Referencias a datos no válidos\n\nError: Crear una referencia que vive más que el valor original.\nEjemplo:\n\n  fn main() {\n      let referencia;\n      {\n          let mochila = String::from(\"Temporal\");\n          referencia = &mochila; // Error: La referencia vive más que el valor original\n      }\n      // println!(\"{}\", referencia); // No válido\n  }\n\nSolución: Asegúrate de que los préstamos no duren más que el valor original.",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#slices-un-vistazo-a-la-mochila",
-    "href": "ownership.html#slices-un-vistazo-a-la-mochila",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.6 Slices: “Un vistazo a la mochila”",
-    "text": "12.6 Slices: “Un vistazo a la mochila”\nEn Rust, los slices son una forma especial de préstamo, que permite acceder a una parte de una colección (como un array o un String) sin transferir la propiedad ni copiar los datos.\n\n\n\n\n\n\n🧳 Analogía: “Un vistazo a la mochila”\n\n\n\nImagina que estás en una sala de reuniones con mochilas (que representan los datos): 1. El inspector verifica que solo haya un dueño por mochila. 2. Si alguien toma prestada una mochila (una referencia): - Si es un préstamo inmutable, otras personas pueden mirar, pero nadie puede modificar. - Si es un préstamo mutable, nadie más puede mirar ni tocar hasta que se devuelva. 3. Al final, el inspector revisa que nadie intente usar una mochila que ya no está en la sala (lifetime expirado).\n\n\n\nUn slice inmutable es como prestar tu mochila abierta y decir: “Mira solo lo que está en el bolsillo lateral”, pero no puedes tocar ni cambiar nada.\nUn slice mutable es como prestar el bolsillo lateral y permitir que lo reorganicen, pero sin tocar el resto de la mochila.\n\nEjemplo: Slice Inmutable\nfn main() {\n    let array = [1, 2, 3, 4, 5];\n    let slice = &array[1..4]; // Slice inmutable que incluye los elementos 2, 3, 4\n    println!(\"{:?}\", slice); // Imprime: [2, 3, 4]\n    println!(\"{:?}\", array); // La colección original sigue siendo accesible\n}\nEjemplo: Slice Mutable\nfn main() {\n    let mut array = [1, 2, 3, 4, 5];\n    let slice = &mut array[1..4]; // Slice mutable\n    slice[0] = 10; // Modifico solo el primer elemento del slice\n    println!(\"{:?}\", slice); // Imprime: [10, 3, 4]\n    println!(\"{:?}\", array); // Imprime: [1, 10, 3, 4, 5] (el array original también cambia)\n}\nRelación con Ownership y Borrowing\nLos slices son referencias (& o &mut), lo que significa que respetan todas las reglas de ownership y borrowing:\n\nOwnership:\n\nEl slice nunca toma posesión de los datos; solo los presta temporalmente.\n\nBorrowing:\n\nSiguen las mismas reglas que las referencias:\n\nUn slice mutable (&mut) y otro slice o referencia no pueden coexistir.\nLos slices no pueden durar más que la colección original de la que provienen.\n\n\n\nEjemplo: Regla de Borrowing con Slices\nfn main() {\n    let mut array = [1, 2, 3, 4, 5];\n    let slice = &array[1..4]; // Préstamo inmutable\n    // let mutable_slice = &mut array[2..4]; // Error: No puedes mutar mientras hay un préstamo inmutable activo\n    println!(\"{:?}\", slice);\n}\nLos slices son herramientas poderosas para acceder a partes de datos sin necesidad de copiar ni transferir propiedad, lo que los hace eficientes y seguros. Son una extensión directa del sistema de ownership y borrowing, y demuestran cómo Rust optimiza el manejo de datos respetando la seguridad de memoria.",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#el-borrow-checker-el-inspector-de-préstamos",
-    "href": "ownership.html#el-borrow-checker-el-inspector-de-préstamos",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.7 El Borrow Checker: “El inspector de préstamos”",
-    "text": "12.7 El Borrow Checker: “El inspector de préstamos”\nEl Borrow Checker es una herramienta interna del compilador de Rust que garantiza que todas las reglas de ownership, borrowing y lifetimes se respeten en tiempo de compilación. Esto asegura que los programas sean seguros en memoria y libres de errores comunes como referencias colgantes o conflictos de préstamos.\n\n\n\n\n\n\n🧳 Analogía: “El inspector en la sala de reuniones”\n\n\n\nImagina que estás en una sala de reuniones con mochilas (que representan los datos):\n\nEl inspector verifica que solo haya un dueño por mochila.\nSi alguien toma prestada una mochila (una referencia):\n\nSi es un préstamo inmutable, otras personas pueden mirar, pero nadie puede modificar.\nSi es un préstamo mutable, nadie más puede mirar ni tocar hasta que se devuelva.\n\nAl final, el inspector revisa que nadie intente usar una mochila que ya no está en la sala (lifetime expirado).\n\n\n\n¿Qué valida el Borrow Checker?\n\nOwnership:\n\nCada valor tiene un único dueño.\nLos valores se liberan automáticamente cuando su dueño sale de alcance.\n\nBorrowing:\n\nPermite múltiples préstamos inmutables o un único préstamo mutable, pero no ambos a la vez.\n\nLifetimes:\n\nLas referencias no deben vivir más tiempo que el valor original.\n\n\nEjemplo de Borrow Checker en Acción\nfn main() {\n    let mut mochila = String::from(\"Mis cosas\");\n\n    // Préstamos inmutables\n    let prestamo1 = &mochila; \n    let prestamo2 = &mochila; \n    println!(\"{}, {}\", prestamo1, prestamo2); // Esto es válido\n\n    // Préstamo mutable conflictivo\n    // let prestamo_mutable = &mut mochila; \n    // Error: No puedes tener préstamos mutables e inmutables al mismo tiempo\n}\nEjemplo de Error con Borrow Checker\nfn main() {\n    let referencia;\n    {\n        let mochila = String::from(\"Temporal\");\n        referencia = &mochila; // Error: La referencia vive más que el valor original\n    }\n    // println!(\"{}\", referencia); // El Borrow Checker impide este uso.\n}\nEl Borrow Checker actúa como un inspector que asegura que:\n\nLos datos sean usados de manera segura y eficiente.\nNo haya referencias colgantes ni conflictos de acceso.\n\nGracias al Borrow Checker, Rust garantiza seguridad de memoria en tiempo de compilación, haciendo innecesario un recolector de basura y optimizando el rendimiento del programa.",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#el-borrow-checker",
-    "href": "ownership.html#el-borrow-checker",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.7 El Borrow Checker",
-    "text": "12.7 El Borrow Checker\nEl Borrow Checker es una herramienta interna del compilador de Rust que garantiza que todas las reglas de ownership, borrowing y lifetimes se respeten en tiempo de compilación. Esto asegura que los programas sean seguros en memoria y libres de errores comunes como referencias colgantes o conflictos de préstamos.\n\n\n\n\n\n\n🧳 Analogía: “El inspector en la sala de reuniones”\n\n\n\nImagina que estás en una sala de reuniones con mochilas (que representan los datos):\n\nEl inspector verifica que solo haya un dueño por mochila.\nSi alguien toma prestada una mochila (una referencia):\n\nSi es un préstamo inmutable, otras personas pueden mirar, pero nadie puede modificar.\nSi es un préstamo mutable, nadie más puede mirar ni tocar hasta que se devuelva.\n\nAl final, el inspector revisa que nadie intente usar una mochila que ya no está en la sala (lifetime expirado).\n\n\n\n¿Qué valida el Borrow Checker?\n\nOwnership:\n\nCada valor tiene un único dueño.\nLos valores se liberan automáticamente cuando su dueño sale de alcance.\n\nBorrowing:\n\nPermite múltiples préstamos inmutables o un único préstamo mutable, pero no ambos a la vez.\n\nLifetimes:\n\nLas referencias no deben vivir más tiempo que el valor original.\n\n\nEjemplo de Borrow Checker en Acción\nfn main() {\n    let mut mochila = String::from(\"Mis cosas\");\n\n    // Préstamos inmutables\n    let prestamo1 = &mochila; \n    let prestamo2 = &mochila; \n    println!(\"{}, {}\", prestamo1, prestamo2); // Esto es válido\n\n    // Préstamo mutable conflictivo\n    // let prestamo_mutable = &mut mochila; \n    // Error: No puedes tener préstamos mutables e inmutables al mismo tiempo\n}\nEjemplo de Error con Borrow Checker\nfn main() {\n    let referencia;\n    {\n        let mochila = String::from(\"Temporal\");\n        referencia = &mochila; // Error: La referencia vive más que el valor original\n    }\n    // println!(\"{}\", referencia); // El Borrow Checker impide este uso.\n}\nEl Borrow Checker actúa como un inspector que asegura que:\n\nLos datos sean usados de manera segura y eficiente.\nNo haya referencias colgantes ni conflictos de acceso.\n\nGracias al Borrow Checker, Rust garantiza seguridad de memoria en tiempo de compilación, haciendo innecesario un recolector de basura y optimizando el rendimiento del programa.",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#resumen-visual",
-    "href": "ownership.html#resumen-visual",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.5 Resumen Visual",
-    "text": "12.5 Resumen Visual\n\n\n\n\n\n\n\n\nConcepto\nAnalogía\nCódigo\n\n\n\n\nOwnership\nMochila transferida a otro dueño.\nlet b = a;\n\n\nBorrowing\nMochila prestada temporalmente.\nlet b = &a;\n\n\nBorrowing mutable\nMochila prestada para modificarla.\nlet b = &mut a;\n\n\nLifetimes\nTiempo límite del préstamo.\nlet r = &x;",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#lifetimes",
-    "href": "ownership.html#lifetimes",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.4 Lifetimes",
-    "text": "12.4 Lifetimes\nCuando prestas algo, el tiempo que alguien lo tiene debe ser claro para evitar conflictos. En Rust, esto se maneja con las lifetimes.\nReglas Básicas 1. Un préstamo no puede durar más que el dueño original. 2. El compilador verifica que todos los préstamos sean seguros.\n\n\n\n\n\n\n🧳 Analogía: “Duración del Préstamo”\n\n\n\nImagina que tu amigo tiene que devolverte la mochila antes de que tú te vayas de la reunión, o ambos estarán en problemas.\n\n\nEjemplo en Código\nfn main() {\n    let mochila = String::from(\"Mis cosas\");\n    let referencia = &mochila; // El préstamo es válido aquí.\n    println!(\"{}\", referencia); // Todavía puedo usar la referencia.\n\n    // Cuando la mochila \"muere\", la referencia también deja de ser válida.\n}",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#borrowing",
-    "href": "ownership.html#borrowing",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.3 Borrowing",
-    "text": "12.3 Borrowing\nA veces, en lugar de transferir completamente la propiedad, necesitas prestar tu mochila a alguien más. En Rust, esto se logra usando referencias.\nReglas de Borrowing\n\nPuedes prestar tu mochila (crear una referencia) sin transferir la propiedad.\nHay dos tipos de préstamos:\n\nPréstamos inmutables (&): Puedes prestar tu mochila para mirarla, pero nadie puede modificarla.\nPréstamos mutables (&mut): Puedes prestar tu mochila para que la modifiquen, pero solo a una persona a la vez.\n\n\n\n\n\n\n\n\n🧳 Analogía: “Préstamos Temporales”\n\n\n\n\nPréstamo inmutable: Prestas tu mochila a un amigo para que la mire, pero no puede tocar nada dentro.\nPréstamo mutable: Prestas tu mochila a un amigo, pero le adviertes que nadie más puede tocarla mientras él la tenga.\n\n\n\nEjemplo en Código\nfn main() {\n    let mochila = String::from(\"Mis pertenencias\");\n    \n    // Préstamo inmutable\n    let referencia = &mochila;\n    println!(\"{}\", referencia); // Puedo mirar el contenido.\n    println!(\"{}\", mochila); // Y todavía soy el dueño.\n\n    // Préstamo mutable\n    let mut mochila_mutable = String::from(\"Mochila vieja\");\n    let referencia_mutable = &mut mochila_mutable;\n    referencia_mutable.push_str(\" actualizada\");\n    println!(\"{}\", referencia_mutable); // Mochila modificada.\n}",
+    "text": "12.1 Definción\nEl ownership es un conjunto de reglas que definen cómo un programa de Rust administra la memoria. Todos los programas tienen que administrar la forma en que usan la memoria de un computador mientras se ejecutan. Algunos lenguajes tienen recolección de basura que busca regularmente la memoria que ya no se usa mientras el programa se ejecuta; en otros lenguajes, el programador debe asignar y liberar la memoria explícitamente. Rust usa un tercer enfoque: la memoria se administra a través de un sistema de ownership con un conjunto de reglas que el compilador verifica. Si alguna de las reglas se viola, el programa no se compilará. Ninguna de las características del ownership ralentizará su programa mientras se ejecuta.",
     "crumbs": [
       "Conceptos Avanzados",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
@@ -783,58 +359,80 @@
     ]
   },
   {
-    "objectID": "tarea_1.html",
-    "href": "tarea_1.html",
-    "title": "Tarea 1",
+    "objectID": "ownership.html#borrowing",
+    "href": "ownership.html#borrowing",
+    "title": "12  Ownership y Borrowing",
+    "section": "12.3 Borrowing",
+    "text": "12.3 Borrowing\nA veces, en lugar de transferir completamente la propiedad, necesitas prestar tu mochila a alguien más. En Rust, esto se logra usando referencias.\nReglas de Borrowing\n\nPuedes prestar tu mochila (crear una referencia) sin transferir la propiedad.\nHay dos tipos de préstamos:\n\nPréstamos inmutables (&): Puedes prestar tu mochila para mirarla, pero nadie puede modificarla.\nPréstamos mutables (&mut): Puedes prestar tu mochila para que la modifiquen, pero solo a una persona a la vez.\n\n\n\n\n\n\n\n\n🧳 Analogía: “Préstamos Temporales”\n\n\n\n\nPréstamo inmutable: Prestas tu mochila a un amigo para que la mire, pero no puede tocar nada dentro.\nPréstamo mutable: Prestas tu mochila a un amigo, pero le adviertes que nadie más puede tocarla mientras él la tenga.\n\n\n\nEjemplo en Código\nfn main() {\n    let mochila = String::from(\"Mis pertenencias\");\n    \n    // Préstamo inmutable\n    let referencia = &mochila;\n    println!(\"{}\", referencia); // Puedo mirar el contenido.\n    println!(\"{}\", mochila); // Y todavía soy el dueño.\n\n    // Préstamo mutable\n    let mut mochila_mutable = String::from(\"Mochila vieja\");\n    let referencia_mutable = &mut mochila_mutable;\n    referencia_mutable.push_str(\" actualizada\");\n    println!(\"{}\", referencia_mutable); // Mochila modificada.\n}",
+    "crumbs": [
+      "Conceptos Avanzados",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
+    ]
+  },
+  {
+    "objectID": "ownership.html#lifetimes",
+    "href": "ownership.html#lifetimes",
+    "title": "12  Ownership y Borrowing",
+    "section": "12.4 Lifetimes",
+    "text": "12.4 Lifetimes\nCuando prestas algo, el tiempo que alguien lo tiene debe ser claro para evitar conflictos. En Rust, esto se maneja con las lifetimes.\nReglas Básicas 1. Un préstamo no puede durar más que el dueño original. 2. El compilador verifica que todos los préstamos sean seguros.\n\n\n\n\n\n\n🧳 Analogía: “Duración del Préstamo”\n\n\n\nImagina que tu amigo tiene que devolverte la mochila antes de que tú te vayas de la reunión, o ambos estarán en problemas.\n\n\nEjemplo en Código\nfn main() {\n    let mochila = String::from(\"Mis cosas\");\n    let referencia = &mochila; // El préstamo es válido aquí.\n    println!(\"{}\", referencia); // Todavía puedo usar la referencia.\n\n    // Cuando la mochila \"muere\", la referencia también deja de ser válida.\n}",
+    "crumbs": [
+      "Conceptos Avanzados",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
+    ]
+  },
+  {
+    "objectID": "ownership.html#resumen-visual",
+    "href": "ownership.html#resumen-visual",
+    "title": "12  Ownership y Borrowing",
+    "section": "12.5 Resumen Visual",
+    "text": "12.5 Resumen Visual\n\n\n\n\n\n\n\n\nConcepto\nAnalogía\nCódigo\n\n\n\n\nOwnership\nMochila transferida a otro dueño.\nlet b = a;\n\n\nBorrowing\nMochila prestada temporalmente.\nlet b = &a;\n\n\nBorrowing mutable\nMochila prestada para modificarla.\nlet b = &mut a;\n\n\nLifetimes\nTiempo límite del préstamo.\nlet r = &x;",
+    "crumbs": [
+      "Conceptos Avanzados",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
+    ]
+  },
+  {
+    "objectID": "ownership.html#slices",
+    "href": "ownership.html#slices",
+    "title": "12  Ownership y Borrowing",
+    "section": "12.6 Slices",
+    "text": "12.6 Slices\nEn Rust, los slices son una forma especial de préstamo, que permite acceder a una parte de una colección (como un array o un String) sin transferir la propiedad ni copiar los datos.\n\n\n\n\n\n\n🧳 Analogía: “Un vistazo a la mochila”\n\n\n\nImagina que estás en una sala de reuniones con mochilas (que representan los datos): 1. El inspector verifica que solo haya un dueño por mochila. 2. Si alguien toma prestada una mochila (una referencia): - Si es un préstamo inmutable, otras personas pueden mirar, pero nadie puede modificar. - Si es un préstamo mutable, nadie más puede mirar ni tocar hasta que se devuelva. 3. Al final, el inspector revisa que nadie intente usar una mochila que ya no está en la sala (lifetime expirado).\n\n\n\nUn slice inmutable es como prestar tu mochila abierta y decir: “Mira solo lo que está en el bolsillo lateral”, pero no puedes tocar ni cambiar nada.\nUn slice mutable es como prestar el bolsillo lateral y permitir que lo reorganicen, pero sin tocar el resto de la mochila.\n\nEjemplo: Slice Inmutable\nfn main() {\n    let array = [1, 2, 3, 4, 5];\n    let slice = &array[1..4]; // Slice inmutable que incluye los elementos 2, 3, 4\n    println!(\"{:?}\", slice); // Imprime: [2, 3, 4]\n    println!(\"{:?}\", array); // La colección original sigue siendo accesible\n}\nEjemplo: Slice Mutable\nfn main() {\n    let mut array = [1, 2, 3, 4, 5];\n    let slice = &mut array[1..4]; // Slice mutable\n    slice[0] = 10; // Modifico solo el primer elemento del slice\n    println!(\"{:?}\", slice); // Imprime: [10, 3, 4]\n    println!(\"{:?}\", array); // Imprime: [1, 10, 3, 4, 5] (el array original también cambia)\n}\nRelación con Ownership y Borrowing\nLos slices son referencias (& o &mut), lo que significa que respetan todas las reglas de ownership y borrowing:\n\nOwnership:\n\nEl slice nunca toma posesión de los datos; solo los presta temporalmente.\n\nBorrowing:\n\nSiguen las mismas reglas que las referencias:\n\nUn slice mutable (&mut) y otro slice o referencia no pueden coexistir.\nLos slices no pueden durar más que la colección original de la que provienen.\n\n\n\nEjemplo: Regla de Borrowing con Slices\nfn main() {\n    let mut array = [1, 2, 3, 4, 5];\n    let slice = &array[1..4]; // Préstamo inmutable\n    // let mutable_slice = &mut array[2..4]; // Error: No puedes mutar mientras hay un préstamo inmutable activo\n    println!(\"{:?}\", slice);\n}\nLos slices son herramientas poderosas para acceder a partes de datos sin necesidad de copiar ni transferir propiedad, lo que los hace eficientes y seguros. Son una extensión directa del sistema de ownership y borrowing, y demuestran cómo Rust optimiza el manejo de datos respetando la seguridad de memoria.",
+    "crumbs": [
+      "Conceptos Avanzados",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
+    ]
+  },
+  {
+    "objectID": "ownership.html#borrow-checker",
+    "href": "ownership.html#borrow-checker",
+    "title": "12  Ownership y Borrowing",
+    "section": "12.7 Borrow Checker",
+    "text": "12.7 Borrow Checker\nEl Borrow Checker es una herramienta interna del compilador de Rust que garantiza que todas las reglas de ownership, borrowing y lifetimes se respeten en tiempo de compilación. Esto asegura que los programas sean seguros en memoria y libres de errores comunes como referencias colgantes o conflictos de préstamos.\n\n\n\n\n\n\n🧳 Analogía: “El inspector en la sala de reuniones”\n\n\n\nImagina que estás en una sala de reuniones con mochilas (que representan los datos):\n\nEl inspector verifica que solo haya un dueño por mochila.\nSi alguien toma prestada una mochila (una referencia):\n\nSi es un préstamo inmutable, otras personas pueden mirar, pero nadie puede modificar.\nSi es un préstamo mutable, nadie más puede mirar ni tocar hasta que se devuelva.\n\nAl final, el inspector revisa que nadie intente usar una mochila que ya no está en la sala (lifetime expirado).\n\n\n\n¿Qué valida el Borrow Checker?\n\nOwnership:\n\nCada valor tiene un único dueño.\nLos valores se liberan automáticamente cuando su dueño sale de alcance.\n\nBorrowing:\n\nPermite múltiples préstamos inmutables o un único préstamo mutable, pero no ambos a la vez.\n\nLifetimes:\n\nLas referencias no deben vivir más tiempo que el valor original.\n\n\nEjemplo de Borrow Checker en Acción\nfn main() {\n    let mut mochila = String::from(\"Mis cosas\");\n\n    // Préstamos inmutables\n    let prestamo1 = &mochila; \n    let prestamo2 = &mochila; \n    println!(\"{}, {}\", prestamo1, prestamo2); // Esto es válido\n\n    // Préstamo mutable conflictivo\n    // let prestamo_mutable = &mut mochila; \n    // Error: No puedes tener préstamos mutables e inmutables al mismo tiempo\n}\nEjemplo de Error con Borrow Checker\nfn main() {\n    let referencia;\n    {\n        let mochila = String::from(\"Temporal\");\n        referencia = &mochila; // Error: La referencia vive más que el valor original\n    }\n    // println!(\"{}\", referencia); // El Borrow Checker impide este uso.\n}\nEl Borrow Checker actúa como un inspector que asegura que:\n\nLos datos sean usados de manera segura y eficiente.\nNo haya referencias colgantes ni conflictos de acceso.\n\nGracias al Borrow Checker, Rust garantiza seguridad de memoria en tiempo de compilación, haciendo innecesario un recolector de basura y optimizando el rendimiento del programa.",
+    "crumbs": [
+      "Conceptos Avanzados",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
+    ]
+  },
+  {
+    "objectID": "ownership.html#errores-comunes-y-cómo-evitarlos",
+    "href": "ownership.html#errores-comunes-y-cómo-evitarlos",
+    "title": "12  Ownership y Borrowing",
+    "section": "12.8 Errores Comunes y Cómo Evitarlos",
+    "text": "12.8 Errores Comunes y Cómo Evitarlos\n\n12.8.1 Uso después de transferencia\n\nError: Usar un valor después de transferir su propiedad.\nEjemplo:\n\n  fn main() {\n      let mochila = String::from(\"Mis pertenencias\");\n      let nueva_mochila = mochila; // Propiedad transferida\n      // println!(\"{}\", mochila); // Error: \"mochila\" ya no es válida.\n  }\n\nSolución: Revisa si has movido el valor o usa referencias si necesitas acceder a él.\n\n\n\n12.8.2 Conflictos en préstamos mutables\n\nError: Prestar un valor de forma mutable mientras tienes préstamos inmutables activos.\nEjemplo:\n\n  fn main() {\n      let mut mochila = String::from(\"Mis cosas\");\n      let referencia1 = &mochila; // Préstamo inmutable\n      let referencia2 = &mut mochila; // Error: No puedes prestar de forma mutable mientras hay un préstamo inmutable\n  }\n\nSolución: Asegúrate de que no hay múltiples accesos conflictivos al mismo tiempo.\n\n\n\n12.8.3 Referencias a datos no válidos\n\nError: Crear una referencia que vive más que el valor original.\nEjemplo:\n\n  fn main() {\n      let referencia;\n      {\n          let mochila = String::from(\"Temporal\");\n          referencia = &mochila; // Error: La referencia vive más que el valor original\n      }\n      // println!(\"{}\", referencia); // No válido\n  }\n\nSolución: Asegúrate de que los préstamos no duren más que el valor original.",
+    "crumbs": [
+      "Conceptos Avanzados",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
+    ]
+  },
+  {
+    "objectID": "struct.html",
+    "href": "struct.html",
+    "title": "13  Structs, Enums y Traits",
     "section": "",
-    "text": "Parte 1",
+    "text": "13.1 Structs: Los Planos de los Edificios",
     "crumbs": [
-      "Tareas",
-      "Tarea 1"
-    ]
-  },
-  {
-    "objectID": "tarea_1.html#parte-2",
-    "href": "tarea_1.html#parte-2",
-    "title": "Tarea 1",
-    "section": "Parte 2",
-    "text": "Parte 2\n\nCada animal será un struct por separado\nEl Enum seguirá teniendo la lista de animales, cada opción del enum debe contener el struct de su respectivo animal\nDiseñar un Trait que permita obtener la velocidad maxima y minima de un animal\nDiseñar una función que de entrada sean cualquiera de los struct de los animales, y retornar cual es el animal que puede ir más rápido (Nota: esta función puede fallar)\nProbar el perro Salvaje y el Perro robot",
-    "crumbs": [
-      "Tareas",
-      "Tarea 1"
-    ]
-  },
-  {
-    "objectID": "tarea_1.html#parte-3",
-    "href": "tarea_1.html#parte-3",
-    "title": "Tarea 1",
-    "section": "Parte 3",
-    "text": "Parte 3\n\nComplementar la tarea 1 y 2 con el siguiente ajuste a todas las funciones que pueden fallar de la siguiente manera.\nSi la función falla retorna un Result&lt;Algo Bien, Algo Falló&gt;\nW debe ser un Enum el cual liste en cada función, las posibilidades de cómo puede fallar.\nEste nuevo Enum que lista errores, debe ser el retorno de su respectiva función estilo: Result&lt;T, Custom_Error_Enum&gt;\nActualizar el código para que retorne el tipo de error correspondiente. Hacer esto a todas las funciones que pueden fallar.\n\n\n\n\n\n\n\nHint\n\n\n\nSi una puede fallar, y queremos que retorne una cadena de texto como Error, se puede hacer de la siguiente manera.\nResult&lt;Algo, String&gt;",
-    "crumbs": [
-      "Tareas",
-      "Tarea 1"
-    ]
-  },
-  {
-    "objectID": "tarea_1.html#parte-1",
-    "href": "tarea_1.html#parte-1",
-    "title": "Tarea 1",
-    "section": "",
-    "text": "Enunciado 1\n\nCrear un Enum que contenga diferentes animales\nImplementar en el Enum una función la cual entregue la velocidad máxima del animal específico\nImplementar en el Enum una función la cual entregue la velocidad mínima del animal específico\nImplementar en el enum al menos los siguientes:\n\nPerro salvaje de a 40km/h a 70km/h\nPerro casa de a 20km/h a 50Km/h\nPerro robot que finge ser un perro de a 40km/h a 70km/h\n\nDiseñar una función que tenga de entrada una velocidad máxima y una velocidad mínima, la función debe retornar en caso que exista, el animal que es capaz de correr en ese rango de velocidad (Nota: esta función puede fallar).\n\n\n\nDesarrollo 1\nPlan:\n\nRepresentaremos los diferentes animales con variantes del enum.\nSe implementarán métodos para obtener la velocidad mínima y máxima de cada variante.\nDiseñaremos una función que reciba una velocidad mínima y máxima, y retorne el animal que cumpla con esos límites o un error si no existe.\nSe evaluará la función y manejar casos donde no haya animales que cumplan con el rango de velocidad.\n\nImplementación:\nPaso 0:\nSe crea el proyecto utilizando cargo en la terminal:\ncargo new tarea_1\nPaso 1:\nDefinimos el Enum con variantes para los diferentes animales\n#[derive(Debug, Clone)]\nenum Animal {\n    PerroSalvaje,\n    PerroCasa,\n    PerroRobot,\n}\n\nAnimal no tiene implementado el trait Clone\n\nPaso 2:\nSe implementarán métodos para obtener la velocidad mínima y máxima de cada variante.\n\nDebe retornar la velocidad máxima de cada animal\nDebe retornar la velocidad mínima de cada animal\n\n// Implementación de métodos para el Enum Animal\nimpl Animal {\n    // Método que retorna la velocidad máxima de cada animal\n    fn velocidad_maxima(&self) -&gt; u32 {\n        match self {\n            Animal::PerroSalvaje =&gt; 70,\n            Animal::PerroCasa =&gt; 50,\n            Animal::PerroRobot =&gt; 70,\n        }\n    }\n\n    // Método que retorna la velocidad mínima de cada animal\n    fn velocidad_minima(&self) -&gt; u32 {\n        match self {\n            Animal::PerroSalvaje =&gt; 40,\n            Animal::PerroCasa =&gt; 20,\n            Animal::PerroRobot =&gt; 40,\n        }\n    }\n}\nPaso 3:\nCrear una función buscar_animal_por_rango que reciba una velocidad mínima y máxima, y retorne el animal que cumpla con esos límites o un error si no existe.\n// Función que busca un animal capaz de correr en un rango de velocidad\nfn buscar_animal_por_rango(vel_min: u32, vel_max: u32) -&gt; Option&lt;Animal&gt; {\n    // Iteramos sobre las variantes del enum para encontrar un animal que cumpla el rango\n    let animales = [Animal::PerroSalvaje, Animal::PerroCasa, Animal::PerroRobot];\n\n    for animal in &animales {\n        if animal.velocidad_minima() &gt;= vel_min && animal.velocidad_maxima() &lt;= vel_max {\n            return Some(animal.clone());\n        }\n    }\n    None\n}\nPaso 4\nFinalmente se evaluará la función y manejar casos donde no haya animales que cumplan con el rango de velocidad.\n\n// Función principal para probar la implementación\nfn main() {\n    let vel_min = 30;\n    let vel_max = 60;\n\n    match buscar_animal_por_rango(vel_min, vel_max) {\n        Some(animal) =&gt; println!(\"Animal encontrado: {:?}\", animal),\n        None =&gt; println!(\"No se encontró ningún animal para el rango dado.\"),\n    }\n}\nResultados Test 1:\n\nvel_min = 30\nvel_max = 60\n\n cargo run\n   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.49s\n     Running `target/debug/tarea_1`\nNo se encontró ningún animal para el rango dado.\nResultados Test 2:\n\nvel_min = 15\nvel_max = 55\n\n&gt; cargo run\n   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.71s\n     Running `target/debug/tarea_1`\nAnimal encontrado: PerroCasa\nResultados Test 3:\n\nvel_min = 35\nvel_max = 80\n\n&gt; cargo run\n   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.81s\n     Running `target/debug/tarea_1`\nAnimal encontrado: PerroSalvaje\nLa función como está diseñada actualmente retorna el primer animal que cumple la condición y termina la búsqueda debido al al uso del return dentro de ciclo For. Pendiente de corregir..",
-    "crumbs": [
-      "Tareas",
-      "Tarea 1"
-    ]
-  },
-  {
-    "objectID": "tarea_1.html#hint",
-    "href": "tarea_1.html#hint",
-    "title": "18  Tarea 1",
-    "section": "18.4 Hint",
-    "text": "18.4 Hint\nSi una puede fallar, y queremos que retorne una cadena de texto como Error, se puede hacer de la siguiente manera.\nResult&lt;Algo, String&gt;",
-    "crumbs": [
-      "Tareas",
-      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Tarea 1</span>"
+      "Conceptos Avanzados",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
     ]
   },
   {
@@ -890,6 +488,193 @@
     "crumbs": [
       "Conceptos Avanzados",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
+    ]
+  },
+  {
+    "objectID": "tarea_1.html",
+    "href": "tarea_1.html",
+    "title": "Tarea 1",
+    "section": "",
+    "text": "Parte 1",
+    "crumbs": [
+      "Tareas",
+      "Tarea 1"
+    ]
+  },
+  {
+    "objectID": "tarea_1.html#parte-1",
+    "href": "tarea_1.html#parte-1",
+    "title": "Tarea 1",
+    "section": "",
+    "text": "Enunciado 1\n\nCrear un Enum que contenga diferentes animales\nImplementar en el Enum una función la cual entregue la velocidad máxima del animal específico\nImplementar en el Enum una función la cual entregue la velocidad mínima del animal específico\nImplementar en el enum al menos los siguientes:\n\nPerro salvaje de a 40km/h a 70km/h\nPerro casa de a 20km/h a 50Km/h\nPerro robot que finge ser un perro de a 40km/h a 70km/h\n\nDiseñar una función que tenga de entrada una velocidad máxima y una velocidad mínima, la función debe retornar en caso que exista, el animal que es capaz de correr en ese rango de velocidad (Nota: esta función puede fallar).\n\n\n\nDesarrollo 1\nPlan:\n\nRepresentaremos los diferentes animales con variantes del enum.\nSe implementarán métodos para obtener la velocidad mínima y máxima de cada variante.\nDiseñaremos una función que reciba una velocidad mínima y máxima, y retorne el animal que cumpla con esos límites o un error si no existe.\nSe evaluará la función y manejar casos donde no haya animales que cumplan con el rango de velocidad.\n\nImplementación:\nPaso 0:\nSe crea el proyecto utilizando cargo en la terminal:\ncargo new tarea_1\nPaso 1:\nDefinimos el Enum con variantes para los diferentes animales\n#[derive(Debug, Clone)]\nenum Animal {\n    PerroSalvaje,\n    PerroCasa,\n    PerroRobot,\n}\n\nAnimal no tiene implementado el trait Clone\n\nPaso 2:\nSe implementarán métodos para obtener la velocidad mínima y máxima de cada variante.\n\nDebe retornar la velocidad máxima de cada animal\nDebe retornar la velocidad mínima de cada animal\n\n// Implementación de métodos para el Enum Animal\nimpl Animal {\n    // Método que retorna la velocidad máxima de cada animal\n    fn velocidad_maxima(&self) -&gt; u32 {\n        match self {\n            Animal::PerroSalvaje =&gt; 70,\n            Animal::PerroCasa =&gt; 50,\n            Animal::PerroRobot =&gt; 70,\n        }\n    }\n\n    // Método que retorna la velocidad mínima de cada animal\n    fn velocidad_minima(&self) -&gt; u32 {\n        match self {\n            Animal::PerroSalvaje =&gt; 40,\n            Animal::PerroCasa =&gt; 20,\n            Animal::PerroRobot =&gt; 40,\n        }\n    }\n}\nPaso 3:\nCrear una función buscar_animal_por_rango que reciba una velocidad mínima y máxima, y retorne el animal que cumpla con esos límites o un error si no existe.\n// Función que busca un animal capaz de correr en un rango de velocidad\nfn buscar_animal_por_rango(vel_min: u32, vel_max: u32) -&gt; Option&lt;Animal&gt; {\n    // Iteramos sobre las variantes del enum para encontrar un animal que cumpla el rango\n    let animales = [Animal::PerroSalvaje, Animal::PerroCasa, Animal::PerroRobot];\n\n    for animal in &animales {\n        if animal.velocidad_minima() &gt;= vel_min && animal.velocidad_maxima() &lt;= vel_max {\n            return Some(animal.clone());\n        }\n    }\n    None\n}\nPaso 4\nFinalmente se evaluará la función y manejar casos donde no haya animales que cumplan con el rango de velocidad.\n\n// Función principal para probar la implementación\nfn main() {\n    let vel_min = 30;\n    let vel_max = 60;\n\n    match buscar_animal_por_rango(vel_min, vel_max) {\n        Some(animal) =&gt; println!(\"Animal encontrado: {:?}\", animal),\n        None =&gt; println!(\"No se encontró ningún animal para el rango dado.\"),\n    }\n}\nResultados Test 1:\n\nvel_min = 30\nvel_max = 60\n\n cargo run\n   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.49s\n     Running `target/debug/tarea_1`\nNo se encontró ningún animal para el rango dado.\nResultados Test 2:\n\nvel_min = 15\nvel_max = 55\n\n&gt; cargo run\n   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.71s\n     Running `target/debug/tarea_1`\nAnimal encontrado: PerroCasa\nResultados Test 3:\n\nvel_min = 35\nvel_max = 80\n\n&gt; cargo run\n   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.81s\n     Running `target/debug/tarea_1`\nAnimal encontrado: PerroSalvaje\nLa función como está diseñada actualmente retorna el primer animal que cumple la condición y termina la búsqueda debido al al uso del return dentro de ciclo For. Pendiente de corregir..",
+    "crumbs": [
+      "Tareas",
+      "Tarea 1"
+    ]
+  },
+  {
+    "objectID": "tarea_1.html#parte-2",
+    "href": "tarea_1.html#parte-2",
+    "title": "Tarea 1",
+    "section": "Parte 2",
+    "text": "Parte 2\n\nCada animal será un struct por separado\nEl Enum seguirá teniendo la lista de animales, cada opción del enum debe contener el struct de su respectivo animal\nDiseñar un Trait que permita obtener la velocidad maxima y minima de un animal\nDiseñar una función que de entrada sean cualquiera de los struct de los animales, y retornar cual es el animal que puede ir más rápido (Nota: esta función puede fallar)\nProbar el perro Salvaje y el Perro robot",
+    "crumbs": [
+      "Tareas",
+      "Tarea 1"
+    ]
+  },
+  {
+    "objectID": "tarea_1.html#parte-3",
+    "href": "tarea_1.html#parte-3",
+    "title": "Tarea 1",
+    "section": "Parte 3",
+    "text": "Parte 3\n\nComplementar la tarea 1 y 2 con el siguiente ajuste a todas las funciones que pueden fallar de la siguiente manera.\nSi la función falla retorna un Result&lt;Algo Bien, Algo Falló&gt;\nW debe ser un Enum el cual liste en cada función, las posibilidades de cómo puede fallar.\nEste nuevo Enum que lista errores, debe ser el retorno de su respectiva función estilo: Result&lt;T, Custom_Error_Enum&gt;\nActualizar el código para que retorne el tipo de error correspondiente. Hacer esto a todas las funciones que pueden fallar.\n\n\n\n\n\n\n\nHint\n\n\n\nSi una puede fallar, y queremos que retorne una cadena de texto como Error, se puede hacer de la siguiente manera.\nResult&lt;Algo, String&gt;",
+    "crumbs": [
+      "Tareas",
+      "Tarea 1"
+    ]
+  },
+  {
+    "objectID": "production.html",
+    "href": "production.html",
+    "title": "14  Scraping",
+    "section": "",
+    "text": "14.1 Ejemplo Scraping\nIncluir una subcategoría sobre cómo gestionar concurrencia con Rust usando async/await, ya que el rendimiento concurrente es clave en procesos de scraping.",
+    "crumbs": [
+      "Práctica",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Scraping</span>"
+    ]
+  },
+  {
+    "objectID": "optimization.html",
+    "href": "optimization.html",
+    "title": "15  Optimización",
+    "section": "",
+    "text": "Testing y Benchmarking: En algún punto del libro, podrías agregar una sección sobre cómo probar y medir el rendimiento del código en Rust, especialmente relevante para aplicaciones espaciales que a menudo manejan grandes volúmenes de datos.\nOptimización: Dado que Rust se centra en la eficiencia, sería útil dedicar tiempo a estrategias de optimización específicas para análisis espaciales, como el manejo eficiente de memoria y concurrencia.",
+    "crumbs": [
+      "Optimización y Paralelización",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Optimización</span>"
+    ]
+  },
+  {
+    "objectID": "spatial_chapter.html",
+    "href": "spatial_chapter.html",
+    "title": "16  Rust Espacial",
+    "section": "",
+    "text": "16.1 Objetos Espaciales",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Rust Espacial</span>"
+    ]
+  },
+  {
+    "objectID": "spatial_chapter.html#objetos-espaciales",
+    "href": "spatial_chapter.html#objetos-espaciales",
+    "title": "16  Rust Espacial",
+    "section": "",
+    "text": "16.1.1 Vectores\n\n\n16.1.2 Raster\nExplicar cómo manejar objetos espaciales en formato geojson o tiff.\nIntroducir alguna librería como geo o gdal para procesar estos tipos de datos.",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Rust Espacial</span>"
+    ]
+  },
+  {
+    "objectID": "spatial_chapter.html#procesos-espaciales",
+    "href": "spatial_chapter.html#procesos-espaciales",
+    "title": "16  Rust Espacial",
+    "section": "16.2 Procesos Espaciales",
+    "text": "16.2 Procesos Espaciales\nTransformaciones geográficas: Explicar cómo realizar reproyecciones y transformaciones de coordenadas.\nIntersecciones espaciales: Cómo calcular intersecciones entre objetos espaciales (polígonos, líneas).",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Rust Espacial</span>"
+    ]
+  },
+  {
+    "objectID": "spatial_chapter.html#ddbb-espaciales",
+    "href": "spatial_chapter.html#ddbb-espaciales",
+    "title": "16  Rust Espacial",
+    "section": "16.3 DDBB Espaciales",
+    "text": "16.3 DDBB Espaciales",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Rust Espacial</span>"
+    ]
+  },
+  {
+    "objectID": "spatial_chapter.html#algoritmos",
+    "href": "spatial_chapter.html#algoritmos",
+    "title": "16  Rust Espacial",
+    "section": "16.4 Algoritmos",
+    "text": "16.4 Algoritmos\n\n16.4.1 Triangulación de Delaunay\nÚtil para algunos tipos de análisis espacial.\n\n\n16.4.2 Voronoi\nOtro algoritmo que puede complementar la creación de celdas espaciales.\n\n\n16.4.3 Geocoding\n\n\n16.4.4 [[Geohash]]\n\n\n16.4.5 r-tree",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Rust Espacial</span>"
+    ]
+  },
+  {
+    "objectID": "functional.html",
+    "href": "functional.html",
+    "title": "Programación Funcional",
+    "section": "",
+    "text": "Además de una explicación de los conceptos básicos de la programación funcional (map, filter, fold), podrías incluir:\n\nIteradores y closures: Cómo la programación funcional se aplica a operaciones sobre datos espaciales.\nComposición de funciones: Explicar cómo utilizar funciones puras en el contexto espacial.",
+    "crumbs": [
+      "Anexos",
+      "Programación Funcional"
+    ]
+  },
+  {
+    "objectID": "languages.html",
+    "href": "languages.html",
+    "title": "Otros Lenguajes",
+    "section": "",
+    "text": "Rust y R\nextendr - A safe and user-friendly R extension interface using Rust\nextendr_api",
+    "crumbs": [
+      "Anexos",
+      "Otros Lenguajes"
+    ]
+  },
+  {
+    "objectID": "languages.html#rust-y-python",
+    "href": "languages.html#rust-y-python",
+    "title": "Otros Lenguajes",
+    "section": "Rust y Python",
+    "text": "Rust y Python",
+    "crumbs": [
+      "Anexos",
+      "Otros Lenguajes"
+    ]
+  },
+  {
+    "objectID": "languages.html#ffi-foreign-function-interface",
+    "href": "languages.html#ffi-foreign-function-interface",
+    "title": "Otros Lenguajes",
+    "section": "FFI (Foreign Function Interface)",
+    "text": "FFI (Foreign Function Interface)\nExplicar cómo Rust se puede integrar con otros lenguajes, especialmente si se piensa en interoperabilidad con Python o R.",
+    "crumbs": [
+      "Anexos",
+      "Otros Lenguajes"
+    ]
+  },
+  {
+    "objectID": "languages.html#binding-de-librerías",
+    "href": "languages.html#binding-de-librerías",
+    "title": "Otros Lenguajes",
+    "section": "Binding de librerías",
+    "text": "Binding de librerías\nCómo crear bindings en Rust para aprovechar librerías de otros lenguajes para análisis espacial.",
+    "crumbs": [
+      "Anexos",
+      "Otros Lenguajes"
+    ]
+  },
+  {
+    "objectID": "tarea_1.html#desarrollo-2",
+    "href": "tarea_1.html#desarrollo-2",
+    "title": "Tarea 1",
+    "section": "Desarrollo 2:",
+    "text": "Desarrollo 2:\nPlan:\n\nEstructuras de Animales\nEnum Animal\nTrait Velocidad\nImplementación del Trait para Animal\nFunción animal_mas_rapido\nPrueba en main\n\nEjecución\n\nEstructuras de Animales:\n\nPerroSalvaje, PerroCasa y PerroRobot están definidas sin campos por simplicidad, pero pueden expandirse según se necesiten atributos adicionales.\n/// Estructuras para cada tipo de animal.\nstruct PerroSalvaje;\nstruct PerroCasa;\nstruct PerroRobot;\n\nEnum Animal:\n\nAlmacena instancias de las estructuras y representa las variantes de animales.\n/// Enum que contiene las diferentes variantes de animales con sus respectivos structs.\nenum Animal {\n    PerroSalvaje(PerroSalvaje),\n    PerroCasa(PerroCasa),\n    PerroRobot(PerroRobot),\n}\n\nTrait Velocidad:\n\nDefine los métodos velocidad_minima() y velocidad_maxima() que se aplicarán a cualquier tipo de animal.\n/// Trait para obtener la velocidad mínima y máxima de los animales.\ntrait Velocidad {\n    fn velocidad_minima(&self) -&gt; u32;\n    fn velocidad_maxima(&self) -&gt; u32;\n}\n\nImplementación del Trait para Animal:\n\nEl Enum Animal implementa el Trait para devolver las velocidades según el tipo de animal.\n/// Implementación del Trait Velocidad para el Enum Animal.\nimpl Velocidad for Animal {\n    fn velocidad_minima(&self) -&gt; u32 {\n        match self {\n            Animal::PerroSalvaje(_) =&gt; 40,\n            Animal::PerroCasa(_) =&gt; 20,\n            Animal::PerroRobot(_) =&gt; 40,\n        }\n    }\n\n    fn velocidad_maxima(&self) -&gt; u32 {\n        match self {\n            Animal::PerroSalvaje(_) =&gt; 70,\n            Animal::PerroCasa(_) =&gt; 50,\n            Animal::PerroRobot(_) =&gt; 70,\n        }\n    }\n}\n\nFunción animal_mas_rapido:\n\nUsa el Trait para comparar dos animales genéricos y determinar cuál es más rápido, devolviendo un mensaje.\n/// Función que compara dos animales implementando el Trait Velocidad.\n/// Retorna el animal más rápido o None si ambos tienen la misma velocidad máxima.\nfn animal_mas_rapido&lt;T: Velocidad, U: Velocidad&gt;(animal1: &T, animal2: &U) -&gt; Option&lt;&'static str&gt; {\n    if animal1.velocidad_maxima() &gt; animal2.velocidad_maxima() {\n        Some(\"Animal 1 es más rápido.\")\n    } else if animal2.velocidad_maxima() &gt; animal1.velocidad_maxima() {\n        Some(\"Animal 2 es más rápido.\")\n    } else {\n        None\n    }\n}\n\nPrueba en main:\n\nSe comparan un PerroSalvaje y un PerroRobot para validar la lógica.\nfn main() {\n    // Crear instancias de PerroSalvaje, PerroRobot y PerroCasa.\n    let perro_salvaje = Animal::PerroSalvaje(PerroSalvaje);\n    let perro_robot = Animal::PerroRobot(PerroRobot);\n    let perro_casa = Animal::PerroCasa(PerroCasa);\n\n    // Imprimir las velocidades mínimas.\n    println!(\"Velocidad mínima del Perro Salvaje: {} km/h\", perro_salvaje.velocidad_minima());\n    println!(\"Velocidad mínima del Perro Robot: {} km/h\", perro_robot.velocidad_minima());\n    println!(\"Velocidad mínima del Perro Casa: {} km/h\", perro_casa.velocidad_minima());\n\n    // Imprimir las velocidades máximas.\n    println!(\"Velocidad máxima del Perro Salvaje: {} km/h\", perro_salvaje.velocidad_maxima());\n    println!(\"Velocidad máxima del Perro Robot: {} km/h\", perro_robot.velocidad_maxima());\n    println!(\"Velocidad máxima del Perro Casa: {} km/h\", perro_casa.velocidad_maxima());\n\n    // Comparar los dos animales.\n    match animal_mas_rapido(&perro_salvaje, &perro_robot) {\n        Some(resultado) =&gt; println!(\"{}\", resultado),\n        None =&gt; println!(\"Ambos animales tienen la misma velocidad máxima.\"),\n    }\n}\nResultados:\n&gt; cargo run\n   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.82s\n     Running `target/debug/tarea_1`\nVelocidad mínima del Perro Salvaje: 40 km/h\nVelocidad mínima del Perro Robot: 40 km/h\nVelocidad mínima del Perro Casa: 20 km/h\nVelocidad máxima del Perro Salvaje: 70 km/h\nVelocidad máxima del Perro Robot: 70 km/h\nVelocidad máxima del Perro Casa: 50 km/h\nAnimal 1 es más rápido.\nSe puede mejorar y hacer que retorne el nombre del Animal",
+    "crumbs": [
+      "Tareas",
+      "Tarea 1"
     ]
   }
 ]

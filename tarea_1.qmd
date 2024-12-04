@@ -1,37 +1,49 @@
+---
+editor: 
+  markdown: 
+    wrap: 72
+---
 
 # Tarea 1 {.unnumbered}
 
-
 ## Parte 1
-
 
 ### Enunciado 1
 
-- Crear un `Enum` que contenga diferentes animales
-- Implementar en el `Enum` una función la cual entregue la velocidad máxima del animal específico
-- Implementar en el `Enum` una función la cual entregue la velocidad mínima del animal específico
-- Implementar en el enum al menos los siguientes:
-    * Perro salvaje de a `40km/h` a `70km/h`
-    * Perro casa de a `20km/h` a `50Km/h`
-    * Perro robot que finge ser un perro de a `40km/h` a `70km/h`
-- Diseñar una función que tenga de entrada una velocidad máxima y una velocidad mínima, la función debe retornar en caso que exista, el animal que es capaz de correr en ese rango de velocidad (Nota: esta función puede fallar).
+-   Crear un `Enum` que contenga diferentes animales
+-   Implementar en el `Enum` una función la cual entregue la velocidad
+    máxima del animal específico
+-   Implementar en el `Enum` una función la cual entregue la velocidad
+    mínima del animal específico
+-   Implementar en el enum al menos los siguientes:
+    -   Perro salvaje de a `40km/h` a `70km/h`
+    -   Perro casa de a `20km/h` a `50Km/h`
+    -   Perro robot que finge ser un perro de a `40km/h` a `70km/h`
+-   Diseñar una función que tenga de entrada una velocidad máxima y una
+    velocidad mínima, la función debe retornar en caso que exista, el
+    animal que es capaz de correr en ese rango de velocidad (Nota: esta
+    función puede fallar).
 
 ### Desarrollo 1
 
 **Plan:**
 
-1. Representaremos los diferentes animales con variantes del enum.
-2. Se implementarán métodos para obtener la velocidad mínima y máxima de cada variante.
-3. Diseñaremos una función que reciba una velocidad mínima y máxima, y retorne el animal que cumpla con esos límites o un error si no existe.
-4. Se evaluará la función y manejar casos donde no haya animales que cumplan con el rango de velocidad.
-  
+1.  Representaremos los diferentes animales con variantes del enum.
+2.  Se implementarán métodos para obtener la velocidad mínima y máxima
+    de cada variante.
+3.  Diseñaremos una función que reciba una velocidad mínima y máxima, y
+    retorne el animal que cumpla con esos límites o un error si no
+    existe.
+4.  Se evaluará la función y manejar casos donde no haya animales que
+    cumplan con el rango de velocidad.
+
 **Implementación:**
 
 **Paso 0:**
 
 Se crea el proyecto utilizando cargo en la terminal:
 
-```bash
+``` bash
 cargo new tarea_1
 ```
 
@@ -39,7 +51,7 @@ cargo new tarea_1
 
 Definimos el Enum con variantes para los diferentes animales
 
-```rust
+``` rust
 #[derive(Debug, Clone)]
 enum Animal {
     PerroSalvaje,
@@ -47,17 +59,18 @@ enum Animal {
     PerroRobot,
 }
 ```
-* Animal no tiene implementado el `trait` `Clone`
+
+-   Animal no tiene implementado el `trait` `Clone`
 
 **Paso 2:**
 
-Se implementarán métodos para obtener la velocidad mínima y máxima de cada variante.
+Se implementarán métodos para obtener la velocidad mínima y máxima de
+cada variante.
 
- - Debe retornar la velocidad máxima de cada animal
- - Debe retornar la velocidad mínima de cada animal
+-   Debe retornar la velocidad máxima de cada animal
+-   Debe retornar la velocidad mínima de cada animal
 
-
-```rust
+``` rust
 // Implementación de métodos para el Enum Animal
 impl Animal {
     // Método que retorna la velocidad máxima de cada animal
@@ -82,10 +95,11 @@ impl Animal {
 
 **Paso 3:**
 
-Crear una función buscar_animal_por_rango que reciba una velocidad mínima y máxima, y retorne el animal que cumpla con esos límites o un error si no existe.
-  
+Crear una función buscar_animal_por_rango que reciba una velocidad
+mínima y máxima, y retorne el animal que cumpla con esos límites o un
+error si no existe.
 
-```rust
+``` rust
 // Función que busca un animal capaz de correr en un rango de velocidad
 fn buscar_animal_por_rango(vel_min: u32, vel_max: u32) -> Option<Animal> {
     // Iteramos sobre las variantes del enum para encontrar un animal que cumpla el rango
@@ -102,12 +116,10 @@ fn buscar_animal_por_rango(vel_min: u32, vel_max: u32) -> Option<Animal> {
 
 **Paso 4**
 
-Finalmente se evaluará la función y manejar casos donde no haya animales que cumplan con el rango de velocidad.
+Finalmente se evaluará la función y manejar casos donde no haya animales
+que cumplan con el rango de velocidad.
 
-
-
-
-```rust
+``` rust
 
 // Función principal para probar la implementación
 fn main() {
@@ -123,10 +135,10 @@ fn main() {
 
 **Resultados Test 1:**
 
-- vel_min = 30
-- vel_max = 60
+-   vel_min = 30
+-   vel_max = 60
 
-```console
+``` console
  cargo run
    Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.49s
@@ -136,10 +148,10 @@ No se encontró ningún animal para el rango dado.
 
 Resultados Test 2:
 
-- vel_min = 15
-- vel_max = 55
+-   vel_min = 15
+-   vel_max = 55
 
-```console
+``` console
 > cargo run
    Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.71s
@@ -149,10 +161,10 @@ Animal encontrado: PerroCasa
 
 Resultados Test 3:
 
-- vel_min = 35
-- vel_max = 80
+-   vel_min = 35
+-   vel_max = 80
 
-```console
+``` console
 > cargo run
    Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.81s
@@ -160,33 +172,181 @@ Resultados Test 3:
 Animal encontrado: PerroSalvaje
 ```
 
-La función como está diseñada actualmente retorna el primer animal que cumple la condición y termina la búsqueda debido al al uso del `return` dentro de ciclo `For.` Pendiente de corregir..
-
+La función como está diseñada actualmente retorna el primer animal que
+cumple la condición y termina la búsqueda debido al al uso del `return`
+dentro de ciclo `For.` Pendiente de corregir..
 
 ## Parte 2
 
+-   Cada animal será un struct por separado
+-   El `Enum` seguirá teniendo la lista de animales, cada opción del
+    enum debe contener el struct de su respectivo animal
+-   Diseñar un `Trait` que permita obtener la velocidad maxima y minima
+    de un animal
+-   Diseñar una función que de entrada sean cualquiera de los struct de
+    los animales, y retornar cual es el animal que puede ir más rápido
+    (Nota: esta función puede fallar)
+-   Probar el perro Salvaje y el Perro robot
 
-- Cada animal será un struct por separado
-- El `Enum` seguirá teniendo la lista de animales, cada opción del enum debe contener el struct de su respectivo animal
-- Diseñar un `Trait` que permita obtener la velocidad maxima y minima de un animal
-- Diseñar una función que de entrada sean cualquiera de los struct de los animales, y retornar cual es el animal que puede ir más rápido (Nota: esta función puede fallar)
-- Probar el perro Salvaje y el Perro robot
+## Desarrollo 2:
+
+**Plan:**
+
+1.  Estructuras de Animales
+2.  Enum Animal
+3.  Trait Velocidad
+4.  Implementación del Trait para Animal
+5.  Función animal_mas_rapido
+6.  Prueba en main
+
+**Ejecución**
+
+1.  **Estructuras de Animales:**
+
+PerroSalvaje, PerroCasa y PerroRobot están definidas sin campos por
+simplicidad, pero pueden expandirse según se necesiten atributos
+adicionales.
+
+``` rust
+/// Estructuras para cada tipo de animal.
+struct PerroSalvaje;
+struct PerroCasa;
+struct PerroRobot;
+```
+
+2.  **Enum Animal:**
+
+Almacena instancias de las estructuras y representa las variantes de animales.
+
+``` rust
+/// Enum que contiene las diferentes variantes de animales con sus respectivos structs.
+enum Animal {
+    PerroSalvaje(PerroSalvaje),
+    PerroCasa(PerroCasa),
+    PerroRobot(PerroRobot),
+}
+```
+
+3.  **Trait Velocidad:** 
+
+Define los métodos `velocidad_minima()` y `velocidad_maxima()` que se aplicarán a cualquier tipo de animal.
+
+``` rust
+/// Trait para obtener la velocidad mínima y máxima de los animales.
+trait Velocidad {
+    fn velocidad_minima(&self) -> u32;
+    fn velocidad_maxima(&self) -> u32;
+}
+```
+
+4.  **Implementación del Trait para Animal:**
+
+El Enum `Animal` implementa el Trait para devolver las velocidades según el tipo de animal.
+
+``` rust
+/// Implementación del Trait Velocidad para el Enum Animal.
+impl Velocidad for Animal {
+    fn velocidad_minima(&self) -> u32 {
+        match self {
+            Animal::PerroSalvaje(_) => 40,
+            Animal::PerroCasa(_) => 20,
+            Animal::PerroRobot(_) => 40,
+        }
+    }
+
+    fn velocidad_maxima(&self) -> u32 {
+        match self {
+            Animal::PerroSalvaje(_) => 70,
+            Animal::PerroCasa(_) => 50,
+            Animal::PerroRobot(_) => 70,
+        }
+    }
+}
+```
+
+5.  **Función animal_mas_rapido:** 
+
+Usa el Trait para comparar dos animales genéricos y determinar cuál es más rápido, devolviendo un mensaje.
+
+``` rust
+/// Función que compara dos animales implementando el Trait Velocidad.
+/// Retorna el animal más rápido o None si ambos tienen la misma velocidad máxima.
+fn animal_mas_rapido<T: Velocidad, U: Velocidad>(animal1: &T, animal2: &U) -> Option<&'static str> {
+    if animal1.velocidad_maxima() > animal2.velocidad_maxima() {
+        Some("Animal 1 es más rápido.")
+    } else if animal2.velocidad_maxima() > animal1.velocidad_maxima() {
+        Some("Animal 2 es más rápido.")
+    } else {
+        None
+    }
+}
+```
+
+6.  **Prueba en main:** 
+
+Se comparan un PerroSalvaje y un PerroRobot para validar la lógica.
+
+``` rust
+fn main() {
+    // Crear instancias de PerroSalvaje, PerroRobot y PerroCasa.
+    let perro_salvaje = Animal::PerroSalvaje(PerroSalvaje);
+    let perro_robot = Animal::PerroRobot(PerroRobot);
+    let perro_casa = Animal::PerroCasa(PerroCasa);
+
+    // Imprimir las velocidades mínimas.
+    println!("Velocidad mínima del Perro Salvaje: {} km/h", perro_salvaje.velocidad_minima());
+    println!("Velocidad mínima del Perro Robot: {} km/h", perro_robot.velocidad_minima());
+    println!("Velocidad mínima del Perro Casa: {} km/h", perro_casa.velocidad_minima());
+
+    // Imprimir las velocidades máximas.
+    println!("Velocidad máxima del Perro Salvaje: {} km/h", perro_salvaje.velocidad_maxima());
+    println!("Velocidad máxima del Perro Robot: {} km/h", perro_robot.velocidad_maxima());
+    println!("Velocidad máxima del Perro Casa: {} km/h", perro_casa.velocidad_maxima());
+
+    // Comparar los dos animales.
+    match animal_mas_rapido(&perro_salvaje, &perro_robot) {
+        Some(resultado) => println!("{}", resultado),
+        None => println!("Ambos animales tienen la misma velocidad máxima."),
+    }
+}
+```
+
+Resultados:
+
+``` console
+> cargo run
+   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.82s
+     Running `target/debug/tarea_1`
+Velocidad mínima del Perro Salvaje: 40 km/h
+Velocidad mínima del Perro Robot: 40 km/h
+Velocidad mínima del Perro Casa: 20 km/h
+Velocidad máxima del Perro Salvaje: 70 km/h
+Velocidad máxima del Perro Robot: 70 km/h
+Velocidad máxima del Perro Casa: 50 km/h
+Animal 1 es más rápido.
+```
+
+Se puede mejorar y hacer que retorne el nombre del Animal
+
 
 ## Parte 3
 
-- Complementar la tarea 1 y 2 con el siguiente ajuste a todas las funciones que pueden fallar de la siguiente manera.
-- Si la función falla retorna un `Result<Algo Bien, Algo Falló>`
-- `W` debe ser un Enum el cual liste en cada función, las posibilidades de cómo puede fallar.
-- Este nuevo `Enum` que lista errores, debe ser el retorno de su respectiva función estilo: `Result<T, Custom_Error_Enum>`
-- Actualizar el código para que retorne el tipo de error correspondiente.
-Hacer esto a todas las funciones que pueden fallar.
+-   Complementar la tarea 1 y 2 con el siguiente ajuste a todas las
+    funciones que pueden fallar de la siguiente manera.
+-   Si la función falla retorna un `Result<Algo Bien, Algo Falló>`
+-   `W` debe ser un Enum el cual liste en cada función, las
+    posibilidades de cómo puede fallar.
+-   Este nuevo `Enum` que lista errores, debe ser el retorno de su
+    respectiva función estilo: `Result<T, Custom_Error_Enum>`
+-   Actualizar el código para que retorne el tipo de error
+    correspondiente. Hacer esto a todas las funciones que pueden fallar.
 
-
-::: {.callout-tip}
+::: callout-tip
 ## Hint
 
-Si una puede fallar, y queremos que retorne una cadena de texto como Error, se puede hacer de la siguiente manera.
+Si una puede fallar, y queremos que retorne una cadena de texto como
+Error, se puede hacer de la siguiente manera.
 
 `Result<Algo, String>`
-
 :::
