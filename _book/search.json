@@ -94,7 +94,7 @@
     "href": "install.html",
     "title": "3  Instalación",
     "section": "",
-    "text": "3.1 Intalar Rust\nEl primer paso es instalar Rust. Descargaremos Rust a través de rustup, una herramienta de línea de comandos para administrar las versiones de Rust y las herramientas asociadas. Necesitarás una conexión a Internet para la descarga.",
+    "text": "3.1 Intalar Rust\nEste capítulo explica cómo instalar Rust, cómo escribir un programa “Hola, mundo!” Y cómo usar Cargo, el administrador de paquetes y herramienta de compilación de Rust.\nEl primer paso es instalar Rust. Descargaremos Rust a través de rustup, una herramienta de línea de comandos para administrar las versiones de Rust y las herramientas asociadas. Necesitarás una conexión a Internet para la descarga.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalación</span>"
     ]
@@ -154,7 +154,7 @@
     "href": "variables.html",
     "title": "4  Variables y Mutabilidad",
     "section": "",
-    "text": "4.1 Tipos de datos básicos\nRust es un lenguaje fuertemente tipado, lo que significa que cada valor debe tener un tipo específico. Estos tipos se dividen principalmente en dos categorías: tipos escalares y tipos compuestos. En esta sección, nos centraremos en los tipos escalares, que representan un valor único.",
+    "text": "4.1 Tipos de datos básicos\nEn Rust, las variables son inmutables por defecto, lo que promueve la seguridad y la concurrencia. Esto significa que una vez que se asigna un valor a una variable, no puede ser cambiado. Sin embargo, Rust permite optar por variables mutables si es necesario.\nPor ejemplo, el siguiente código da un error porque intenta reasignar un valor a la variable x sin hacerla mutable:\nEste error es útil porque garantiza que no modifiquemos accidentalmente variables que deben permanecer inmutables, lo que puede causar errores difíciles de detectar.\nSi necesitas cambiar el valor de una variable, puedes hacerla mutable usando mut:\nCon mut, el valor de x puede cambiar de 5 a 6. La mutabilidad es útil en muchos casos, pero usar variables inmutables puede ayudar a evitar errores y hacer que tu código sea más fácil de entender.\nRust es un lenguaje fuertemente tipado, lo que significa que cada valor debe tener un tipo específico. Estos tipos se dividen principalmente en dos categorías: tipos escalares y tipos compuestos. En esta sección, nos centraremos en los tipos escalares, que representan un valor único.",
     "crumbs": [
       "Conceptos Básicos",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Variables y Mutabilidad</span>"
@@ -187,7 +187,7 @@
     "href": "flow_control.html",
     "title": "5  Control de Flujo",
     "section": "",
-    "text": "5.1 Expresión if\nEn Rust, la expresión if evalúa una condición booleana y ejecuta un bloque de código dependiendo de si la condición es verdadera (true) o falsa (false). A diferencia de otros lenguajes, if en Rust es una expresión, lo que significa que puede devolver un valor.\nTambién se puede usar la expresión if para asignar valores:\nEs importante recordar que las ramas del if deben devolver el mismo tipo.",
+    "text": "5.1 Expresión if\nEn Rust, el control de flujos permite dirigir la ejecución del programa basándose en condiciones y repeticiones. Rust ofrece varias estructuras para controlar el flujo de la ejecución del código, como if para condiciones y bucles para repetir bloques de código.\nAquí tienes una tabla con las operaciones lógicas y su sintaxis en Rust, qué se utilizan en control de flujos:\nEn Rust, la expresión if evalúa una condición booleana y ejecuta un bloque de código dependiendo de si la condición es verdadera (true) o falsa (false). A diferencia de otros lenguajes, if en Rust es una expresión, lo que significa que puede devolver un valor.\nTambién se puede usar la expresión if para asignar valores:\nEs importante recordar que las ramas del if deben devolver el mismo tipo.",
     "crumbs": [
       "Conceptos Básicos",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Control de  Flujo</span>"
@@ -231,7 +231,7 @@
     "href": "scope.html",
     "title": "6  Bloques y Ámbitos",
     "section": "",
-    "text": "6.1 Bloques\nUn bloque es simplemente un conjunto de instrucciones encerradas entre {}. Puedes usarlos en funciones, if, while, for y otras estructuras de control de flujo. Por ejemplo:\nEn este caso, el valor de y se asigna al resultado del bloque {}, que devuelve 4. Dentro del bloque, el valor de x es 3, pero fuera del bloque sigue siendo 5. Esto demuestra cómo los bloques crean un nuevo ámbito.",
+    "text": "6.1 Bloques\nEn Rust, un bloque es un conjunto de declaraciones y expresiones encerradas entre llaves {}, que define un ámbito o scope. Los bloques permiten organizar el código y controlar la visibilidad y la duración de las variables.\nUn bloque es simplemente un conjunto de instrucciones encerradas entre {}. Puedes usarlos en funciones, if, while, for y otras estructuras de control de flujo. Por ejemplo:\nEn este caso, el valor de y se asigna al resultado del bloque {}, que devuelve 4. Dentro del bloque, el valor de x es 3, pero fuera del bloque sigue siendo 5. Esto demuestra cómo los bloques crean un nuevo ámbito.",
     "crumbs": [
       "Conceptos Básicos",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bloques y Ámbitos</span>"
@@ -341,7 +341,7 @@
     "href": "ownership.html",
     "title": "12  Ownership y Borrowing",
     "section": "",
-    "text": "12.1 Definción\nEl ownership es un conjunto de reglas que definen cómo un programa de Rust administra la memoria. Todos los programas tienen que administrar la forma en que usan la memoria de un computador mientras se ejecutan. Algunos lenguajes tienen recolección de basura que busca regularmente la memoria que ya no se usa mientras el programa se ejecuta; en otros lenguajes, el programador debe asignar y liberar la memoria explícitamente. Rust usa un tercer enfoque: la memoria se administra a través de un sistema de ownership con un conjunto de reglas que el compilador verifica. Si alguna de las reglas se viola, el programa no se compilará. Ninguna de las características del ownership ralentizará su programa mientras se ejecuta.",
+    "text": "12.1 Definción\nEl sistema de Ownership (propiedad) y Borrowing (préstamo) es el corazón de Rust y lo que garantiza su seguridad en memoria sin necesidad de un recolector de basura. Aunque puede sonar complejo al principio, usando analogías simples podemos descomponerlo en conceptos fáciles de entender.\nEl ownership es un conjunto de reglas que definen cómo un programa de Rust administra la memoria. Todos los programas tienen que administrar la forma en que usan la memoria de un computador mientras se ejecutan. Algunos lenguajes tienen recolección de basura que busca regularmente la memoria que ya no se usa mientras el programa se ejecuta; en otros lenguajes, el programador debe asignar y liberar la memoria explícitamente. Rust usa un tercer enfoque: la memoria se administra a través de un sistema de ownership con un conjunto de reglas que el compilador verifica. Si alguna de las reglas se viola, el programa no se compilará. Ninguna de las características del ownership ralentizará su programa mientras se ejecuta.",
     "crumbs": [
       "Conceptos Avanzados",
       "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
@@ -429,7 +429,7 @@
     "href": "struct.html",
     "title": "13  Structs, Enums y Traits",
     "section": "",
-    "text": "13.1 Structs: Los Planos de los Edificios",
+    "text": "13.1 Structs: Los Planos de los Edificios\nRust ofrece herramientas poderosas para organizar datos y definir comportamientos. Los Structs, Enums, y Traits son fundamentales para escribir código limpio, eficiente y mantenible.\nEn este capítulo, exploraremos cómo estos tres conceptos funcionan y se relacionan, utilizando la analogía de una ciudad para facilitar su comprensión.",
     "crumbs": [
       "Conceptos Avanzados",
       "<span class='chapter-number'>13</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
@@ -524,6 +524,17 @@
     ]
   },
   {
+    "objectID": "tarea_1.html#desarrollo-2",
+    "href": "tarea_1.html#desarrollo-2",
+    "title": "Tarea 1",
+    "section": "Desarrollo 2:",
+    "text": "Desarrollo 2:\nPlan:\n\nEstructuras de Animales\nEnum Animal\nTrait Velocidad\nImplementación del Trait para Animal\nFunción animal_mas_rapido\nPrueba en main\n\nEjecución\n\nEstructuras de Animales:\n\nPerroSalvaje, PerroCasa y PerroRobot están definidas sin campos por simplicidad, pero pueden expandirse según se necesiten atributos adicionales.\n/// Estructuras para cada tipo de animal.\nstruct PerroSalvaje;\nstruct PerroCasa;\nstruct PerroRobot;\n\nEnum Animal:\n\nAlmacena instancias de las estructuras y representa las variantes de animales.\n/// Enum que contiene las diferentes variantes de animales con sus respectivos structs.\nenum Animal {\n    PerroSalvaje(PerroSalvaje),\n    PerroCasa(PerroCasa),\n    PerroRobot(PerroRobot),\n}\n\nTrait Velocidad:\n\nDefine los métodos velocidad_minima() y velocidad_maxima() que se aplicarán a cualquier tipo de animal.\n/// Trait para obtener la velocidad mínima y máxima de los animales.\ntrait Velocidad {\n    fn velocidad_minima(&self) -&gt; u32;\n    fn velocidad_maxima(&self) -&gt; u32;\n}\n\nImplementación del Trait para Animal:\n\nEl Enum Animal implementa el Trait para devolver las velocidades según el tipo de animal.\n/// Implementación del Trait Velocidad para el Enum Animal.\nimpl Velocidad for Animal {\n    fn velocidad_minima(&self) -&gt; u32 {\n        match self {\n            Animal::PerroSalvaje(_) =&gt; 40,\n            Animal::PerroCasa(_) =&gt; 20,\n            Animal::PerroRobot(_) =&gt; 40,\n        }\n    }\n\n    fn velocidad_maxima(&self) -&gt; u32 {\n        match self {\n            Animal::PerroSalvaje(_) =&gt; 70,\n            Animal::PerroCasa(_) =&gt; 50,\n            Animal::PerroRobot(_) =&gt; 70,\n        }\n    }\n}\n\nFunción animal_mas_rapido:\n\nUsa el Trait para comparar dos animales genéricos y determinar cuál es más rápido, devolviendo un mensaje.\n/// Función que compara dos animales implementando el Trait Velocidad.\n/// Retorna el animal más rápido o None si ambos tienen la misma velocidad máxima.\nfn animal_mas_rapido&lt;T: Velocidad, U: Velocidad&gt;(animal1: &T, animal2: &U) -&gt; Option&lt;&'static str&gt; {\n    if animal1.velocidad_maxima() &gt; animal2.velocidad_maxima() {\n        Some(\"Animal 1 es más rápido.\")\n    } else if animal2.velocidad_maxima() &gt; animal1.velocidad_maxima() {\n        Some(\"Animal 2 es más rápido.\")\n    } else {\n        None\n    }\n}\n\nPrueba en main:\n\nSe comparan un PerroSalvaje y un PerroRobot para validar la lógica.\nfn main() {\n    // Crear instancias de PerroSalvaje, PerroRobot y PerroCasa.\n    let perro_salvaje = Animal::PerroSalvaje(PerroSalvaje);\n    let perro_robot = Animal::PerroRobot(PerroRobot);\n    let perro_casa = Animal::PerroCasa(PerroCasa);\n\n    // Imprimir las velocidades mínimas.\n    println!(\"Velocidad mínima del Perro Salvaje: {} km/h\", perro_salvaje.velocidad_minima());\n    println!(\"Velocidad mínima del Perro Robot: {} km/h\", perro_robot.velocidad_minima());\n    println!(\"Velocidad mínima del Perro Casa: {} km/h\", perro_casa.velocidad_minima());\n\n    // Imprimir las velocidades máximas.\n    println!(\"Velocidad máxima del Perro Salvaje: {} km/h\", perro_salvaje.velocidad_maxima());\n    println!(\"Velocidad máxima del Perro Robot: {} km/h\", perro_robot.velocidad_maxima());\n    println!(\"Velocidad máxima del Perro Casa: {} km/h\", perro_casa.velocidad_maxima());\n\n    // Comparar los dos animales.\n    match animal_mas_rapido(&perro_salvaje, &perro_robot) {\n        Some(resultado) =&gt; println!(\"{}\", resultado),\n        None =&gt; println!(\"Ambos animales tienen la misma velocidad máxima.\"),\n    }\n}\nResultados:\n&gt; cargo run\n   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.82s\n     Running `target/debug/tarea_1`\nVelocidad mínima del Perro Salvaje: 40 km/h\nVelocidad mínima del Perro Robot: 40 km/h\nVelocidad mínima del Perro Casa: 20 km/h\nVelocidad máxima del Perro Salvaje: 70 km/h\nVelocidad máxima del Perro Robot: 70 km/h\nVelocidad máxima del Perro Casa: 50 km/h\nAnimal 1 es más rápido.\nSe puede mejorar y hacer que retorne el nombre del Animal",
+    "crumbs": [
+      "Tareas",
+      "Tarea 1"
+    ]
+  },
+  {
     "objectID": "tarea_1.html#parte-3",
     "href": "tarea_1.html#parte-3",
     "title": "Tarea 1",
@@ -561,7 +572,7 @@
     "href": "spatial_chapter.html",
     "title": "16  Rust Espacial",
     "section": "",
-    "text": "16.1 Objetos Espaciales",
+    "text": "16.1 Objetos Espaciales\nRust es ideal para el análisis o procesamiento espacial debido a su alto rendimiento, manejo eficiente de memoria y seguridad. En comparación con lenguajes como Python o R, Rust ofrece una ejecución más rápida y un control explícito sobre los recursos del sistema, lo que es crucial para procesar grandes volúmenes de datos espaciales o trabajar con imágenes satelitales. Además, su sistema de manejo de memoria sin recolector de basura permite minimizar el consumo de recursos, algo vital en tareas geoespaciales intensivas como el procesamiento de modelos de elevación digital (DEM) o la indexación espacial.\nOtra ventaja clave de Rust es su seguridad en tiempo de compilación, lo que reduce errores comunes como los desbordamientos de buffer o condiciones de carrera, que pueden ser problemáticos en lenguajes como C++ o Python. Esto lo convierte en una excelente opción para desarrollar aplicaciones robustas y escalables para análisis espacial, donde el rendimiento y la precisión son cruciales. A largo plazo, Rust también facilita la integración con otras tecnologías de alto rendimiento como GPUs, lo que permite mejorar significativamente los tiempos de procesamiento en tareas complejas como simulaciones o renderizado de grandes mapas interactivos.",
     "crumbs": [
       "Rust Espacial",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Rust Espacial</span>"
@@ -664,17 +675,6 @@
     "crumbs": [
       "Anexos",
       "Otros Lenguajes"
-    ]
-  },
-  {
-    "objectID": "tarea_1.html#desarrollo-2",
-    "href": "tarea_1.html#desarrollo-2",
-    "title": "Tarea 1",
-    "section": "Desarrollo 2:",
-    "text": "Desarrollo 2:\nPlan:\n\nEstructuras de Animales\nEnum Animal\nTrait Velocidad\nImplementación del Trait para Animal\nFunción animal_mas_rapido\nPrueba en main\n\nEjecución\n\nEstructuras de Animales:\n\nPerroSalvaje, PerroCasa y PerroRobot están definidas sin campos por simplicidad, pero pueden expandirse según se necesiten atributos adicionales.\n/// Estructuras para cada tipo de animal.\nstruct PerroSalvaje;\nstruct PerroCasa;\nstruct PerroRobot;\n\nEnum Animal:\n\nAlmacena instancias de las estructuras y representa las variantes de animales.\n/// Enum que contiene las diferentes variantes de animales con sus respectivos structs.\nenum Animal {\n    PerroSalvaje(PerroSalvaje),\n    PerroCasa(PerroCasa),\n    PerroRobot(PerroRobot),\n}\n\nTrait Velocidad:\n\nDefine los métodos velocidad_minima() y velocidad_maxima() que se aplicarán a cualquier tipo de animal.\n/// Trait para obtener la velocidad mínima y máxima de los animales.\ntrait Velocidad {\n    fn velocidad_minima(&self) -&gt; u32;\n    fn velocidad_maxima(&self) -&gt; u32;\n}\n\nImplementación del Trait para Animal:\n\nEl Enum Animal implementa el Trait para devolver las velocidades según el tipo de animal.\n/// Implementación del Trait Velocidad para el Enum Animal.\nimpl Velocidad for Animal {\n    fn velocidad_minima(&self) -&gt; u32 {\n        match self {\n            Animal::PerroSalvaje(_) =&gt; 40,\n            Animal::PerroCasa(_) =&gt; 20,\n            Animal::PerroRobot(_) =&gt; 40,\n        }\n    }\n\n    fn velocidad_maxima(&self) -&gt; u32 {\n        match self {\n            Animal::PerroSalvaje(_) =&gt; 70,\n            Animal::PerroCasa(_) =&gt; 50,\n            Animal::PerroRobot(_) =&gt; 70,\n        }\n    }\n}\n\nFunción animal_mas_rapido:\n\nUsa el Trait para comparar dos animales genéricos y determinar cuál es más rápido, devolviendo un mensaje.\n/// Función que compara dos animales implementando el Trait Velocidad.\n/// Retorna el animal más rápido o None si ambos tienen la misma velocidad máxima.\nfn animal_mas_rapido&lt;T: Velocidad, U: Velocidad&gt;(animal1: &T, animal2: &U) -&gt; Option&lt;&'static str&gt; {\n    if animal1.velocidad_maxima() &gt; animal2.velocidad_maxima() {\n        Some(\"Animal 1 es más rápido.\")\n    } else if animal2.velocidad_maxima() &gt; animal1.velocidad_maxima() {\n        Some(\"Animal 2 es más rápido.\")\n    } else {\n        None\n    }\n}\n\nPrueba en main:\n\nSe comparan un PerroSalvaje y un PerroRobot para validar la lógica.\nfn main() {\n    // Crear instancias de PerroSalvaje, PerroRobot y PerroCasa.\n    let perro_salvaje = Animal::PerroSalvaje(PerroSalvaje);\n    let perro_robot = Animal::PerroRobot(PerroRobot);\n    let perro_casa = Animal::PerroCasa(PerroCasa);\n\n    // Imprimir las velocidades mínimas.\n    println!(\"Velocidad mínima del Perro Salvaje: {} km/h\", perro_salvaje.velocidad_minima());\n    println!(\"Velocidad mínima del Perro Robot: {} km/h\", perro_robot.velocidad_minima());\n    println!(\"Velocidad mínima del Perro Casa: {} km/h\", perro_casa.velocidad_minima());\n\n    // Imprimir las velocidades máximas.\n    println!(\"Velocidad máxima del Perro Salvaje: {} km/h\", perro_salvaje.velocidad_maxima());\n    println!(\"Velocidad máxima del Perro Robot: {} km/h\", perro_robot.velocidad_maxima());\n    println!(\"Velocidad máxima del Perro Casa: {} km/h\", perro_casa.velocidad_maxima());\n\n    // Comparar los dos animales.\n    match animal_mas_rapido(&perro_salvaje, &perro_robot) {\n        Some(resultado) =&gt; println!(\"{}\", resultado),\n        None =&gt; println!(\"Ambos animales tienen la misma velocidad máxima.\"),\n    }\n}\nResultados:\n&gt; cargo run\n   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.82s\n     Running `target/debug/tarea_1`\nVelocidad mínima del Perro Salvaje: 40 km/h\nVelocidad mínima del Perro Robot: 40 km/h\nVelocidad mínima del Perro Casa: 20 km/h\nVelocidad máxima del Perro Salvaje: 70 km/h\nVelocidad máxima del Perro Robot: 70 km/h\nVelocidad máxima del Perro Casa: 50 km/h\nAnimal 1 es más rápido.\nSe puede mejorar y hacer que retorne el nombre del Animal",
-    "crumbs": [
-      "Tareas",
-      "Tarea 1"
     ]
   }
 ]

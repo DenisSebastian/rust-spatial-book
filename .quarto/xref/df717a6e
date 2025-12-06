@@ -1,1 +1,1 @@
-{"headings":["definción","ownership","borrowing","lifetimes","resumen-visual","slices","borrow-checker","errores-comunes-y-cómo-evitarlos","uso-después-de-transferencia","conflictos-en-préstamos-mutables","referencias-a-datos-no-válidos"],"options":{"chapters":true},"entries":[]}
+{"entries":[],"headings":["definción","ownership","borrowing","lifetimes","resumen-visual","slices","borrow-checker","errores-comunes-y-cómo-evitarlos","uso-después-de-transferencia","conflictos-en-préstamos-mutables","referencias-a-datos-no-válidos"],"options":{"chapters":true}}

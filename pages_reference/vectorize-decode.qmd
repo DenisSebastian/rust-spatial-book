@@ -1,0 +1,77 @@
+# Vectorize `decode()`
+
+::: callout-tip
+## Objective
+
+Create a vectorized `gh_decode()` function utilizing much of what we have learned today.
+
+:::
+
+
+In addition to collecting an interator into a wrapper type—e.g. `Doubles` or `Strings` we can create a vector of scalar types—`Vec<Rfloat>` and create `Doubles` from that using the associated function `Doubles::from_values(my_vec)`
+
+Using `Doubles::from_values()` is a flexible way to use Rust's vectors and quickly translate them to R ones.
+
+## Example
+
+```rust
+// instantiate empty vector
+let mut my_vec = Vec::new();
+
+// iterate through something and push into the vector
+for xi in x {
+    my_vec.push(Rfloat::from(xi));
+}
+
+// Create a double vector from the vector
+let res = Doubles::from_values(my_vec);
+```
+
+## Exercise
+
+Your objective for this exercise is to vectorize `gh_decode()` and return a `data.frame`. To do this:
+
+- Create 4 empty vectors to store `x`, `y`, `x_error`, and `y_error`
+- Iterate through each geohash and attempt to decode it
+- For each successful decoding insert the x, y, and error values into their corresponding vectors
+- When an error is encountered, insert `NA` values into the vectors
+- Create double vectors for each variable using `Doubles::from_values()`
+- Create a data.frame using `data_frame!()`
+
+<details>
+    <summary>View solution</summary>
+
+```rust
+fn gh_decode(geohash: Strings) -> Robj {
+    let mut x_res = Vec::new();
+    let mut y_res = Vec::new();
+    let mut x_error = Vec::new();
+    let mut y_error = Vec::new();
+
+    for gh in geohash.into_iter() {
+        let resi = decode(gh);
+        match resi {
+            Ok((Coord { x, y }, xe, ye)) => {
+                x_res.push(Rfloat::from(x));
+                y_res.push(Rfloat::from(y));
+                x_error.push(Rfloat::from(xe));
+                y_error.push(Rfloat::from(ye));
+            }
+            Err(_) => {
+                x_res.push(Rfloat::na());
+                y_res.push(Rfloat::na());
+                x_error.push(Rfloat::na());
+                y_error.push(Rfloat::na());
+            }
+        }
+    }
+
+    data_frame!(
+        x = Doubles::from_values(x_res),
+        y = Doubles::from_values(y_res),
+        x_error = Doubles::from_values(x_error),
+        y_error = Doubles::from_values(y_error)
+    )
+}
+```
+</details>
