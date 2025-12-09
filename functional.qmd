@@ -1,8 +1,167 @@
-# Programación Funcional {.unnumbered}
+---
+title: "Programación Funcional"
+subtitle: "De `purrr` a Iteradores"
+---
 
+Si eres fanático de `purrr` en R, te tenemos buenas noticias: **Rust es un lenguaje funcional disfrazado de lenguaje de sistemas**. 
 
-Además de una explicación de los conceptos básicos de la programación funcional (map, filter, fold), podrías incluir:
+En R, usas `purrr` para evitar bucles `for` y escribir código más declarativo (decir *qué* quieres hacer, no *cómo*). En Rust, usamos **Iteradores** por las mismas razones, pero con un beneficio extra: **Lazy Evaluation** (evaluación perezosa) y velocidad nativa.
 
-- Iteradores y closures: Cómo la programación funcional se aplica a operaciones sobre datos espaciales.
+## El Diccionario de Traducción
 
-- Composición de funciones: Explicar cómo utilizar funciones puras en el contexto espacial.
+| Concepto | R (`purrr`) | Rust (`Iterator`) |
+|----------|-------------|-------------------|
+| Transformar | `map()` / `map_dbl()` | `.map()` |
+| Filtrar | `keep()` / `discard()` | `.filter()` |
+| Reducir | `reduce()` / `accumulate()` | `.fold()` / `.reduce()` |
+| Efectos | `walk()` | `.for_each()` |
+| Aplanar | `flatten()` | `.flatten()` |
+| Encadenar | `%>%` (pipe) | `.` (método encadenado) |
+
+## 1. Transformar: `map` vs `.map`
+
+Queremos elevar al cuadrado una lista de números.
+
+### En R (`purrr`)
+
+R calcula inmediatamente todo el vector resultado.
+
+```r
+library(purrr)
+
+numeros <- c(1, 2, 3, 4)
+cuadrados <- map_dbl(numeros, ~ .x ^ 2)
+# [1] 1 4 9 16
+```
+
+### En Rust
+
+Rust usa iteradores. `numeros.iter()` crea un "cursor". `.map()` transforma el valor bajo el cursor. `.collect()` consume el iterador y crea el vector final. ¡Sin `.collect()`, no sucede nada! (Lazy).
+
+```rust
+fn main() {
+    let numeros = vec![1, 2, 3, 4];
+    
+    let cuadrados: Vec<i32> = numeros
+        .iter()             // 1. Crear iterador
+        .map(|x| x * x)     // 2. Transformar (lazy)
+        .collect();         // 3. Materializar resultado
+
+    println!("{:?}", cuadrados);
+}
+```
+
+::: callout-note
+**Detalle Clave**: En R, `~ .x ^ 2` es una función anónima (lambda). En Rust, `|x| x * x` es la misma idea (closure). Las barras `| |` definen los argumentos.
+:::
+
+## 2. Filtrar: `keep` vs `.filter`
+
+Queremos quedarnos solo con los números pares.
+
+### En R (`purrr`)
+
+```r
+numeros <- c(1, 2, 3, 4, 5, 6)
+pares <- keep(numeros, ~ .x %% 2 == 0)
+# [1] 2 4 6
+```
+
+### En Rust
+
+Observa el doble asterisco `**x` o referencia `&`. `iter()` te da referencias a los datos (`&i32`). `filter` recibe una referencia a lo que itera, así que recibe `&&i32`.
+
+```rust
+fn main() {
+    let numeros = vec![1, 2, 3, 4, 5, 6];
+    
+    let pares: Vec<i32> = numeros
+        .into_iter()        // into_iter consume el vector original
+        .filter(|x| x % 2 == 0)
+        .collect();
+
+    println!("{:?}", pares);
+}
+```
+
+## 3. Reducir: `reduce` vs `.fold` / `.reduce`
+
+Queremos sumar todos los elementos (o concatenar, o encontrar el máximo).
+
+### En R (`purrr`)
+
+```r
+numeros <- 1:10
+suma <- reduce(numeros, `+`)
+# [1] 55
+```
+
+### En Rust
+
+Hay dos sabores principales:
+*   `fold(initial_value, function)`: Permite cambiar el tipo de retorno. Equivale a `reduce(.init = ...)` de `purrr`.
+*   `reduce(function)`: Asume el primer elemento como inicial.
+
+```rust
+fn main() {
+    let numeros = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    
+    // Fold requiere un valor inicial (0)
+    let suma: i32 = numeros.iter().fold(0, |acc, x| acc + x);
+    
+    println!("La suma es: {}", suma);
+}
+```
+
+## 4. El "Pipe" vs Cadenas de Métodos
+
+La verdadera belleza de `purrr` brilla cuando encadenas operaciones.
+
+### Escenario Complejo
+
+Tenemos una lista de radios de círculos. Queremos:
+1.  Filtrar los radios negativos (invalidos).
+2.  Calcular el área ($\pi \cdot r^2$).
+3.  Filtrar áreas muy pequeñas (< 10.0).
+4.  Sumar las áreas totales válidas.
+
+### En R
+
+```r
+radios <- c(2.0, -1.0, 5.0, 0.5)
+
+area_total <- radios %>% 
+  keep(~ .x > 0) %>%                 // Filtra negativos
+  map_dbl(~ pi * .x^2) %>%           // Calcula área
+  keep(~ .x >= 10.0) %>%             // Filtra pequeñas
+  reduce(`+`)                        // Suma
+```
+
+### En Rust
+
+Es casi idéntico, y a menudo, más rápido porque Rust compila todo este encadenamiento en un solo bucle optimizado. No crea vectores intermedios para cada paso (como sí hace R a menos que uses `lazy_dt` o similares).
+
+```rust
+use std::f64::consts::PI;
+
+fn main() {
+    let radios = vec![2.0, -1.0, 5.0, 0.5];
+
+    let area_total: f64 = radios.into_iter()
+        .filter(|r| *r > 0.0)             // Filtra negativos
+        .map(|r| PI * r.powi(2))          // Calcula área 
+        .filter(|area| *area >= 10.0)     // Filtra pequeñas
+        .fold(0.0, |acc, area| acc + area); // Suma (reduce)
+
+    println!("Área total: {}", area_total);
+}
+```
+
+## Resumen
+
+Escribir Rust "funcional" es la forma idiomática de trabajar.
+1.  Es **seguro**: Evita errores de índice fuera de rango (`index out of bounds`) comunes en los bucles `for`.
+2.  Es **expresivo**: Se lee como una historia de transformación de datos.
+3.  Es **rápido**: Los iteradores en Rust son "Zero-Cost Abstractions". A menudo compilan al mismo código ensamblador (o mejor) que un bucle `for` manual.
+
+¡Si sabes `purrr`, ya sabes pensar en Rust!

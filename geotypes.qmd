@@ -1,0 +1,171 @@
+# Datos Geoespaciales
+
+En el ecosistema de Rust, la crate **`geo-types`** actúa como la *lingua franca* para datos geoespaciales. Define las estructuras de datos fundamentales que otras librerías (`geo`, `gdal`, `polars`, etc.) utilizan para intercambiar información geométrica.
+
+Para usar estos tipos en tu proyecto, comúnmente usarás la crate `geo`, que re-exporta estos tipos y añade algoritmos:
+
+```toml
+[dependencies]
+geo = "0.26"
+```
+
+## Primitivas Básicas
+
+### Coordenada (`Coordinate`)
+
+Es la unidad atómica más liviana. Es simplemente una estructura con campos `x` e `y`. No tiene noción de sistema de referencia espacial (CRS), es pura matemática.
+
+```rust
+use geo::Coordinate;
+
+let c = Coordinate { x: 10.0, y: 20.0 };
+println!("x: {}, y: {}", c.x, c.y);
+```
+
+### Punto (`Point`)
+
+Un `Point` envuelve una `Coordinate` y le da semántica geométrica. Es lo que usarás la mayoría del tiempo para representar ubicaciones.
+
+```rust
+use geo::Point;
+
+let p = Point::new(10.0, 20.0);
+// Puedes acceder a sus coordenadas
+let x = p.x();
+let y = p.y();
+```
+
+### Línea (`Line`) y Cadena de Líneas (`LineString`)
+
+*   **`Line`**: Un segmento recto entre dos puntos exactos (inicio y fin).
+*   **`LineString`**: Una secuencia ordenada de puntos que forman un camino. Es lo que en GIS comúnmente llamamos "línea" o "polilínea".
+
+```rust
+use geo::{Line, LineString, Point};
+
+// Un segmento simple
+let p1 = Point::new(0.0, 0.0);
+let p2 = Point::new(1.0, 1.0);
+let linea = Line::new(p1, p2);
+
+// Una polilínea compleja
+let ls: LineString = vec![
+    (0.0, 0.0),
+    (5.0, 0.0),
+    (5.0, 5.0),
+    (0.0, 5.0),
+].into();
+```
+
+### Polígono (`Polygon`)
+
+Un polígono consiste en un **anillo exterior** (`LineString`) y cero o más **anillos interiores** (agujeros). Los anillos deben estar cerrados (el último punto igual al primero), aunque `geo-types` a menudo maneja el cierre implícitamente o te ayuda a cerrarlos.
+
+```rust
+use geo::{Polygon, LineString};
+
+// Definir el exterior (un cuadrado)
+let exterior: LineString = vec![
+    (0.0, 0.0), (10.0, 0.0), (10.0, 10.0), (0.0, 10.0), (0.0, 0.0),
+].into();
+
+// Definir un agujero triangular dentro del cuadrado
+let interior: LineString = vec![
+    (2.0, 2.0), (8.0, 2.0), (5.0, 8.0), (2.0, 2.0),
+].into();
+
+let poly = Polygon::new(exterior, vec![interior]);
+```
+
+## Colecciones y Multi-Geometrías
+
+A veces, una sola entidad geográfica está compuesta por múltiples partes desconectadas (ej. un archipiélago de islas es un solo "país" pero geométricamente son múltiples polígonos).
+
+### MultiPoint
+
+Una colección de puntos desconectados tratados como una sola unidad.
+
+```rust
+use geo::{MultiPoint, Point};
+
+let puntos = MultiPoint::new(vec![
+    Point::new(0.0, 0.0),
+    Point::new(10.0, 10.0),
+]);
+```
+
+### MultiLineString
+
+Útil para representar redes de ríos o calles desconectadas que pertenecen a un mismo rasgo.
+
+```rust
+use geo::{MultiLineString, LineString};
+
+let camino1: LineString = vec![(0.0, 0.0), (1.0, 1.0)].into();
+let camino2: LineString = vec![(2.0, 2.0), (3.0, 3.0)].into();
+
+let red = MultiLineString::new(vec![camino1, camino2]);
+```
+
+### MultiPolygon
+
+El caso más común en fronteras administrativas (países con islas).
+
+```rust
+use geo::{MultiPolygon, Polygon};
+
+// Imaginemos dos polígonos simples (aquí simplificados)
+let p1 = Polygon::new(vec![(0.,0.), (1.,1.), (1.,0.), (0.,0.)].into(), vec![]);
+let p2 = Polygon::new(vec![(2.,2.), (3.,3.), (3.,2.), (2.,2.)].into(), vec![]);
+
+let pais = MultiPolygon::new(vec![p1, p2]);
+```
+
+## Tipos Genéricos
+
+### Geometría (`Geometry`)
+
+¿Qué pasa si estás leyendo un archivo GeoJSON y no sabes si contiene puntos, líneas o polígonos hasta que lo lees? Usamos el enum `Geometry`. Es un contenedor que puede ser cualquiera de los tipos anteriores (`Point`, `Polygon`, etc., o sus variantes `Multi`).
+
+```rust
+use geo::Geometry;
+
+// Supongamos que esta función viene de leer un archivo
+let geom: Geometry = some_polygon.into();
+
+match geom {
+    Geometry::Point(p) => println!("Es un punto: {:?}", p),
+    Geometry::Polygon(poly) => println!("Es un polígono"),
+    _ => println!("Es otro tipo de geometría"),
+}
+```
+
+### Colección de Geometrías (`GeometryCollection`)
+
+Es una colección heterogénea. Puede contener un punto, dos líneas y un polígono, todo en la misma estructura.
+
+```rust
+use geo::{GeometryCollection, Geometry, Point, LineString};
+
+let p = Point::new(0.0, 0.0);
+let l = LineString::from(vec![(1.0, 1.0), (2.0, 2.0)]);
+
+let coleccion = GeometryCollection::from(vec![
+    Geometry::Point(p),
+    Geometry::LineString(l),
+]);
+```
+
+## Resumen de Tipos
+
+| Tipo Rust | Equivalente OGC/WKT | Descripción |
+| :--- | :--- | :--- |
+| `Point` | `POINT` | Una ubicación única (x, y). |
+| `Line` | - | Segmento recto entre dos puntos. |
+| `LineString` | `LINESTRING` | Secuencia de puntos conectados. |
+| `Polygon` | `POLYGON` | Área delimitada por un anillo exterior y huecos. |
+| `MultiPoint` | `MULTIPOINT` | Múltiples puntos. |
+| `MultiLineString` | `MULTILINESTRING` | Múltiples líneas. |
+| `MultiPolygon` | `MULTIPOLYGON` | Múltiples polígonos. |
+| `GeometryCollection` | `GEOMETRYCOLLECTION` | Mezcla de cualquier geometría. |
+| `Rect` | - | Bounding Box (caja delimitadora) alineada a los ejes. |

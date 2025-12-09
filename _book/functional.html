@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Programación Funcional – Rust Espacial</title>
+<title>29&nbsp; Programación Funcional – Rust Espacial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./languages.html" rel="next">
-<link href="./spatial_chapter.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./scrapping.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -70,6 +105,49 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles/style.css">
 </head>
@@ -83,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functional.html">Anexos</a></li><li class="breadcrumb-item"><a href="./functional.html">Programación Funcional</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functional.html">Anexos</a></li><li class="breadcrumb-item"><a href="./functional.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Programación Funcional</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -128,7 +206,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./concepts.html" class="sidebar-item-text sidebar-link">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Conceptos Básicos</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -150,7 +228,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./scope.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bloques y Ámbitos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Scope</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -183,12 +261,24 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./struct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Structs, Enums y Traits</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ownership.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./adv_concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conceptos Avanzados</span></a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Optimización</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -196,14 +286,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ownership.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
+  <a href="./optimization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./struct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Structs, Enums y Traits</span></span></a>
+  <a href="./paralelization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Paralelización</span></span></a>
   </div>
 </li>
       </ul>
@@ -211,7 +301,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Tareas</span></a>
+ <span class="menu-text">Rust Espacial</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -219,8 +309,56 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tarea_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tarea 1</span></a>
+  <a href="./spatial_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./geotypes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Datos Geoespaciales</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./formats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./geos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Operaciones Espaciales con GEOS</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./osm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./geocoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Geocodificación</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./routing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./geohash.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geohash e Indexación</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./h3o.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></span></a>
   </div>
 </li>
       </ul>
@@ -228,7 +366,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Práctica</span></a>
+ <span class="menu-text">Integración con R</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -236,8 +374,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./production.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Scraping</span></span></a>
+  <a href="./integration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></span></a>
   </div>
 </li>
       </ul>
@@ -245,7 +383,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Optimización y Paralelización</span></a>
+ <span class="menu-text">Integracción con DDBB</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -253,8 +391,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./optimization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
+  <a href="./sqlite.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">SQLite en Rust</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./duckdb.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">DuckDB y Extensiones Espaciales</span></span></a>
   </div>
 </li>
       </ul>
@@ -262,7 +406,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Rust Espacial</span></a>
+ <span class="menu-text">Práctica</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -270,8 +414,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./spatial_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
+  <a href="./scrapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Scraping</span></span></a>
   </div>
 </li>
       </ul>
@@ -288,13 +432,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functional.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Programación Funcional</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./languages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Otros Lenguajes</span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
   </div>
 </li>
       </ul>
@@ -310,15 +448,44 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#el-diccionario-de-traducción" id="toc-el-diccionario-de-traducción" class="nav-link active" data-scroll-target="#el-diccionario-de-traducción"><span class="header-section-number">29.1</span> El Diccionario de Traducción</a></li>
+  <li><a href="#transformar-map-vs-.map" id="toc-transformar-map-vs-.map" class="nav-link" data-scroll-target="#transformar-map-vs-.map"><span class="header-section-number">29.2</span> 1. Transformar: <code>map</code> vs <code>.map</code></a>
+  <ul class="collapse">
+  <li><a href="#en-r-purrr" id="toc-en-r-purrr" class="nav-link" data-scroll-target="#en-r-purrr"><span class="header-section-number">29.2.1</span> En R (<code>purrr</code>)</a></li>
+  <li><a href="#en-rust" id="toc-en-rust" class="nav-link" data-scroll-target="#en-rust"><span class="header-section-number">29.2.2</span> En Rust</a></li>
+  </ul></li>
+  <li><a href="#filtrar-keep-vs-.filter" id="toc-filtrar-keep-vs-.filter" class="nav-link" data-scroll-target="#filtrar-keep-vs-.filter"><span class="header-section-number">29.3</span> 2. Filtrar: <code>keep</code> vs <code>.filter</code></a>
+  <ul class="collapse">
+  <li><a href="#en-r-purrr-1" id="toc-en-r-purrr-1" class="nav-link" data-scroll-target="#en-r-purrr-1"><span class="header-section-number">29.3.1</span> En R (<code>purrr</code>)</a></li>
+  <li><a href="#en-rust-1" id="toc-en-rust-1" class="nav-link" data-scroll-target="#en-rust-1"><span class="header-section-number">29.3.2</span> En Rust</a></li>
+  </ul></li>
+  <li><a href="#reducir-reduce-vs-.fold-.reduce" id="toc-reducir-reduce-vs-.fold-.reduce" class="nav-link" data-scroll-target="#reducir-reduce-vs-.fold-.reduce"><span class="header-section-number">29.4</span> 3. Reducir: <code>reduce</code> vs <code>.fold</code> / <code>.reduce</code></a>
+  <ul class="collapse">
+  <li><a href="#en-r-purrr-2" id="toc-en-r-purrr-2" class="nav-link" data-scroll-target="#en-r-purrr-2"><span class="header-section-number">29.4.1</span> En R (<code>purrr</code>)</a></li>
+  <li><a href="#en-rust-2" id="toc-en-rust-2" class="nav-link" data-scroll-target="#en-rust-2"><span class="header-section-number">29.4.2</span> En Rust</a></li>
+  </ul></li>
+  <li><a href="#el-pipe-vs-cadenas-de-métodos" id="toc-el-pipe-vs-cadenas-de-métodos" class="nav-link" data-scroll-target="#el-pipe-vs-cadenas-de-métodos"><span class="header-section-number">29.5</span> 4. El “Pipe” vs Cadenas de Métodos</a>
+  <ul class="collapse">
+  <li><a href="#escenario-complejo" id="toc-escenario-complejo" class="nav-link" data-scroll-target="#escenario-complejo"><span class="header-section-number">29.5.1</span> Escenario Complejo</a></li>
+  <li><a href="#en-r" id="toc-en-r" class="nav-link" data-scroll-target="#en-r"><span class="header-section-number">29.5.2</span> En R</a></li>
+  <li><a href="#en-rust-3" id="toc-en-rust-3" class="nav-link" data-scroll-target="#en-rust-3"><span class="header-section-number">29.5.3</span> En Rust</a></li>
+  </ul></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="header-section-number">29.6</span> Resumen</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functional.html">Anexos</a></li><li class="breadcrumb-item"><a href="./functional.html">Programación Funcional</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./functional.html">Anexos</a></li><li class="breadcrumb-item"><a href="./functional.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Programación Funcional</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Programación Funcional</h1>
+<h1 class="title"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Programación Funcional</span></h1>
+<p class="subtitle lead">De <code>purrr</code> a Iteradores</p>
 </div>
 
 
@@ -335,13 +502,180 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Además de una explicación de los conceptos básicos de la programación funcional (map, filter, fold), podrías incluir:</p>
-<ul>
-<li><p>Iteradores y closures: Cómo la programación funcional se aplica a operaciones sobre datos espaciales.</p></li>
-<li><p>Composición de funciones: Explicar cómo utilizar funciones puras en el contexto espacial.</p></li>
-</ul>
+<p>Si eres fanático de <code>purrr</code> en R, te tenemos buenas noticias: <strong>Rust es un lenguaje funcional disfrazado de lenguaje de sistemas</strong>.</p>
+<p>En R, usas <code>purrr</code> para evitar bucles <code>for</code> y escribir código más declarativo (decir <em>qué</em> quieres hacer, no <em>cómo</em>). En Rust, usamos <strong>Iteradores</strong> por las mismas razones, pero con un beneficio extra: <strong>Lazy Evaluation</strong> (evaluación perezosa) y velocidad nativa.</p>
+<section id="el-diccionario-de-traducción" class="level2" data-number="29.1">
+<h2 data-number="29.1" class="anchored" data-anchor-id="el-diccionario-de-traducción"><span class="header-section-number">29.1</span> El Diccionario de Traducción</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Concepto</th>
+<th>R (<code>purrr</code>)</th>
+<th>Rust (<code>Iterator</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Transformar</td>
+<td><code>map()</code> / <code>map_dbl()</code></td>
+<td><code>.map()</code></td>
+</tr>
+<tr class="even">
+<td>Filtrar</td>
+<td><code>keep()</code> / <code>discard()</code></td>
+<td><code>.filter()</code></td>
+</tr>
+<tr class="odd">
+<td>Reducir</td>
+<td><code>reduce()</code> / <code>accumulate()</code></td>
+<td><code>.fold()</code> / <code>.reduce()</code></td>
+</tr>
+<tr class="even">
+<td>Efectos</td>
+<td><code>walk()</code></td>
+<td><code>.for_each()</code></td>
+</tr>
+<tr class="odd">
+<td>Aplanar</td>
+<td><code>flatten()</code></td>
+<td><code>.flatten()</code></td>
+</tr>
+<tr class="even">
+<td>Encadenar</td>
+<td><code>%&gt;%</code> (pipe)</td>
+<td><code>.</code> (método encadenado)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="transformar-map-vs-.map" class="level2" data-number="29.2">
+<h2 data-number="29.2" class="anchored" data-anchor-id="transformar-map-vs-.map"><span class="header-section-number">29.2</span> 1. Transformar: <code>map</code> vs <code>.map</code></h2>
+<p>Queremos elevar al cuadrado una lista de números.</p>
+<section id="en-r-purrr" class="level3" data-number="29.2.1">
+<h3 data-number="29.2.1" class="anchored" data-anchor-id="en-r-purrr"><span class="header-section-number">29.2.1</span> En R (<code>purrr</code>)</h3>
+<p>R calcula inmediatamente todo el vector resultado.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>numeros <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>cuadrados <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(numeros, <span class="sc">~</span> .x <span class="sc">^</span> <span class="dv">2</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] 1 4 9 16</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="en-rust" class="level3" data-number="29.2.2">
+<h3 data-number="29.2.2" class="anchored" data-anchor-id="en-rust"><span class="header-section-number">29.2.2</span> En Rust</h3>
+<p>Rust usa iteradores. <code>numeros.iter()</code> crea un “cursor”. <code>.map()</code> transforma el valor bajo el cursor. <code>.collect()</code> consume el iterador y crea el vector final. ¡Sin <code>.collect()</code>, no sucede nada! (Lazy).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> numeros <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span>]<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> cuadrados<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">i32</span><span class="op">&gt;</span> <span class="op">=</span> numeros</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>iter()             <span class="co">// 1. Crear iterador</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map(<span class="op">|</span>x<span class="op">|</span> x <span class="op">*</span> x)     <span class="co">// 2. Transformar (lazy)</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>collect()<span class="op">;</span>         <span class="co">// 3. Materializar resultado</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> cuadrados)<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Detalle Clave</strong>: En R, <code>~ .x ^ 2</code> es una función anónima (lambda). En Rust, <code>|x| x * x</code> es la misma idea (closure). Las barras <code>| |</code> definen los argumentos.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="filtrar-keep-vs-.filter" class="level2" data-number="29.3">
+<h2 data-number="29.3" class="anchored" data-anchor-id="filtrar-keep-vs-.filter"><span class="header-section-number">29.3</span> 2. Filtrar: <code>keep</code> vs <code>.filter</code></h2>
+<p>Queremos quedarnos solo con los números pares.</p>
+<section id="en-r-purrr-1" class="level3" data-number="29.3.1">
+<h3 data-number="29.3.1" class="anchored" data-anchor-id="en-r-purrr-1"><span class="header-section-number">29.3.1</span> En R (<code>purrr</code>)</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>numeros <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pares <span class="ot">&lt;-</span> <span class="fu">keep</span>(numeros, <span class="sc">~</span> .x <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] 2 4 6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="en-rust-1" class="level3" data-number="29.3.2">
+<h3 data-number="29.3.2" class="anchored" data-anchor-id="en-rust-1"><span class="header-section-number">29.3.2</span> En Rust</h3>
+<p>Observa el doble asterisco <code>**x</code> o referencia <code>&amp;</code>. <code>iter()</code> te da referencias a los datos (<code>&amp;i32</code>). <code>filter</code> recibe una referencia a lo que itera, así que recibe <code>&amp;&amp;i32</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> numeros <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span>]<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> pares<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">i32</span><span class="op">&gt;</span> <span class="op">=</span> numeros</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>into_iter()        <span class="co">// into_iter consume el vector original</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>filter(<span class="op">|</span>x<span class="op">|</span> x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>collect()<span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{:?}"</span><span class="op">,</span> pares)<span class="op">;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="reducir-reduce-vs-.fold-.reduce" class="level2" data-number="29.4">
+<h2 data-number="29.4" class="anchored" data-anchor-id="reducir-reduce-vs-.fold-.reduce"><span class="header-section-number">29.4</span> 3. Reducir: <code>reduce</code> vs <code>.fold</code> / <code>.reduce</code></h2>
+<p>Queremos sumar todos los elementos (o concatenar, o encontrar el máximo).</p>
+<section id="en-r-purrr-2" class="level3" data-number="29.4.1">
+<h3 data-number="29.4.1" class="anchored" data-anchor-id="en-r-purrr-2"><span class="header-section-number">29.4.1</span> En R (<code>purrr</code>)</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>numeros <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>suma <span class="ot">&lt;-</span> <span class="fu">reduce</span>(numeros, <span class="st">`</span><span class="at">+</span><span class="st">`</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># [1] 55</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="en-rust-2" class="level3" data-number="29.4.2">
+<h3 data-number="29.4.2" class="anchored" data-anchor-id="en-rust-2"><span class="header-section-number">29.4.2</span> En Rust</h3>
+<p>Hay dos sabores principales: * <code>fold(initial_value, function)</code>: Permite cambiar el tipo de retorno. Equivale a <code>reduce(.init = ...)</code> de <code>purrr</code>. * <code>reduce(function)</code>: Asume el primer elemento como inicial.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> numeros <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">10</span>]<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Fold requiere un valor inicial (0)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> suma<span class="op">:</span> <span class="dt">i32</span> <span class="op">=</span> numeros<span class="op">.</span>iter()<span class="op">.</span>fold(<span class="dv">0</span><span class="op">,</span> <span class="op">|</span>acc<span class="op">,</span> x<span class="op">|</span> acc <span class="op">+</span> x)<span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"La suma es: {}"</span><span class="op">,</span> suma)<span class="op">;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="el-pipe-vs-cadenas-de-métodos" class="level2" data-number="29.5">
+<h2 data-number="29.5" class="anchored" data-anchor-id="el-pipe-vs-cadenas-de-métodos"><span class="header-section-number">29.5</span> 4. El “Pipe” vs Cadenas de Métodos</h2>
+<p>La verdadera belleza de <code>purrr</code> brilla cuando encadenas operaciones.</p>
+<section id="escenario-complejo" class="level3" data-number="29.5.1">
+<h3 data-number="29.5.1" class="anchored" data-anchor-id="escenario-complejo"><span class="header-section-number">29.5.1</span> Escenario Complejo</h3>
+<p>Tenemos una lista de radios de círculos. Queremos: 1. Filtrar los radios negativos (invalidos). 2. Calcular el área (<span class="math inline">\pi \cdot r^2</span>). 3. Filtrar áreas muy pequeñas (&lt; 10.0). 4. Sumar las áreas totales válidas.</p>
+</section>
+<section id="en-r" class="level3" data-number="29.5.2">
+<h3 data-number="29.5.2" class="anchored" data-anchor-id="en-r"><span class="header-section-number">29.5.2</span> En R</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>radios <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.0</span>, <span class="sc">-</span><span class="fl">1.0</span>, <span class="fl">5.0</span>, <span class="fl">0.5</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>area_total <span class="ot">&lt;-</span> radios <span class="sc">%&gt;%</span> </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">keep</span>(<span class="sc">~</span> .x <span class="sc">&gt;</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span>                 <span class="er">//</span> Filtra negativos</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(<span class="sc">~</span> pi <span class="sc">*</span> .x<span class="sc">^</span><span class="dv">2</span>) <span class="sc">%&gt;%</span>           <span class="er">//</span> Calcula área</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">keep</span>(<span class="sc">~</span> .x <span class="sc">&gt;=</span> <span class="fl">10.0</span>) <span class="sc">%&gt;%</span>             <span class="er">//</span> Filtra pequeñas</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">reduce</span>(<span class="st">`</span><span class="at">+</span><span class="st">`</span>)                        <span class="sc">/</span><span class="er">/</span> Suma</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="en-rust-3" class="level3" data-number="29.5.3">
+<h3 data-number="29.5.3" class="anchored" data-anchor-id="en-rust-3"><span class="header-section-number">29.5.3</span> En Rust</h3>
+<p>Es casi idéntico, y a menudo, más rápido porque Rust compila todo este encadenamiento en un solo bucle optimizado. No crea vectores intermedios para cada paso (como sí hace R a menos que uses <code>lazy_dt</code> o similares).</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::</span><span class="dt">f64</span><span class="pp">::consts::</span>PI<span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> radios <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">2.0</span><span class="op">,</span> <span class="op">-</span><span class="dv">1.0</span><span class="op">,</span> <span class="dv">5.0</span><span class="op">,</span> <span class="dv">0.5</span>]<span class="op">;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> area_total<span class="op">:</span> <span class="dt">f64</span> <span class="op">=</span> radios<span class="op">.</span>into_iter()</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>filter(<span class="op">|</span>r<span class="op">|</span> <span class="op">*</span>r <span class="op">&gt;</span> <span class="dv">0.0</span>)             <span class="co">// Filtra negativos</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map(<span class="op">|</span>r<span class="op">|</span> PI <span class="op">*</span> r<span class="op">.</span>powi(<span class="dv">2</span>))          <span class="co">// Calcula área </span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>filter(<span class="op">|</span>area<span class="op">|</span> <span class="op">*</span>area <span class="op">&gt;=</span> <span class="dv">10.0</span>)     <span class="co">// Filtra pequeñas</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>fold(<span class="dv">0.0</span><span class="op">,</span> <span class="op">|</span>acc<span class="op">,</span> area<span class="op">|</span> acc <span class="op">+</span> area)<span class="op">;</span> <span class="co">// Suma (reduce)</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Área total: {}"</span><span class="op">,</span> area_total)<span class="op">;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="resumen" class="level2" data-number="29.6">
+<h2 data-number="29.6" class="anchored" data-anchor-id="resumen"><span class="header-section-number">29.6</span> Resumen</h2>
+<p>Escribir Rust “funcional” es la forma idiomática de trabajar. 1. Es <strong>seguro</strong>: Evita errores de índice fuera de rango (<code>index out of bounds</code>) comunes en los bucles <code>for</code>. 2. Es <strong>expresivo</strong>: Se lee como una historia de transformación de datos. 3. Es <strong>rápido</strong>: Los iteradores en Rust son “Zero-Cost Abstractions”. A menudo compilan al mismo código ensamblador (o mejor) que un bucle <code>for</code> manual.</p>
+<p>¡Si sabes <code>purrr</code>, ya sabes pensar en Rust!</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -745,13 +1079,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./spatial_chapter.html" class="pagination-link" aria-label="Rust Espacial">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span>
+      <a href="./scrapping.html" class="pagination-link" aria-label="Scraping">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Scraping</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./languages.html" class="pagination-link" aria-label="Otros Lenguajes">
-        <span class="nav-page-text">Otros Lenguajes</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

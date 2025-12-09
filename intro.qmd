@@ -4,31 +4,44 @@
 
 ![](images/rust-logo2.png){fig-align="center" width="150"}
 
-Rust es un lenguaje de programación de sistemas que prioriza el rendimiento, la seguridad y la concurrencia sin sacrificar la experiencia del desarrollador. Su diseño se enfoca en evitar errores comunes como las condiciones de carrera, desbordamientos de memoria y fugas de recursos, todo mientras mantiene la flexibilidad de los lenguajes de bajo nivel. Al ofrecer un control preciso sobre la memoria sin necesidad de un recolector de basura, Rust se ha convertido en una opción favorita tanto para el desarrollo de sistemas críticos como para aplicaciones de alto rendimiento, desde servidores web hasta sistemas embebidos.
+Rust es un lenguaje de sistemas que ha revolucionado la industria por una promesa audaz: **rendimiento sin sacrificar seguridad**. 
 
+Para un usuario de R, Rust puede parecer al principio rígido. En R, puedes crear una lista con un número, un string y un dataframe sin problemas. En Rust, el compilador (tu jefe de cocina estricto) te exigirá saber exactamente qué tipo de dato va en cada contenedor y quién es el responsable de limpiarlo. 
 
-## Objetivos
+Esta rigidez es su mayor virtud. Al obligarte a ser explícito sobre la memoria y los tipos, Rust elimina clases enteras de bugs antes de que ejecutes el código. No hay `Segfaults` aleatorios ni "Garbage Collection pauses" impredecibles. Es el lenguaje ideal para construir el motor de procesamiento pesado que tu script de R necesita llamar.
 
-### Objetivo General  {.unnumbered}
+## Objetivos del Libro
 
-El objetivo principal de este libro es proporcionar a los lectores una comprensión sólida y práctica de Rust, enfocándose en su aplicación para la resolución de problemas espaciales y geoespaciales. A lo largo del libro, los lectores adquirirán las habilidades necesarias para desarrollar soluciones eficientes, robustas y seguras, utilizando Rust como herramienta fundamental en el análisis espacial.
+### Objetivo General {.unnumbered}
 
-### Objetivos Específicos  {.unnumbered}
+Transformar a analistas de datos y usuarios de R en **ingenieros de software espacial**. No solo aprenderás la sintaxis de Rust, sino cómo pensar en términos de sistemas, memoria y eficiencia para resolver problemas geoespaciales que serían intratables en lenguajes interpretados.
 
-1.	Introducir los conceptos fundamentales de Rust: Explicar de manera clara los principios básicos del lenguaje, como su sistema de ownership, estructuras de datos y programación funcional, para que el lector pueda aplicarlos en diferentes contextos.
+### Objetivos Específicos {.unnumbered}
 
-2.	Demostrar la aplicación de Rust en problemas espaciales: Proporcionar ejemplos prácticos y detallados que muestren cómo Rust puede ser utilizado para procesar grandes volúmenes de datos geoespaciales, optimizando tanto el rendimiento como la eficiencia.
-
-3.	Comparar Rust con otros lenguajes usados en análisis espacial: Ofrecer una visión comparativa de Rust frente a lenguajes como Python y R, resaltando las ventajas y casos en los que Rust puede ser una mejor opción en la resolución de problemas complejos de análisis espacial.
+1.  **Pensar en Rust desde R**: Aprenderás a traducir tus flujos de trabajo de R (vectorización, dataframes) a las estructuras de Rust (iteradores, structs), entendiendo el *porqué* de las diferencias.
+2.  **Ingeniería Espacial**: Dominarás las librerías del ecosistema `geo-rust` (`geo`, `gdal`, `geos`) para manipular geometrías con precisión quirúrgica.
+3.  **Integración Efectiva**: Aprenderás a usar `extendr` para empaquetar tu código Rust de alto rendimiento y llamarlo desde R como si fuera una función nativa más.
+4.  **Optimización**: Entenderás cómo el manejo de memoria (Ownership/Borrowing) impacta directamente en la velocidad de tus procesos espaciales.
 
 ## Descripción del Libro
 
-Este libro está diseñado para guiar al lector desde la instalación de Rust hasta su aplicación en análisis espacial, proporcionando una base sólida en el lenguaje y sus conceptos clave. Comenzamos con el Capítulo 3: Instalación, donde te ayudaremos a configurar tu entorno de trabajo. A continuación, en el Capítulo 4: Conceptos Básicos, introducimos los fundamentos del lenguaje, necesarios para entender los ejemplos prácticos. Luego, el Capítulo 5: Ownership explora el sistema de propiedad de Rust, que es esencial para manejar la memoria de manera eficiente. El Capítulo 6: Struct presenta la construcción de estructuras de datos personalizadas, un aspecto clave en la creación de modelos complejos. En el Capítulo 7: Rust en Producción, discutimos las mejores prácticas para llevar proyectos de Rust al entorno productivo, asegurando que tu código sea escalable y mantenible. Posteriormente, en el Capítulo 8: Rust Espacial, nos adentramos en la aplicación de Rust para resolver problemas espaciales complejos, mostrando su capacidad para manejar grandes volúmenes de datos geoespaciales. En el Capítulo 9: Programación Funcional, exploramos cómo Rust incorpora paradigmas funcionales para simplificar la manipulación de datos y mejorar la legibilidad del código. Finalmente, en el Capítulo 10: Otros Lenguajes, comparamos Rust con otros lenguajes populares en el ámbito del análisis espacial, como R y Python, destacando sus ventajas y desventajas.
+El viaje comienza configurando tu entorno (**Capítulo 3: Instalación**). Luego, construiremos los cimientos fundamentales (**Capítulo 4: Conceptos Básicos** y **Capítulo 5: Ownership**), donde entenderás por qué Rust es tan obsesivo con "quién posee el dato". 
+
+En el **Capítulo 6: Struct**, aprenderás a definir tus propios tipos de datos espaciales. El **Capítulo 7** aborda cómo llevar esto a producción.
+
+El corazón del libro reside en las secciones nuevas:
+*   **Integración R-Rust**: Donde romperemos la barrera entre lenguajes.
+*   **Rust Espacial**: Donde aplicaremos todo lo aprendido a problemas reales como indexación espacial, geohashing y operaciones geométricas masivas.
+
+Finalmente, cerramos con **Programación Funcional** (muy familiar para usuarios de `purrr` en R) y comparativas de rendimiento.
 
 ## Perfil del Lector
 
-Este libro está orientado a profesionales con experiencia intermedia o avanzada en programación, que tengan nociones de otros lenguajes como Python, R o C++. Si ya has trabajado con lenguajes de programación y estás buscando expandir tu conocimiento hacia Rust, este libro es para ti. No es necesario ser un experto en análisis espacial, pero se espera que tengas una comprensión básica de los principios de programación y estés familiarizado con la resolución de problemas complejos.
+Este libro es para ti si:
+*   Usas R (o Python) y te has topado con un muro de rendimiento (tu script tarda días o se queda sin RAM).
+*   Quieres entender qué pasa "bajo el capó" de librerías como `sf` o `terra`.
+*   Estás dispuesto a invertir tiempo en aprender un sistema estricto a cambio de un control y velocidad absolutos.
 
 ## Resumen
 
-En resumen, este libro te guiará a través de los fundamentos de Rust, proporcionándote las habilidades necesarias para aplicar el lenguaje en la resolución de problemas espaciales. Desde la instalación hasta la programación funcional, cada capítulo está diseñado para ofrecerte una comprensión progresiva del lenguaje y su uso práctico. Al final, habrás adquirido las herramientas para implementar soluciones eficientes y robustas en Rust, ya sea en el análisis espacial o en otros campos de alta demanda técnica.
+No estamos aquí solo para aprender una sintaxis nueva. Estamos aquí para cambiar nuestra mentalidad: dejar de ser consumidores de funciones lentas para convertirnos en **creadores de herramientas de alto rendimiento**. Bienvenido a la cocina industrial.

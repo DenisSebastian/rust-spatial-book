@@ -1,0 +1,142 @@
+---
+title: "Operaciones Espaciales"
+subtitle: "Utilizando la librería GEOS"
+---
+
+La crate [`geos`](https://github.com/georust/geos) es la herramienta definitiva en Rust para realizar operaciones geométricas complejas. Provee bindings a la librería C++ **GEOS** (Geometry Engine - Open Source), el mismo motor que potencia a PostGIS y QGIS.
+
+A continuación, presentamos una guía de las operaciones más utilizadas, agrupadas por categoría.
+
+## Operaciones Constructivas
+
+Estas operaciones toman una o más geometrías y crean una *nueva* geometría modificada.
+
+### Buffer (Zona de Influencia)
+Expande (o contrae) una geometría por una distancia fija.
+
+```rust
+use geos::Geom; // Trait necesario para usar los métodos
+
+let geom = polygon.buffer(10.0, 8).expect("Error en buffer");
+// 10.0 = distancia
+// 8 = 'quadsegs' (segmentos por cuadrante para suavizar curvas)
+```
+
+### Convex Hull (Cierre Convexo)
+El polígono convexo más pequeño que envuelve a la geometría (como un elástico estirado alrededor de clavos).
+
+```rust
+let hull = geom.convex_hull().expect("Error en convex hull");
+```
+
+### Envelope (Bounding Box)
+El rectángulo alineado a los ejes más pequeño que envuelve la geometría.
+
+```rust
+let bbox = geom.envelope().expect("Error en envelope");
+```
+
+### Simplify (Simplificación)
+Reduce el número de vértices de una geometría preservando su forma general (algoritmo Douglas-Peucker).
+
+```rust
+let simplificada = geom.simplify(0.5).expect("Error simplificando");
+// 0.5 = tolerancia (distancia máxima permitida entre la curva original y la simplificada)
+```
+
+## Predicados (Relaciones Espaciales)
+
+Estas funciones devuelven `true` o `false` y responden preguntas sobre cómo se relacionan dos geometrías en el espacio.
+
+```rust
+let a = ...;
+let b = ...;
+
+// ¿Se intersectan de alguna manera?
+let toca_o_cruza = a.intersects(&b).unwrap();
+
+// ¿Está 'b' completamente dentro de 'a'?
+let contiene = a.contains(&b).unwrap();
+
+// ¿Son disjuntos (no tienen ningún punto en común)?
+let separados = a.disjoint(&b).unwrap();
+
+// ¿Se tocan (tienen puntos comunes solo en el borde)?
+let tocan = a.touches(&b).unwrap();
+
+// ¿Se cruzan (tienen puntos comunes interiores, pero no se contienen)?
+let cruzan = a.crosses(&b).unwrap();
+```
+
+> [!TIP]
+> **Performance**: Si vas a chequear el mismo predicado muchas veces contra una geometría estática (ej. "el gran polígono X ¿contiene al punto P?"), usa `PreparedGeometry` para acelerarlo drásticamente.
+
+## Operaciones de Conjuntos (Set Operations)
+
+Las operaciones clásicas de diagramas de Venn aplicadas a geometría.
+
+### Intersección
+La parte común compartida por dos geometrías.
+
+```rust
+let comun = a.intersection(&b).expect("Error en intersección");
+```
+
+### Unión
+Combina dos geometrías en una sola.
+
+```rust
+let todo = a.union(&b).expect("Error en unión");
+```
+
+### Diferencia
+Resta la forma de 'b' a la forma de 'a'.
+
+```rust
+let resto = a.difference(&b).expect("Error en diferencia");
+```
+
+### Diferencia Simétrica
+El inverso de la intersección (todo lo que está en A o en B, pero *no* en ambos).
+
+```rust
+let sym_diff = a.sym_difference(&b).expect("Error en diferencia simétrica");
+```
+
+## Análisis Escalar
+
+Obtener mediciones numéricas.
+
+```rust
+// Área (para polígonos)
+let area = geom.area().unwrap();
+
+// Longitud (para líneas) o perímetro (para polígonos)
+let largo = geom.length().unwrap();
+
+// Distancia mínima Euclidiana entre dos geometrías
+let dist = a.distance(&b).unwrap();
+```
+
+## Topología y Validación
+
+GEOS es estricto. Trabajar con geometrías "inválidas" (ej. polígonos auto-intersectados ("moño")) puede causar errores.
+
+```rust
+if !geom.is_valid() {
+    println!("¡Geometría inválida encontrada!");
+    println!("Razón: {}", geom.get_valid_reason().unwrap_or_default());
+    
+    // Intentar arreglarla (disponible en versiones recientes de GEOS)
+    // make_valid intenta descomponer el polígono en partes válidas
+    if let Ok(fixed) = geom.make_valid() {
+        // Usar 'fixed'...
+    }
+}
+```
+
+## Referencias
+
+*   **Repositorio Oficial**: [georust/geos](https://github.com/georust/geos)
+*   **Documentación de Crate**: [docs.rs/geos](https://docs.rs/geos)
+*   **Librería C++ subyacente**: [libgeos.org](https://libgeos.org/)

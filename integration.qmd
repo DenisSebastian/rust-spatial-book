@@ -1,0 +1,104 @@
+# Integración de Rust con R
+
+## El puente entre dos mundos
+
+Hasta ahora, hemos hablado de Rust como un lenguaje independiente. Pero para un analista espacial que vive en el ecosistema de R (tidyverse, sf, terra), abandonar R por completo no es práctico. R es insuperable en exploración de datos y visualización (¡ggplot2!), mientras que Rust es insuperable en cómputo crudo y gestión de memoria.
+
+¿La solución? **Usar ambos**.
+
+Imagina a R como el **Jefe de Sala** (Maître): gestiona los pedidos, habla con los clientes y presenta los platos. Rust es el **Equipo de Cocina**: procesa los ingredientes crudos a una velocidad vertiginosa y entrega el resultado listo para servir.
+
+## Extendr: La puerta trasera
+
+`extendr` es el conjunto de herramientas que permite esta comunicación fluida. A diferencia de enfoques antiguos (como usar `.Call` directamente en C), `extendr` abstrae la complejidad de la API de C de R y nos permite escribir Rust que "se siente" como Rust, pero que R puede entender.
+
+### Componentes clave
+
+1.  **rextendr**: Un paquete de R que orquesta todo el proceso. Te permite crear proyectos, compilar código Rust y cargarlo en tu sesión de R automáticamente.
+2.  **extendr-api**: Una crate de Rust (librería) que proporciona tipos seguros para interactuar con objetos de R. Por ejemplo, convierte un `NumericVector` de R en algo que Rust puede iterar.
+
+## Tu primera función híbrida
+
+Vamos a crear una función simple que sume dos números, pero ejecutándose en Rust.
+
+### Preparación en R
+
+Primero, necesitas instalar `rextendr` en R:
+
+```r
+install.packages("rextendr")
+rextendr::rust_zit() # Comprueba que tu entorno de Rust está listo
+```
+
+### El código Rust
+
+Una función típica compatible con R se ve así:
+
+```rust
+use extendr_api::prelude::*; // Importamos las herramientas necesarias
+
+/// Suma dos enteros
+/// @export
+#[extendr] // Esta macro hace la magia
+fn sum_rust(x: i32, y: i32) -> i32 {
+    x + y
+}
+
+// Esta macro genera el código "pegamento" para R
+extendr_module! {
+    mod my_module;
+    fn sum_rust;
+}
+```
+
+### Ejecución desde R
+
+Podemos compilar y ejecutar esto al vuelo (inline) desde R:
+
+```r
+rextendr::rust_function("
+fn sum_rust(x: i32, y: i32) -> i32 {
+    x + y
+}
+")
+
+sum_rust(10, 20)
+#> [1] 30
+```
+
+¡Acabas de ejecutar código máquina optimizado desde tu consola de R!
+
+## Pasando Datos: Vectores y Matrices
+
+El verdadero poder viene cuando pasamos grandes volúmenes de datos. `extendr` trata de ser "Zero Copy" cuando es posible, pero debemos entender los tipos.
+
+| R Type | Rust Type (extendr) | Rust Type (nativo) |
+|--------|---------------------|--------------------|
+| `numeric` | `Doubles` | `Vec<f64>` o `&[f64]` |
+| `integer` | `Integers` | `Vec<i32>` o `&[i32]` |
+| `logical` | `Logicals` | `Vec<bool>` |
+| `character`| `Strings` | `Vec<String>` |
+
+Ejemplo: Calcular la distancia euclidiana de dos vectores. En R puro, esto es rápido porque está vectorizado, pero si la lógica fuera más compleja, Rust ganaría por goleada.
+
+```rust
+#[extendr]
+fn euclidean_dist(x: Doubles, y: Doubles) -> f64 {
+    // Iteramos sobre ambos vectores simultáneamente
+    let sum_sq: f64 = x.iter().zip(y.iter())
+        .map(|(a, b)| (a - b).powi(2))
+        .sum();
+    
+    sum_sq.sqrt()
+}
+```
+
+En este ejemplo, `Doubles` es un wrapper inteligente sobre el vector de R. Al usar `.iter()`, accedemos a los datos directamente en la memoria de R sin copiarlos, lo que es extremadamente eficiente.
+
+## Resumen de Integración
+
+*   **R** gestiona la entrada/salida y la visualización.
+*   **Rust** realiza el trabajo pesado de cálculo.
+*   **extendr** convierte los tipos de datos y gestiona la seguridad entre ambos mundos.
+
+En los siguientes capítulos, usaremos esto para construir funciones espaciales que superan en rendimiento a las implementaciones nativas.

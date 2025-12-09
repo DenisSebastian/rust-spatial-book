@@ -1,0 +1,73 @@
+# Geohash e Indexación
+
+El sistema [Geohash](https://en.wikipedia.org/wiki/Geohash) es una técnica fundamental en computación espacial. Permite codificar un par de coordenadas (latitud, longitud) en una cadena de caracteres corta.
+
+Tiene dos propiedades vitales:
+1.  **Compactación**: Convierte dos números flotantes en un string corto, ideal para URLs o claves de caché (Redis).
+2.  **Localidad**: Puntos cercanos geográficamente comparten prefijos comunes en sus geohashes. Esto permite búsquedas rápidas ("dame todo lo que empiece con `u4p`").
+
+En Rust, la crate estándar es [`geohash`](https://github.com/georust/geohash).
+
+## Instalación
+
+```toml
+[dependencies]
+geohash = "0.13"
+```
+
+## Operaciones Básicas
+
+### Codificar (Encode)
+
+Convertir coordenadas en un string. Debes especificar la precisión (número de caracteres). Más caracteres = más precisión.
+
+```rust
+use geohash::{encode, Coordinate};
+
+fn main() -> Result<(), geohash::GeohashError> {
+    // Santiago de Chile (aprox)
+    let coord = Coordinate { x: -70.6693, y: -33.4489 };
+    
+    // Precisión 9 (~5 metros)
+    let hash = encode(coord, 9)?;
+    
+    println!("Geohash: {}", hash); // ej. "66j9..."
+    Ok(())
+}
+```
+
+### Decodificar (Decode)
+
+Recuperar el centroide del rectángulo que representa el geohash y su margen de error.
+
+```rust
+use geohash::decode;
+
+let hash = "66j9";
+let (coord, error_x, error_y) = decode(hash).expect("Hash inválido");
+
+println!("Centro: {}, {}", coord.x, coord.y);
+println!("Error: +/- {}, +/- {}", error_x, error_y);
+```
+
+## Vecinos y Adyacencia
+
+Una de las utilidades más grandes de Geohash es encontrar rápidamente celdas adyacentes. Si estás en una celda, puedes pedir sus 8 vecinos.
+
+```rust
+use geohash::{neighbors, Direction};
+
+let hash = "66j9h";
+
+// Obtener los 8 vecinos
+let vecinos = neighbors(hash).expect("Hash inválido");
+
+println!("Norte: {}", vecinos.n);
+println!("Sur:   {}", vecinos.s);
+println!("Este:  {}", vecinos.e);
+println!("Oeste: {}", vecinos.w);
+// ... y diagonales (ne, nw, se, sw)
+```
+
+> [!TIP]
+> **Caso de Uso**: Para buscar "puntos cercanos" en una base de datos Key-Value (como DynamoDB o HBase) donde solo puedes buscar por prefijo, puedes calcular el geohash del usuario, obtener sus vecinos, y hacer 9 consultas paralelas por esos prefijos.

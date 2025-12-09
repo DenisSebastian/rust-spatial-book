@@ -1,5 +1,5 @@
 ---
-title: "Bloques y Ámbitos"
+title: "Scope"
 ---
 
 

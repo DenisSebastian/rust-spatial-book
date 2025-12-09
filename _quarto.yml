@@ -15,7 +15,7 @@ book:
     - index.qmd
     - intro.qmd
     - install.qmd
-    - part: concepts.qmd
+    - part: "Conceptos Básicos"
       chapters:
         - variables.qmd
         - flow_control.qmd
@@ -25,34 +25,43 @@ book:
         - iterators.qmd
         - closures.qmd
         - errors.qmd
-    - part: adv_concepts.qmd
-      chapters:
-        - ownership.qmd
         - struct.qmd
-    - part: "Tareas"
-      chapters:
-        - tarea_1.qmd
-    - part: "Práctica"
-      chapters:
-        - production.qmd
-    - part: "Optimización y Paralelización"
+        - ownership.qmd
+    - part: "Optimización"
       chapters:
         - optimization.qmd
+        - paralelization.qmd
     - part: "Rust Espacial"
       chapters:
         - spatial_chapter.qmd
+        - geotypes.qmd
+        - formats.qmd
+        - geos.qmd
+        - osm.qmd
+        - geocoding.qmd
+        - routing.qmd
+        - geohash.qmd
+        - h3o.qmd
+        #- rtree.qmd
+        #- raster.qmd
+    - part: "Integración con R"
+      chapters:
+        - integration.qmd
+        - h3o-R.qmd
+    - part: "Integracción con DDBB"
+      chapters:
+        - sqlite.qmd
+        - duckdb.qmd
+    #- part: "Práctica"
+     # chapters:
+     #   - scrapping.qmd
+    #- part: "Proyectos"
+      #chapters:
+      #  - project.qmd
     - part: "Anexos"
       chapters:
         - functional.qmd
-        - languages.qmd
-
-    #   - tarea_2.qmd
-    # - part:
-    # chapters: spatial_chapter.qmd
-       # - spatial_objects.qmd
-      #   - espacial_r.qmd
-          #   - luces_nocturnas.qmd
-          #- john_snow.qmd
+        #- languages.qmd
     - references.qmd
 
 bibliography: references.bib

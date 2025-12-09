@@ -1,0 +1,106 @@
+# Paralelización 
+
+En el análisis espacial, a menudo nos enfrentamos a problemas "vergonzosamente paralelos": calcular el área de un millón de polígonos, reproyectar miles de puntos o procesar celdas de un raster. Cada elemento es independiente del otro.
+
+En R, paralelizar suele doler un poco. Tienes que configurar un cluster (`makeCluster`), exportar variables y librerías a cada worker (`clusterExport`), y lidiar con el overhead de copiar datos. Si usas `mclapply` (forking) en Linux/Mac es más fácil, pero en Windows es un problema. Además, R es monohilo por diseño, por lo que el paralelismo es multiproceso (pesado).
+
+En Rust, el paralelismo es **multihilo (ligero)** y, gracias al sistema de ownership, es **libre de condiciones de carrera (data races)**. Si tu código compila, es thread-safe.
+
+## ¿Cuándo y Por Qué Paralelizar?
+
+No todo debe ser paralelo. Paralelizar tiene un costo:
+1.  **Overhead de coordinación**: Dividir el trabajo y juntar resultados.
+2.  **Comunicación**: Mover datos entre hilos (aunque en Rust comparten memoria, hay costos de caché).
+
+### Regla de Oro
+Paraleliza solo cuando la tarea es **CPU-bound** (mucho cálculo matemático) y el tiempo de cómputo supera al tiempo de gestión de hilos.
+
+*   ✅ **Sí**: Calcular intersección de 100k polígonos complejos.
+*   ❌ **No**: Sumar dos vectores de 100 elementos.
+*   ❌ **No**: Leer archivos pequeños del disco (eso es I/O bound, requiere `async` que es distinto).
+
+## La Herramienta Estrella: `rayon`
+
+La crate `rayon` es el estándar de oro para paralelismo de datos en Rust. Su filosofía es convertir iteradores secuenciales en paralelos con un cambio de línea.
+
+A diferencia del `mclapply` de R que divide la tarea en bloques fijos, `rayon` usa **Work Stealing**: si un núcleo termina su trabajo rápido (quizás sus polígonos eran simples), "roba" trabajo de otros núcleos ocupados. Esto balancea la carga automáticamente.
+
+### Ejemplo Práctico: Puntos en Polígonos
+
+Supongamos que tenemos 1 millón de puntos y queremos saber si están dentro de un polígono complejo.
+
+```rust
+use rayon::prelude::*;
+use geo::{Point, Polygon, Contains};
+
+fn main() {
+    let poligono_complejo: Polygon = ...; // Definición del polígono
+    let puntos: Vec<Point> = ...; // 1,000,000 de puntos
+
+    // Versión Secuencial (un solo núcleo)
+    // R: lapply(puntos, st_contains, poly = poligono)
+    let dentro_seq: Vec<bool> = puntos.iter()
+        .map(|p| poligono_complejo.contains(p))
+        .collect();
+
+    // Versión Paralela (todos los núcleos)
+    // R: mclapply(puntos, st_contains, poly = poligono, mc.cores = 8)
+    let dentro_par: Vec<bool> = puntos.par_iter() // <--- ¡Solo esto cambia!
+        .map(|p| poligono_complejo.contains(p))
+        .collect();
+}
+```
+
+### Batching y Chunking
+
+En R, a veces hacemos chunks manuales para no saturar la memoria o el scheduler.
+En Rust/Rayon, normalmente **no necesitas hacer chunks manuales**. `rayon` se adapta. Pero si tu operación por elemento es muy liviana, puedes usar `par_chunks` para procesar bloques y amortizar el overhead.
+
+```rust
+// Procesar en bloques de 1000 elementos
+let resultados: Vec<_> = data.par_chunks(1000)
+    .map(|chunk| procesar_bloque_pesado(chunk))
+    .flatten()
+    .collect();
+```
+
+## Diferencias Clave con R
+
+| Característica | R (`parallel`/`future`) | Rust (`rayon`) |
+| :--- | :--- | :--- |
+| **Modelo** | Procesos (copia de memoria) | Hilos (memoria compartida) |
+| **Overhead** | Alto (serialización de datos) | Muy bajo |
+| **Datos** | Se copian a cada worker | Se leen concurrentemente (sin copia) |
+| **Seguridad** | Depende del usuario | Garantizada por el compilador |
+| **Windows** | Complicado (`PSOCK`) | Funciona igual que en Linux/Mac |
+
+## Estrategias de Alto Rendimiento
+
+### 1. Map-Reduce Paralelo
+Calcular la extensión (Bounding Box) total de millones de geometrías.
+
+```rust
+let bbox_total = geometrias.par_iter()
+    .map(|g| g.bounding_rect().unwrap())
+    .reduce(
+        || Rect::new(coord!{x: f64::INFINITY, y: f64::INFINITY}, coord!{x: f64::NEG_INFINITY, y: f64::NEG_INFINITY}), // Identidad
+        |a, b| a.union(&b) // Reducción
+    );
+```
+
+### 2. Mutabilidad Paralela (Sin Miedo)
+En R es imposible modificar un vector global desde un worker. En Rust, puedes escribir en un vector pre-asignado de forma segura si cada hilo toca índices distintos.
+
+```rust
+let mut resultados = vec![0; N];
+// `par_iter_mut` permite modificar el vector in-place
+resultados.par_iter_mut().enumerate().for_each(|(i, val)| {
+    *val = calculo_pesado(i);
+});
+```
+
+## Resumen
+
+*   Usa `rayon` cuando tengas bucles grandes (`.iter()`) que tarden mucho.
+*   Cambia `.iter()` por `.par_iter()`.
+*   Disfruta de usar el 100% de tu CPU sin cambiar tu lógica ni configurar clusters.

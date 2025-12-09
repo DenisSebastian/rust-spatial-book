@@ -64,5 +64,53 @@
   },
   "adv_concepts.qmd": {
     "adv_concepts.html": "c2588620"
+  },
+  "integration.qmd": {
+    "integration.html": "e8ee379b"
+  },
+  "sqlite.qmd": {
+    "sqlite.html": "033301c6"
+  },
+  "duckdb.qmd": {
+    "duckdb.html": "f4b832ac"
+  },
+  "paralelization.qmd": {
+    "paralelization.html": "24d9d1a3"
+  },
+  "scrapping.qmd": {
+    "scrapping.html": "5a223c6b"
+  },
+  "geotypes.qmd": {
+    "geotypes.html": "7234e110"
+  },
+  "formats.qmd": {
+    "formats.html": "d6e021b9"
+  },
+  "geos.qmd": {
+    "geos.html": "2340902b"
+  },
+  "osm.qmd": {
+    "osm.html": "8d312036"
+  },
+  "geocoding.qmd": {
+    "geocoding.html": "6855df23"
+  },
+  "routing.qmd": {
+    "routing.html": "dc176242"
+  },
+  "geohash.qmd": {
+    "geohash.html": "c31c033b"
+  },
+  "rtree.qmd": {
+    "rtree.html": "07ba67ac"
+  },
+  "raster.qmd": {
+    "raster.html": "5fb333b5"
+  },
+  "h3o.qmd": {
+    "h3o.html": "46e070c5"
+  },
+  "h3o-R.qmd": {
+    "h3o-R.html": "0a5c4476"
   }
 }

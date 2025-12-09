@@ -1,0 +1,156 @@
+---
+title: "Indexación Hexagonal H3"
+subtitle: "h3o"
+---
+
+[H3](https://h3geo.org/) es un sistema de indexación geoespacial jerárquico basado en hexágonos, desarrollado originalmente por Uber. Es el estándar de facto para análisis espacial de grandes volúmenes de datos (big data), clustering y machine learning geoespacial.
+
+En Rust, la mejor opción es [`h3o`](https://github.com/HydroniumLabs/h3o). A diferencia de otras crates que son wrappers de la librería en C, **`h3o` es una reimplementación pura en Rust**. Esto garantiza mayor seguridad de memoria, mejor optimización y facilidad de compilación (especialmente para WebAssembly).
+
+## Instalación
+
+```toml
+[dependencies]
+h3o = "0.3"
+```
+
+## Conceptos Clave
+
+La unidad fundamental en `h3o` es el tipo `CellIndex`. Es un entero de 64 bits (u64) que codifica la ubicación, resolución y jerarquía de un hexágono. Es extremadamente ligero (copy, stack-allocated).
+
+## Funciones Principales
+
+A continuación un recorrido por las capacidades de la librería.
+
+### 1. Indexación (Coordenada ↔ Celda)
+
+Convertir latitud/longitud a un hexágono y viceversa.
+
+```rust
+use h3o::{CellIndex, LatLng, Resolution};
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let coord = LatLng::new(37.77, -122.42)?; // San Francisco
+
+    // De Coordenada a Celda (Resolución 9)
+    let cell = CellIndex::try_from_latlng(coord, Resolution::Nine)?;
+    println!("Cell Index: {}", cell);
+
+    // De Celda a Coordenada (Centroide)
+    let centro: LatLng = cell.into();
+    println!("Centrolat: {}, Centrolon: {}", centro.lat(), centro.lng());
+    
+    Ok(())
+}
+```
+
+### 2. Inspección
+
+Consultar propiedades del índice sin decodificarlo.
+
+```rust
+let res = cell.resolution(); // Resolution::Nine
+let es_valido = cell.is_valid(); // true
+let es_pentagono = cell.is_pentagon(); // H3 tiene 12 pentágonos por resolución
+let area_m2 = cell.area_m2(); // Área aproximada en metros cuadrados
+```
+
+### 3. Jerarquía (Zoom In / Zoom Out)
+
+H3 es jerárquico. Un hexágono padre contiene (aproximadamente) 7 hijos.
+
+```rust
+// Obtener el padre (Zoom Out)
+let parent = cell.parent(Resolution::Eight).unwrap();
+
+// Obtener los hijos directos (Zoom In)
+// Retorna un iterador
+for child in cell.children(Resolution::Ten) {
+    println!("Hijo: {}", child);
+}
+
+// Obtener el hijo central
+let center_child = cell.center_child(Resolution::Ten).unwrap();
+```
+
+### 4. Recorrido y Vecindad (Grid Traversal)
+
+Moverse por la grilla hexagonal es muy eficiente.
+
+```rust
+// k-ring: Obtener el hexágono y sus vecinos hasta distancia k
+// k=1 retorna el anillo inmediato (6 vecinos + centro)
+let k = 1;
+for neighbor in cell.grid_disk(k) {
+    println!("Vecino: {}", neighbor);
+}
+
+// Solo el anillo (sin el interior)
+let anillo = cell.grid_ring(k).unwrap();
+
+// Distancia topológica (saltos de grilla)
+let destino = ...;
+let saltos = cell.grid_distance(destino).unwrap(); // Ej: 5 saltos
+```
+
+### 5. Aristas Dirigidas (Directed Edges)
+
+H3 permite representar flujo o grafos usando "aristas dirigidas" (un índice que representa el movimiento de la celda A a la celda vecina B).
+
+```rust
+// Obtener las 6 aristas salientes de una celda
+for edge in cell.directed_edges() {
+    println!("Arista hacia vecino: {}", edge.destination());
+}
+```
+
+### 6. Regiones y Polígonos (Polyfill)
+
+Para convertir geometrías vectoriales (Polígonos) a un conjunto de hexágonos (H3 Set). Esto es vital para 'discretizar' regiones.
+
+`h3o` interactúa con la crate `geo-types` si activas la feature `geo`.
+
+```rust
+use geo_types::{Polygon, LineString, Coord};
+use h3o::geom::PolygonIndex;
+
+let exterior = LineString::from(vec![
+    Coord::from((0.0, 0.0)),
+    Coord::from((1.0, 1.0)),
+    Coord::from((1.0, 0.0)),
+    Coord::from((0.0, 0.0)),
+]);
+let poli = Polygon::new(exterior, vec![]);
+
+// Rellenar polígono con hexágonos de resolución 5
+// Configurar el polyfill con opciones por defecto
+let builder = PolygonIndex::builder(poli);
+let iterador_celdas = builder.geo_to_cells(Resolution::Five);
+
+for cell in iterador_celdas {
+    println!("Celda dentro del polígono: {}", cell);
+}
+```
+
+### 7. Compactación
+
+Si tienes millones de celdas de alta resolución que cubren un área grande, puedes "compactarlos" en menos celdas de menor resolución (padres) para ahorrar espacio.
+
+```rust
+use h3o::Resolution;
+
+// Supón un set de celdas
+let muchas_celdas = vec![...];
+
+// Compactar
+let celdas_compactadas: Vec<CellIndex> = CellIndex::compact(muchas_celdas).collect();
+
+// Descompactar (llevar todo a la misma resolución base)
+let celdas_planas = CellIndex::uncompact(celdas_compactadas, Resolution::Nine);
+```
+
+## ¿Por qué indexación hexagonal?
+
+1.  **Vecinos equidistantes**: En una grilla cuadrada, las diagonales están más lejos. En hexágonos, los 6 vecinos están a la misma distancia.
+2.  **Suavizado**: Ideal para mapas de calor.
+3.  **Particionamiento**: H3 permite dividir el mundo en "buckets" de tamaño casi uniforme para indexar bases de datos distribuidas.

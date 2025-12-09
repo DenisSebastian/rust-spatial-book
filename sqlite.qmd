@@ -1,0 +1,73 @@
+# SQLite en Rust
+
+SQLite es el "táper" (tupperware) de las bases de datos: autocontenido, sin servidor, y extremadamente confiable. En el mundo R, estamos acostumbrados a usar `RSQLite` o `sf` escribiendo a `.sqlite`/`.gpkg`. En Rust, la interacción es más explícita pero mucho más potente.
+
+## La Crate `rusqlite`
+
+La herramienta estándar en la cocina de Rust para esto es `rusqlite`. Es rápida y segura.
+
+Para trabajar con datos espaciales en SQLite "puro" (sin SpatiaLite), lo más común es guardar las geometrías como **WKT** (texto) o **WKB** (binario/BLOB). Aquí usaremos WKT por claridad, aunque WKB es más eficiente.
+
+### Dependencias
+
+Necesitarás:
+```toml
+[dependencies]
+rusqlite = "0.29.0"
+geo = "0.26.0"
+wkt = "0.10.0" 
+```
+
+### Ejemplo: Guardando Puntos y Polígonos
+
+Imagina que quieres persistir las ubicaciones de tus "estaciones de cocina" y las zonas de entrega.
+
+```rust
+use rusqlite::{params, Connection, Result};
+use geo::{Point, Polygon, LineString};
+use wkt::ToWkt; // Trait para convertir geometrías a texto
+
+fn main() -> Result<()> {
+    // 1. Conexión (en memoria para el ejemplo)
+    let conn = Connection::open_in_memory()?;
+
+    // 2. Crear tabla
+    conn.execute(
+        "CREATE TABLE areas (
+            id   INTEGER PRIMARY KEY,
+            name TEXT NOT NULL,
+            geom TEXT NOT NULL
+        )",
+        [],
+    )?;
+
+    // --- Guardar un PUNTO ---
+    let p = Point::new(10.0, 20.0);
+    // Convertimos a WKT: "POINT(10 20)"
+    let p_wkt = p.wkt_string(); 
+
+    conn.execute(
+        "INSERT INTO areas (name, geom) VALUES (?1, ?2)",
+        params!["Estación Central", p_wkt],
+    )?;
+
+    // --- Guardar un POLÍGONO ---
+    let exterior = LineString::from(vec![
+        (0., 0.), (10., 0.), (10., 10.), (0., 10.), (0., 0.)
+    ]);
+    let poly = Polygon::new(exterior, vec![]);
+    let poly_wkt = poly.wkt_string();
+
+    conn.execute(
+        "INSERT INTO areas (name, geom) VALUES (?1, ?2)",
+        params!["Zona de Entrega", poly_wkt],
+    )?;
+
+    println!("Datos guardados exitosamente en SQLite.");
+    Ok(())
+}
+```
+
+### ¿GeoPackage?
+
+Si quieres escribir archivos `.gpkg` (que son SQLite disfrazados), la lógica es similar, pero debes respetar rigurosamente la estructura de tablas de metaladatos de OGC (`gpkg_contents`, `gpkg_geometry_columns`). Para una solución "llave en mano", en Rust se suele usar la crate `gdal` (que veremos más adelante) en lugar de `rusqlite` crudo, similar a cómo usas `st_write` en R.

@@ -1,0 +1,118 @@
+# Geocodificación 
+
+La geocodificación es el proceso de convertir texto (una dirección como "Av. Providencia 1234") en coordenadas geográficas.
+
+Tradicionalmente, en R o Python, solemos llamar a APIs online (Google Maps, Nominatim, Mapbox). Sin embargo, Rust nos da la potencia para hacer **geocodificación offline** consultando directamente una base de datos local de OpenStreetMap (ej. `chile-latest.osm.pbf`).
+
+Esto tiene ventajas enormes:
+*   **Privacidad**: Los datos de tus usuarios nunca salen de tu servidor.
+*   **Costo**: Cero costo por request.
+*   **Velocidad**: Latencia de red cero.
+
+## Búsqueda Naive (Fuerza Bruta)
+
+Si tienes un archivo PBF de una región (ej. Santiago), puedes buscar una dirección específica iterando sobre el archivo y filtrando por los tags de dirección (`addr:street`, `addr:housenumber`).
+
+A continuación, un ejemplo concreto buscando una dirección en Chile:
+
+```rust
+use osmpbfreader::{OsmPbfReader, OsmObj};
+use std::fs::File;
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // 1. Abrir la base de datos local (archivo PBF)
+    let path = std::path::Path::new("datos/chile-latest.osm.pbf");
+    let file = File::open(&path)?;
+    let mut pbf = OsmPbfReader::new(file);
+
+    let calle_objetivo = "Avenida Providencia";
+    let numero_objetivo = "1234";
+
+    println!("Buscando {} #{} en la base local...", calle_objetivo, numero_objetivo);
+
+    // 2. Iterar y filtrar
+    // Nota: Esto lee todo el archivo. Para producción, necesitarías un índice.
+    let encontrados: Vec<OsmObj> = pbf.iter()
+        .map(|r| r.unwrap())
+        .filter(|obj| {
+            // Verificamos si es un Nodo (punto) o Way (polígono/edificio)
+            // Y si tiene los tags coincidentes
+            let tags = obj.tags();
+            
+            // Usamos un match flexible para la calle (case insensitive sería ideal en un caso real)
+            let match_calle = tags.get("addr:street")
+                .map(|s| s.contains(calle_objetivo)) // Contains es más flexible que ==
+                .unwrap_or(false);
+                
+            let match_numero = tags.get("addr:housenumber")
+                .map(|n| n == numero_objetivo)
+                .unwrap_or(false);
+
+            match_calle && match_numero
+        })
+        .collect();
+
+    // 3. Mostrar resultados
+    if encontrados.is_empty() {
+        println!("No se encontró la dirección.");
+    } else {
+        for obj in encontrados {
+            let id = obj.id();
+            let tags = obj.tags();
+            
+            // Para obtener Lat/Lon, depende del tipo de objeto.
+            // Si es Node, tiene lat/lon directos.
+            // Si es Way, necesitamos sus Nodos (requiere indexación previa, ver osmpbfreader docs)
+            if let OsmObj::Node(n) = obj {
+                println!("Encontrado: {} (lat: {}, lon: {})", 
+                    tags.get("name").unwrap_or(&"Sin nombre".to_string()),
+                    n.lat(), n.lon()
+                );
+            } else {
+                println!("Encontrado objeto complejo (Way/Relation): {:?}", id);
+            }
+        }
+    }
+    
+    Ok(())
+}
+```
+
+## Estrategias para Producción
+
+El método anterior es "naive" porque lee 200MB+ de archivo para *cada* búsqueda. Para un sistema de geocodificación real en Rust, seguirías estos pasos:
+
+1.  **Ingesta**: Leer el PBF una vez (con `osmpbfreader`).
+2.  **Indexación**: Insertar las direcciones en un motor de búsqueda de texto completo.
+    *   **Tantivy**: Es la respuesta de Rust a Lucene/Elasticsearch. Extremadamente rápido.
+    *   **SQLite + FTS5**: Simple y portable.
+3.  **Consulta**: Tu programa Rust busca en el índice (milisegundos) en lugar de leer el PBF.
+
+### Ejemplo conceptual con Tantivy
+
+```rust
+// (Pseudocódigo conceptual)
+let index = Index::create_in_dir(&path, schema)?;
+let mut writer = index.writer(50_000_000)?;
+
+// Indexar
+for obj in pbf.iter() {
+    if let Some(addr) = extraer_direccion(&obj) {
+        writer.add_document(doc!(
+            calle => addr.calle,
+            numero => addr.numero,
+            coords => addr.coords
+        ));
+    }
+}
+writer.commit()?;
+```
+
+## Geocodificación Inversa (Reverse Geocoding)
+
+Si tienes una coordenada y quieres saber la dirección, el enfoque es espacial. Necesitas insertar tus datos en un **R-Tree** (usando la crate `rstar`).
+
+1.  Cargas todos los edificios con dirección en un R-Tree en memoria.
+2.  Consultas `rtree.nearest_neighbor(&mi_punto)`.
+
+Esto en Rust es órdenes de magnitud más rápido que hacerlo en PostGIS para consultas batch masivas, ya que todo ocurre en en el stack/heap sin overhead de red ni SQL parser.

@@ -1,0 +1,99 @@
+# OpenStreetMap (OSM)
+
+Trabajar con datos de OpenStreetMap suele implicar procesar archivos **PBF** (Protocolbuffer Binary Format) masivos. Aquí es donde Rust brilla especialmente: su capacidad para parsear estructuras binarias complejas sin overhead de Garbage Collection permite procesar el planeta entero ("planet.osm.pbf", >60GB) en una laptop convencional en tiempos razonables.
+
+## Lectura de Archivos PBF
+
+La crate más popular y ergonómica para esto es [`osmpbfreader`](https://github.com/TeXitoi/osmpbfreader-rs).
+
+```toml
+[dependencies]
+osmpbfreader = "0.16"
+```
+
+### Ejemplo: Contando Nodos
+
+Este ejemplo básico itera sobre cada objeto en el archivo PBF y cuenta cuántos son nodos.
+
+```rust
+use osmpbfreader::OsmPbfReader;
+use std::fs::File;
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let archivo = File::open("chile-latest.osm.pbf")?;
+    let mut pbf = OsmPbfReader::new(archivo);
+    
+    let mut contador_nodos = 0;
+    
+    // iter() decodifica los bloques del PBF en paralelo si es posible
+    for obj in pbf.iter() {
+        let obj = obj?;
+        if obj.is_node() {
+            contador_nodos += 1;
+        }
+    }
+    
+    println!("Se encontraron {} nodos", contador_nodos);
+    Ok(())
+}
+```
+
+### Ejemplo: Filtrado y Extracción
+
+Supongamos que queremos encontrar todos los "pubs" (`amenity=pub`) y obtener sus nombres.
+
+```rust
+use osmpbfreader::{OsmPbfReader, OsmObj};
+use std::fs::File;
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let path = std::path::Path::new("chile-latest.osm.pbf");
+    let r = File::open(&path)?;
+    let mut pbf = OsmPbfReader::new(r);
+
+    // .get_objs_and_deps es útil cuando necesitas reconstruir geometrías (vías necesitan sus nodos),
+    // pero para puntos simples podemos iterar y filtrar directamente.
+    
+    println!("Buscando pubs...");
+    
+    let pubs: Vec<String> = pbf.iter()
+        .map(|r| r.unwrap())
+        .filter(|obj| {
+            // Verificamos si tiene el tag amenity=pub
+            obj.tags().contains("amenity", "pub")
+        })
+        .map(|obj| {
+            // Extraer el nombre, o usar "Sin Nombre"
+            obj.tags().get("name").map(|s| s.to_string()).unwrap_or("Sin Nombre".to_string())
+        })
+        .collect();
+
+    println!("Encontrados {} pubs:", pubs.len());
+    for nombre in pubs.iter().take(5) {
+        println!("- {}", nombre);
+    }
+    
+    Ok(())
+}
+```
+
+## Ecosistema de Herramientas OSM
+
+El ecosistema de Rust para OSM es vasto y especializado. Aquí tienes una referencia de las herramientas más importantes según tu caso de uso:
+
+### Lectura y Procesamiento General
+*   **[osmpbfreader-rs](https://github.com/TeXitoi/osmpbfreader-rs)**: La opción estándar para leer archivos PBF de forma segura y razonablemente rápida.
+*   **[osmpbf](https://github.com/b-r-u/osmpbf)**: Una librería de más bajo nivel para leer el formato.
+*   **[osmx](https://github.com/jake-low/osmx-rs)**: Puerto de OSMExpress a Rust. Una base de datos archivo optimizada para lecturas aleatorias rápidas en OSM.
+
+### Geometrías y Relaciones
+*   **[osm_boundaries_utils_rs](https://github.com/Qwant/osm_boundaries_utils_rs)**: Especializada en leer relaciones de tipo `type=boundary` y construir `MultiPolygon` válidos (muy difícil de hacer manualmente debido a la fragmentación de las vías).
+*   **[osm-lump-ways](https://github.com/amandasaurus/osm-lump-ways)**: Agrupa vías de OSM basándose en topología y tags compartidos. Útil para generalización cartográfica.
+
+### Exportación y Conversión
+*   **[osm-pbf-parquet](https://github.com/OvertureMaps/osm-pbf-parquet)**: Convierte archivos PBF al formato columnar Parquet, ideal para análisis de datos masivos en nubes (AWS Athena, BigQuery).
+*   **[osm-transit-extractor](https://github.com/CanalTP/osm-transit-extractor)**: Extrae específicamente datos de transporte público a CSV.
+*   **[Pbfextractor](https://github.com/Lesstat/pbfextractor)**: Crea grafos (archivos de red) a partir de datos OSM y SRTM (elevación).
+
+### Formatos Alternativos
+*   **[osmflat](https://github.com/boxdot/osmflat-rs)**: Un formato "flatdata" para OSM. Permite acceso aleatorio a los datos mapeados en memoria, ideal para ruteo y renderizado de alto rendimiento.

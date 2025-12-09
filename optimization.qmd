@@ -1,8 +1,154 @@
 ---
 title: "Optimización"
+subtitle: "Estrategias, Profiling y Benchmarks"
 ---
 
-- Testing y Benchmarking: En algún punto del libro, podrías agregar una sección sobre cómo probar y medir el rendimiento del código en Rust, especialmente relevante para aplicaciones espaciales que a menudo manejan grandes volúmenes de datos.
-	
-- Optimización: Dado que Rust se centra en la eficiencia, sería útil dedicar tiempo a estrategias de optimización específicas para análisis espaciales, como el manejo eficiente de memoria y concurrencia.
-	
+
+En R, cuando el código es lento, la solución típica es buscar un paquete escrito en C++ o intentar vectorizar operaciones. En Rust, **tú tienes el control total** sobre la memoria y la CPU. Pero este poder conlleva la responsabilidad de saber *dónde*, *qué* y *cuándo* optimizar.
+
+> "La optimización prematura es la raíz de todos los males." — Donald Knuth
+
+El flujo de trabajo profesional no es "escribir código rápido desde el principio", sino: **Razonar -> Medir -> Optimizar**.
+
+## Profiling de Alto Nivel: Razonamiento antes de Medir
+
+Antes de usar herramientas complejas, usa la lógica para identificar cuellos de botella probables. No optimices funciones que se ejecutan una sola vez al inicio.
+
+### ¿Dónde está el cuello de botella?
+
+1.  **I/O Bound (Limitado por Entrada/Salida)**:
+    *   **Síntoma**: El programa espera leer archivos, respuestas de red o bases de datos. La CPU está ociosa.
+    *   **Solución**: Optimizar algoritmos no servirá. Necesitas *concurrencia* (`async`, `tokio`), buffering (`BufReader`) o almacenamiento más rápido.
+
+2.  **CPU Bound (Limitado por Procesador)**:
+    *   **Síntoma**: Los ventiladores suenan, uso de CPU al 100%.
+    *   **Solución**: Aquí es donde aplicamos algoritmos mejores, paralelismo (`rayon`) o instrucciones SIMD.
+
+3.  **Memory Bound (Limitado por Memoria)**:
+    *   **Síntoma**: Cache misses constantes, el programa pasa más tiempo moviendo datos de RAM a CPU que calculando.
+    *   **Solución**: Mejorar la localidad de los datos (estructuras contiguas), reducir el tamaño de las estructuras.
+
+### Preguntas clave
+*   ¿Estoy copiando datos innecesariamente? (Clonando strings o vectores grandes).
+*   ¿Estoy re-asignando memoria dentro de un bucle?
+*   ¿Estoy calculando lo mismo múltiples veces?
+
+## Testing: La Red de Seguridad
+
+Antes de tocar una sola línea para optimizar, **asegúrate de que funciona y tienes tests**. Una optimización que rompe la corrección del programa no sirve de nada.
+
+```rust
+fn distancia_simple(x1: f64, x2: f64) -> f64 {
+    (x1 - x2).abs()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_distancia() {
+        assert_eq!(distancia_simple(10.0, 5.0), 5.0);
+    }
+}
+```
+*Corre tus tests (`cargo test`) frecuentemente mientras optimizas.*
+
+## Benchmarking: Midiendo con Ciencia
+
+No confíes en tu intuición. Usa **`criterion`** para obtener métricas estadísticamente robustas.
+
+Agrega a `Cargo.toml`:
+```toml
+[dev-dependencies]
+criterion = "0.4"
+
+[[bench]]
+name = "spatial_benchmark"
+harness = false
+```
+
+Ejemplo de benchmark (ver archivo `benches/spatial_benchmark.rs`):
+```rust
+use criterion::{black_box, criterion_group, criterion_main, Criterion};
+
+fn benchmark_distances(c: &mut Criterion) {
+    let lat1 = 40.7128;
+    // ... coordenadas ...
+    
+    // black_box evita que el compilador elimine código "muerto"
+    c.bench_function("haversine naive", |b| b.iter(|| {
+        haversine_naive(black_box(lat1), black_box(-74.0060), black_box(51.5074), black_box(-0.1278))
+    }));
+}
+
+criterion_group!(benches, benchmark_distances);
+criterion_main!(benches);
+```
+
+Ejecuta con `cargo bench`.
+
+## Checklist Realista de Optimización
+
+Si tu benchmark indica que el código es lento, revisa esta lista de sospechosos habituales antes de reescribir todo.
+
+### Evitar Copias Innecesarias (`Clone`)
+En Rust, `.clone()` puede ser costoso si la estructura es grande (ej. un `Vec` con millones de puntos).
+
+*   **Mal patrón**: Funciones que toman `String` o `Vec<T>` por valor si no necesitan destruirlos.
+*   **Solución**: Pasa referencias (`&str`, `&[T]`). Usa `Cow` (Clone-on-Write) si a veces necesitas propiedad y a veces no.
+
+### Prealocar Memoria (`Vec::with_capacity`)
+El "enemigo silencioso". Cuando haces `.push()` a un vector lleno, Rust debe:
+
+1.  Pedir un bloque de memoria nuevo y más grande.  
+2.  Copiar *todos* los elementos anteriores.  
+3.  Liberar la memoria vieja.  
+
+**Malo**:
+```rust
+let mut vec = Vec::new();
+for _ in 0..1_000_000 {
+    vec.push(calculo()); // Múltiples re-allocs costosos
+}
+```
+
+**Bueno**:
+```rust
+let mut vec = Vec::with_capacity(1_000_000);
+for _ in 0..1_000_000 {
+    vec.push(calculo()); // Cero re-allocs
+}
+```
+
+### Usar Iteradores Eficientemente
+Los iteradores en Rust suelen ser tan rápidos o más que los bucles `for` explícitos (el compilador los optimiza mejor).
+*   **Lazy evaluation**: Solo calculan lo que necesitan.
+*   Evitan comprobaciones de límites (bounds checks) que a veces ocurren en índices manuales `arr[i]`.
+
+```rust
+// Mapear y filtrar sin crear vectores intermedios para cada paso
+let resultados: Vec<_> = puntos.iter()
+    .filter(|p| p.es_valido())
+    .map(|p| p.transformar())
+    .collect(); // Solo aquí se asigna memoria
+```
+
+### Estructuras Adecuadas (SoA vs AoS)
+*   **AoS (Array of Structs)**: `Vec<Point>` donde `Point { x, y }`.
+    *   Es lo "natural" y ergonómico. Estándar para empezar.
+    *   Bueno si accedes a X e Y juntos siempre.
+*   **SoA (Struct of Arrays)**: Un struct con `xs: Vec<f64>` y `ys: Vec<f64>`.
+    *   **Pro**: Mejor localidad de caché y vectorización (SIMD) si haces operaciones masivas solo sobre `x` o solo sobre `y`.
+    *   **Contra**: Más complejo de gestionar. Usar solo si es el cuello de botella.
+
+### Serialización Eficiente
+Si tu programa pasa mucho tiempo leyendo/escribiendo datos (JSON, GeoJSON):
+*   JSON es lento de parsear y verboso.
+*   Considera formatos binarios como **Bincode** o **CBOR** con `serde` para caché interna o comunicación entre procesos para una velocidad extrema.
+*   Usa `BufWriter` y `BufReader` para no hacer llamadas al sistema (syscalls) por cada byte.
+
+## Paralelismo de Datos
+
+Si bien Rust ofrece herramientas poderosas para el paralelismo como `rayon`, este tema es tan vasto e importante para el análisis espacial que lo trataremos en profundidad en la **siguiente sección**. Allí veremos cómo escalar nuestros algoritmos para aprovechar todos los núcleos de la CPU.
+

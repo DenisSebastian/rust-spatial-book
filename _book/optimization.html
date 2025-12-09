@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>15&nbsp; Optimización – Rust Espacial</title>
+<title>14&nbsp; Optimización – Rust Espacial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +65,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./spatial_chapter.html" rel="next">
-<link href="./production.html" rel="prev">
+<link href="./paralelization.html" rel="next">
+<link href="./ownership.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -83,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./optimization.html">Optimización y Paralelización</a></li><li class="breadcrumb-item"><a href="./optimization.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Optimización</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./optimization.html">Optimización</a></li><li class="breadcrumb-item"><a href="./optimization.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Optimización</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -128,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./concepts.html" class="sidebar-item-text sidebar-link">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Conceptos Básicos</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -150,7 +185,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./scope.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Bloques y Ámbitos</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Scope</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -183,12 +218,24 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./struct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Structs, Enums y Traits</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ownership.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./adv_concepts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Conceptos Avanzados</span></a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Optimización</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -196,14 +243,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ownership.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
+  <a href="./optimization.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./struct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Structs, Enums y Traits</span></span></a>
+  <a href="./paralelization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Paralelización</span></span></a>
   </div>
 </li>
       </ul>
@@ -211,7 +258,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Tareas</span></a>
+ <span class="menu-text">Rust Espacial</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -219,8 +266,62 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tarea_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tarea 1</span></a>
+  <a href="./spatial_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./geotypes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Datos Geoespaciales</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./formats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./geos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Operaciones Geométricas Avanzadas (GEOS)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./osm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./geocoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Geocodificación</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./routing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">routing.html</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./geohash.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">geohash.html</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rtree.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">rtree.html</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./raster.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">raster.html</span></span></a>
   </div>
 </li>
       </ul>
@@ -228,7 +329,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Práctica</span></a>
+ <span class="menu-text">Integración con R</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -236,8 +337,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./production.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Scraping</span></span></a>
+  <a href="./integration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></span></a>
   </div>
 </li>
       </ul>
@@ -245,7 +346,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Optimización y Paralelización</span></a>
+ <span class="menu-text">Integracción con DDBB</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -253,8 +354,14 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./optimization.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
+  <a href="./sqlite.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">SQLite en Rust</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./duckdb.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">DuckDB y Extensiones Espaciales</span></span></a>
   </div>
 </li>
       </ul>
@@ -262,7 +369,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Rust Espacial</span></a>
+ <span class="menu-text">Práctica</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -270,8 +377,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./spatial_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
+  <a href="./scrapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Scraping</span></span></a>
   </div>
 </li>
       </ul>
@@ -288,13 +395,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functional.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Programación Funcional</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./languages.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Otros Lenguajes</span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
   </div>
 </li>
       </ul>
@@ -310,15 +411,37 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#profiling-de-alto-nivel-razonamiento-antes-de-medir" id="toc-profiling-de-alto-nivel-razonamiento-antes-de-medir" class="nav-link active" data-scroll-target="#profiling-de-alto-nivel-razonamiento-antes-de-medir"><span class="header-section-number">14.1</span> Profiling de Alto Nivel: Razonamiento antes de Medir</a>
+  <ul class="collapse">
+  <li><a href="#dónde-está-el-cuello-de-botella" id="toc-dónde-está-el-cuello-de-botella" class="nav-link" data-scroll-target="#dónde-está-el-cuello-de-botella"><span class="header-section-number">14.1.1</span> ¿Dónde está el cuello de botella?</a></li>
+  <li><a href="#preguntas-clave" id="toc-preguntas-clave" class="nav-link" data-scroll-target="#preguntas-clave"><span class="header-section-number">14.1.2</span> Preguntas clave</a></li>
+  </ul></li>
+  <li><a href="#testing-la-red-de-seguridad" id="toc-testing-la-red-de-seguridad" class="nav-link" data-scroll-target="#testing-la-red-de-seguridad"><span class="header-section-number">14.2</span> Testing: La Red de Seguridad</a></li>
+  <li><a href="#benchmarking-midiendo-con-ciencia" id="toc-benchmarking-midiendo-con-ciencia" class="nav-link" data-scroll-target="#benchmarking-midiendo-con-ciencia"><span class="header-section-number">14.3</span> Benchmarking: Midiendo con Ciencia</a></li>
+  <li><a href="#checklist-realista-de-optimización" id="toc-checklist-realista-de-optimización" class="nav-link" data-scroll-target="#checklist-realista-de-optimización"><span class="header-section-number">14.4</span> Checklist Realista de Optimización</a>
+  <ul class="collapse">
+  <li><a href="#evitar-copias-innecesarias-clone" id="toc-evitar-copias-innecesarias-clone" class="nav-link" data-scroll-target="#evitar-copias-innecesarias-clone"><span class="header-section-number">14.4.1</span> Evitar Copias Innecesarias (<code>Clone</code>)</a></li>
+  <li><a href="#prealocar-memoria-vecwith_capacity" id="toc-prealocar-memoria-vecwith_capacity" class="nav-link" data-scroll-target="#prealocar-memoria-vecwith_capacity"><span class="header-section-number">14.4.2</span> Prealocar Memoria (<code>Vec::with_capacity</code>)</a></li>
+  <li><a href="#usar-iteradores-eficientemente" id="toc-usar-iteradores-eficientemente" class="nav-link" data-scroll-target="#usar-iteradores-eficientemente"><span class="header-section-number">14.4.3</span> Usar Iteradores Eficientemente</a></li>
+  <li><a href="#estructuras-adecuadas-soa-vs-aos" id="toc-estructuras-adecuadas-soa-vs-aos" class="nav-link" data-scroll-target="#estructuras-adecuadas-soa-vs-aos"><span class="header-section-number">14.4.4</span> Estructuras Adecuadas (SoA vs AoS)</a></li>
+  <li><a href="#serialización-eficiente" id="toc-serialización-eficiente" class="nav-link" data-scroll-target="#serialización-eficiente"><span class="header-section-number">14.4.5</span> Serialización Eficiente</a></li>
+  </ul></li>
+  <li><a href="#paralelismo-de-datos" id="toc-paralelismo-de-datos" class="nav-link" data-scroll-target="#paralelismo-de-datos"><span class="header-section-number">14.5</span> Paralelismo de Datos</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./optimization.html">Optimización y Paralelización</a></li><li class="breadcrumb-item"><a href="./optimization.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Optimización</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./optimization.html">Optimización</a></li><li class="breadcrumb-item"><a href="./optimization.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Optimización</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Optimización</span></h1>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Optimización</span></h1>
+<p class="subtitle lead">Estrategias, Profiling y Benchmarks</p>
 </div>
 
 
@@ -335,12 +458,155 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>En R, cuando el código es lento, la solución típica es buscar un paquete escrito en C++ o intentar vectorizar operaciones. En Rust, <strong>tú tienes el control total</strong> sobre la memoria y la CPU. Pero este poder conlleva la responsabilidad de saber <em>dónde</em>, <em>qué</em> y <em>cuándo</em> optimizar.</p>
+<blockquote class="blockquote">
+<p>“La optimización prematura es la raíz de todos los males.” — Donald Knuth</p>
+</blockquote>
+<p>El flujo de trabajo profesional no es “escribir código rápido desde el principio”, sino: <strong>Razonar -&gt; Medir -&gt; Optimizar</strong>.</p>
+<section id="profiling-de-alto-nivel-razonamiento-antes-de-medir" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="profiling-de-alto-nivel-razonamiento-antes-de-medir"><span class="header-section-number">14.1</span> Profiling de Alto Nivel: Razonamiento antes de Medir</h2>
+<p>Antes de usar herramientas complejas, usa la lógica para identificar cuellos de botella probables. No optimices funciones que se ejecutan una sola vez al inicio.</p>
+<section id="dónde-está-el-cuello-de-botella" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="dónde-está-el-cuello-de-botella"><span class="header-section-number">14.1.1</span> ¿Dónde está el cuello de botella?</h3>
+<ol type="1">
+<li><strong>I/O Bound (Limitado por Entrada/Salida)</strong>:
 <ul>
-<li><p>Testing y Benchmarking: En algún punto del libro, podrías agregar una sección sobre cómo probar y medir el rendimiento del código en Rust, especialmente relevante para aplicaciones espaciales que a menudo manejan grandes volúmenes de datos.</p></li>
-<li><p>Optimización: Dado que Rust se centra en la eficiencia, sería útil dedicar tiempo a estrategias de optimización específicas para análisis espaciales, como el manejo eficiente de memoria y concurrencia.</p></li>
+<li><strong>Síntoma</strong>: El programa espera leer archivos, respuestas de red o bases de datos. La CPU está ociosa.</li>
+<li><strong>Solución</strong>: Optimizar algoritmos no servirá. Necesitas <em>concurrencia</em> (<code>async</code>, <code>tokio</code>), buffering (<code>BufReader</code>) o almacenamiento más rápido.</li>
+</ul></li>
+<li><strong>CPU Bound (Limitado por Procesador)</strong>:
+<ul>
+<li><strong>Síntoma</strong>: Los ventiladores suenan, uso de CPU al 100%.</li>
+<li><strong>Solución</strong>: Aquí es donde aplicamos algoritmos mejores, paralelismo (<code>rayon</code>) o instrucciones SIMD.</li>
+</ul></li>
+<li><strong>Memory Bound (Limitado por Memoria)</strong>:
+<ul>
+<li><strong>Síntoma</strong>: Cache misses constantes, el programa pasa más tiempo moviendo datos de RAM a CPU que calculando.</li>
+<li><strong>Solución</strong>: Mejorar la localidad de los datos (estructuras contiguas), reducir el tamaño de las estructuras.</li>
+</ul></li>
+</ol>
+</section>
+<section id="preguntas-clave" class="level3" data-number="14.1.2">
+<h3 data-number="14.1.2" class="anchored" data-anchor-id="preguntas-clave"><span class="header-section-number">14.1.2</span> Preguntas clave</h3>
+<ul>
+<li>¿Estoy copiando datos innecesariamente? (Clonando strings o vectores grandes).</li>
+<li>¿Estoy re-asignando memoria dentro de un bucle?</li>
+<li>¿Estoy calculando lo mismo múltiples veces?</li>
 </ul>
+</section>
+</section>
+<section id="testing-la-red-de-seguridad" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="testing-la-red-de-seguridad"><span class="header-section-number">14.2</span> Testing: La Red de Seguridad</h2>
+<p>Antes de tocar una sola línea para optimizar, <strong>asegúrate de que funciona y tienes tests</strong>. Una optimización que rompe la corrección del programa no sirve de nada.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> distancia_simple(x1<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span> x2<span class="op">:</span> <span class="dt">f64</span>) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    (x1 <span class="op">-</span> x2)<span class="op">.</span>abs()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>cfg<span class="at">(</span>test<span class="at">)]</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">mod</span> tests <span class="op">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">use</span> <span class="kw">super</span><span class="pp">::</span><span class="op">*;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">#[</span>test<span class="at">]</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> test_distancia() <span class="op">{</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="pp">assert_eq!</span>(distancia_simple(<span class="dv">10.0</span><span class="op">,</span> <span class="dv">5.0</span>)<span class="op">,</span> <span class="dv">5.0</span>)<span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><em>Corre tus tests (<code>cargo test</code>) frecuentemente mientras optimizas.</em></p>
+</section>
+<section id="benchmarking-midiendo-con-ciencia" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="benchmarking-midiendo-con-ciencia"><span class="header-section-number">14.3</span> Benchmarking: Midiendo con Ciencia</h2>
+<p>No confíes en tu intuición. Usa <strong><code>criterion</code></strong> para obtener métricas estadísticamente robustas.</p>
+<p>Agrega a <code>Cargo.toml</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[dev-dependencies]</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">criterion</span> <span class="op">=</span> <span class="st">"0.4"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">[[bench]]</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"spatial_benchmark"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dt">harness</span> <span class="op">=</span> <span class="cn">false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ejemplo de benchmark (ver archivo <code>benches/spatial_benchmark.rs</code>):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">criterion::</span><span class="op">{</span>black_box<span class="op">,</span> criterion_group<span class="op">,</span> criterion_main<span class="op">,</span> Criterion<span class="op">};</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> benchmark_distances(c<span class="op">:</span> <span class="op">&amp;</span><span class="kw">mut</span> Criterion) <span class="op">{</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> lat1 <span class="op">=</span> <span class="dv">40.7128</span><span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ... coordenadas ...</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// black_box evita que el compilador elimine código "muerto"</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    c<span class="op">.</span>bench_function(<span class="st">"haversine naive"</span><span class="op">,</span> <span class="op">|</span>b<span class="op">|</span> b<span class="op">.</span>iter(<span class="op">||</span> <span class="op">{</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        haversine_naive(black_box(lat1)<span class="op">,</span> black_box(<span class="op">-</span><span class="dv">74.0060</span>)<span class="op">,</span> black_box(<span class="dv">51.5074</span>)<span class="op">,</span> black_box(<span class="op">-</span><span class="dv">0.1278</span>))</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span>))<span class="op">;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="pp">criterion_group!</span>(benches<span class="op">,</span> benchmark_distances)<span class="op">;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="pp">criterion_main!</span>(benches)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ejecuta con <code>cargo bench</code>.</p>
+</section>
+<section id="checklist-realista-de-optimización" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="checklist-realista-de-optimización"><span class="header-section-number">14.4</span> Checklist Realista de Optimización</h2>
+<p>Si tu benchmark indica que el código es lento, revisa esta lista de sospechosos habituales antes de reescribir todo.</p>
+<section id="evitar-copias-innecesarias-clone" class="level3" data-number="14.4.1">
+<h3 data-number="14.4.1" class="anchored" data-anchor-id="evitar-copias-innecesarias-clone"><span class="header-section-number">14.4.1</span> Evitar Copias Innecesarias (<code>Clone</code>)</h3>
+<p>En Rust, <code>.clone()</code> puede ser costoso si la estructura es grande (ej. un <code>Vec</code> con millones de puntos).</p>
+<ul>
+<li><strong>Mal patrón</strong>: Funciones que toman <code>String</code> o <code>Vec&lt;T&gt;</code> por valor si no necesitan destruirlos.</li>
+<li><strong>Solución</strong>: Pasa referencias (<code>&amp;str</code>, <code>&amp;[T]</code>). Usa <code>Cow</code> (Clone-on-Write) si a veces necesitas propiedad y a veces no.</li>
+</ul>
+</section>
+<section id="prealocar-memoria-vecwith_capacity" class="level3" data-number="14.4.2">
+<h3 data-number="14.4.2" class="anchored" data-anchor-id="prealocar-memoria-vecwith_capacity"><span class="header-section-number">14.4.2</span> Prealocar Memoria (<code>Vec::with_capacity</code>)</h3>
+<p>El “enemigo silencioso”. Cuando haces <code>.push()</code> a un vector lleno, Rust debe:</p>
+<ol type="1">
+<li>Pedir un bloque de memoria nuevo y más grande.<br>
+</li>
+<li>Copiar <em>todos</em> los elementos anteriores.<br>
+</li>
+<li>Liberar la memoria vieja.</li>
+</ol>
+<p><strong>Malo</strong>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">mut</span> vec <span class="op">=</span> <span class="dt">Vec</span><span class="pp">::</span>new()<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span><span class="dv">1_000_000</span> <span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    vec<span class="op">.</span>push(calculo())<span class="op">;</span> <span class="co">// Múltiples re-allocs costosos</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Bueno</strong>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">mut</span> vec <span class="op">=</span> <span class="dt">Vec</span><span class="pp">::</span>with_capacity(<span class="dv">1_000_000</span>)<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="dv">0</span><span class="op">..</span><span class="dv">1_000_000</span> <span class="op">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    vec<span class="op">.</span>push(calculo())<span class="op">;</span> <span class="co">// Cero re-allocs</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="usar-iteradores-eficientemente" class="level3" data-number="14.4.3">
+<h3 data-number="14.4.3" class="anchored" data-anchor-id="usar-iteradores-eficientemente"><span class="header-section-number">14.4.3</span> Usar Iteradores Eficientemente</h3>
+<p>Los iteradores en Rust suelen ser tan rápidos o más que los bucles <code>for</code> explícitos (el compilador los optimiza mejor). * <strong>Lazy evaluation</strong>: Solo calculan lo que necesitan. * Evitan comprobaciones de límites (bounds checks) que a veces ocurren en índices manuales <code>arr[i]</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Mapear y filtrar sin crear vectores intermedios para cada paso</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> resultados<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span>_<span class="op">&gt;</span> <span class="op">=</span> puntos<span class="op">.</span>iter()</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>filter(<span class="op">|</span>p<span class="op">|</span> p<span class="op">.</span>es_valido())</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>map(<span class="op">|</span>p<span class="op">|</span> p<span class="op">.</span>transformar())</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>collect()<span class="op">;</span> <span class="co">// Solo aquí se asigna memoria</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="estructuras-adecuadas-soa-vs-aos" class="level3" data-number="14.4.4">
+<h3 data-number="14.4.4" class="anchored" data-anchor-id="estructuras-adecuadas-soa-vs-aos"><span class="header-section-number">14.4.4</span> Estructuras Adecuadas (SoA vs AoS)</h3>
+<ul>
+<li><strong>AoS (Array of Structs)</strong>: <code>Vec&lt;Point&gt;</code> donde <code>Point { x, y }</code>.
+<ul>
+<li>Es lo “natural” y ergonómico. Estándar para empezar.</li>
+<li>Bueno si accedes a X e Y juntos siempre.</li>
+</ul></li>
+<li><strong>SoA (Struct of Arrays)</strong>: Un struct con <code>xs: Vec&lt;f64&gt;</code> y <code>ys: Vec&lt;f64&gt;</code>.
+<ul>
+<li><strong>Pro</strong>: Mejor localidad de caché y vectorización (SIMD) si haces operaciones masivas solo sobre <code>x</code> o solo sobre <code>y</code>.</li>
+<li><strong>Contra</strong>: Más complejo de gestionar. Usar solo si es el cuello de botella.</li>
+</ul></li>
+</ul>
+</section>
+<section id="serialización-eficiente" class="level3" data-number="14.4.5">
+<h3 data-number="14.4.5" class="anchored" data-anchor-id="serialización-eficiente"><span class="header-section-number">14.4.5</span> Serialización Eficiente</h3>
+<p>Si tu programa pasa mucho tiempo leyendo/escribiendo datos (JSON, GeoJSON): * JSON es lento de parsear y verboso. * Considera formatos binarios como <strong>Bincode</strong> o <strong>CBOR</strong> con <code>serde</code> para caché interna o comunicación entre procesos para una velocidad extrema. * Usa <code>BufWriter</code> y <code>BufReader</code> para no hacer llamadas al sistema (syscalls) por cada byte.</p>
+</section>
+</section>
+<section id="paralelismo-de-datos" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="paralelismo-de-datos"><span class="header-section-number">14.5</span> Paralelismo de Datos</h2>
+<p>Si bien Rust ofrece herramientas poderosas para el paralelismo como <code>rayon</code>, este tema es tan vasto e importante para el análisis espacial que lo trataremos en profundidad en la <strong>siguiente sección</strong>. Allí veremos cómo escalar nuestros algoritmos para aprovechar todos los núcleos de la CPU.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -744,13 +1010,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./production.html" class="pagination-link" aria-label="Scraping">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Scraping</span></span>
+      <a href="./ownership.html" class="pagination-link" aria-label="Ownership y Borrowing">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./spatial_chapter.html" class="pagination-link" aria-label="Rust Espacial">
-        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./paralelization.html" class="pagination-link" aria-label="Paralelización">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Paralelización</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

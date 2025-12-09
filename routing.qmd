@@ -1,0 +1,117 @@
+# Routing y Distancias
+
+Para cálculos de distancia basados en redes (en lugar de línea recta) y búsqueda de caminos aproximada, la crate [`routrs`](https://github.com/routrs/routrs) es una excelente opción en el ecosistema Rust.
+
+Está diseñada para trabajar con varios tipos de "geografos" (redes): marítimas, carreteras y ferroviarias.
+
+## Concepto y Alcance
+
+`routrs` utiliza la fórmula de **Haversine** para distancias esféricas y el algoritmo de **Dijkstra** para encontrar el camino más corto en la red.
+
+> [!IMPORTANT]
+> **Aproximación vs Navegación**: Esta librería está pensada para **estimaciones** y visualización. No está diseñada para navegación precisa paso a paso (turn-by-turn) en tiempo real, ya que utiliza una red simplificada.
+
+## Instalación
+
+```toml
+[dependencies]
+routrs = { version = "2.0.0", features = ["all"] }
+```
+
+Features disponibles:
+*   `maritime`: habilita el grafo marítimo (basado en MARNET).
+*   `highways`: habilita el grafo de carreteras (basado en OSM).
+*   `railways`: habilita el grafo ferroviario (basado en OSM).
+*   `concurrency`: habilita el cálculo paralelo con `rayon`.
+
+## Uso Básico
+
+El flujo es simple: defines origen y destino, y la librería encuentra los puntos más cercanos en el grafo para calcular la ruta.
+
+### Ruteo en Carreteras (Highways)
+
+```rust
+use routrs::prelude::*;
+use routrs::highways::GEOGRAPH as highways;
+
+fn main() {
+    let from: Geoloc = (31.33068357, 120.902694); // Origen
+    let to: Geoloc = (31.05287995, 121.2232226);  // Destino
+
+    // Calcula: distancia total, vector de puntos, y tipo de ruta
+    let (distance, path, path_type) = highways::shortest_path(&from, &to);
+
+    println!("Distancia: {:.2} km", distance);
+    println!("Nodos en la ruta: {}", path.len());
+    // Path type suele ser "ViaWaypoints" si encontró ruta, o directo si no.
+    println!("Tipo de ruta: {}", path_type); 
+}
+```
+
+### Ruteo Marítimo y Ferroviario
+
+La API es consistente para todos los medios de transporte.
+
+```rust
+use routrs::prelude::*;
+use routrs::maritime::GEOGRAPH as maritime;
+use routrs::railways::GEOGRAPH as railways;
+
+let from: Geoloc = (/* ... */);
+let to: Geoloc = (/* ... */);
+
+// Para barcos
+let (dist_mar, _, _) = maritime::shortest_path(&from, &to);
+
+// Para trenes
+let (dist_ren, _, _) = railways::shortest_path(&from, &to);
+```
+
+## Cálculo Concurrente (Batch Processing)
+
+Si necesitas calcular miles de rutas (ej. matriz de distancias), `routrs` se integra con `rayon` para usar todos los núcleos de tu CPU.
+
+```rust
+use routrs::concurrency::*;
+use routrs::highways::GEOGRAPH as highways;
+use routrs::prelude::*;
+
+let legs: Vec<Leg<Geoloc>> = vec![
+    Leg((31.3, 120.9), (31.0, 121.2)),
+    Leg((40.7, -74.0), (34.0, -118.2)),
+    // ... miles más ...
+];
+
+// par_distance procesa en paralelo automáticamente
+let results = highways.par_distance(&legs);
+
+for (dist, path_type) in results {
+    println!("Distancia calculada: {}", dist);
+}
+```
+
+## Grafos Personalizados
+
+También puedes cargar tu propia topología desde un archivo JSON si tienes una red privada o específica.
+
+```rust
+use routrs::prelude::*;
+use routrs::json::*;
+
+let json_data = r#"
+{
+    "geograph": "mi_red_personal",
+    "nodes": [
+        { "id": 0, "coordinates": [179.5, 51.3], "waypoints": [1, 2] },
+        { "id": 1, "coordinates": [177.2, 52.1], "waypoints": [0] },
+        { "id": 2, "coordinates": [178.0, 51.8], "waypoints": [0] }
+    ]
+}
+"#;
+
+let grafo_json: JsonGeograph = serde_json::from_str(json_data).unwrap();
+let grafo: Geograph = grafo_json.into();
+
+// Ahora úsalo igual que los built-ins
+let (dist, _, _) = grafo.shortest_path(&(179.5, 51.3), &(177.2, 52.1));
+```

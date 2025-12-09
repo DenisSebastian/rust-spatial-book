@@ -1,0 +1,122 @@
+---
+title: "H3 en R con h3o"
+subtitle: "Integración vía extendr"
+---
+
+El paquete [`{h3o}`](https://github.com/extendr/h3o) es una librería ligera de R para interactuar con el sistema de indexación geoespacial H3.
+
+La magia de este paquete reside en que utiliza [extendr](https://extendr.rs/) para envolver la crate de Rust `h3o`, de la cual hablamos en el capítulo anterior. Esto significa que ofrece una **implementación en Rust puro** de H3, sin necesidad de linkear la librería C de Uber. Además, está diseñado para trabajar fluidamente con [`{sf}`](https://github.com/r-spatial/sf) y [`{tidyverse}`](https://www.tidyverse.org/).
+
+## Instalación
+
+Puedes instalar la versión estable desde CRAN:
+
+```r
+install.packages("h3o")
+```
+
+O la versión de desarrollo desde GitHub:
+
+```r
+# install.packages("pak")
+pak::pak("extendr/h3o")
+```
+
+## Ejemplo de Flujo de Trabajo
+
+### De Puntos a Celdas H3
+
+Los vectores H3 se pueden crear fácilmente a partir de columnas de geometría `POINT` (`sfc` objects) de `sf`.
+
+```r
+library(h3o)
+library(dplyr)
+library(sf)
+library(tibble)
+
+# 1. Crear datos de ejemplo
+xy <- data.frame(
+  x = runif(100, -5, 10),
+  y = runif(100, 40, 50)
+)
+
+pnts <- st_as_sf(xy, coords = c("x", "y"), crs = 4326)
+
+# 2. Convertir puntos a H3 (resolución 5)
+pnts |> mutate(h3 = h3_from_points(geometry, 5))
+```
+
+### Visualización (Celdas a Polígonos)
+
+Los vectores H3 tienen un método `st_as_sfc()` que permite convertir los índices hexadecimales de vuelta a geometrías `POLYGON` de sf.
+
+```r
+# Reemplazar la geometría de puntos con los hexágonos
+h3_cells <- pnts |>
+  mutate(
+    h3 = h3_from_points(geometry, 4),
+    geometry = st_as_sfc(h3)
+  )
+
+# Plotear los hexágonos
+plot(st_geometry(h3_cells))
+```
+
+### Centroides
+
+Puedes recuperar el centroide de una celda usando `h3_to_points()`. Si `sf` está disponible, retorna un objeto `sfc`.
+
+```r
+h3s <- h3_cells[["h3"]]
+h3_centers <- h3_to_points(h3s)
+
+plot(st_geometry(h3_cells))
+plot(h3_centers, pch = 16, add = TRUE, col = "black")
+```
+
+### Aristas (Edges)
+
+También puedes trabajar con las aristas compartidas entre celdas.
+
+```r
+# Obtener aristas de las primeras 3 celdas
+cell_edges <- h3_edges(h3s[1:3])
+
+# Aplanar la lista y convertir a líneas sf
+flat_edges <- flatten_edges(cell_edges)
+st_as_sfc(flat_edges)
+```
+
+## Rendimiento (Benchmarks)
+
+Dado que `h3o` está escrito en Rust, es significativamente más rápido que otras alternativas en R que dependen de V8 o Java (como `h3jsr`).
+
+### Creación de Polígonos
+
+Comparativa de tiempo convirtiendo índices H3 a geometrías sf:
+
+```r
+h3_strs <- as.character(h3s)
+bench::mark(
+  h3o = st_as_sfc(h3s),
+  h3jsr = h3jsr::cell_to_polygon(h3_strs)
+)
+```
+
+### Polígonos a Celdas (Polyfill)
+
+Llenar polígonos con hexágonos suele ser una operación costosa.
+
+```r
+nc <- st_read(system.file("gpkg/nc.gpkg", package = "sf"), quiet = TRUE) |>
+  st_transform(4326) |>
+  st_geometry()
+
+bench::mark(
+  h3o = sfc_to_cells(nc, 5, "centroid"),
+  h3jsr = h3jsr::polygon_to_cells(nc, 5),
+  check = FALSE
+)
+```
+
+En general, la integración directa con Rust ofrece un rendimiento superior y una gestión de memoria más eficiente para flujos de trabajo espaciales intensivos en R.

@@ -4,15 +4,19 @@
 
 
 ## ¿Por qué Rust?
-Rust es un lenguaje de programación moderno que combina alto rendimiento con una seguridad de memoria excepcional, lo que lo convierte en una herramienta poderosa para desarrolladores que trabajan en diversos dominios, desde sistemas de bajo nivel hasta aplicaciones web. A diferencia de lenguajes tradicionales, Rust ofrece una experiencia fluida, eliminando errores comunes como desbordamientos de memoria y condiciones de carrera. Es como conducir un automóvil con tecnología avanzada de asistencia: puedes concentrarte en alcanzar tus objetivos mientras Rust se asegura de mantenerte seguro en el camino, evitando los errores típicos del desarrollo y brindándote un control total.
 
+Imagina que R es tu **cocina casera**: es flexible, indulgente y te permite preparar platos deliciosos rápidamente. Si te falta un ingrediente, improvisas; si se te cae algo, lo limpias después. Es perfecto para exploraciones rápidas y prototipado.
+
+Rust, en cambio, es una **cocina industrial de alta gama**. Aquí, las reglas son estrictas: nadie entra sin el equipo de seguridad adecuado (sistema de tipos), los ingredientes se verifican en la entrada (comprobación en tiempo de compilación) y el flujo de trabajo está diseñado para servir a miles de comensales sin errores (concurrencia y rendimiento). 
+
+Rust no viene a reemplazar tu cocina casera (R sigue siendo excelente para análisis exploratorio), sino a darte las herramientas para construir la fábrica que procesará tus recetas a escala masiva. Te ofrece un control total sobre la memoria y el hardware, garantizando que, una vez que tu código compile, funcionará de manera eficiente y segura, sin los "accidentes" (crashes) inesperados típicos de escalar scripts.
 
 ## ¿Por qué Rust para análisis espacial?
 
-Rust destaca en la resolución de problemas espaciales gracias a su control eficiente sobre la administración de recursos, lo que es crucial cuando se procesan grandes volúmenes de datos geoespaciales o imágenes satelitales. Este libro está diseñado para demostrar cómo Rust puede convertirse en una herramienta esencial para abordar desafíos espaciales complejos, ofreciendo un equilibrio perfecto entre rendimiento, seguridad y claridad en el código. A través de ejemplos prácticos, aprenderás a utilizar Rust para enfrentar tareas de análisis espacial, desde la manipulación de vastos conjuntos de datos hasta la construcción de sistemas altamente optimizados para el procesamiento geoespacial, todo con el poder y la eficiencia de este lenguaje.
+El análisis espacial moderno es voraz en recursos. Procesar terabytes de imágenes satelitales o realizar un join espacial entre millones de polígonos en R puede llevar horas o agotar la memoria disponible. Rust brilla exactamente aquí.
 
-
+Rust te permite escribir algoritmos que "muerden el metal", optimizando cada byte de memoria y cada ciclo de CPU. Este libro es un puente para usuarios de R: te enseñaremos a tomar la lógica espacial que ya conoces y reconstruirla en Rust para obtener un rendimiento y robustez de nivel industrial. Aprenderás a crear librerías que puedes llamar desde R, obteniendo lo mejor de ambos mundos: la interactividad de R y la potencia bruta de Rust.
 
 ## Créditos {.unnumbered}
 
-Muchos conceptos y ejemplos obtenidos del libro _"[El Lenguaje de Programación Rust](https://book.rustlang-es.org)"_ creado por Steve Klabnik y Carol Nichols, con contribuciones de la Comunidad Rust
+Este trabajo se apoya en los hombros de gigantes. Muchos conceptos y ejemplos están inspirados en el libro oficial _"[El Lenguaje de Programación Rust](https://book.rustlang-es.org)"_ y en la vibrante comunidad de `geo-rust`. Agradecimientos especiales a los desarrolladores de `extendr`, quienes han hecho posible este puente entre dos grandes lenguajes.

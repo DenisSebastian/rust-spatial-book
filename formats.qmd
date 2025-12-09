@@ -1,0 +1,102 @@
+# Formatos Espaciales
+
+En Rust, la interacción con formatos de archivos geoespaciales se realiza principalmente a través de **GDAL** (Geospatial Data Abstraction Library). Esta es la misma "navaja suiza" que impulsa a QGIS, GeoServer, y paquetes como `sf` o `rgdal` en R.
+
+La crate [`gdal`](https://github.com/georust/gdal) provee bindings de alto nivel en Rust para acceder a esta poderosa librería C++.
+
+## Capacidades de GDAL
+
+GDAL es una librería increíblemente poderosa. Sus capacidades principales incluyen:
+
+*   **Apertura de formatos**: Lectura y escritura de cientos de formatos raster (GeoTIFF, COG, ECW) y vectoriales (Shapefile, GeoPackage, KML).
+*   **Traducción de formatos**: Conversión eficiente entre diferentes tipos de archivos (funcionalidad equivalente a `ogr2ogr`).
+*   **Metadatos**: Lectura y escritura de metadatos asociados a datasets espaciales.
+*   **Acceso a bandas raster**: Manipulación a bajo nivel de valores de píxeles y sus propiedades.
+*   **Manejo de CRS**: Lectura y escritura de sistemas de coordenadas y proyecciones (WKT, códigos EPSG).
+*   **Transformaciones**: Reproyección (warping) y re-muestreo (resampling) entre sistemas de coordenadas.
+
+## Lectura de Datos Vectoriales
+
+Para leer datos, usamos la estructura `Dataset`. GDAL abstrae los detalles del formato, por lo que el código es muy similar ya sea que leas un Shapefile o un GeoPackage.
+
+### Ejemplo: Leyendo un Shapefile o GeoPackage
+
+```rust
+use gdal::Dataset;
+use gdal::vector::LayerAccess;
+
+fn main() -> gdal::errors::Result<()> {
+    // Abre el archivo (GDAL detecta el formato automáticamente)
+    let dataset = Dataset::open("datos/puntos.gpkg")?;
+
+    // Accede a una capa (por índice o nombre)
+    let mut layer = dataset.layer(0)?;
+
+    // Itera sobre las features
+    for feature in layer.features() {
+        // Obtener valores de atributos
+        let nombre: String = feature.field_as_string_by_name("nombre")?
+            .unwrap_or_else(|| "Desconocido".to_string());
+
+        // Obtener la geometría
+        if let Some(geometry) = feature.geometry() {
+            println!("Feature: {}, Geometría: {:?}", nombre, geometry.wkt()?);
+        }
+    }
+    Ok(())
+}
+```
+
+### Ejemplo: Leyendo un CSV con Latitud/Longitud
+
+GDAL puede tratar archivos CSV como espacios vectoriales si contienen columnas de coordenadas. A veces es necesario un archivo auxiliar `.vrt` o opciones de apertura especiales, pero para CSVs simples con encabezados claros, GDAL suele detectarlo.
+
+Sin embargo, en Rust a menudo es más idiomático y liviano usar la crate `csv` + `geo-types` si el CSV es simple. Pero si necesitamos usar GDAL (por ejemplo, para aprovechar su motor de proyecciones o si el CSV es complejo):
+
+```rust
+use gdal::Dataset;
+
+fn main() -> gdal::errors::Result<()> {
+    // Opciones para decirle a GDAL qué columnas son la geometría
+    // "X_POSSIBLE_NAMES=lon,x" y "Y_POSSIBLE_NAMES=lat,y" son defaults comunes
+    let path = "datos/ubicaciones.csv";
+    
+    // GDAL intenta abrir CSVs directamente
+    let dataset = Dataset::open(path)?;
+    let mut layer = dataset.layer(0)?;
+
+    for feature in layer.features() {
+        // Acceso igual que con otros formatos
+        let geom = feature.geometry();
+        // ...
+    }
+    Ok(())
+}
+```
+
+> [!TIP]
+> **Performance Tip**: Al iterar `layer.features()`, GDAL carga las features una a una (streaming). Esto permite procesar datasets enormes (GBs de tamaño) sin cargar todo en la RAM.
+
+## Escritura y Conversión
+
+Crear nuevos archivos sigue un patrón de "Driver -> Create -> Layer -> Feature".
+
+```rust
+use gdal::DriverManager;
+
+fn guardar_shapefile() -> gdal::errors::Result<()> {
+    // Obtener el driver "ESRI Shapefile"
+    let driver = DriverManager::get_driver_by_name("ESRI Shapefile")?;
+    
+    // Crear el dataset
+    let mut dataset = driver.create_vector_only("salida.shp")?;
+    
+    // Crear la capa
+    let mut layer = dataset.create_layer(Default::default())?;
+    
+    // Crear una feature y añadirla...
+    // (Omitido por brevedad, requiere definir campos y geometría)
+    
+    Ok(())
+}
+```
