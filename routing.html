@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; Manejo de errores – Rust Espacial</title>
+<title>22&nbsp; Routing y Distancias – Rust Espacial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./struct.html" rel="next">
-<link href="./closures.html" rel="prev">
+<link href="./geohash.html" rel="next">
+<link href="./geocoding.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./errors.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spatial_chapter.html">Rust Espacial</a></li><li class="breadcrumb-item"><a href="./routing.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -214,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./errors.html" class="sidebar-item-text sidebar-link active">
+  <a href="./errors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></span></a>
   </div>
 </li>
@@ -302,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./routing.html" class="sidebar-item-text sidebar-link">
+  <a href="./routing.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span></a>
   </div>
 </li>
@@ -394,15 +394,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#concepto-y-alcance" id="toc-concepto-y-alcance" class="nav-link active" data-scroll-target="#concepto-y-alcance"><span class="header-section-number">22.1</span> Concepto y Alcance</a></li>
+  <li><a href="#instalación" id="toc-instalación" class="nav-link" data-scroll-target="#instalación"><span class="header-section-number">22.2</span> Instalación</a></li>
+  <li><a href="#uso-básico" id="toc-uso-básico" class="nav-link" data-scroll-target="#uso-básico"><span class="header-section-number">22.3</span> Uso Básico</a>
+  <ul class="collapse">
+  <li><a href="#ruteo-en-carreteras-highways" id="toc-ruteo-en-carreteras-highways" class="nav-link" data-scroll-target="#ruteo-en-carreteras-highways"><span class="header-section-number">22.3.1</span> Ruteo en Carreteras (Highways)</a></li>
+  <li><a href="#ruteo-marítimo-y-ferroviario" id="toc-ruteo-marítimo-y-ferroviario" class="nav-link" data-scroll-target="#ruteo-marítimo-y-ferroviario"><span class="header-section-number">22.3.2</span> Ruteo Marítimo y Ferroviario</a></li>
+  </ul></li>
+  <li><a href="#cálculo-concurrente-batch-processing" id="toc-cálculo-concurrente-batch-processing" class="nav-link" data-scroll-target="#cálculo-concurrente-batch-processing"><span class="header-section-number">22.4</span> Cálculo Concurrente (Batch Processing)</a></li>
+  <li><a href="#grafos-personalizados" id="toc-grafos-personalizados" class="nav-link" data-scroll-target="#grafos-personalizados"><span class="header-section-number">22.5</span> Grafos Personalizados</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./errors.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spatial_chapter.html">Rust Espacial</a></li><li class="breadcrumb-item"><a href="./routing.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></h1>
+<h1 class="title"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></h1>
 </div>
 
 
@@ -419,52 +433,104 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>En Rust, el manejo de errores se divide en dos categorías principales: errores recuperables (gestionados con Result) y errores irrecuperables (gestionados con panic!).</p>
-<p>Result: Errores Recuperables</p>
-<p>El tipo Result es usado cuando una operación puede tener éxito o fallar. Tiene dos variantes:</p>
-<ul>
-<li>Ok(T): Representa un éxito y contiene un valor.</li>
-<li>Err(E): Representa un error y contiene información del mismo.</li>
-</ul>
-<p>Ejemplo básico:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::fs::</span>File<span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> archivo <span class="op">=</span> <span class="pp">File::</span>open(<span class="st">"archivo.txt"</span>)<span class="op">;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> archivo <span class="op">{</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Ok</span>(_) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Archivo abierto."</span>)<span class="op">,</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Err</span>(e) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Error: {}"</span><span class="op">,</span> e)<span class="op">,</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>También puedes usar el operador ? para simplificar el manejo de errores, propagando el error si ocurre:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> leer_archivo() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">,</span> <span class="pp">std::io::</span><span class="bu">Error</span><span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> archivo <span class="op">=</span> <span class="pp">File::</span>open(<span class="st">"archivo.txt"</span>)<span class="op">?;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> contenido <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>new()<span class="op">;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    archivo<span class="op">.</span>read_to_string(<span class="op">&amp;</span><span class="kw">mut</span> contenido)<span class="op">?;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(contenido)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Option: Valores Opcionales</strong></p>
-<p>Option es usado para manejar valores que pueden estar presentes o no. Tiene dos variantes:</p>
-<ul>
-<li>Some(T): Representa un valor.</li>
-<li>None: Representa la ausencia de un valor.</li>
-</ul>
-<p>Ejemplo:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> dividir(dividendo<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span> divisor<span class="op">:</span> <span class="dt">f64</span>) <span class="op">-&gt;</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> divisor <span class="op">==</span> <span class="dv">0.0</span> <span class="op">{</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cn">None</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Some</span>(dividendo <span class="op">/</span> divisor)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>panic!: Errores Irrecuperables</strong></p>
-<p>Cuando ocurre un error grave del que el programa no puede recuperarse, se usa panic! para detener la ejecución:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">panic!</span>(<span class="st">"¡Error grave!"</span>)<span class="op">;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para cálculos de distancia basados en redes (en lugar de línea recta) y búsqueda de caminos aproximada, la crate <a href="https://github.com/routrs/routrs"><code>routrs</code></a> es una excelente opción en el ecosistema Rust.</p>
+<p>Está diseñada para trabajar con varios tipos de “geografos” (redes): marítimas, carreteras y ferroviarias.</p>
+<section id="concepto-y-alcance" class="level2" data-number="22.1">
+<h2 data-number="22.1" class="anchored" data-anchor-id="concepto-y-alcance"><span class="header-section-number">22.1</span> Concepto y Alcance</h2>
+<p><code>routrs</code> utiliza la fórmula de <strong>Haversine</strong> para distancias esféricas y el algoritmo de <strong>Dijkstra</strong> para encontrar el camino más corto en la red.</p>
+<blockquote class="blockquote">
+<p>[!IMPORTANT] <strong>Aproximación vs Navegación</strong>: Esta librería está pensada para <strong>estimaciones</strong> y visualización. No está diseñada para navegación precisa paso a paso (turn-by-turn) en tiempo real, ya que utiliza una red simplificada.</p>
+</blockquote>
+</section>
+<section id="instalación" class="level2" data-number="22.2">
+<h2 data-number="22.2" class="anchored" data-anchor-id="instalación"><span class="header-section-number">22.2</span> Instalación</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[dependencies]</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">routrs</span> <span class="op">=</span> <span class="op">{ </span><span class="dt">version</span><span class="op"> =</span> <span class="st">"2.0.0"</span><span class="op">, </span><span class="dt">features</span><span class="op"> =</span> <span class="op">[</span><span class="st">"all"</span><span class="op">] }</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Features disponibles: * <code>maritime</code>: habilita el grafo marítimo (basado en MARNET). * <code>highways</code>: habilita el grafo de carreteras (basado en OSM). * <code>railways</code>: habilita el grafo ferroviario (basado en OSM). * <code>concurrency</code>: habilita el cálculo paralelo con <code>rayon</code>.</p>
+</section>
+<section id="uso-básico" class="level2" data-number="22.3">
+<h2 data-number="22.3" class="anchored" data-anchor-id="uso-básico"><span class="header-section-number">22.3</span> Uso Básico</h2>
+<p>El flujo es simple: defines origen y destino, y la librería encuentra los puntos más cercanos en el grafo para calcular la ruta.</p>
+<section id="ruteo-en-carreteras-highways" class="level3" data-number="22.3.1">
+<h3 data-number="22.3.1" class="anchored" data-anchor-id="ruteo-en-carreteras-highways"><span class="header-section-number">22.3.1</span> Ruteo en Carreteras (Highways)</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">routrs::prelude::</span><span class="op">*;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">routrs::highways::</span>GEOGRAPH <span class="kw">as</span> highways<span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> from<span class="op">:</span> Geoloc <span class="op">=</span> (<span class="dv">31.33068357</span><span class="op">,</span> <span class="dv">120.902694</span>)<span class="op">;</span> <span class="co">// Origen</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> to<span class="op">:</span> Geoloc <span class="op">=</span> (<span class="dv">31.05287995</span><span class="op">,</span> <span class="dv">121.2232226</span>)<span class="op">;</span>  <span class="co">// Destino</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Calcula: distancia total, vector de puntos, y tipo de ruta</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> (distance<span class="op">,</span> path<span class="op">,</span> path_type) <span class="op">=</span> <span class="pp">highways::</span>shortest_path(<span class="op">&amp;</span>from<span class="op">,</span> <span class="op">&amp;</span>to)<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Distancia: {:.2} km"</span><span class="op">,</span> distance)<span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Nodos en la ruta: {}"</span><span class="op">,</span> path<span class="op">.</span>len())<span class="op">;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Path type suele ser "ViaWaypoints" si encontró ruta, o directo si no.</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Tipo de ruta: {}"</span><span class="op">,</span> path_type)<span class="op">;</span> </span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ruteo-marítimo-y-ferroviario" class="level3" data-number="22.3.2">
+<h3 data-number="22.3.2" class="anchored" data-anchor-id="ruteo-marítimo-y-ferroviario"><span class="header-section-number">22.3.2</span> Ruteo Marítimo y Ferroviario</h3>
+<p>La API es consistente para todos los medios de transporte.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">routrs::prelude::</span><span class="op">*;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">routrs::maritime::</span>GEOGRAPH <span class="kw">as</span> maritime<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">routrs::railways::</span>GEOGRAPH <span class="kw">as</span> railways<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> from<span class="op">:</span> Geoloc <span class="op">=</span> (<span class="co">/* ... */</span>)<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> to<span class="op">:</span> Geoloc <span class="op">=</span> (<span class="co">/* ... */</span>)<span class="op">;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Para barcos</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> (dist_mar<span class="op">,</span> _<span class="op">,</span> _) <span class="op">=</span> <span class="pp">maritime::</span>shortest_path(<span class="op">&amp;</span>from<span class="op">,</span> <span class="op">&amp;</span>to)<span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">// Para trenes</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> (dist_ren<span class="op">,</span> _<span class="op">,</span> _) <span class="op">=</span> <span class="pp">railways::</span>shortest_path(<span class="op">&amp;</span>from<span class="op">,</span> <span class="op">&amp;</span>to)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="cálculo-concurrente-batch-processing" class="level2" data-number="22.4">
+<h2 data-number="22.4" class="anchored" data-anchor-id="cálculo-concurrente-batch-processing"><span class="header-section-number">22.4</span> Cálculo Concurrente (Batch Processing)</h2>
+<p>Si necesitas calcular miles de rutas (ej. matriz de distancias), <code>routrs</code> se integra con <code>rayon</code> para usar todos los núcleos de tu CPU.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">routrs::concurrency::</span><span class="op">*;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">routrs::highways::</span>GEOGRAPH <span class="kw">as</span> highways<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">routrs::prelude::</span><span class="op">*;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> legs<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span>Leg<span class="op">&lt;</span>Geoloc<span class="op">&gt;&gt;</span> <span class="op">=</span> <span class="pp">vec!</span>[</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    Leg((<span class="dv">31.3</span><span class="op">,</span> <span class="dv">120.9</span>)<span class="op">,</span> (<span class="dv">31.0</span><span class="op">,</span> <span class="dv">121.2</span>))<span class="op">,</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    Leg((<span class="dv">40.7</span><span class="op">,</span> <span class="op">-</span><span class="dv">74.0</span>)<span class="op">,</span> (<span class="dv">34.0</span><span class="op">,</span> <span class="op">-</span><span class="dv">118.2</span>))<span class="op">,</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// ... miles más ...</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>]<span class="op">;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">// par_distance procesa en paralelo automáticamente</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> results <span class="op">=</span> highways<span class="op">.</span>par_distance(<span class="op">&amp;</span>legs)<span class="op">;</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (dist<span class="op">,</span> path_type) <span class="kw">in</span> results <span class="op">{</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Distancia calculada: {}"</span><span class="op">,</span> dist)<span class="op">;</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="grafos-personalizados" class="level2" data-number="22.5">
+<h2 data-number="22.5" class="anchored" data-anchor-id="grafos-personalizados"><span class="header-section-number">22.5</span> Grafos Personalizados</h2>
+<p>También puedes cargar tu propia topología desde un archivo JSON si tienes una red privada o específica.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">routrs::prelude::</span><span class="op">*;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">routrs::json::</span><span class="op">*;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> json_data <span class="op">=</span> <span class="st">r#"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">{</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">    "geograph": "mi_red_personal",</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">    "nodes": [</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">        { "id": 0, "coordinates": [179.5, 51.3], "waypoints": [1, 2] },</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="st">        { "id": 1, "coordinates": [177.2, 52.1], "waypoints": [0] },</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="st">        { "id": 2, "coordinates": [178.0, 51.8], "waypoints": [0] }</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="st">    ]</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="st">"#</span><span class="op">;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> grafo_json<span class="op">:</span> JsonGeograph <span class="op">=</span> <span class="pp">serde_json::</span>from_str(json_data)<span class="op">.</span>unwrap()<span class="op">;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> grafo<span class="op">:</span> Geograph <span class="op">=</span> grafo_json<span class="op">.</span>into()<span class="op">;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">// Ahora úsalo igual que los built-ins</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> (dist<span class="op">,</span> _<span class="op">,</span> _) <span class="op">=</span> grafo<span class="op">.</span>shortest_path(<span class="op">&amp;</span>(<span class="dv">179.5</span><span class="op">,</span> <span class="dv">51.3</span>)<span class="op">,</span> <span class="op">&amp;</span>(<span class="dv">177.2</span><span class="op">,</span> <span class="dv">52.1</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -868,13 +934,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./closures.html" class="pagination-link" aria-label="Closures">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closures</span></span>
+      <a href="./geocoding.html" class="pagination-link" aria-label="Geocodificación">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Geocodificación</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./struct.html" class="pagination-link" aria-label="Structs, Enums y Traits">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Structs, Enums y Traits</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./geohash.html" class="pagination-link" aria-label="Geohash e Indexación">
+        <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geohash e Indexación</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

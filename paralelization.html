@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; Manejo de errores – Rust Espacial</title>
+<title>15&nbsp; Paralelización – Rust Espacial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./struct.html" rel="next">
-<link href="./closures.html" rel="prev">
+<link href="./spatial_chapter.html" rel="next">
+<link href="./optimization.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./errors.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./optimization.html">Optimización</a></li><li class="breadcrumb-item"><a href="./paralelization.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Paralelización</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -214,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./errors.html" class="sidebar-item-text sidebar-link active">
+  <a href="./errors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></span></a>
   </div>
 </li>
@@ -249,7 +249,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./paralelization.html" class="sidebar-item-text sidebar-link">
+  <a href="./paralelization.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Paralelización</span></span></a>
   </div>
 </li>
@@ -394,15 +394,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#cuándo-y-por-qué-paralelizar" id="toc-cuándo-y-por-qué-paralelizar" class="nav-link active" data-scroll-target="#cuándo-y-por-qué-paralelizar"><span class="header-section-number">15.1</span> ¿Cuándo y Por Qué Paralelizar?</a>
+  <ul class="collapse">
+  <li><a href="#regla-de-oro" id="toc-regla-de-oro" class="nav-link" data-scroll-target="#regla-de-oro"><span class="header-section-number">15.1.1</span> Regla de Oro</a></li>
+  </ul></li>
+  <li><a href="#la-herramienta-estrella-rayon" id="toc-la-herramienta-estrella-rayon" class="nav-link" data-scroll-target="#la-herramienta-estrella-rayon"><span class="header-section-number">15.2</span> La Herramienta Estrella: <code>rayon</code></a>
+  <ul class="collapse">
+  <li><a href="#ejemplo-práctico-puntos-en-polígonos" id="toc-ejemplo-práctico-puntos-en-polígonos" class="nav-link" data-scroll-target="#ejemplo-práctico-puntos-en-polígonos"><span class="header-section-number">15.2.1</span> Ejemplo Práctico: Puntos en Polígonos</a></li>
+  <li><a href="#batching-y-chunking" id="toc-batching-y-chunking" class="nav-link" data-scroll-target="#batching-y-chunking"><span class="header-section-number">15.2.2</span> Batching y Chunking</a></li>
+  </ul></li>
+  <li><a href="#diferencias-clave-con-r" id="toc-diferencias-clave-con-r" class="nav-link" data-scroll-target="#diferencias-clave-con-r"><span class="header-section-number">15.3</span> Diferencias Clave con R</a></li>
+  <li><a href="#estrategias-de-alto-rendimiento" id="toc-estrategias-de-alto-rendimiento" class="nav-link" data-scroll-target="#estrategias-de-alto-rendimiento"><span class="header-section-number">15.4</span> Estrategias de Alto Rendimiento</a>
+  <ul class="collapse">
+  <li><a href="#map-reduce-paralelo" id="toc-map-reduce-paralelo" class="nav-link" data-scroll-target="#map-reduce-paralelo"><span class="header-section-number">15.4.1</span> 1. Map-Reduce Paralelo</a></li>
+  <li><a href="#mutabilidad-paralela-sin-miedo" id="toc-mutabilidad-paralela-sin-miedo" class="nav-link" data-scroll-target="#mutabilidad-paralela-sin-miedo"><span class="header-section-number">15.4.2</span> 2. Mutabilidad Paralela (Sin Miedo)</a></li>
+  </ul></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="header-section-number">15.5</span> Resumen</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./errors.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./optimization.html">Optimización</a></li><li class="breadcrumb-item"><a href="./paralelization.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Paralelización</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></h1>
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Paralelización</span></h1>
 </div>
 
 
@@ -419,52 +440,135 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>En Rust, el manejo de errores se divide en dos categorías principales: errores recuperables (gestionados con Result) y errores irrecuperables (gestionados con panic!).</p>
-<p>Result: Errores Recuperables</p>
-<p>El tipo Result es usado cuando una operación puede tener éxito o fallar. Tiene dos variantes:</p>
+<p>En el análisis espacial, a menudo nos enfrentamos a problemas “vergonzosamente paralelos”: calcular el área de un millón de polígonos, reproyectar miles de puntos o procesar celdas de un raster. Cada elemento es independiente del otro.</p>
+<p>En R, paralelizar suele doler un poco. Tienes que configurar un cluster (<code>makeCluster</code>), exportar variables y librerías a cada worker (<code>clusterExport</code>), y lidiar con el overhead de copiar datos. Si usas <code>mclapply</code> (forking) en Linux/Mac es más fácil, pero en Windows es un problema. Además, R es monohilo por diseño, por lo que el paralelismo es multiproceso (pesado).</p>
+<p>En Rust, el paralelismo es <strong>multihilo (ligero)</strong> y, gracias al sistema de ownership, es <strong>libre de condiciones de carrera (data races)</strong>. Si tu código compila, es thread-safe.</p>
+<section id="cuándo-y-por-qué-paralelizar" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="cuándo-y-por-qué-paralelizar"><span class="header-section-number">15.1</span> ¿Cuándo y Por Qué Paralelizar?</h2>
+<p>No todo debe ser paralelo. Paralelizar tiene un costo: 1. <strong>Overhead de coordinación</strong>: Dividir el trabajo y juntar resultados. 2. <strong>Comunicación</strong>: Mover datos entre hilos (aunque en Rust comparten memoria, hay costos de caché).</p>
+<section id="regla-de-oro" class="level3" data-number="15.1.1">
+<h3 data-number="15.1.1" class="anchored" data-anchor-id="regla-de-oro"><span class="header-section-number">15.1.1</span> Regla de Oro</h3>
+<p>Paraleliza solo cuando la tarea es <strong>CPU-bound</strong> (mucho cálculo matemático) y el tiempo de cómputo supera al tiempo de gestión de hilos.</p>
 <ul>
-<li>Ok(T): Representa un éxito y contiene un valor.</li>
-<li>Err(E): Representa un error y contiene información del mismo.</li>
+<li>✅ <strong>Sí</strong>: Calcular intersección de 100k polígonos complejos.</li>
+<li>❌ <strong>No</strong>: Sumar dos vectores de 100 elementos.</li>
+<li>❌ <strong>No</strong>: Leer archivos pequeños del disco (eso es I/O bound, requiere <code>async</code> que es distinto).</li>
 </ul>
-<p>Ejemplo básico:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::fs::</span>File<span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> archivo <span class="op">=</span> <span class="pp">File::</span>open(<span class="st">"archivo.txt"</span>)<span class="op">;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> archivo <span class="op">{</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Ok</span>(_) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Archivo abierto."</span>)<span class="op">,</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Err</span>(e) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Error: {}"</span><span class="op">,</span> e)<span class="op">,</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>También puedes usar el operador ? para simplificar el manejo de errores, propagando el error si ocurre:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> leer_archivo() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">,</span> <span class="pp">std::io::</span><span class="bu">Error</span><span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> archivo <span class="op">=</span> <span class="pp">File::</span>open(<span class="st">"archivo.txt"</span>)<span class="op">?;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> contenido <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>new()<span class="op">;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    archivo<span class="op">.</span>read_to_string(<span class="op">&amp;</span><span class="kw">mut</span> contenido)<span class="op">?;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(contenido)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Option: Valores Opcionales</strong></p>
-<p>Option es usado para manejar valores que pueden estar presentes o no. Tiene dos variantes:</p>
+</section>
+</section>
+<section id="la-herramienta-estrella-rayon" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="la-herramienta-estrella-rayon"><span class="header-section-number">15.2</span> La Herramienta Estrella: <code>rayon</code></h2>
+<p>La crate <code>rayon</code> es el estándar de oro para paralelismo de datos en Rust. Su filosofía es convertir iteradores secuenciales en paralelos con un cambio de línea.</p>
+<p>A diferencia del <code>mclapply</code> de R que divide la tarea en bloques fijos, <code>rayon</code> usa <strong>Work Stealing</strong>: si un núcleo termina su trabajo rápido (quizás sus polígonos eran simples), “roba” trabajo de otros núcleos ocupados. Esto balancea la carga automáticamente.</p>
+<section id="ejemplo-práctico-puntos-en-polígonos" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="ejemplo-práctico-puntos-en-polígonos"><span class="header-section-number">15.2.1</span> Ejemplo Práctico: Puntos en Polígonos</h3>
+<p>Supongamos que tenemos 1 millón de puntos y queremos saber si están dentro de un polígono complejo.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">rayon::prelude::</span><span class="op">*;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">geo::</span><span class="op">{</span>Point<span class="op">,</span> Polygon<span class="op">,</span> Contains<span class="op">};</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> poligono_complejo<span class="op">:</span> Polygon <span class="op">=</span> <span class="op">...;</span> <span class="co">// Definición del polígono</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> puntos<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span>Point<span class="op">&gt;</span> <span class="op">=</span> <span class="op">...;</span> <span class="co">// 1,000,000 de puntos</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Versión Secuencial (un solo núcleo)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// R: lapply(puntos, st_contains, poly = poligono)</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> dentro_seq<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">bool</span><span class="op">&gt;</span> <span class="op">=</span> puntos<span class="op">.</span>iter()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map(<span class="op">|</span>p<span class="op">|</span> poligono_complejo<span class="op">.</span>contains(p))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>collect()<span class="op">;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Versión Paralela (todos los núcleos)</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// R: mclapply(puntos, st_contains, poly = poligono, mc.cores = 8)</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> dentro_par<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span><span class="dt">bool</span><span class="op">&gt;</span> <span class="op">=</span> puntos<span class="op">.</span>par_iter() <span class="co">// &lt;--- ¡Solo esto cambia!</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map(<span class="op">|</span>p<span class="op">|</span> poligono_complejo<span class="op">.</span>contains(p))</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>collect()<span class="op">;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="batching-y-chunking" class="level3" data-number="15.2.2">
+<h3 data-number="15.2.2" class="anchored" data-anchor-id="batching-y-chunking"><span class="header-section-number">15.2.2</span> Batching y Chunking</h3>
+<p>En R, a veces hacemos chunks manuales para no saturar la memoria o el scheduler. En Rust/Rayon, normalmente <strong>no necesitas hacer chunks manuales</strong>. <code>rayon</code> se adapta. Pero si tu operación por elemento es muy liviana, puedes usar <code>par_chunks</code> para procesar bloques y amortizar el overhead.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Procesar en bloques de 1000 elementos</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> resultados<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span>_<span class="op">&gt;</span> <span class="op">=</span> data<span class="op">.</span>par_chunks(<span class="dv">1000</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>map(<span class="op">|</span>chunk<span class="op">|</span> procesar_bloque_pesado(chunk))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>flatten()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>collect()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="diferencias-clave-con-r" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="diferencias-clave-con-r"><span class="header-section-number">15.3</span> Diferencias Clave con R</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Característica</th>
+<th style="text-align: left;">R (<code>parallel</code>/<code>future</code>)</th>
+<th style="text-align: left;">Rust (<code>rayon</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Modelo</strong></td>
+<td style="text-align: left;">Procesos (copia de memoria)</td>
+<td style="text-align: left;">Hilos (memoria compartida)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Overhead</strong></td>
+<td style="text-align: left;">Alto (serialización de datos)</td>
+<td style="text-align: left;">Muy bajo</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Datos</strong></td>
+<td style="text-align: left;">Se copian a cada worker</td>
+<td style="text-align: left;">Se leen concurrentemente (sin copia)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Seguridad</strong></td>
+<td style="text-align: left;">Depende del usuario</td>
+<td style="text-align: left;">Garantizada por el compilador</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Windows</strong></td>
+<td style="text-align: left;">Complicado (<code>PSOCK</code>)</td>
+<td style="text-align: left;">Funciona igual que en Linux/Mac</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="estrategias-de-alto-rendimiento" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="estrategias-de-alto-rendimiento"><span class="header-section-number">15.4</span> Estrategias de Alto Rendimiento</h2>
+<section id="map-reduce-paralelo" class="level3" data-number="15.4.1">
+<h3 data-number="15.4.1" class="anchored" data-anchor-id="map-reduce-paralelo"><span class="header-section-number">15.4.1</span> 1. Map-Reduce Paralelo</h3>
+<p>Calcular la extensión (Bounding Box) total de millones de geometrías.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> bbox_total <span class="op">=</span> geometrias<span class="op">.</span>par_iter()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>map(<span class="op">|</span>g<span class="op">|</span> g<span class="op">.</span>bounding_rect()<span class="op">.</span>unwrap())</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>reduce(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="op">||</span> <span class="pp">Rect::</span>new(<span class="pp">coord!</span><span class="op">{</span>x<span class="op">:</span> <span class="dt">f64</span><span class="pp">::</span><span class="cn">INFINITY</span><span class="op">,</span> y<span class="op">:</span> <span class="dt">f64</span><span class="pp">::</span><span class="cn">INFINITY</span><span class="op">},</span> <span class="pp">coord!</span><span class="op">{</span>x<span class="op">:</span> <span class="dt">f64</span><span class="pp">::</span><span class="cn">NEG_INFINITY</span><span class="op">,</span> y<span class="op">:</span> <span class="dt">f64</span><span class="pp">::</span><span class="cn">NEG_INFINITY</span><span class="op">}</span>)<span class="op">,</span> <span class="co">// Identidad</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="op">|</span>a<span class="op">,</span> b<span class="op">|</span> a<span class="op">.</span><span class="kw">union</span>(<span class="op">&amp;</span>b) <span class="co">// Reducción</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    )<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="mutabilidad-paralela-sin-miedo" class="level3" data-number="15.4.2">
+<h3 data-number="15.4.2" class="anchored" data-anchor-id="mutabilidad-paralela-sin-miedo"><span class="header-section-number">15.4.2</span> 2. Mutabilidad Paralela (Sin Miedo)</h3>
+<p>En R es imposible modificar un vector global desde un worker. En Rust, puedes escribir en un vector pre-asignado de forma segura si cada hilo toca índices distintos.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">mut</span> resultados <span class="op">=</span> <span class="pp">vec!</span>[<span class="dv">0</span><span class="op">;</span> N]<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">// `par_iter_mut` permite modificar el vector in-place</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>resultados<span class="op">.</span>par_iter_mut()<span class="op">.</span>enumerate()<span class="op">.</span>for_each(<span class="op">|</span>(i<span class="op">,</span> val)<span class="op">|</span> <span class="op">{</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span>val <span class="op">=</span> calculo_pesado(i)<span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="resumen" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="resumen"><span class="header-section-number">15.5</span> Resumen</h2>
 <ul>
-<li>Some(T): Representa un valor.</li>
-<li>None: Representa la ausencia de un valor.</li>
+<li>Usa <code>rayon</code> cuando tengas bucles grandes (<code>.iter()</code>) que tarden mucho.</li>
+<li>Cambia <code>.iter()</code> por <code>.par_iter()</code>.</li>
+<li>Disfruta de usar el 100% de tu CPU sin cambiar tu lógica ni configurar clusters.</li>
 </ul>
-<p>Ejemplo:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> dividir(dividendo<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span> divisor<span class="op">:</span> <span class="dt">f64</span>) <span class="op">-&gt;</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> divisor <span class="op">==</span> <span class="dv">0.0</span> <span class="op">{</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cn">None</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Some</span>(dividendo <span class="op">/</span> divisor)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>panic!: Errores Irrecuperables</strong></p>
-<p>Cuando ocurre un error grave del que el programa no puede recuperarse, se usa panic! para detener la ejecución:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">panic!</span>(<span class="st">"¡Error grave!"</span>)<span class="op">;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -868,13 +972,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./closures.html" class="pagination-link" aria-label="Closures">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closures</span></span>
+      <a href="./optimization.html" class="pagination-link" aria-label="Optimización">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Optimización</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./struct.html" class="pagination-link" aria-label="Structs, Enums y Traits">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Structs, Enums y Traits</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./spatial_chapter.html" class="pagination-link" aria-label="Rust Espacial">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

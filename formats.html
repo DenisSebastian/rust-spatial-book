@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; Manejo de errores – Rust Espacial</title>
+<title>18&nbsp; Formatos Espaciales – Rust Espacial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./struct.html" rel="next">
-<link href="./closures.html" rel="prev">
+<link href="./geos.html" rel="next">
+<link href="./geotypes.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./errors.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spatial_chapter.html">Rust Espacial</a></li><li class="breadcrumb-item"><a href="./formats.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -214,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./errors.html" class="sidebar-item-text sidebar-link active">
+  <a href="./errors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></span></a>
   </div>
 </li>
@@ -278,7 +278,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./formats.html" class="sidebar-item-text sidebar-link">
+  <a href="./formats.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></span></a>
   </div>
 </li>
@@ -394,15 +394,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#capacidades-de-gdal" id="toc-capacidades-de-gdal" class="nav-link active" data-scroll-target="#capacidades-de-gdal"><span class="header-section-number">18.1</span> Capacidades de GDAL</a></li>
+  <li><a href="#lectura-de-datos-vectoriales" id="toc-lectura-de-datos-vectoriales" class="nav-link" data-scroll-target="#lectura-de-datos-vectoriales"><span class="header-section-number">18.2</span> Lectura de Datos Vectoriales</a>
+  <ul class="collapse">
+  <li><a href="#ejemplo-leyendo-un-shapefile-o-geopackage" id="toc-ejemplo-leyendo-un-shapefile-o-geopackage" class="nav-link" data-scroll-target="#ejemplo-leyendo-un-shapefile-o-geopackage"><span class="header-section-number">18.2.1</span> Ejemplo: Leyendo un Shapefile o GeoPackage</a></li>
+  <li><a href="#ejemplo-leyendo-un-csv-con-latitudlongitud" id="toc-ejemplo-leyendo-un-csv-con-latitudlongitud" class="nav-link" data-scroll-target="#ejemplo-leyendo-un-csv-con-latitudlongitud"><span class="header-section-number">18.2.2</span> Ejemplo: Leyendo un CSV con Latitud/Longitud</a></li>
+  </ul></li>
+  <li><a href="#escritura-y-conversión" id="toc-escritura-y-conversión" class="nav-link" data-scroll-target="#escritura-y-conversión"><span class="header-section-number">18.3</span> Escritura y Conversión</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./errors.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spatial_chapter.html">Rust Espacial</a></li><li class="breadcrumb-item"><a href="./formats.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></h1>
+<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></h1>
 </div>
 
 
@@ -419,52 +431,99 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>En Rust, el manejo de errores se divide en dos categorías principales: errores recuperables (gestionados con Result) y errores irrecuperables (gestionados con panic!).</p>
-<p>Result: Errores Recuperables</p>
-<p>El tipo Result es usado cuando una operación puede tener éxito o fallar. Tiene dos variantes:</p>
+<p>En Rust, la interacción con formatos de archivos geoespaciales se realiza principalmente a través de <strong>GDAL</strong> (Geospatial Data Abstraction Library). Esta es la misma “navaja suiza” que impulsa a QGIS, GeoServer, y paquetes como <code>sf</code> o <code>rgdal</code> en R.</p>
+<p>La crate <a href="https://github.com/georust/gdal"><code>gdal</code></a> provee bindings de alto nivel en Rust para acceder a esta poderosa librería C++.</p>
+<section id="capacidades-de-gdal" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="capacidades-de-gdal"><span class="header-section-number">18.1</span> Capacidades de GDAL</h2>
+<p>GDAL es una librería increíblemente poderosa. Sus capacidades principales incluyen:</p>
 <ul>
-<li>Ok(T): Representa un éxito y contiene un valor.</li>
-<li>Err(E): Representa un error y contiene información del mismo.</li>
+<li><strong>Apertura de formatos</strong>: Lectura y escritura de cientos de formatos raster (GeoTIFF, COG, ECW) y vectoriales (Shapefile, GeoPackage, KML).</li>
+<li><strong>Traducción de formatos</strong>: Conversión eficiente entre diferentes tipos de archivos (funcionalidad equivalente a <code>ogr2ogr</code>).</li>
+<li><strong>Metadatos</strong>: Lectura y escritura de metadatos asociados a datasets espaciales.</li>
+<li><strong>Acceso a bandas raster</strong>: Manipulación a bajo nivel de valores de píxeles y sus propiedades.</li>
+<li><strong>Manejo de CRS</strong>: Lectura y escritura de sistemas de coordenadas y proyecciones (WKT, códigos EPSG).</li>
+<li><strong>Transformaciones</strong>: Reproyección (warping) y re-muestreo (resampling) entre sistemas de coordenadas.</li>
 </ul>
-<p>Ejemplo básico:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::fs::</span>File<span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> archivo <span class="op">=</span> <span class="pp">File::</span>open(<span class="st">"archivo.txt"</span>)<span class="op">;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> archivo <span class="op">{</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Ok</span>(_) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Archivo abierto."</span>)<span class="op">,</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Err</span>(e) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Error: {}"</span><span class="op">,</span> e)<span class="op">,</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>También puedes usar el operador ? para simplificar el manejo de errores, propagando el error si ocurre:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> leer_archivo() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">,</span> <span class="pp">std::io::</span><span class="bu">Error</span><span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> archivo <span class="op">=</span> <span class="pp">File::</span>open(<span class="st">"archivo.txt"</span>)<span class="op">?;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> contenido <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>new()<span class="op">;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    archivo<span class="op">.</span>read_to_string(<span class="op">&amp;</span><span class="kw">mut</span> contenido)<span class="op">?;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(contenido)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Option: Valores Opcionales</strong></p>
-<p>Option es usado para manejar valores que pueden estar presentes o no. Tiene dos variantes:</p>
-<ul>
-<li>Some(T): Representa un valor.</li>
-<li>None: Representa la ausencia de un valor.</li>
-</ul>
-<p>Ejemplo:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> dividir(dividendo<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span> divisor<span class="op">:</span> <span class="dt">f64</span>) <span class="op">-&gt;</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> divisor <span class="op">==</span> <span class="dv">0.0</span> <span class="op">{</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cn">None</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Some</span>(dividendo <span class="op">/</span> divisor)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>panic!: Errores Irrecuperables</strong></p>
-<p>Cuando ocurre un error grave del que el programa no puede recuperarse, se usa panic! para detener la ejecución:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">panic!</span>(<span class="st">"¡Error grave!"</span>)<span class="op">;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="lectura-de-datos-vectoriales" class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="lectura-de-datos-vectoriales"><span class="header-section-number">18.2</span> Lectura de Datos Vectoriales</h2>
+<p>Para leer datos, usamos la estructura <code>Dataset</code>. GDAL abstrae los detalles del formato, por lo que el código es muy similar ya sea que leas un Shapefile o un GeoPackage.</p>
+<section id="ejemplo-leyendo-un-shapefile-o-geopackage" class="level3" data-number="18.2.1">
+<h3 data-number="18.2.1" class="anchored" data-anchor-id="ejemplo-leyendo-un-shapefile-o-geopackage"><span class="header-section-number">18.2.1</span> Ejemplo: Leyendo un Shapefile o GeoPackage</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">gdal::</span>Dataset<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">gdal::vector::</span>LayerAccess<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">-&gt;</span> <span class="pp">gdal::errors::</span><span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Abre el archivo (GDAL detecta el formato automáticamente)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> dataset <span class="op">=</span> <span class="pp">Dataset::</span>open(<span class="st">"datos/puntos.gpkg"</span>)<span class="op">?;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Accede a una capa (por índice o nombre)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> layer <span class="op">=</span> dataset<span class="op">.</span>layer(<span class="dv">0</span>)<span class="op">?;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Itera sobre las features</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> feature <span class="kw">in</span> layer<span class="op">.</span>features() <span class="op">{</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Obtener valores de atributos</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> nombre<span class="op">:</span> <span class="dt">String</span> <span class="op">=</span> feature<span class="op">.</span>field_as_string_by_name(<span class="st">"nombre"</span>)<span class="op">?</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span>unwrap_or_else(<span class="op">||</span> <span class="st">"Desconocido"</span><span class="op">.</span>to_string())<span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Obtener la geometría</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">let</span> <span class="cn">Some</span>(geometry) <span class="op">=</span> feature<span class="op">.</span>geometry() <span class="op">{</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>            <span class="pp">println!</span>(<span class="st">"Feature: {}, Geometría: {:?}"</span><span class="op">,</span> nombre<span class="op">,</span> geometry<span class="op">.</span>wkt()<span class="op">?</span>)<span class="op">;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(())</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ejemplo-leyendo-un-csv-con-latitudlongitud" class="level3" data-number="18.2.2">
+<h3 data-number="18.2.2" class="anchored" data-anchor-id="ejemplo-leyendo-un-csv-con-latitudlongitud"><span class="header-section-number">18.2.2</span> Ejemplo: Leyendo un CSV con Latitud/Longitud</h3>
+<p>GDAL puede tratar archivos CSV como espacios vectoriales si contienen columnas de coordenadas. A veces es necesario un archivo auxiliar <code>.vrt</code> o opciones de apertura especiales, pero para CSVs simples con encabezados claros, GDAL suele detectarlo.</p>
+<p>Sin embargo, en Rust a menudo es más idiomático y liviano usar la crate <code>csv</code> + <code>geo-types</code> si el CSV es simple. Pero si necesitamos usar GDAL (por ejemplo, para aprovechar su motor de proyecciones o si el CSV es complejo):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">gdal::</span>Dataset<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">-&gt;</span> <span class="pp">gdal::errors::</span><span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Opciones para decirle a GDAL qué columnas son la geometría</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// "X_POSSIBLE_NAMES=lon,x" y "Y_POSSIBLE_NAMES=lat,y" son defaults comunes</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> path <span class="op">=</span> <span class="st">"datos/ubicaciones.csv"</span><span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// GDAL intenta abrir CSVs directamente</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> dataset <span class="op">=</span> <span class="pp">Dataset::</span>open(path)<span class="op">?;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> layer <span class="op">=</span> dataset<span class="op">.</span>layer(<span class="dv">0</span>)<span class="op">?;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> feature <span class="kw">in</span> layer<span class="op">.</span>features() <span class="op">{</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Acceso igual que con otros formatos</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> geom <span class="op">=</span> feature<span class="op">.</span>geometry()<span class="op">;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="co">// ...</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(())</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>[!TIP] <strong>Performance Tip</strong>: Al iterar <code>layer.features()</code>, GDAL carga las features una a una (streaming). Esto permite procesar datasets enormes (GBs de tamaño) sin cargar todo en la RAM.</p>
+</blockquote>
+</section>
+</section>
+<section id="escritura-y-conversión" class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="escritura-y-conversión"><span class="header-section-number">18.3</span> Escritura y Conversión</h2>
+<p>Crear nuevos archivos sigue un patrón de “Driver -&gt; Create -&gt; Layer -&gt; Feature”.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">gdal::</span>DriverManager<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> guardar_shapefile() <span class="op">-&gt;</span> <span class="pp">gdal::errors::</span><span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Obtener el driver "ESRI Shapefile"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> driver <span class="op">=</span> <span class="pp">DriverManager::</span>get_driver_by_name(<span class="st">"ESRI Shapefile"</span>)<span class="op">?;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Crear el dataset</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> dataset <span class="op">=</span> driver<span class="op">.</span>create_vector_only(<span class="st">"salida.shp"</span>)<span class="op">?;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Crear la capa</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> layer <span class="op">=</span> dataset<span class="op">.</span>create_layer(<span class="bu">Default</span><span class="pp">::</span><span class="kw">default</span>())<span class="op">?;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Crear una feature y añadirla...</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">// (Omitido por brevedad, requiere definir campos y geometría)</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(())</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -868,13 +927,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./closures.html" class="pagination-link" aria-label="Closures">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closures</span></span>
+      <a href="./geotypes.html" class="pagination-link" aria-label="Datos Geoespaciales">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Datos Geoespaciales</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./struct.html" class="pagination-link" aria-label="Structs, Enums y Traits">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Structs, Enums y Traits</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./geos.html" class="pagination-link" aria-label="Operaciones Espaciales">
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Operaciones Espaciales</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

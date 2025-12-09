@@ -14,7 +14,7 @@
     "href": "index.html#por-qué-rust",
     "title": "Rust Espacial",
     "section": "1.1 ¿Por qué Rust?",
-    "text": "1.1 ¿Por qué Rust?\nRust es un lenguaje de programación moderno que combina alto rendimiento con una seguridad de memoria excepcional, lo que lo convierte en una herramienta poderosa para desarrolladores que trabajan en diversos dominios, desde sistemas de bajo nivel hasta aplicaciones web. A diferencia de lenguajes tradicionales, Rust ofrece una experiencia fluida, eliminando errores comunes como desbordamientos de memoria y condiciones de carrera. Es como conducir un automóvil con tecnología avanzada de asistencia: puedes concentrarte en alcanzar tus objetivos mientras Rust se asegura de mantenerte seguro en el camino, evitando los errores típicos del desarrollo y brindándote un control total.",
+    "text": "1.1 ¿Por qué Rust?\nImagina que R es tu cocina casera: es flexible, indulgente y te permite preparar platos deliciosos rápidamente. Si te falta un ingrediente, improvisas; si se te cae algo, lo limpias después. Es perfecto para exploraciones rápidas y prototipado.\nRust, en cambio, es una cocina industrial de alta gama. Aquí, las reglas son estrictas: nadie entra sin el equipo de seguridad adecuado (sistema de tipos), los ingredientes se verifican en la entrada (comprobación en tiempo de compilación) y el flujo de trabajo está diseñado para servir a miles de comensales sin errores (concurrencia y rendimiento).\nRust no viene a reemplazar tu cocina casera (R sigue siendo excelente para análisis exploratorio), sino a darte las herramientas para construir la fábrica que procesará tus recetas a escala masiva. Te ofrece un control total sobre la memoria y el hardware, garantizando que, una vez que tu código compile, funcionará de manera eficiente y segura, sin los “accidentes” (crashes) inesperados típicos de escalar scripts.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Prefacio</span>"
     ]
@@ -24,7 +24,7 @@
     "href": "index.html#por-qué-rust-para-análisis-espacial",
     "title": "Rust Espacial",
     "section": "1.2 ¿Por qué Rust para análisis espacial?",
-    "text": "1.2 ¿Por qué Rust para análisis espacial?\nRust destaca en la resolución de problemas espaciales gracias a su control eficiente sobre la administración de recursos, lo que es crucial cuando se procesan grandes volúmenes de datos geoespaciales o imágenes satelitales. Este libro está diseñado para demostrar cómo Rust puede convertirse en una herramienta esencial para abordar desafíos espaciales complejos, ofreciendo un equilibrio perfecto entre rendimiento, seguridad y claridad en el código. A través de ejemplos prácticos, aprenderás a utilizar Rust para enfrentar tareas de análisis espacial, desde la manipulación de vastos conjuntos de datos hasta la construcción de sistemas altamente optimizados para el procesamiento geoespacial, todo con el poder y la eficiencia de este lenguaje.",
+    "text": "1.2 ¿Por qué Rust para análisis espacial?\nEl análisis espacial moderno es voraz en recursos. Procesar terabytes de imágenes satelitales o realizar un join espacial entre millones de polígonos en R puede llevar horas o agotar la memoria disponible. Rust brilla exactamente aquí.\nRust te permite escribir algoritmos que “muerden el metal”, optimizando cada byte de memoria y cada ciclo de CPU. Este libro es un puente para usuarios de R: te enseñaremos a tomar la lógica espacial que ya conoces y reconstruirla en Rust para obtener un rendimiento y robustez de nivel industrial. Aprenderás a crear librerías que puedes llamar desde R, obteniendo lo mejor de ambos mundos: la interactividad de R y la potencia bruta de Rust.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Prefacio</span>"
     ]
@@ -34,7 +34,7 @@
     "href": "index.html#créditos",
     "title": "Rust Espacial",
     "section": "Créditos",
-    "text": "Créditos\nMuchos conceptos y ejemplos obtenidos del libro “El Lenguaje de Programación Rust” creado por Steve Klabnik y Carol Nichols, con contribuciones de la Comunidad Rust",
+    "text": "Créditos\nEste trabajo se apoya en los hombros de gigantes. Muchos conceptos y ejemplos están inspirados en el libro oficial “El Lenguaje de Programación Rust” y en la vibrante comunidad de geo-rust. Agradecimientos especiales a los desarrolladores de extendr, quienes han hecho posible este puente entre dos grandes lenguajes.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Prefacio</span>"
     ]
@@ -44,17 +44,17 @@
     "href": "intro.html",
     "title": "2  Introducción",
     "section": "",
-    "text": "2.1 ¿Qué es Rust?\nRust es un lenguaje de programación de sistemas que prioriza el rendimiento, la seguridad y la concurrencia sin sacrificar la experiencia del desarrollador. Su diseño se enfoca en evitar errores comunes como las condiciones de carrera, desbordamientos de memoria y fugas de recursos, todo mientras mantiene la flexibilidad de los lenguajes de bajo nivel. Al ofrecer un control preciso sobre la memoria sin necesidad de un recolector de basura, Rust se ha convertido en una opción favorita tanto para el desarrollo de sistemas críticos como para aplicaciones de alto rendimiento, desde servidores web hasta sistemas embebidos.",
+    "text": "2.1 ¿Qué es Rust?\nRust es un lenguaje de sistemas que ha revolucionado la industria por una promesa audaz: rendimiento sin sacrificar seguridad.\nPara un usuario de R, Rust puede parecer al principio rígido. En R, puedes crear una lista con un número, un string y un dataframe sin problemas. En Rust, el compilador (tu jefe de cocina estricto) te exigirá saber exactamente qué tipo de dato va en cada contenedor y quién es el responsable de limpiarlo.\nEsta rigidez es su mayor virtud. Al obligarte a ser explícito sobre la memoria y los tipos, Rust elimina clases enteras de bugs antes de que ejecutes el código. No hay Segfaults aleatorios ni “Garbage Collection pauses” impredecibles. Es el lenguaje ideal para construir el motor de procesamiento pesado que tu script de R necesita llamar.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción</span>"
     ]
   },
   {
-    "objectID": "intro.html#objetivos",
-    "href": "intro.html#objetivos",
+    "objectID": "intro.html#objetivos-del-libro",
+    "href": "intro.html#objetivos-del-libro",
     "title": "2  Introducción",
-    "section": "2.2 Objetivos",
-    "text": "2.2 Objetivos\n\nObjetivo General\nEl objetivo principal de este libro es proporcionar a los lectores una comprensión sólida y práctica de Rust, enfocándose en su aplicación para la resolución de problemas espaciales y geoespaciales. A lo largo del libro, los lectores adquirirán las habilidades necesarias para desarrollar soluciones eficientes, robustas y seguras, utilizando Rust como herramienta fundamental en el análisis espacial.\n\n\nObjetivos Específicos\n\nIntroducir los conceptos fundamentales de Rust: Explicar de manera clara los principios básicos del lenguaje, como su sistema de ownership, estructuras de datos y programación funcional, para que el lector pueda aplicarlos en diferentes contextos.\nDemostrar la aplicación de Rust en problemas espaciales: Proporcionar ejemplos prácticos y detallados que muestren cómo Rust puede ser utilizado para procesar grandes volúmenes de datos geoespaciales, optimizando tanto el rendimiento como la eficiencia.\nComparar Rust con otros lenguajes usados en análisis espacial: Ofrecer una visión comparativa de Rust frente a lenguajes como Python y R, resaltando las ventajas y casos en los que Rust puede ser una mejor opción en la resolución de problemas complejos de análisis espacial.",
+    "section": "2.2 Objetivos del Libro",
+    "text": "2.2 Objetivos del Libro\n\nObjetivo General\nTransformar a analistas de datos y usuarios de R en ingenieros de software espacial. No solo aprenderás la sintaxis de Rust, sino cómo pensar en términos de sistemas, memoria y eficiencia para resolver problemas geoespaciales que serían intratables en lenguajes interpretados.\n\n\nObjetivos Específicos\n\nPensar en Rust desde R: Aprenderás a traducir tus flujos de trabajo de R (vectorización, dataframes) a las estructuras de Rust (iteradores, structs), entendiendo el porqué de las diferencias.\nIngeniería Espacial: Dominarás las librerías del ecosistema geo-rust (geo, gdal, geos) para manipular geometrías con precisión quirúrgica.\nIntegración Efectiva: Aprenderás a usar extendr para empaquetar tu código Rust de alto rendimiento y llamarlo desde R como si fuera una función nativa más.\nOptimización: Entenderás cómo el manejo de memoria (Ownership/Borrowing) impacta directamente en la velocidad de tus procesos espaciales.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción</span>"
     ]
@@ -64,7 +64,7 @@
     "href": "intro.html#descripción-del-libro",
     "title": "2  Introducción",
     "section": "2.3 Descripción del Libro",
-    "text": "2.3 Descripción del Libro\nEste libro está diseñado para guiar al lector desde la instalación de Rust hasta su aplicación en análisis espacial, proporcionando una base sólida en el lenguaje y sus conceptos clave. Comenzamos con el Capítulo 3: Instalación, donde te ayudaremos a configurar tu entorno de trabajo. A continuación, en el Capítulo 4: Conceptos Básicos, introducimos los fundamentos del lenguaje, necesarios para entender los ejemplos prácticos. Luego, el Capítulo 5: Ownership explora el sistema de propiedad de Rust, que es esencial para manejar la memoria de manera eficiente. El Capítulo 6: Struct presenta la construcción de estructuras de datos personalizadas, un aspecto clave en la creación de modelos complejos. En el Capítulo 7: Rust en Producción, discutimos las mejores prácticas para llevar proyectos de Rust al entorno productivo, asegurando que tu código sea escalable y mantenible. Posteriormente, en el Capítulo 8: Rust Espacial, nos adentramos en la aplicación de Rust para resolver problemas espaciales complejos, mostrando su capacidad para manejar grandes volúmenes de datos geoespaciales. En el Capítulo 9: Programación Funcional, exploramos cómo Rust incorpora paradigmas funcionales para simplificar la manipulación de datos y mejorar la legibilidad del código. Finalmente, en el Capítulo 10: Otros Lenguajes, comparamos Rust con otros lenguajes populares en el ámbito del análisis espacial, como R y Python, destacando sus ventajas y desventajas.",
+    "text": "2.3 Descripción del Libro\nEl viaje comienza configurando tu entorno (Capítulo 3: Instalación). Luego, construiremos los cimientos fundamentales (Capítulo 4: Conceptos Básicos y Capítulo 5: Ownership), donde entenderás por qué Rust es tan obsesivo con “quién posee el dato”.\nEn el Capítulo 6: Struct, aprenderás a definir tus propios tipos de datos espaciales. El Capítulo 7 aborda cómo llevar esto a producción.\nEl corazón del libro reside en las secciones nuevas: * Integración R-Rust: Donde romperemos la barrera entre lenguajes. * Rust Espacial: Donde aplicaremos todo lo aprendido a problemas reales como indexación espacial, geohashing y operaciones geométricas masivas.\nFinalmente, cerramos con Programación Funcional (muy familiar para usuarios de purrr en R) y comparativas de rendimiento.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción</span>"
     ]
@@ -74,7 +74,7 @@
     "href": "intro.html#perfil-del-lector",
     "title": "2  Introducción",
     "section": "2.4 Perfil del Lector",
-    "text": "2.4 Perfil del Lector\nEste libro está orientado a profesionales con experiencia intermedia o avanzada en programación, que tengan nociones de otros lenguajes como Python, R o C++. Si ya has trabajado con lenguajes de programación y estás buscando expandir tu conocimiento hacia Rust, este libro es para ti. No es necesario ser un experto en análisis espacial, pero se espera que tengas una comprensión básica de los principios de programación y estés familiarizado con la resolución de problemas complejos.",
+    "text": "2.4 Perfil del Lector\nEste libro es para ti si: * Usas R (o Python) y te has topado con un muro de rendimiento (tu script tarda días o se queda sin RAM). * Quieres entender qué pasa “bajo el capó” de librerías como sf o terra. * Estás dispuesto a invertir tiempo en aprender un sistema estricto a cambio de un control y velocidad absolutos.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción</span>"
     ]
@@ -84,7 +84,7 @@
     "href": "intro.html#resumen",
     "title": "2  Introducción",
     "section": "2.5 Resumen",
-    "text": "2.5 Resumen\nEn resumen, este libro te guiará a través de los fundamentos de Rust, proporcionándote las habilidades necesarias para aplicar el lenguaje en la resolución de problemas espaciales. Desde la instalación hasta la programación funcional, cada capítulo está diseñado para ofrecerte una comprensión progresiva del lenguaje y su uso práctico. Al final, habrás adquirido las herramientas para implementar soluciones eficientes y robustas en Rust, ya sea en el análisis espacial o en otros campos de alta demanda técnica.",
+    "text": "2.5 Resumen\nNo estamos aquí solo para aprender una sintaxis nueva. Estamos aquí para cambiar nuestra mentalidad: dejar de ser consumidores de funciones lentas para convertirnos en creadores de herramientas de alto rendimiento. Bienvenido a la cocina industrial.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Introducción</span>"
     ]
@@ -94,7 +94,7 @@
     "href": "install.html",
     "title": "3  Instalación",
     "section": "",
-    "text": "3.1 Intalar Rust\nEl primer paso es instalar Rust. Descargaremos Rust a través de rustup, una herramienta de línea de comandos para administrar las versiones de Rust y las herramientas asociadas. Necesitarás una conexión a Internet para la descarga.",
+    "text": "3.1 Intalar Rust\nEste capítulo explica cómo instalar Rust, cómo escribir un programa “Hola, mundo!” Y cómo usar Cargo, el administrador de paquetes y herramienta de compilación de Rust.\nEl primer paso es instalar Rust. Descargaremos Rust a través de rustup, una herramienta de línea de comandos para administrar las versiones de Rust y las herramientas asociadas. Necesitarás una conexión a Internet para la descarga.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Instalación</span>"
     ]
@@ -140,21 +140,11 @@
     ]
   },
   {
-    "objectID": "concepts.html",
-    "href": "concepts.html",
-    "title": "Conceptos Básicos",
-    "section": "",
-    "text": "Este capítulo cubre conceptos que aparecen en casi todos los lenguajes de programación y cómo funcionan en Rust. Muchos lenguajes de programación tienen mucho en común en su núcleo. Ninguno de los conceptos presentados en este capítulo son únicos de Rust, pero los discutiremos en el contexto de Rust y explicaremos las convenciones alrededor de su uso.\nEspecíficamente, aprenderás sobre variables, tipos básicos, funciones, comentarios y flujo de control. Estas bases estarán en todos los programas de Rust, y aprenderlas temprano te dará un núcleo fuerte para comenzar.",
-    "crumbs": [
-      "Conceptos Básicos"
-    ]
-  },
-  {
     "objectID": "variables.html",
     "href": "variables.html",
     "title": "4  Variables y Mutabilidad",
     "section": "",
-    "text": "4.1 Tipos de datos básicos\nRust es un lenguaje fuertemente tipado, lo que significa que cada valor debe tener un tipo específico. Estos tipos se dividen principalmente en dos categorías: tipos escalares y tipos compuestos. En esta sección, nos centraremos en los tipos escalares, que representan un valor único.",
+    "text": "4.1 Tipos de datos básicos\nEn Rust, las variables son inmutables por defecto, lo que promueve la seguridad y la concurrencia. Esto significa que una vez que se asigna un valor a una variable, no puede ser cambiado. Sin embargo, Rust permite optar por variables mutables si es necesario.\nPor ejemplo, el siguiente código da un error porque intenta reasignar un valor a la variable x sin hacerla mutable:\nEste error es útil porque garantiza que no modifiquemos accidentalmente variables que deben permanecer inmutables, lo que puede causar errores difíciles de detectar.\nSi necesitas cambiar el valor de una variable, puedes hacerla mutable usando mut:\nCon mut, el valor de x puede cambiar de 5 a 6. La mutabilidad es útil en muchos casos, pero usar variables inmutables puede ayudar a evitar errores y hacer que tu código sea más fácil de entender.\nRust es un lenguaje fuertemente tipado, lo que significa que cada valor debe tener un tipo específico. Estos tipos se dividen principalmente en dos categorías: tipos escalares y tipos compuestos. En esta sección, nos centraremos en los tipos escalares, que representan un valor único.",
     "crumbs": [
       "Conceptos Básicos",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Variables y Mutabilidad</span>"
@@ -187,7 +177,7 @@
     "href": "flow_control.html",
     "title": "5  Control de Flujo",
     "section": "",
-    "text": "5.1 Expresión if\nEn Rust, la expresión if evalúa una condición booleana y ejecuta un bloque de código dependiendo de si la condición es verdadera (true) o falsa (false). A diferencia de otros lenguajes, if en Rust es una expresión, lo que significa que puede devolver un valor.\nTambién se puede usar la expresión if para asignar valores:\nEs importante recordar que las ramas del if deben devolver el mismo tipo.",
+    "text": "5.1 Expresión if\nEn Rust, el control de flujos permite dirigir la ejecución del programa basándose en condiciones y repeticiones. Rust ofrece varias estructuras para controlar el flujo de la ejecución del código, como if para condiciones y bucles para repetir bloques de código.\nAquí tienes una tabla con las operaciones lógicas y su sintaxis en Rust, qué se utilizan en control de flujos:\nEn Rust, la expresión if evalúa una condición booleana y ejecuta un bloque de código dependiendo de si la condición es verdadera (true) o falsa (false). A diferencia de otros lenguajes, if en Rust es una expresión, lo que significa que puede devolver un valor.\nTambién se puede usar la expresión if para asignar valores:\nEs importante recordar que las ramas del if deben devolver el mismo tipo.",
     "crumbs": [
       "Conceptos Básicos",
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Control de  Flujo</span>"
@@ -229,56 +219,56 @@
   {
     "objectID": "scope.html",
     "href": "scope.html",
-    "title": "6  Bloques y Ámbitos",
+    "title": "6  Scope",
     "section": "",
-    "text": "6.1 Bloques\nUn bloque es simplemente un conjunto de instrucciones encerradas entre {}. Puedes usarlos en funciones, if, while, for y otras estructuras de control de flujo. Por ejemplo:\nEn este caso, el valor de y se asigna al resultado del bloque {}, que devuelve 4. Dentro del bloque, el valor de x es 3, pero fuera del bloque sigue siendo 5. Esto demuestra cómo los bloques crean un nuevo ámbito.",
+    "text": "6.1 Bloques\nEn Rust, un bloque es un conjunto de declaraciones y expresiones encerradas entre llaves {}, que define un ámbito o scope. Los bloques permiten organizar el código y controlar la visibilidad y la duración de las variables.\nUn bloque es simplemente un conjunto de instrucciones encerradas entre {}. Puedes usarlos en funciones, if, while, for y otras estructuras de control de flujo. Por ejemplo:\nEn este caso, el valor de y se asigna al resultado del bloque {}, que devuelve 4. Dentro del bloque, el valor de x es 3, pero fuera del bloque sigue siendo 5. Esto demuestra cómo los bloques crean un nuevo ámbito.",
     "crumbs": [
       "Conceptos Básicos",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bloques y Ámbitos</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Scope</span>"
     ]
   },
   {
     "objectID": "scope.html#bloques",
     "href": "scope.html#bloques",
-    "title": "6  Bloques y Ámbitos",
+    "title": "6  Scope",
     "section": "",
     "text": "fn main() {\n    let x = 5;\n    let y = {\n        let x = 3;\n        x + 1  // Este bloque devuelve 4\n    };\n    \n    println!(\"El valor de y es: {y}\");  // Imprime 4\n}",
     "crumbs": [
       "Conceptos Básicos",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bloques y Ámbitos</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Scope</span>"
     ]
   },
   {
     "objectID": "scope.html#ámbitos-scope",
     "href": "scope.html#ámbitos-scope",
-    "title": "6  Bloques y Ámbitos",
+    "title": "6  Scope",
     "section": "6.2 Ámbitos (Scope)",
     "text": "6.2 Ámbitos (Scope)\nCada variable tiene un ámbito, que es el área del código donde la variable está visible y disponible para su uso. El ámbito comienza cuando se declara la variable y termina cuando el bloque que contiene la variable finaliza.\nfn main() {\n    let x = 5; // El ámbito de `x` comienza aquí\n\n    {\n        let y = 10;  // El ámbito de `y` comienza aquí\n        println!(\"Dentro del bloque: x = {x}, y = {y}\");\n    }  // El ámbito de `y` termina aquí\n\n    // Aquí, `y` ya no es accesible, pero `x` aún lo es\n    println!(\"Fuera del bloque: x = {x}\");\n}\nEn el ejemplo anterior, y solo existe dentro del bloque interno. Intentar acceder a y fuera de ese bloque resultaría en un error, ya que su ámbito ha terminado. Sin embargo, x sigue accesible porque fue declarada en un ámbito más amplio (el bloque principal).",
     "crumbs": [
       "Conceptos Básicos",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bloques y Ámbitos</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Scope</span>"
     ]
   },
   {
     "objectID": "scope.html#sombra-de-variables-variable-shadowing",
     "href": "scope.html#sombra-de-variables-variable-shadowing",
-    "title": "6  Bloques y Ámbitos",
+    "title": "6  Scope",
     "section": "6.3 Sombra de Variables (Variable Shadowing)",
     "text": "6.3 Sombra de Variables (Variable Shadowing)\nRust permite sombras de variables, lo que significa que puedes declarar una nueva variable con el mismo nombre en un nuevo bloque, y esta nueva variable “sombrea” la anterior.\nfn main() {\n    let x = 5;\n\n    {\n        let x = x * 2;  // Esta nueva `x` sombrea la anterior\n        println!(\"El valor de x dentro del bloque es: {x}\");  // Imprime 10\n    }\n\n    println!(\"El valor de x fuera del bloque es: {x}\");  // Imprime 5\n}\nLa variable x dentro del bloque es independiente de la x fuera del bloque, y la versión de x fuera del bloque no se ve afectada por los cambios realizados dentro del bloque interno.",
     "crumbs": [
       "Conceptos Básicos",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bloques y Ámbitos</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Scope</span>"
     ]
   },
   {
     "objectID": "scope.html#duración-de-vida-lifetimes",
     "href": "scope.html#duración-de-vida-lifetimes",
-    "title": "6  Bloques y Ámbitos",
+    "title": "6  Scope",
     "section": "6.4 Duración de Vida (Lifetimes)",
     "text": "6.4 Duración de Vida (Lifetimes)\nEl ámbito también está relacionado con el concepto de duración de vida en Rust, que se refiere a cuánto tiempo vive una referencia o variable. Aunque no se necesita usar anotaciones de tiempo de vida en muchos casos, se volverán importantes cuando trabajes con referencias y prestamistas en bloques más complejos.",
     "crumbs": [
       "Conceptos Básicos",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Bloques y Ámbitos</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Scope</span>"
     ]
   },
   {
@@ -337,234 +327,289 @@
     ]
   },
   {
-    "objectID": "ownership.html",
-    "href": "ownership.html",
-    "title": "12  Ownership y Borrowing",
-    "section": "",
-    "text": "12.1 Definción\nEl ownership es un conjunto de reglas que definen cómo un programa de Rust administra la memoria. Todos los programas tienen que administrar la forma en que usan la memoria de un computador mientras se ejecutan. Algunos lenguajes tienen recolección de basura que busca regularmente la memoria que ya no se usa mientras el programa se ejecuta; en otros lenguajes, el programador debe asignar y liberar la memoria explícitamente. Rust usa un tercer enfoque: la memoria se administra a través de un sistema de ownership con un conjunto de reglas que el compilador verifica. Si alguna de las reglas se viola, el programa no se compilará. Ninguna de las características del ownership ralentizará su programa mientras se ejecuta.",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#ownership",
-    "href": "ownership.html#ownership",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.2 Ownership",
-    "text": "12.2 Ownership\nEn Rust, cada valor tiene un dueño. Piensa en una mochila que contiene un objeto (datos). Solo una persona puede ser dueña de esa mochila en un momento dado.\nReglas de Ownership\n\nCada valor en Rust tiene un dueño único.\nCuando el dueño “deja de existir” (sale de su alcance), los datos se eliminan automáticamente (drop).\n\n\n\n\n\n\n\n🧳 Analogía “El Dueño de la Mochila”\n\n\n\nImagina que tienes una mochila que representa la memoria en Rust. Solo tú puedes poseer esa mochila. Si decides pasar la mochila a otra persona, ya no puedes usarla, porque ahora esa persona es la nueva dueña.\n\n\nEjemplo en Código\nfn main() {\n    let mochila = String::from(\"Mis pertenencias\"); // La mochila tiene un dueño\n    let nueva_mochila = mochila; // La propiedad se transfiere\n    // println!(\"{}\", mochila); // Error: \"mochila\" ya no es válida.\n    println!(\"{}\", nueva_mochila); // Ahora \"nueva_mochila\" es el dueño.\n}",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#borrowing",
-    "href": "ownership.html#borrowing",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.3 Borrowing",
-    "text": "12.3 Borrowing\nA veces, en lugar de transferir completamente la propiedad, necesitas prestar tu mochila a alguien más. En Rust, esto se logra usando referencias.\nReglas de Borrowing\n\nPuedes prestar tu mochila (crear una referencia) sin transferir la propiedad.\nHay dos tipos de préstamos:\n\nPréstamos inmutables (&): Puedes prestar tu mochila para mirarla, pero nadie puede modificarla.\nPréstamos mutables (&mut): Puedes prestar tu mochila para que la modifiquen, pero solo a una persona a la vez.\n\n\n\n\n\n\n\n\n🧳 Analogía: “Préstamos Temporales”\n\n\n\n\nPréstamo inmutable: Prestas tu mochila a un amigo para que la mire, pero no puede tocar nada dentro.\nPréstamo mutable: Prestas tu mochila a un amigo, pero le adviertes que nadie más puede tocarla mientras él la tenga.\n\n\n\nEjemplo en Código\nfn main() {\n    let mochila = String::from(\"Mis pertenencias\");\n    \n    // Préstamo inmutable\n    let referencia = &mochila;\n    println!(\"{}\", referencia); // Puedo mirar el contenido.\n    println!(\"{}\", mochila); // Y todavía soy el dueño.\n\n    // Préstamo mutable\n    let mut mochila_mutable = String::from(\"Mochila vieja\");\n    let referencia_mutable = &mut mochila_mutable;\n    referencia_mutable.push_str(\" actualizada\");\n    println!(\"{}\", referencia_mutable); // Mochila modificada.\n}",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#lifetimes",
-    "href": "ownership.html#lifetimes",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.4 Lifetimes",
-    "text": "12.4 Lifetimes\nCuando prestas algo, el tiempo que alguien lo tiene debe ser claro para evitar conflictos. En Rust, esto se maneja con las lifetimes.\nReglas Básicas 1. Un préstamo no puede durar más que el dueño original. 2. El compilador verifica que todos los préstamos sean seguros.\n\n\n\n\n\n\n🧳 Analogía: “Duración del Préstamo”\n\n\n\nImagina que tu amigo tiene que devolverte la mochila antes de que tú te vayas de la reunión, o ambos estarán en problemas.\n\n\nEjemplo en Código\nfn main() {\n    let mochila = String::from(\"Mis cosas\");\n    let referencia = &mochila; // El préstamo es válido aquí.\n    println!(\"{}\", referencia); // Todavía puedo usar la referencia.\n\n    // Cuando la mochila \"muere\", la referencia también deja de ser válida.\n}",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#resumen-visual",
-    "href": "ownership.html#resumen-visual",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.5 Resumen Visual",
-    "text": "12.5 Resumen Visual\n\n\n\n\n\n\n\n\nConcepto\nAnalogía\nCódigo\n\n\n\n\nOwnership\nMochila transferida a otro dueño.\nlet b = a;\n\n\nBorrowing\nMochila prestada temporalmente.\nlet b = &a;\n\n\nBorrowing mutable\nMochila prestada para modificarla.\nlet b = &mut a;\n\n\nLifetimes\nTiempo límite del préstamo.\nlet r = &x;",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#slices",
-    "href": "ownership.html#slices",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.6 Slices",
-    "text": "12.6 Slices\nEn Rust, los slices son una forma especial de préstamo, que permite acceder a una parte de una colección (como un array o un String) sin transferir la propiedad ni copiar los datos.\n\n\n\n\n\n\n🧳 Analogía: “Un vistazo a la mochila”\n\n\n\nImagina que estás en una sala de reuniones con mochilas (que representan los datos): 1. El inspector verifica que solo haya un dueño por mochila. 2. Si alguien toma prestada una mochila (una referencia): - Si es un préstamo inmutable, otras personas pueden mirar, pero nadie puede modificar. - Si es un préstamo mutable, nadie más puede mirar ni tocar hasta que se devuelva. 3. Al final, el inspector revisa que nadie intente usar una mochila que ya no está en la sala (lifetime expirado).\n\n\n\nUn slice inmutable es como prestar tu mochila abierta y decir: “Mira solo lo que está en el bolsillo lateral”, pero no puedes tocar ni cambiar nada.\nUn slice mutable es como prestar el bolsillo lateral y permitir que lo reorganicen, pero sin tocar el resto de la mochila.\n\nEjemplo: Slice Inmutable\nfn main() {\n    let array = [1, 2, 3, 4, 5];\n    let slice = &array[1..4]; // Slice inmutable que incluye los elementos 2, 3, 4\n    println!(\"{:?}\", slice); // Imprime: [2, 3, 4]\n    println!(\"{:?}\", array); // La colección original sigue siendo accesible\n}\nEjemplo: Slice Mutable\nfn main() {\n    let mut array = [1, 2, 3, 4, 5];\n    let slice = &mut array[1..4]; // Slice mutable\n    slice[0] = 10; // Modifico solo el primer elemento del slice\n    println!(\"{:?}\", slice); // Imprime: [10, 3, 4]\n    println!(\"{:?}\", array); // Imprime: [1, 10, 3, 4, 5] (el array original también cambia)\n}\nRelación con Ownership y Borrowing\nLos slices son referencias (& o &mut), lo que significa que respetan todas las reglas de ownership y borrowing:\n\nOwnership:\n\nEl slice nunca toma posesión de los datos; solo los presta temporalmente.\n\nBorrowing:\n\nSiguen las mismas reglas que las referencias:\n\nUn slice mutable (&mut) y otro slice o referencia no pueden coexistir.\nLos slices no pueden durar más que la colección original de la que provienen.\n\n\n\nEjemplo: Regla de Borrowing con Slices\nfn main() {\n    let mut array = [1, 2, 3, 4, 5];\n    let slice = &array[1..4]; // Préstamo inmutable\n    // let mutable_slice = &mut array[2..4]; // Error: No puedes mutar mientras hay un préstamo inmutable activo\n    println!(\"{:?}\", slice);\n}\nLos slices son herramientas poderosas para acceder a partes de datos sin necesidad de copiar ni transferir propiedad, lo que los hace eficientes y seguros. Son una extensión directa del sistema de ownership y borrowing, y demuestran cómo Rust optimiza el manejo de datos respetando la seguridad de memoria.",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#borrow-checker",
-    "href": "ownership.html#borrow-checker",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.7 Borrow Checker",
-    "text": "12.7 Borrow Checker\nEl Borrow Checker es una herramienta interna del compilador de Rust que garantiza que todas las reglas de ownership, borrowing y lifetimes se respeten en tiempo de compilación. Esto asegura que los programas sean seguros en memoria y libres de errores comunes como referencias colgantes o conflictos de préstamos.\n\n\n\n\n\n\n🧳 Analogía: “El inspector en la sala de reuniones”\n\n\n\nImagina que estás en una sala de reuniones con mochilas (que representan los datos):\n\nEl inspector verifica que solo haya un dueño por mochila.\nSi alguien toma prestada una mochila (una referencia):\n\nSi es un préstamo inmutable, otras personas pueden mirar, pero nadie puede modificar.\nSi es un préstamo mutable, nadie más puede mirar ni tocar hasta que se devuelva.\n\nAl final, el inspector revisa que nadie intente usar una mochila que ya no está en la sala (lifetime expirado).\n\n\n\n¿Qué valida el Borrow Checker?\n\nOwnership:\n\nCada valor tiene un único dueño.\nLos valores se liberan automáticamente cuando su dueño sale de alcance.\n\nBorrowing:\n\nPermite múltiples préstamos inmutables o un único préstamo mutable, pero no ambos a la vez.\n\nLifetimes:\n\nLas referencias no deben vivir más tiempo que el valor original.\n\n\nEjemplo de Borrow Checker en Acción\nfn main() {\n    let mut mochila = String::from(\"Mis cosas\");\n\n    // Préstamos inmutables\n    let prestamo1 = &mochila; \n    let prestamo2 = &mochila; \n    println!(\"{}, {}\", prestamo1, prestamo2); // Esto es válido\n\n    // Préstamo mutable conflictivo\n    // let prestamo_mutable = &mut mochila; \n    // Error: No puedes tener préstamos mutables e inmutables al mismo tiempo\n}\nEjemplo de Error con Borrow Checker\nfn main() {\n    let referencia;\n    {\n        let mochila = String::from(\"Temporal\");\n        referencia = &mochila; // Error: La referencia vive más que el valor original\n    }\n    // println!(\"{}\", referencia); // El Borrow Checker impide este uso.\n}\nEl Borrow Checker actúa como un inspector que asegura que:\n\nLos datos sean usados de manera segura y eficiente.\nNo haya referencias colgantes ni conflictos de acceso.\n\nGracias al Borrow Checker, Rust garantiza seguridad de memoria en tiempo de compilación, haciendo innecesario un recolector de basura y optimizando el rendimiento del programa.",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
-    "objectID": "ownership.html#errores-comunes-y-cómo-evitarlos",
-    "href": "ownership.html#errores-comunes-y-cómo-evitarlos",
-    "title": "12  Ownership y Borrowing",
-    "section": "12.8 Errores Comunes y Cómo Evitarlos",
-    "text": "12.8 Errores Comunes y Cómo Evitarlos\n\n12.8.1 Uso después de transferencia\n\nError: Usar un valor después de transferir su propiedad.\nEjemplo:\n\n  fn main() {\n      let mochila = String::from(\"Mis pertenencias\");\n      let nueva_mochila = mochila; // Propiedad transferida\n      // println!(\"{}\", mochila); // Error: \"mochila\" ya no es válida.\n  }\n\nSolución: Revisa si has movido el valor o usa referencias si necesitas acceder a él.\n\n\n\n12.8.2 Conflictos en préstamos mutables\n\nError: Prestar un valor de forma mutable mientras tienes préstamos inmutables activos.\nEjemplo:\n\n  fn main() {\n      let mut mochila = String::from(\"Mis cosas\");\n      let referencia1 = &mochila; // Préstamo inmutable\n      let referencia2 = &mut mochila; // Error: No puedes prestar de forma mutable mientras hay un préstamo inmutable\n  }\n\nSolución: Asegúrate de que no hay múltiples accesos conflictivos al mismo tiempo.\n\n\n\n12.8.3 Referencias a datos no válidos\n\nError: Crear una referencia que vive más que el valor original.\nEjemplo:\n\n  fn main() {\n      let referencia;\n      {\n          let mochila = String::from(\"Temporal\");\n          referencia = &mochila; // Error: La referencia vive más que el valor original\n      }\n      // println!(\"{}\", referencia); // No válido\n  }\n\nSolución: Asegúrate de que los préstamos no duren más que el valor original.",
-    "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
-    ]
-  },
-  {
     "objectID": "struct.html",
     "href": "struct.html",
-    "title": "13  Structs, Enums y Traits",
+    "title": "12  Structs, Enums y Traits",
     "section": "",
-    "text": "13.1 Structs: Los Planos de los Edificios",
+    "text": "12.1 Structs: Los Planos de los Edificios\nRust ofrece herramientas poderosas para organizar datos y definir comportamientos. Los Structs, Enums, y Traits son fundamentales para escribir código limpio, eficiente y mantenible.\nEn este capítulo, exploraremos cómo estos tres conceptos funcionan y se relacionan, utilizando la analogía de una ciudad para facilitar su comprensión.",
     "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
+      "Conceptos Básicos",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
     ]
   },
   {
     "objectID": "struct.html#structs-los-planos-de-los-edificios",
     "href": "struct.html#structs-los-planos-de-los-edificios",
-    "title": "13  Structs, Enums y Traits",
+    "title": "12  Structs, Enums y Traits",
     "section": "",
-    "text": "13.1.1 ¿Qué son los Structs?\nUn struct es una estructura de datos que agrupa múltiples valores bajo un solo nombre. Estos valores, conocidos como campos, pueden ser de diferentes tipos. Los structs se utilizan para representar entidades concretas, como objetos del mundo real o elementos lógicos.\n\n\n13.1.2 Tipos de Structs\nRust ofrece tres tipos principales de structs:\n\nStructs Nombrados: Tienen campos con nombres explícitos.\nStructs Tuple: Contienen valores sin nombres específicos.\nStructs Unitarios: No contienen campos y sirven como marcadores o identificadores.\n\nRelación con el Código\nLos structs son fundamentales para modelar datos complejos. Permiten agrupar atributos relacionados de forma estructurada.\n\n\n\n\n\n\n🕋 Analogía: Un Plano Arquitectónico\n\n\n\nPiensa en un struct como el plano de un edificio. Este plano describe características como:\n\nNombre del edificio\nNúmero de pisos\nColor\n\n\n\nCada struct es un plano único que define cómo construir un tipo de edificio.\nEjemplo de Structs\n// Struct nombrado\nstruct Edificio {\n    nombre: String,\n    pisos: u32,\n    color: String,\n}\n\n// Struct tuple\nstruct Coordenadas(f64, f64);\n\n// Struct unitario\nstruct SeñalDeTrafico;",
+    "text": "12.1.1 ¿Qué son los Structs?\nUn struct es una estructura de datos que agrupa múltiples valores bajo un solo nombre. Estos valores, conocidos como campos, pueden ser de diferentes tipos. Los structs se utilizan para representar entidades concretas, como objetos del mundo real o elementos lógicos.\n\n\n12.1.2 Tipos de Structs\nRust ofrece tres tipos principales de structs:\n\nStructs Nombrados: Tienen campos con nombres explícitos.\nStructs Tuple: Contienen valores sin nombres específicos.\nStructs Unitarios: No contienen campos y sirven como marcadores o identificadores.\n\nRelación con el Código\nLos structs son fundamentales para modelar datos complejos. Permiten agrupar atributos relacionados de forma estructurada.\n\n\n\n\n\n\n🕋 Analogía: Un Plano Arquitectónico\n\n\n\nPiensa en un struct como el plano de un edificio. Este plano describe características como:\n\nNombre del edificio\nNúmero de pisos\nColor\n\n\n\nCada struct es un plano único que define cómo construir un tipo de edificio.\nEjemplo de Structs\n// Struct nombrado\nstruct Edificio {\n    nombre: String,\n    pisos: u32,\n    color: String,\n}\n\n// Struct tuple\nstruct Coordenadas(f64, f64);\n\n// Struct unitario\nstruct SeñalDeTrafico;",
     "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
+      "Conceptos Básicos",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
     ]
   },
   {
     "objectID": "struct.html#enums-tipos-de-edificios-en-la-ciudad",
     "href": "struct.html#enums-tipos-de-edificios-en-la-ciudad",
-    "title": "13  Structs, Enums y Traits",
-    "section": "13.2 Enums: Tipos de Edificios en la Ciudad",
-    "text": "13.2 Enums: Tipos de Edificios en la Ciudad\n\n13.2.1 ¿Qué son los Enums?\nUn enum es un tipo de dato que representa un conjunto de variantes. Cada variante puede almacenar datos asociados, lo que permite modelar diferentes estados o tipos dentro de un mismo contexto.\nRelación con el Código\nLos enums son ideales para manejar situaciones en las que un valor puede tener múltiples formas o estados. Además, permiten incluir datos adicionales en cada variante.\n\n\n\n\n\n\n🕋 Analogía: Un Catálogo de Tipos de Edificios\n\n\n\nImagina que el enum es un catálogo de edificios en la ciudad. Cada variante describe un tipo de edificio:\n\nUna casa con habitaciones y un jardín.\nUn hospital con camas y un área de emergencias.\nUna oficina con empleados y pisos.\n\n\n\nEjemplo de Enums\nenum TipoDeEdificio {\n    Casa { habitaciones: u32, jardin: bool },\n    Hospital { camas: u32, tiene_emergencias: bool },\n    Oficina { empleados: u32, pisos: u32 },\n}",
+    "title": "12  Structs, Enums y Traits",
+    "section": "12.2 Enums: Tipos de Edificios en la Ciudad",
+    "text": "12.2 Enums: Tipos de Edificios en la Ciudad\n\n12.2.1 ¿Qué son los Enums?\nUn enum es un tipo de dato que representa un conjunto de variantes. Cada variante puede almacenar datos asociados, lo que permite modelar diferentes estados o tipos dentro de un mismo contexto.\nRelación con el Código\nLos enums son ideales para manejar situaciones en las que un valor puede tener múltiples formas o estados. Además, permiten incluir datos adicionales en cada variante.\n\n\n\n\n\n\n🕋 Analogía: Un Catálogo de Tipos de Edificios\n\n\n\nImagina que el enum es un catálogo de edificios en la ciudad. Cada variante describe un tipo de edificio:\n\nUna casa con habitaciones y un jardín.\nUn hospital con camas y un área de emergencias.\nUna oficina con empleados y pisos.\n\n\n\nEjemplo de Enums\nenum TipoDeEdificio {\n    Casa { habitaciones: u32, jardin: bool },\n    Hospital { camas: u32, tiene_emergencias: bool },\n    Oficina { empleados: u32, pisos: u32 },\n}",
     "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
+      "Conceptos Básicos",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
     ]
   },
   {
     "objectID": "struct.html#traits-las-habilidades-de-los-edificios",
     "href": "struct.html#traits-las-habilidades-de-los-edificios",
-    "title": "13  Structs, Enums y Traits",
-    "section": "13.3 Traits: Las Habilidades de los Edificios",
-    "text": "13.3 Traits: Las Habilidades de los Edificios\n\n13.3.1 ¿Qué son los Traits?\nUn trait define un conjunto de métodos que un tipo debe implementar. Son similares a interfaces en otros lenguajes y permiten compartir comportamientos entre tipos diferentes.\nRelación con el Código\nLos traits permiten que diferentes tipos, como structs y enums, compartan comportamientos. También son esenciales para el polimorfismo en Rust.\n\n\n\n\n\n\n🕋 Analogía: Funcionalidades de los Edificios\n\n\n\nUn trait es como una funcionalidad que los edificios pueden adoptar:\n\nAlgunos edificios tienen luces automáticas.\nOtros pueden ser resistentes a terremotos.\nAlgunos tienen ascensores.\n\nCada edificio puede implementar uno o más traits según las funcionalidades que necesita.\n\n\nEjemplo de Traits\ntrait Habilidad {\n    fn activar_funcion(&self) -&gt; String;\n}\n\nimpl Habilidad for Edificio {\n    fn activar_funcion(&self) -&gt; String {\n        format!(\"El edificio {} activa sus luces automáticas.\", self.nombre)\n    }\n}",
+    "title": "12  Structs, Enums y Traits",
+    "section": "12.3 Traits: Las Habilidades de los Edificios",
+    "text": "12.3 Traits: Las Habilidades de los Edificios\n\n12.3.1 ¿Qué son los Traits?\nUn trait define un conjunto de métodos que un tipo debe implementar. Son similares a interfaces en otros lenguajes y permiten compartir comportamientos entre tipos diferentes.\nRelación con el Código\nLos traits permiten que diferentes tipos, como structs y enums, compartan comportamientos. También son esenciales para el polimorfismo en Rust.\n\n\n\n\n\n\n🕋 Analogía: Funcionalidades de los Edificios\n\n\n\nUn trait es como una funcionalidad que los edificios pueden adoptar:\n\nAlgunos edificios tienen luces automáticas.\nOtros pueden ser resistentes a terremotos.\nAlgunos tienen ascensores.\n\nCada edificio puede implementar uno o más traits según las funcionalidades que necesita.\n\n\nEjemplo de Traits\ntrait Habilidad {\n    fn activar_funcion(&self) -&gt; String;\n}\n\nimpl Habilidad for Edificio {\n    fn activar_funcion(&self) -&gt; String {\n        format!(\"El edificio {} activa sus luces automáticas.\", self.nombre)\n    }\n}",
     "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
+      "Conceptos Básicos",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
     ]
   },
   {
     "objectID": "struct.html#ejemplo-integrado-diseñando-una-ciudad-con-structs-enums-y-traits",
     "href": "struct.html#ejemplo-integrado-diseñando-una-ciudad-con-structs-enums-y-traits",
-    "title": "13  Structs, Enums y Traits",
-    "section": "13.4 Ejemplo Integrado: Diseñando una Ciudad con Structs, Enums y Traits",
-    "text": "13.4 Ejemplo Integrado: Diseñando una Ciudad con Structs, Enums y Traits\nCombinemos estos tres conceptos para diseñar una ciudad con edificios, tipos de edificios y habilidades compartidas.\nCódigo de Ejemplo\n// Struct para representar un edificio\nstruct Edificio {\n    nombre: String,\n    pisos: u32,\n}\n\n// Enum para representar tipos de edificios\nenum TipoDeEdificio {\n    Casa,\n    Hospital,\n    Oficina,\n}\n\n// Trait para definir habilidades\ntrait Habilidad {\n    fn activar_funcion(&self) -&gt; String;\n}\n\n// Implementación del Trait para Struct\nimpl Habilidad for Edificio {\n    fn activar_funcion(&self) -&gt; String {\n        format!(\"El edificio {} activa sus luces automáticas.\", self.nombre)\n    }\n}\n\n// Implementación del Trait para Enum\nimpl Habilidad for TipoDeEdificio {\n    fn activar_funcion(&self) -&gt; String {\n        match self {\n            TipoDeEdificio::Casa =&gt; \"La casa utiliza energía renovable.\".to_string(),\n            TipoDeEdificio::Hospital =&gt; \"El hospital activa su sistema de emergencias.\".to_string(),\n            TipoDeEdificio::Oficina =&gt; \"La oficina enciende su aire acondicionado.\".to_string(),\n        }\n    }\n}\n\nfn main() {\n    let edificio = Edificio {\n        nombre: \"Edificio Central\".to_string(),\n        pisos: 10,\n    };\n\n    let tipo = TipoDeEdificio::Hospital;\n\n    println!(\"{}\", edificio.activar_funcion());\n    println!(\"{}\", tipo.activar_funcion());\n}\nSalida\nEl edificio Edificio Central activa sus luces automáticas.\nEl hospital activa su sistema de emergencias.",
+    "title": "12  Structs, Enums y Traits",
+    "section": "12.4 Ejemplo Integrado: Diseñando una Ciudad con Structs, Enums y Traits",
+    "text": "12.4 Ejemplo Integrado: Diseñando una Ciudad con Structs, Enums y Traits\nCombinemos estos tres conceptos para diseñar una ciudad con edificios, tipos de edificios y habilidades compartidas.\nCódigo de Ejemplo\n// Struct para representar un edificio\nstruct Edificio {\n    nombre: String,\n    pisos: u32,\n}\n\n// Enum para representar tipos de edificios\nenum TipoDeEdificio {\n    Casa,\n    Hospital,\n    Oficina,\n}\n\n// Trait para definir habilidades\ntrait Habilidad {\n    fn activar_funcion(&self) -&gt; String;\n}\n\n// Implementación del Trait para Struct\nimpl Habilidad for Edificio {\n    fn activar_funcion(&self) -&gt; String {\n        format!(\"El edificio {} activa sus luces automáticas.\", self.nombre)\n    }\n}\n\n// Implementación del Trait para Enum\nimpl Habilidad for TipoDeEdificio {\n    fn activar_funcion(&self) -&gt; String {\n        match self {\n            TipoDeEdificio::Casa =&gt; \"La casa utiliza energía renovable.\".to_string(),\n            TipoDeEdificio::Hospital =&gt; \"El hospital activa su sistema de emergencias.\".to_string(),\n            TipoDeEdificio::Oficina =&gt; \"La oficina enciende su aire acondicionado.\".to_string(),\n        }\n    }\n}\n\nfn main() {\n    let edificio = Edificio {\n        nombre: \"Edificio Central\".to_string(),\n        pisos: 10,\n    };\n\n    let tipo = TipoDeEdificio::Hospital;\n\n    println!(\"{}\", edificio.activar_funcion());\n    println!(\"{}\", tipo.activar_funcion());\n}\nSalida\nEl edificio Edificio Central activa sus luces automáticas.\nEl hospital activa su sistema de emergencias.",
     "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
+      "Conceptos Básicos",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
     ]
   },
   {
     "objectID": "struct.html#conclusión",
     "href": "struct.html#conclusión",
-    "title": "13  Structs, Enums y Traits",
-    "section": "13.5 Conclusión",
-    "text": "13.5 Conclusión\nEn Rust, Structs, Enums y Traits trabajan juntos para organizar datos y definir comportamientos. Usando la analogía de una ciudad:\n\nLos structs son los planos de los edificios.\nLos enums son los tipos de edificios que puedes construir.\nLos traits son las habilidades que los edificios pueden tener.\n\nEsta combinación permite crear software modular, claro y extensible, al igual que diseñar una ciudad bien planificada.",
+    "title": "12  Structs, Enums y Traits",
+    "section": "12.5 Conclusión",
+    "text": "12.5 Conclusión\nEn Rust, Structs, Enums y Traits trabajan juntos para organizar datos y definir comportamientos. Usando la analogía de una ciudad:\n\nLos structs son los planos de los edificios.\nLos enums son los tipos de edificios que puedes construir.\nLos traits son las habilidades que los edificios pueden tener.\n\nEsta combinación permite crear software modular, claro y extensible, al igual que diseñar una ciudad bien planificada.",
     "crumbs": [
-      "Conceptos Avanzados",
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
+      "Conceptos Básicos",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Structs, Enums y Traits</span>"
     ]
   },
   {
-    "objectID": "tarea_1.html",
-    "href": "tarea_1.html",
-    "title": "Tarea 1",
+    "objectID": "ownership.html",
+    "href": "ownership.html",
+    "title": "13  Ownership y Borrowing",
     "section": "",
-    "text": "Parte 1",
+    "text": "13.1 Definción\nEl sistema de Ownership (propiedad) y Borrowing (préstamo) es el corazón de Rust y lo que garantiza su seguridad en memoria sin necesidad de un recolector de basura. Aunque puede sonar complejo al principio, usando analogías simples podemos descomponerlo en conceptos fáciles de entender.\nEl ownership es un conjunto de reglas que definen cómo un programa de Rust administra la memoria. Todos los programas tienen que administrar la forma en que usan la memoria de un computador mientras se ejecutan. Algunos lenguajes tienen recolección de basura que busca regularmente la memoria que ya no se usa mientras el programa se ejecuta; en otros lenguajes, el programador debe asignar y liberar la memoria explícitamente. Rust usa un tercer enfoque: la memoria se administra a través de un sistema de ownership con un conjunto de reglas que el compilador verifica. Si alguna de las reglas se viola, el programa no se compilará. Ninguna de las características del ownership ralentizará su programa mientras se ejecuta.",
     "crumbs": [
-      "Tareas",
-      "Tarea 1"
+      "Conceptos Básicos",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
     ]
   },
   {
-    "objectID": "tarea_1.html#parte-1",
-    "href": "tarea_1.html#parte-1",
-    "title": "Tarea 1",
-    "section": "",
-    "text": "Enunciado 1\n\nCrear un Enum que contenga diferentes animales\nImplementar en el Enum una función la cual entregue la velocidad máxima del animal específico\nImplementar en el Enum una función la cual entregue la velocidad mínima del animal específico\nImplementar en el enum al menos los siguientes:\n\nPerro salvaje de a 40km/h a 70km/h\nPerro casa de a 20km/h a 50Km/h\nPerro robot que finge ser un perro de a 40km/h a 70km/h\n\nDiseñar una función que tenga de entrada una velocidad máxima y una velocidad mínima, la función debe retornar en caso que exista, el animal que es capaz de correr en ese rango de velocidad (Nota: esta función puede fallar).\n\n\n\nDesarrollo 1\nPlan:\n\nRepresentaremos los diferentes animales con variantes del enum.\nSe implementarán métodos para obtener la velocidad mínima y máxima de cada variante.\nDiseñaremos una función que reciba una velocidad mínima y máxima, y retorne el animal que cumpla con esos límites o un error si no existe.\nSe evaluará la función y manejar casos donde no haya animales que cumplan con el rango de velocidad.\n\nImplementación:\nPaso 0:\nSe crea el proyecto utilizando cargo en la terminal:\ncargo new tarea_1\nPaso 1:\nDefinimos el Enum con variantes para los diferentes animales\n#[derive(Debug, Clone)]\nenum Animal {\n    PerroSalvaje,\n    PerroCasa,\n    PerroRobot,\n}\n\nAnimal no tiene implementado el trait Clone\n\nPaso 2:\nSe implementarán métodos para obtener la velocidad mínima y máxima de cada variante.\n\nDebe retornar la velocidad máxima de cada animal\nDebe retornar la velocidad mínima de cada animal\n\n// Implementación de métodos para el Enum Animal\nimpl Animal {\n    // Método que retorna la velocidad máxima de cada animal\n    fn velocidad_maxima(&self) -&gt; u32 {\n        match self {\n            Animal::PerroSalvaje =&gt; 70,\n            Animal::PerroCasa =&gt; 50,\n            Animal::PerroRobot =&gt; 70,\n        }\n    }\n\n    // Método que retorna la velocidad mínima de cada animal\n    fn velocidad_minima(&self) -&gt; u32 {\n        match self {\n            Animal::PerroSalvaje =&gt; 40,\n            Animal::PerroCasa =&gt; 20,\n            Animal::PerroRobot =&gt; 40,\n        }\n    }\n}\nPaso 3:\nCrear una función buscar_animal_por_rango que reciba una velocidad mínima y máxima, y retorne el animal que cumpla con esos límites o un error si no existe.\n// Función que busca un animal capaz de correr en un rango de velocidad\nfn buscar_animal_por_rango(vel_min: u32, vel_max: u32) -&gt; Option&lt;Animal&gt; {\n    // Iteramos sobre las variantes del enum para encontrar un animal que cumpla el rango\n    let animales = [Animal::PerroSalvaje, Animal::PerroCasa, Animal::PerroRobot];\n\n    for animal in &animales {\n        if animal.velocidad_minima() &gt;= vel_min && animal.velocidad_maxima() &lt;= vel_max {\n            return Some(animal.clone());\n        }\n    }\n    None\n}\nPaso 4\nFinalmente se evaluará la función y manejar casos donde no haya animales que cumplan con el rango de velocidad.\n\n// Función principal para probar la implementación\nfn main() {\n    let vel_min = 30;\n    let vel_max = 60;\n\n    match buscar_animal_por_rango(vel_min, vel_max) {\n        Some(animal) =&gt; println!(\"Animal encontrado: {:?}\", animal),\n        None =&gt; println!(\"No se encontró ningún animal para el rango dado.\"),\n    }\n}\nResultados Test 1:\n\nvel_min = 30\nvel_max = 60\n\n cargo run\n   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 2.49s\n     Running `target/debug/tarea_1`\nNo se encontró ningún animal para el rango dado.\nResultados Test 2:\n\nvel_min = 15\nvel_max = 55\n\n&gt; cargo run\n   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.71s\n     Running `target/debug/tarea_1`\nAnimal encontrado: PerroCasa\nResultados Test 3:\n\nvel_min = 35\nvel_max = 80\n\n&gt; cargo run\n   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.81s\n     Running `target/debug/tarea_1`\nAnimal encontrado: PerroSalvaje\nLa función como está diseñada actualmente retorna el primer animal que cumple la condición y termina la búsqueda debido al al uso del return dentro de ciclo For. Pendiente de corregir..",
+    "objectID": "ownership.html#ownership",
+    "href": "ownership.html#ownership",
+    "title": "13  Ownership y Borrowing",
+    "section": "13.2 Ownership",
+    "text": "13.2 Ownership\nEn Rust, cada valor tiene un dueño. Piensa en una mochila que contiene un objeto (datos). Solo una persona puede ser dueña de esa mochila en un momento dado.\nReglas de Ownership\n\nCada valor en Rust tiene un dueño único.\nCuando el dueño “deja de existir” (sale de su alcance), los datos se eliminan automáticamente (drop).\n\n\n\n\n\n\n\n🧳 Analogía “El Dueño de la Mochila”\n\n\n\nImagina que tienes una mochila que representa la memoria en Rust. Solo tú puedes poseer esa mochila. Si decides pasar la mochila a otra persona, ya no puedes usarla, porque ahora esa persona es la nueva dueña.\n\n\nEjemplo en Código\nfn main() {\n    let mochila = String::from(\"Mis pertenencias\"); // La mochila tiene un dueño\n    let nueva_mochila = mochila; // La propiedad se transfiere\n    // println!(\"{}\", mochila); // Error: \"mochila\" ya no es válida.\n    println!(\"{}\", nueva_mochila); // Ahora \"nueva_mochila\" es el dueño.\n}",
     "crumbs": [
-      "Tareas",
-      "Tarea 1"
+      "Conceptos Básicos",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
     ]
   },
   {
-    "objectID": "tarea_1.html#parte-2",
-    "href": "tarea_1.html#parte-2",
-    "title": "Tarea 1",
-    "section": "Parte 2",
-    "text": "Parte 2\n\nCada animal será un struct por separado\nEl Enum seguirá teniendo la lista de animales, cada opción del enum debe contener el struct de su respectivo animal\nDiseñar un Trait que permita obtener la velocidad maxima y minima de un animal\nDiseñar una función que de entrada sean cualquiera de los struct de los animales, y retornar cual es el animal que puede ir más rápido (Nota: esta función puede fallar)\nProbar el perro Salvaje y el Perro robot",
+    "objectID": "ownership.html#borrowing",
+    "href": "ownership.html#borrowing",
+    "title": "13  Ownership y Borrowing",
+    "section": "13.3 Borrowing",
+    "text": "13.3 Borrowing\nA veces, en lugar de transferir completamente la propiedad, necesitas prestar tu mochila a alguien más. En Rust, esto se logra usando referencias.\nReglas de Borrowing\n\nPuedes prestar tu mochila (crear una referencia) sin transferir la propiedad.\nHay dos tipos de préstamos:\n\nPréstamos inmutables (&): Puedes prestar tu mochila para mirarla, pero nadie puede modificarla.\nPréstamos mutables (&mut): Puedes prestar tu mochila para que la modifiquen, pero solo a una persona a la vez.\n\n\n\n\n\n\n\n\n🧳 Analogía: “Préstamos Temporales”\n\n\n\n\nPréstamo inmutable: Prestas tu mochila a un amigo para que la mire, pero no puede tocar nada dentro.\nPréstamo mutable: Prestas tu mochila a un amigo, pero le adviertes que nadie más puede tocarla mientras él la tenga.\n\n\n\nEjemplo en Código\nfn main() {\n    let mochila = String::from(\"Mis pertenencias\");\n    \n    // Préstamo inmutable\n    let referencia = &mochila;\n    println!(\"{}\", referencia); // Puedo mirar el contenido.\n    println!(\"{}\", mochila); // Y todavía soy el dueño.\n\n    // Préstamo mutable\n    let mut mochila_mutable = String::from(\"Mochila vieja\");\n    let referencia_mutable = &mut mochila_mutable;\n    referencia_mutable.push_str(\" actualizada\");\n    println!(\"{}\", referencia_mutable); // Mochila modificada.\n}",
     "crumbs": [
-      "Tareas",
-      "Tarea 1"
+      "Conceptos Básicos",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
     ]
   },
   {
-    "objectID": "tarea_1.html#desarrollo-2",
-    "href": "tarea_1.html#desarrollo-2",
-    "title": "Tarea 1",
-    "section": "Desarrollo 2:",
-    "text": "Desarrollo 2:\nPlan:\n\nEstructuras de Animales\nEnum Animal\nTrait Velocidad\nImplementación del Trait para Animal\nFunción animal_mas_rapido\nPrueba en main\n\nEjecución\n\nEstructuras de Animales:\n\nPerroSalvaje, PerroCasa y PerroRobot están definidas sin campos por simplicidad, pero pueden expandirse según se necesiten atributos adicionales.\n/// Estructuras para cada tipo de animal.\nstruct PerroSalvaje;\nstruct PerroCasa;\nstruct PerroRobot;\n\nEnum Animal:\n\nAlmacena instancias de las estructuras y representa las variantes de animales.\n/// Enum que contiene las diferentes variantes de animales con sus respectivos structs.\nenum Animal {\n    PerroSalvaje(PerroSalvaje),\n    PerroCasa(PerroCasa),\n    PerroRobot(PerroRobot),\n}\n\nTrait Velocidad:\n\nDefine los métodos velocidad_minima() y velocidad_maxima() que se aplicarán a cualquier tipo de animal.\n/// Trait para obtener la velocidad mínima y máxima de los animales.\ntrait Velocidad {\n    fn velocidad_minima(&self) -&gt; u32;\n    fn velocidad_maxima(&self) -&gt; u32;\n}\n\nImplementación del Trait para Animal:\n\nEl Enum Animal implementa el Trait para devolver las velocidades según el tipo de animal.\n/// Implementación del Trait Velocidad para el Enum Animal.\nimpl Velocidad for Animal {\n    fn velocidad_minima(&self) -&gt; u32 {\n        match self {\n            Animal::PerroSalvaje(_) =&gt; 40,\n            Animal::PerroCasa(_) =&gt; 20,\n            Animal::PerroRobot(_) =&gt; 40,\n        }\n    }\n\n    fn velocidad_maxima(&self) -&gt; u32 {\n        match self {\n            Animal::PerroSalvaje(_) =&gt; 70,\n            Animal::PerroCasa(_) =&gt; 50,\n            Animal::PerroRobot(_) =&gt; 70,\n        }\n    }\n}\n\nFunción animal_mas_rapido:\n\nUsa el Trait para comparar dos animales genéricos y determinar cuál es más rápido, devolviendo un mensaje.\n/// Función que compara dos animales implementando el Trait Velocidad.\n/// Retorna el animal más rápido o None si ambos tienen la misma velocidad máxima.\nfn animal_mas_rapido&lt;T: Velocidad, U: Velocidad&gt;(animal1: &T, animal2: &U) -&gt; Option&lt;&'static str&gt; {\n    if animal1.velocidad_maxima() &gt; animal2.velocidad_maxima() {\n        Some(\"Animal 1 es más rápido.\")\n    } else if animal2.velocidad_maxima() &gt; animal1.velocidad_maxima() {\n        Some(\"Animal 2 es más rápido.\")\n    } else {\n        None\n    }\n}\n\nPrueba en main:\n\nSe comparan un PerroSalvaje y un PerroRobot para validar la lógica.\nfn main() {\n    // Crear instancias de PerroSalvaje, PerroRobot y PerroCasa.\n    let perro_salvaje = Animal::PerroSalvaje(PerroSalvaje);\n    let perro_robot = Animal::PerroRobot(PerroRobot);\n    let perro_casa = Animal::PerroCasa(PerroCasa);\n\n    // Imprimir las velocidades mínimas.\n    println!(\"Velocidad mínima del Perro Salvaje: {} km/h\", perro_salvaje.velocidad_minima());\n    println!(\"Velocidad mínima del Perro Robot: {} km/h\", perro_robot.velocidad_minima());\n    println!(\"Velocidad mínima del Perro Casa: {} km/h\", perro_casa.velocidad_minima());\n\n    // Imprimir las velocidades máximas.\n    println!(\"Velocidad máxima del Perro Salvaje: {} km/h\", perro_salvaje.velocidad_maxima());\n    println!(\"Velocidad máxima del Perro Robot: {} km/h\", perro_robot.velocidad_maxima());\n    println!(\"Velocidad máxima del Perro Casa: {} km/h\", perro_casa.velocidad_maxima());\n\n    // Comparar los dos animales.\n    match animal_mas_rapido(&perro_salvaje, &perro_robot) {\n        Some(resultado) =&gt; println!(\"{}\", resultado),\n        None =&gt; println!(\"Ambos animales tienen la misma velocidad máxima.\"),\n    }\n}\nResultados:\n&gt; cargo run\n   Compiling tarea_1 v0.1.0 (/Users/denisberroeta/Documents/Rust/curso-cit/capacitacion_rust/tarea_1)\n    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.82s\n     Running `target/debug/tarea_1`\nVelocidad mínima del Perro Salvaje: 40 km/h\nVelocidad mínima del Perro Robot: 40 km/h\nVelocidad mínima del Perro Casa: 20 km/h\nVelocidad máxima del Perro Salvaje: 70 km/h\nVelocidad máxima del Perro Robot: 70 km/h\nVelocidad máxima del Perro Casa: 50 km/h\nAnimal 1 es más rápido.\nSe puede mejorar y hacer que retorne el nombre del Animal",
+    "objectID": "ownership.html#lifetimes",
+    "href": "ownership.html#lifetimes",
+    "title": "13  Ownership y Borrowing",
+    "section": "13.4 Lifetimes",
+    "text": "13.4 Lifetimes\nCuando prestas algo, el tiempo que alguien lo tiene debe ser claro para evitar conflictos. En Rust, esto se maneja con las lifetimes.\nReglas Básicas 1. Un préstamo no puede durar más que el dueño original. 2. El compilador verifica que todos los préstamos sean seguros.\n\n\n\n\n\n\n🧳 Analogía: “Duración del Préstamo”\n\n\n\nImagina que tu amigo tiene que devolverte la mochila antes de que tú te vayas de la reunión, o ambos estarán en problemas.\n\n\nEjemplo en Código\nfn main() {\n    let mochila = String::from(\"Mis cosas\");\n    let referencia = &mochila; // El préstamo es válido aquí.\n    println!(\"{}\", referencia); // Todavía puedo usar la referencia.\n\n    // Cuando la mochila \"muere\", la referencia también deja de ser válida.\n}",
     "crumbs": [
-      "Tareas",
-      "Tarea 1"
+      "Conceptos Básicos",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
     ]
   },
   {
-    "objectID": "tarea_1.html#parte-3",
-    "href": "tarea_1.html#parte-3",
-    "title": "Tarea 1",
-    "section": "Parte 3",
-    "text": "Parte 3\n\nComplementar la tarea 1 y 2 con el siguiente ajuste a todas las funciones que pueden fallar de la siguiente manera.\nSi la función falla retorna un Result&lt;Algo Bien, Algo Falló&gt;\nW debe ser un Enum el cual liste en cada función, las posibilidades de cómo puede fallar.\nEste nuevo Enum que lista errores, debe ser el retorno de su respectiva función estilo: Result&lt;T, Custom_Error_Enum&gt;\nActualizar el código para que retorne el tipo de error correspondiente. Hacer esto a todas las funciones que pueden fallar.\n\n\n\n\n\n\n\nHint\n\n\n\nSi una puede fallar, y queremos que retorne una cadena de texto como Error, se puede hacer de la siguiente manera.\nResult&lt;Algo, String&gt;",
+    "objectID": "ownership.html#resumen-visual",
+    "href": "ownership.html#resumen-visual",
+    "title": "13  Ownership y Borrowing",
+    "section": "13.5 Resumen Visual",
+    "text": "13.5 Resumen Visual\n\n\n\n\n\n\n\n\nConcepto\nAnalogía\nCódigo\n\n\n\n\nOwnership\nMochila transferida a otro dueño.\nlet b = a;\n\n\nBorrowing\nMochila prestada temporalmente.\nlet b = &a;\n\n\nBorrowing mutable\nMochila prestada para modificarla.\nlet b = &mut a;\n\n\nLifetimes\nTiempo límite del préstamo.\nlet r = &x;",
     "crumbs": [
-      "Tareas",
-      "Tarea 1"
+      "Conceptos Básicos",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
     ]
   },
   {
-    "objectID": "production.html",
-    "href": "production.html",
-    "title": "14  Scraping",
-    "section": "",
-    "text": "14.1 Ejemplo Scraping\nIncluir una subcategoría sobre cómo gestionar concurrencia con Rust usando async/await, ya que el rendimiento concurrente es clave en procesos de scraping.",
+    "objectID": "ownership.html#slices",
+    "href": "ownership.html#slices",
+    "title": "13  Ownership y Borrowing",
+    "section": "13.6 Slices",
+    "text": "13.6 Slices\nEn Rust, los slices son una forma especial de préstamo, que permite acceder a una parte de una colección (como un array o un String) sin transferir la propiedad ni copiar los datos.\n\n\n\n\n\n\n🧳 Analogía: “Un vistazo a la mochila”\n\n\n\nImagina que estás en una sala de reuniones con mochilas (que representan los datos): 1. El inspector verifica que solo haya un dueño por mochila. 2. Si alguien toma prestada una mochila (una referencia): - Si es un préstamo inmutable, otras personas pueden mirar, pero nadie puede modificar. - Si es un préstamo mutable, nadie más puede mirar ni tocar hasta que se devuelva. 3. Al final, el inspector revisa que nadie intente usar una mochila que ya no está en la sala (lifetime expirado).\n\n\n\nUn slice inmutable es como prestar tu mochila abierta y decir: “Mira solo lo que está en el bolsillo lateral”, pero no puedes tocar ni cambiar nada.\nUn slice mutable es como prestar el bolsillo lateral y permitir que lo reorganicen, pero sin tocar el resto de la mochila.\n\nEjemplo: Slice Inmutable\nfn main() {\n    let array = [1, 2, 3, 4, 5];\n    let slice = &array[1..4]; // Slice inmutable que incluye los elementos 2, 3, 4\n    println!(\"{:?}\", slice); // Imprime: [2, 3, 4]\n    println!(\"{:?}\", array); // La colección original sigue siendo accesible\n}\nEjemplo: Slice Mutable\nfn main() {\n    let mut array = [1, 2, 3, 4, 5];\n    let slice = &mut array[1..4]; // Slice mutable\n    slice[0] = 10; // Modifico solo el primer elemento del slice\n    println!(\"{:?}\", slice); // Imprime: [10, 3, 4]\n    println!(\"{:?}\", array); // Imprime: [1, 10, 3, 4, 5] (el array original también cambia)\n}\nRelación con Ownership y Borrowing\nLos slices son referencias (& o &mut), lo que significa que respetan todas las reglas de ownership y borrowing:\n\nOwnership:\n\nEl slice nunca toma posesión de los datos; solo los presta temporalmente.\n\nBorrowing:\n\nSiguen las mismas reglas que las referencias:\n\nUn slice mutable (&mut) y otro slice o referencia no pueden coexistir.\nLos slices no pueden durar más que la colección original de la que provienen.\n\n\n\nEjemplo: Regla de Borrowing con Slices\nfn main() {\n    let mut array = [1, 2, 3, 4, 5];\n    let slice = &array[1..4]; // Préstamo inmutable\n    // let mutable_slice = &mut array[2..4]; // Error: No puedes mutar mientras hay un préstamo inmutable activo\n    println!(\"{:?}\", slice);\n}\nLos slices son herramientas poderosas para acceder a partes de datos sin necesidad de copiar ni transferir propiedad, lo que los hace eficientes y seguros. Son una extensión directa del sistema de ownership y borrowing, y demuestran cómo Rust optimiza el manejo de datos respetando la seguridad de memoria.",
     "crumbs": [
-      "Práctica",
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Scraping</span>"
+      "Conceptos Básicos",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
+    ]
+  },
+  {
+    "objectID": "ownership.html#borrow-checker",
+    "href": "ownership.html#borrow-checker",
+    "title": "13  Ownership y Borrowing",
+    "section": "13.7 Borrow Checker",
+    "text": "13.7 Borrow Checker\nEl Borrow Checker es una herramienta interna del compilador de Rust que garantiza que todas las reglas de ownership, borrowing y lifetimes se respeten en tiempo de compilación. Esto asegura que los programas sean seguros en memoria y libres de errores comunes como referencias colgantes o conflictos de préstamos.\n\n\n\n\n\n\n🧳 Analogía: “El inspector en la sala de reuniones”\n\n\n\nImagina que estás en una sala de reuniones con mochilas (que representan los datos):\n\nEl inspector verifica que solo haya un dueño por mochila.\nSi alguien toma prestada una mochila (una referencia):\n\nSi es un préstamo inmutable, otras personas pueden mirar, pero nadie puede modificar.\nSi es un préstamo mutable, nadie más puede mirar ni tocar hasta que se devuelva.\n\nAl final, el inspector revisa que nadie intente usar una mochila que ya no está en la sala (lifetime expirado).\n\n\n\n¿Qué valida el Borrow Checker?\n\nOwnership:\n\nCada valor tiene un único dueño.\nLos valores se liberan automáticamente cuando su dueño sale de alcance.\n\nBorrowing:\n\nPermite múltiples préstamos inmutables o un único préstamo mutable, pero no ambos a la vez.\n\nLifetimes:\n\nLas referencias no deben vivir más tiempo que el valor original.\n\n\nEjemplo de Borrow Checker en Acción\nfn main() {\n    let mut mochila = String::from(\"Mis cosas\");\n\n    // Préstamos inmutables\n    let prestamo1 = &mochila; \n    let prestamo2 = &mochila; \n    println!(\"{}, {}\", prestamo1, prestamo2); // Esto es válido\n\n    // Préstamo mutable conflictivo\n    // let prestamo_mutable = &mut mochila; \n    // Error: No puedes tener préstamos mutables e inmutables al mismo tiempo\n}\nEjemplo de Error con Borrow Checker\nfn main() {\n    let referencia;\n    {\n        let mochila = String::from(\"Temporal\");\n        referencia = &mochila; // Error: La referencia vive más que el valor original\n    }\n    // println!(\"{}\", referencia); // El Borrow Checker impide este uso.\n}\nEl Borrow Checker actúa como un inspector que asegura que:\n\nLos datos sean usados de manera segura y eficiente.\nNo haya referencias colgantes ni conflictos de acceso.\n\nGracias al Borrow Checker, Rust garantiza seguridad de memoria en tiempo de compilación, haciendo innecesario un recolector de basura y optimizando el rendimiento del programa.",
+    "crumbs": [
+      "Conceptos Básicos",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
+    ]
+  },
+  {
+    "objectID": "ownership.html#errores-comunes-y-cómo-evitarlos",
+    "href": "ownership.html#errores-comunes-y-cómo-evitarlos",
+    "title": "13  Ownership y Borrowing",
+    "section": "13.8 Errores Comunes y Cómo Evitarlos",
+    "text": "13.8 Errores Comunes y Cómo Evitarlos\n\n13.8.1 Uso después de transferencia\n\nError: Usar un valor después de transferir su propiedad.\nEjemplo:\n\n  fn main() {\n      let mochila = String::from(\"Mis pertenencias\");\n      let nueva_mochila = mochila; // Propiedad transferida\n      // println!(\"{}\", mochila); // Error: \"mochila\" ya no es válida.\n  }\n\nSolución: Revisa si has movido el valor o usa referencias si necesitas acceder a él.\n\n\n\n13.8.2 Conflictos en préstamos mutables\n\nError: Prestar un valor de forma mutable mientras tienes préstamos inmutables activos.\nEjemplo:\n\n  fn main() {\n      let mut mochila = String::from(\"Mis cosas\");\n      let referencia1 = &mochila; // Préstamo inmutable\n      let referencia2 = &mut mochila; // Error: No puedes prestar de forma mutable mientras hay un préstamo inmutable\n  }\n\nSolución: Asegúrate de que no hay múltiples accesos conflictivos al mismo tiempo.\n\n\n\n13.8.3 Referencias a datos no válidos\n\nError: Crear una referencia que vive más que el valor original.\nEjemplo:\n\n  fn main() {\n      let referencia;\n      {\n          let mochila = String::from(\"Temporal\");\n          referencia = &mochila; // Error: La referencia vive más que el valor original\n      }\n      // println!(\"{}\", referencia); // No válido\n  }\n\nSolución: Asegúrate de que los préstamos no duren más que el valor original.",
+    "crumbs": [
+      "Conceptos Básicos",
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Ownership y Borrowing</span>"
     ]
   },
   {
     "objectID": "optimization.html",
     "href": "optimization.html",
-    "title": "15  Optimización",
+    "title": "14  Optimización",
     "section": "",
-    "text": "Testing y Benchmarking: En algún punto del libro, podrías agregar una sección sobre cómo probar y medir el rendimiento del código en Rust, especialmente relevante para aplicaciones espaciales que a menudo manejan grandes volúmenes de datos.\nOptimización: Dado que Rust se centra en la eficiencia, sería útil dedicar tiempo a estrategias de optimización específicas para análisis espaciales, como el manejo eficiente de memoria y concurrencia.",
+    "text": "14.1 Profiling de Alto Nivel: Razonamiento antes de Medir\nEn R, cuando el código es lento, la solución típica es buscar un paquete escrito en C++ o intentar vectorizar operaciones. En Rust, tú tienes el control total sobre la memoria y la CPU. Pero este poder conlleva la responsabilidad de saber dónde, qué y cuándo optimizar.\nEl flujo de trabajo profesional no es “escribir código rápido desde el principio”, sino: Razonar -&gt; Medir -&gt; Optimizar.\nAntes de usar herramientas complejas, usa la lógica para identificar cuellos de botella probables. No optimices funciones que se ejecutan una sola vez al inicio.",
     "crumbs": [
-      "Optimización y Paralelización",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Optimización</span>"
+      "Optimización",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Optimización</span>"
+    ]
+  },
+  {
+    "objectID": "optimization.html#profiling-de-alto-nivel-razonamiento-antes-de-medir",
+    "href": "optimization.html#profiling-de-alto-nivel-razonamiento-antes-de-medir",
+    "title": "14  Optimización",
+    "section": "",
+    "text": "14.1.1 ¿Dónde está el cuello de botella?\n\nI/O Bound (Limitado por Entrada/Salida):\n\nSíntoma: El programa espera leer archivos, respuestas de red o bases de datos. La CPU está ociosa.\nSolución: Optimizar algoritmos no servirá. Necesitas concurrencia (async, tokio), buffering (BufReader) o almacenamiento más rápido.\n\nCPU Bound (Limitado por Procesador):\n\nSíntoma: Los ventiladores suenan, uso de CPU al 100%.\nSolución: Aquí es donde aplicamos algoritmos mejores, paralelismo (rayon) o instrucciones SIMD.\n\nMemory Bound (Limitado por Memoria):\n\nSíntoma: Cache misses constantes, el programa pasa más tiempo moviendo datos de RAM a CPU que calculando.\nSolución: Mejorar la localidad de los datos (estructuras contiguas), reducir el tamaño de las estructuras.\n\n\n\n\n14.1.2 Preguntas clave\n\n¿Estoy copiando datos innecesariamente? (Clonando strings o vectores grandes).\n¿Estoy re-asignando memoria dentro de un bucle?\n¿Estoy calculando lo mismo múltiples veces?",
+    "crumbs": [
+      "Optimización",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Optimización</span>"
+    ]
+  },
+  {
+    "objectID": "optimization.html#testing-la-red-de-seguridad",
+    "href": "optimization.html#testing-la-red-de-seguridad",
+    "title": "14  Optimización",
+    "section": "14.2 Testing: La Red de Seguridad",
+    "text": "14.2 Testing: La Red de Seguridad\nAntes de tocar una sola línea para optimizar, asegúrate de que funciona y tienes tests. Una optimización que rompe la corrección del programa no sirve de nada.\nfn distancia_simple(x1: f64, x2: f64) -&gt; f64 {\n    (x1 - x2).abs()\n}\n\n#[cfg(test)]\nmod tests {\n    use super::*;\n\n    #[test]\n    fn test_distancia() {\n        assert_eq!(distancia_simple(10.0, 5.0), 5.0);\n    }\n}\nCorre tus tests (cargo test) frecuentemente mientras optimizas.",
+    "crumbs": [
+      "Optimización",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Optimización</span>"
+    ]
+  },
+  {
+    "objectID": "optimization.html#benchmarking-midiendo-con-ciencia",
+    "href": "optimization.html#benchmarking-midiendo-con-ciencia",
+    "title": "14  Optimización",
+    "section": "14.3 Benchmarking: Midiendo con Ciencia",
+    "text": "14.3 Benchmarking: Midiendo con Ciencia\nNo confíes en tu intuición. Usa criterion para obtener métricas estadísticamente robustas.\nAgrega a Cargo.toml:\n[dev-dependencies]\ncriterion = \"0.4\"\n\n[[bench]]\nname = \"spatial_benchmark\"\nharness = false\nEjemplo de benchmark (ver archivo benches/spatial_benchmark.rs):\nuse criterion::{black_box, criterion_group, criterion_main, Criterion};\n\nfn benchmark_distances(c: &mut Criterion) {\n    let lat1 = 40.7128;\n    // ... coordenadas ...\n    \n    // black_box evita que el compilador elimine código \"muerto\"\n    c.bench_function(\"haversine naive\", |b| b.iter(|| {\n        haversine_naive(black_box(lat1), black_box(-74.0060), black_box(51.5074), black_box(-0.1278))\n    }));\n}\n\ncriterion_group!(benches, benchmark_distances);\ncriterion_main!(benches);\nEjecuta con cargo bench.",
+    "crumbs": [
+      "Optimización",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Optimización</span>"
+    ]
+  },
+  {
+    "objectID": "optimization.html#checklist-realista-de-optimización",
+    "href": "optimization.html#checklist-realista-de-optimización",
+    "title": "14  Optimización",
+    "section": "14.4 Checklist Realista de Optimización",
+    "text": "14.4 Checklist Realista de Optimización\nSi tu benchmark indica que el código es lento, revisa esta lista de sospechosos habituales antes de reescribir todo.\n\n14.4.1 Evitar Copias Innecesarias (Clone)\nEn Rust, .clone() puede ser costoso si la estructura es grande (ej. un Vec con millones de puntos).\n\nMal patrón: Funciones que toman String o Vec&lt;T&gt; por valor si no necesitan destruirlos.\nSolución: Pasa referencias (&str, &[T]). Usa Cow (Clone-on-Write) si a veces necesitas propiedad y a veces no.\n\n\n\n14.4.2 Prealocar Memoria (Vec::with_capacity)\nEl “enemigo silencioso”. Cuando haces .push() a un vector lleno, Rust debe:\n\nPedir un bloque de memoria nuevo y más grande.\n\nCopiar todos los elementos anteriores.\n\nLiberar la memoria vieja.\n\nMalo:\nlet mut vec = Vec::new();\nfor _ in 0..1_000_000 {\n    vec.push(calculo()); // Múltiples re-allocs costosos\n}\nBueno:\nlet mut vec = Vec::with_capacity(1_000_000);\nfor _ in 0..1_000_000 {\n    vec.push(calculo()); // Cero re-allocs\n}\n\n\n14.4.3 Usar Iteradores Eficientemente\nLos iteradores en Rust suelen ser tan rápidos o más que los bucles for explícitos (el compilador los optimiza mejor). * Lazy evaluation: Solo calculan lo que necesitan. * Evitan comprobaciones de límites (bounds checks) que a veces ocurren en índices manuales arr[i].\n// Mapear y filtrar sin crear vectores intermedios para cada paso\nlet resultados: Vec&lt;_&gt; = puntos.iter()\n    .filter(|p| p.es_valido())\n    .map(|p| p.transformar())\n    .collect(); // Solo aquí se asigna memoria\n\n\n14.4.4 Estructuras Adecuadas (SoA vs AoS)\n\nAoS (Array of Structs): Vec&lt;Point&gt; donde Point { x, y }.\n\nEs lo “natural” y ergonómico. Estándar para empezar.\nBueno si accedes a X e Y juntos siempre.\n\nSoA (Struct of Arrays): Un struct con xs: Vec&lt;f64&gt; y ys: Vec&lt;f64&gt;.\n\nPro: Mejor localidad de caché y vectorización (SIMD) si haces operaciones masivas solo sobre x o solo sobre y.\nContra: Más complejo de gestionar. Usar solo si es el cuello de botella.\n\n\n\n\n14.4.5 Serialización Eficiente\nSi tu programa pasa mucho tiempo leyendo/escribiendo datos (JSON, GeoJSON): * JSON es lento de parsear y verboso. * Considera formatos binarios como Bincode o CBOR con serde para caché interna o comunicación entre procesos para una velocidad extrema. * Usa BufWriter y BufReader para no hacer llamadas al sistema (syscalls) por cada byte.",
+    "crumbs": [
+      "Optimización",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Optimización</span>"
+    ]
+  },
+  {
+    "objectID": "optimization.html#paralelismo-de-datos",
+    "href": "optimization.html#paralelismo-de-datos",
+    "title": "14  Optimización",
+    "section": "14.5 Paralelismo de Datos",
+    "text": "14.5 Paralelismo de Datos\nSi bien Rust ofrece herramientas poderosas para el paralelismo como rayon, este tema es tan vasto e importante para el análisis espacial que lo trataremos en profundidad en la siguiente sección. Allí veremos cómo escalar nuestros algoritmos para aprovechar todos los núcleos de la CPU.",
+    "crumbs": [
+      "Optimización",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Optimización</span>"
+    ]
+  },
+  {
+    "objectID": "paralelization.html",
+    "href": "paralelization.html",
+    "title": "15  Paralelización",
+    "section": "",
+    "text": "15.1 ¿Cuándo y Por Qué Paralelizar?\nEn el análisis espacial, a menudo nos enfrentamos a problemas “vergonzosamente paralelos”: calcular el área de un millón de polígonos, reproyectar miles de puntos o procesar celdas de un raster. Cada elemento es independiente del otro.\nEn R, paralelizar suele doler un poco. Tienes que configurar un cluster (makeCluster), exportar variables y librerías a cada worker (clusterExport), y lidiar con el overhead de copiar datos. Si usas mclapply (forking) en Linux/Mac es más fácil, pero en Windows es un problema. Además, R es monohilo por diseño, por lo que el paralelismo es multiproceso (pesado).\nEn Rust, el paralelismo es multihilo (ligero) y, gracias al sistema de ownership, es libre de condiciones de carrera (data races). Si tu código compila, es thread-safe.\nNo todo debe ser paralelo. Paralelizar tiene un costo: 1. Overhead de coordinación: Dividir el trabajo y juntar resultados. 2. Comunicación: Mover datos entre hilos (aunque en Rust comparten memoria, hay costos de caché).",
+    "crumbs": [
+      "Optimización",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Paralelización</span>"
+    ]
+  },
+  {
+    "objectID": "paralelization.html#cuándo-y-por-qué-paralelizar",
+    "href": "paralelization.html#cuándo-y-por-qué-paralelizar",
+    "title": "15  Paralelización",
+    "section": "",
+    "text": "15.1.1 Regla de Oro\nParaleliza solo cuando la tarea es CPU-bound (mucho cálculo matemático) y el tiempo de cómputo supera al tiempo de gestión de hilos.\n\n✅ Sí: Calcular intersección de 100k polígonos complejos.\n❌ No: Sumar dos vectores de 100 elementos.\n❌ No: Leer archivos pequeños del disco (eso es I/O bound, requiere async que es distinto).",
+    "crumbs": [
+      "Optimización",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Paralelización</span>"
+    ]
+  },
+  {
+    "objectID": "paralelization.html#la-herramienta-estrella-rayon",
+    "href": "paralelization.html#la-herramienta-estrella-rayon",
+    "title": "15  Paralelización",
+    "section": "15.2 La Herramienta Estrella: rayon",
+    "text": "15.2 La Herramienta Estrella: rayon\nLa crate rayon es el estándar de oro para paralelismo de datos en Rust. Su filosofía es convertir iteradores secuenciales en paralelos con un cambio de línea.\nA diferencia del mclapply de R que divide la tarea en bloques fijos, rayon usa Work Stealing: si un núcleo termina su trabajo rápido (quizás sus polígonos eran simples), “roba” trabajo de otros núcleos ocupados. Esto balancea la carga automáticamente.\n\n15.2.1 Ejemplo Práctico: Puntos en Polígonos\nSupongamos que tenemos 1 millón de puntos y queremos saber si están dentro de un polígono complejo.\nuse rayon::prelude::*;\nuse geo::{Point, Polygon, Contains};\n\nfn main() {\n    let poligono_complejo: Polygon = ...; // Definición del polígono\n    let puntos: Vec&lt;Point&gt; = ...; // 1,000,000 de puntos\n\n    // Versión Secuencial (un solo núcleo)\n    // R: lapply(puntos, st_contains, poly = poligono)\n    let dentro_seq: Vec&lt;bool&gt; = puntos.iter()\n        .map(|p| poligono_complejo.contains(p))\n        .collect();\n\n    // Versión Paralela (todos los núcleos)\n    // R: mclapply(puntos, st_contains, poly = poligono, mc.cores = 8)\n    let dentro_par: Vec&lt;bool&gt; = puntos.par_iter() // &lt;--- ¡Solo esto cambia!\n        .map(|p| poligono_complejo.contains(p))\n        .collect();\n}\n\n\n15.2.2 Batching y Chunking\nEn R, a veces hacemos chunks manuales para no saturar la memoria o el scheduler. En Rust/Rayon, normalmente no necesitas hacer chunks manuales. rayon se adapta. Pero si tu operación por elemento es muy liviana, puedes usar par_chunks para procesar bloques y amortizar el overhead.\n// Procesar en bloques de 1000 elementos\nlet resultados: Vec&lt;_&gt; = data.par_chunks(1000)\n    .map(|chunk| procesar_bloque_pesado(chunk))\n    .flatten()\n    .collect();",
+    "crumbs": [
+      "Optimización",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Paralelización</span>"
+    ]
+  },
+  {
+    "objectID": "paralelization.html#diferencias-clave-con-r",
+    "href": "paralelization.html#diferencias-clave-con-r",
+    "title": "15  Paralelización",
+    "section": "15.3 Diferencias Clave con R",
+    "text": "15.3 Diferencias Clave con R\n\n\n\n\n\n\n\n\nCaracterística\nR (parallel/future)\nRust (rayon)\n\n\n\n\nModelo\nProcesos (copia de memoria)\nHilos (memoria compartida)\n\n\nOverhead\nAlto (serialización de datos)\nMuy bajo\n\n\nDatos\nSe copian a cada worker\nSe leen concurrentemente (sin copia)\n\n\nSeguridad\nDepende del usuario\nGarantizada por el compilador\n\n\nWindows\nComplicado (PSOCK)\nFunciona igual que en Linux/Mac",
+    "crumbs": [
+      "Optimización",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Paralelización</span>"
+    ]
+  },
+  {
+    "objectID": "paralelization.html#estrategias-de-alto-rendimiento",
+    "href": "paralelization.html#estrategias-de-alto-rendimiento",
+    "title": "15  Paralelización",
+    "section": "15.4 Estrategias de Alto Rendimiento",
+    "text": "15.4 Estrategias de Alto Rendimiento\n\n15.4.1 1. Map-Reduce Paralelo\nCalcular la extensión (Bounding Box) total de millones de geometrías.\nlet bbox_total = geometrias.par_iter()\n    .map(|g| g.bounding_rect().unwrap())\n    .reduce(\n        || Rect::new(coord!{x: f64::INFINITY, y: f64::INFINITY}, coord!{x: f64::NEG_INFINITY, y: f64::NEG_INFINITY}), // Identidad\n        |a, b| a.union(&b) // Reducción\n    );\n\n\n15.4.2 2. Mutabilidad Paralela (Sin Miedo)\nEn R es imposible modificar un vector global desde un worker. En Rust, puedes escribir en un vector pre-asignado de forma segura si cada hilo toca índices distintos.\nlet mut resultados = vec![0; N];\n// `par_iter_mut` permite modificar el vector in-place\nresultados.par_iter_mut().enumerate().for_each(|(i, val)| {\n    *val = calculo_pesado(i);\n});",
+    "crumbs": [
+      "Optimización",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Paralelización</span>"
+    ]
+  },
+  {
+    "objectID": "paralelization.html#resumen",
+    "href": "paralelization.html#resumen",
+    "title": "15  Paralelización",
+    "section": "15.5 Resumen",
+    "text": "15.5 Resumen\n\nUsa rayon cuando tengas bucles grandes (.iter()) que tarden mucho.\nCambia .iter() por .par_iter().\nDisfruta de usar el 100% de tu CPU sin cambiar tu lógica ni configurar clusters.",
+    "crumbs": [
+      "Optimización",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Paralelización</span>"
     ]
   },
   {
@@ -572,7 +617,29 @@
     "href": "spatial_chapter.html",
     "title": "16  Rust Espacial",
     "section": "",
-    "text": "16.1 Objetos Espaciales",
+    "text": "16.1 El Potencial de Rust en el Análisis Espacial\nRust está emergiendo como un lenguaje crítico en la infraestructura geoespacial moderna. Herramientas fundamentales como PyQuante, partes de Mapbox, y motores de bases de datos de alto rendimiento están migrando o escribiéndose en Rust.\n¿Por qué este cambio?",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Rust Espacial</span>"
+    ]
+  },
+  {
+    "objectID": "spatial_chapter.html#el-potencial-de-rust-en-el-análisis-espacial",
+    "href": "spatial_chapter.html#el-potencial-de-rust-en-el-análisis-espacial",
+    "title": "16  Rust Espacial",
+    "section": "",
+    "text": "Rendimiento Predecible: A diferencia de lenguajes con Garbage Collector (como Java, Go o R), Rust ofrece un control de memoria determinista. Esto es crucial cuando procesas terabytes de datos raster o millones de polígonos; evita esas pausas inesperadas que rompen flujos de trabajo en tiempo real.\nSeguridad de Memoria: El sistema de tipos de Rust previene errores comunes como null pointers o data races en paralelo. Esto significa que tus herramientas espaciales no solo son rápidas, sino extremadamente robustas y menos propensas a crashear en producción.\nParalelismo sin Miedo: El análisis espacial es “embarazosamente paralelo”. Rust permite escribir código que usa todos los núcleos de tu CPU de manera segura y sencilla (usando crates como rayon), algo que en R o Python a menudo requiere configuraciones complejas de multiprocessing.\nWebAssembly (Wasm): Rust compila excelentemente a Wasm, permitiendo ejecutar algoritmos espaciales complejos directamente en el navegador a velocidad nativa, abriendo nuevas fronteras para la visualización web (ej. decks.gl, kepler.gl extensions).",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Rust Espacial</span>"
+    ]
+  },
+  {
+    "objectID": "spatial_chapter.html#el-ecosistema-geo-rust",
+    "href": "spatial_chapter.html#el-ecosistema-geo-rust",
+    "title": "16  Rust Espacial",
+    "section": "16.2 El Ecosistema Geo-Rust",
+    "text": "16.2 El Ecosistema Geo-Rust\nEn R, cuando cargas library(sf), obtienes un paquete completo que maneja lectura de archivos (GDAL), operaciones geométricas (GEOS) y proyecciones (PROJ). En Rust, la filosofía es modular. No hay un solo “paquete maestro”, sino una constelación de herramientas especializadas que tú ensamblas según necesites.\nLas piezas fundamentales son:\n\ngeo-types: Define las primitivas (Point, Polygon, etc.). Es el vocabulario común.\ngeo: Algoritmos puros en Rust (área, distancia, intersección).\ngdal: Bindings a la librería C++ GDAL (potente corrección, lectura/escritura).\ngeos: Bindings a la librería C++ GEOS (operaciones topológicas complejas).\n\n\n\n\n\n\n\nNote\n\n\n\nAnalogía: En R, sf es como comprar una navaja suiza. En Rust, tú compras el bisturí, el martillo y la llave inglesa por separado para armar tu propio kit de herramientas optimizado.",
     "crumbs": [
       "Rust Espacial",
       "<span class='chapter-number'>16</span>  <span class='chapter-title'>Rust Espacial</span>"
@@ -582,99 +649,726 @@
     "objectID": "spatial_chapter.html#objetos-espaciales",
     "href": "spatial_chapter.html#objetos-espaciales",
     "title": "16  Rust Espacial",
+    "section": "16.3 Objetos Espaciales",
+    "text": "16.3 Objetos Espaciales\nLa estructura mental es idéntica a sf, pero la implementación es estricta.\n\n16.3.1 Puntos y Coordenadas\nEn R: st_point(c(x, y)) En Rust (geo crate):\nuse geo_types::{Point, Coordinate};\n\nlet p = Point::new(10.0, 20.0);\n// O usando coordenadas explícitas\nlet c = Coordinate { x: 10.0, y: 20.0 };\nlet p2: Point&lt;f64&gt; = c.into();\nObserva &lt;f64&gt;. Rust necesita saber la precisión. f64 (double precision) es el estándar para coordenadas geográficas.\n\n\n16.3.2 Polígonos\nUn polígono en Rust es explícito: un anillo exterior (LineString) y cero o más anillos interiores (agujeros).\nuse geo_types::{Polygon, LineString};\n\nlet exterior = LineString::from(vec![\n    (0., 0.), (10., 0.), (10., 10.), (0., 10.), (0., 0.)\n]);\n\nlet poly = Polygon::new(exterior, vec![]);",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Rust Espacial</span>"
+    ]
+  },
+  {
+    "objectID": "spatial_chapter.html#operaciones-espaciales",
+    "href": "spatial_chapter.html#operaciones-espaciales",
+    "title": "16  Rust Espacial",
+    "section": "16.4 Operaciones Espaciales",
+    "text": "16.4 Operaciones Espaciales\nAquí es donde Rust brilla. Las operaciones en la crate geo están implementadas en Rust puro, lo que permite que el compilador las optimice agresivamente (inlining, vectorización).\n\n16.4.1 Distancia (Haversine vs Euclidiana)\nuse geo::prelude::*; // Importa traits como EuclideanDistance\n\nlet p1 = Point::new(0.0, 0.0);\nlet p2 = Point::new(1.0, 1.0);\n\nlet dist = p1.euclidean_distance(&p2);\n\n\n16.4.2 Pipelines de Procesamiento\nEn R usamos pipes %&gt;%. En Rust, usamos encadenamiento de métodos e iteradores. Supongamos que queremos calcular el centroide de mil polígonos:\nEn R:\npolygons %&gt;% st_centroid()\nEn Rust:\nlet centroids: Vec&lt;Point&lt;f64&gt;&gt; = polygons.iter()\n    .map(|poly| poly.centroid().unwrap()) // unwrap porque el centroide podría fallar si el poligono es inválido\n    .collect();\nLa ventaja aquí es que Rust no crea copias intermedias de toda la lista de polígonos. Procesa uno a uno de manera perezosa (lazy) y solo asigna memoria al final (collect).",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Rust Espacial</span>"
+    ]
+  },
+  {
+    "objectID": "spatial_chapter.html#caso-práctico-geohash",
+    "href": "spatial_chapter.html#caso-práctico-geohash",
+    "title": "16  Rust Espacial",
+    "section": "16.5 Caso Práctico: Geohash",
+    "text": "16.5 Caso Práctico: Geohash\nEl geohashing es una técnica para codificar coordenadas en strings. Es vital para indexación espacial rápida. En R, las librerías de geohash suelen ser wrappers de C o C++. En Rust, podemos interactuar con los bits directamente.\n\n16.5.1 El problema del Vecino\nDado un geohash (ej. “u4pruyd”), ¿quién está al norte?\nEste problema requiere manipulación de bits y strings. Veamos una implementación simplificada usando una función que podríamos exponer a R.\nuse geohash::{neighbor, Direction, decode, encode};\n\n// Wrapper para R (conceptual, usando extendr)\nfn get_neighbor(hash_str: String, direction_str: String) -&gt; String {\n    let dir = match direction_str.as_str() {\n        \"n\" =&gt; Direction::N,\n        \"s\" =&gt; Direction::S,\n        \"e\" =&gt; Direction::E,\n        \"w\" =&gt; Direction::W,\n        _ =&gt; panic!(\"Dirección inválida\"),\n    };\n\n    let coord = decode(&hash_str).expect(\"Hash inválido\");\n    // Calcular vecino... (la librería geohash tiene funciones optimizadas para esto)\n    let neighbor_hash = neighbor(&hash_str, dir).expect(\"Error calculando vecino\");\n    neighbor_hash\n}\n\n\n16.5.2 ¿Por qué Rust es mejor aquí?\n\nManejo de Strings: Rust maneja UTF-8 nativamente pero te obliga a manejar casos borde (¿qué pasa si el string no es válido?).\nEnums: El match para la dirección es exhaustivo. Si olvidas el “Oeste”, el código no compila. En R, descubrirías el error en producción cuando un usuario ingrese “w”.\nVelocidad: Calcular millones de vecinos en un bucle sería lentísimo en R. En Rust, es coste cero abstraer esto.",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Rust Espacial</span>"
+    ]
+  },
+  {
+    "objectID": "spatial_chapter.html#ingeniería-de-sistemas-espaciales",
+    "href": "spatial_chapter.html#ingeniería-de-sistemas-espaciales",
+    "title": "16  Rust Espacial",
+    "section": "16.6 Ingeniería de Sistemas Espaciales",
+    "text": "16.6 Ingeniería de Sistemas Espaciales\nPara construir sistemas de alto rendimiento:\n\nUsa RTree (crate rstar): Para búsquedas espaciales (k-NN, intersecciones). Es mucho más rápido que recorrer listas.\nParalelismo (rayon): Si tienes que reproyectar 10 millones de puntos, cambia .iter() por .par_iter(). Rust distribuirá el trabajo en todos tus núcleos automáticamente sin “race conditions”.\n\nuse rayon::prelude::*;\n\nlet projected: Vec&lt;_&gt; = points.par_iter()\n    .map(|p| reproyectar(p))\n    .collect();\nEsto es trivial en Rust, pero complejo y propenso a errores en otros lenguajes.",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Rust Espacial</span>"
+    ]
+  },
+  {
+    "objectID": "spatial_chapter.html#resumen",
+    "href": "spatial_chapter.html#resumen",
+    "title": "16  Rust Espacial",
+    "section": "16.7 Resumen",
+    "text": "16.7 Resumen\nRust te da las herramientas para construir la maquinaria pesada del análisis espacial. Mientras R es tu tablero de dibujo, Rust es la línea de ensamblaje automatizada.",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Rust Espacial</span>"
+    ]
+  },
+  {
+    "objectID": "spatial_chapter.html#recursos-y-comunidad",
+    "href": "spatial_chapter.html#recursos-y-comunidad",
+    "title": "16  Rust Espacial",
+    "section": "16.8 Recursos y Comunidad",
+    "text": "16.8 Recursos y Comunidad\nEl ecosistema de Rust para geoespacial está creciendo rápidamente. Aquí tienes los puntos de entrada esenciales para seguir aprendiendo y encontrar herramientas:\n\nGeoRust.org: La página principal de la organización que mantiene las crates geo, geo-types, geos, etc. Aquí encontrarás documentación oficial y guías.\nAwesome GeoRust: Una lista curada (y muy completa) de librerías, aplicaciones y recursos para desarrollo geoespacial en Rust. Es el mejor lugar para buscar si “ya existe una librería para X”.\nDiscord de GeoRust: La comunidad es muy activa y amigable. Es un excelente lugar para hacer preguntas específicas.",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Rust Espacial</span>"
+    ]
+  },
+  {
+    "objectID": "geotypes.html",
+    "href": "geotypes.html",
+    "title": "17  Datos Geoespaciales",
     "section": "",
-    "text": "16.1.1 Vectores\n\n\n16.1.2 Raster\nExplicar cómo manejar objetos espaciales en formato geojson o tiff.\nIntroducir alguna librería como geo o gdal para procesar estos tipos de datos.",
+    "text": "17.1 Primitivas Básicas\nEn el ecosistema de Rust, la crate geo-types actúa como la lingua franca para datos geoespaciales. Define las estructuras de datos fundamentales que otras librerías (geo, gdal, polars, etc.) utilizan para intercambiar información geométrica.\nPara usar estos tipos en tu proyecto, comúnmente usarás la crate geo, que re-exporta estos tipos y añade algoritmos:",
     "crumbs": [
       "Rust Espacial",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Rust Espacial</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Datos Geoespaciales</span>"
     ]
   },
   {
-    "objectID": "spatial_chapter.html#procesos-espaciales",
-    "href": "spatial_chapter.html#procesos-espaciales",
-    "title": "16  Rust Espacial",
-    "section": "16.2 Procesos Espaciales",
-    "text": "16.2 Procesos Espaciales\nTransformaciones geográficas: Explicar cómo realizar reproyecciones y transformaciones de coordenadas.\nIntersecciones espaciales: Cómo calcular intersecciones entre objetos espaciales (polígonos, líneas).",
+    "objectID": "geotypes.html#primitivas-básicas",
+    "href": "geotypes.html#primitivas-básicas",
+    "title": "17  Datos Geoespaciales",
+    "section": "",
+    "text": "17.1.1 Coordenada (Coordinate)\nEs la unidad atómica más liviana. Es simplemente una estructura con campos x e y. No tiene noción de sistema de referencia espacial (CRS), es pura matemática.\nuse geo::Coordinate;\n\nlet c = Coordinate { x: 10.0, y: 20.0 };\nprintln!(\"x: {}, y: {}\", c.x, c.y);\n\n\n17.1.2 Punto (Point)\nUn Point envuelve una Coordinate y le da semántica geométrica. Es lo que usarás la mayoría del tiempo para representar ubicaciones.\nuse geo::Point;\n\nlet p = Point::new(10.0, 20.0);\n// Puedes acceder a sus coordenadas\nlet x = p.x();\nlet y = p.y();\n\n\n17.1.3 Línea (Line) y Cadena de Líneas (LineString)\n\nLine: Un segmento recto entre dos puntos exactos (inicio y fin).\nLineString: Una secuencia ordenada de puntos que forman un camino. Es lo que en GIS comúnmente llamamos “línea” o “polilínea”.\n\nuse geo::{Line, LineString, Point};\n\n// Un segmento simple\nlet p1 = Point::new(0.0, 0.0);\nlet p2 = Point::new(1.0, 1.0);\nlet linea = Line::new(p1, p2);\n\n// Una polilínea compleja\nlet ls: LineString = vec![\n    (0.0, 0.0),\n    (5.0, 0.0),\n    (5.0, 5.0),\n    (0.0, 5.0),\n].into();\n\n\n17.1.4 Polígono (Polygon)\nUn polígono consiste en un anillo exterior (LineString) y cero o más anillos interiores (agujeros). Los anillos deben estar cerrados (el último punto igual al primero), aunque geo-types a menudo maneja el cierre implícitamente o te ayuda a cerrarlos.\nuse geo::{Polygon, LineString};\n\n// Definir el exterior (un cuadrado)\nlet exterior: LineString = vec![\n    (0.0, 0.0), (10.0, 0.0), (10.0, 10.0), (0.0, 10.0), (0.0, 0.0),\n].into();\n\n// Definir un agujero triangular dentro del cuadrado\nlet interior: LineString = vec![\n    (2.0, 2.0), (8.0, 2.0), (5.0, 8.0), (2.0, 2.0),\n].into();\n\nlet poly = Polygon::new(exterior, vec![interior]);",
     "crumbs": [
       "Rust Espacial",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Rust Espacial</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Datos Geoespaciales</span>"
     ]
   },
   {
-    "objectID": "spatial_chapter.html#ddbb-espaciales",
-    "href": "spatial_chapter.html#ddbb-espaciales",
-    "title": "16  Rust Espacial",
-    "section": "16.3 DDBB Espaciales",
-    "text": "16.3 DDBB Espaciales",
+    "objectID": "geotypes.html#colecciones-y-multi-geometrías",
+    "href": "geotypes.html#colecciones-y-multi-geometrías",
+    "title": "17  Datos Geoespaciales",
+    "section": "17.2 Colecciones y Multi-Geometrías",
+    "text": "17.2 Colecciones y Multi-Geometrías\nA veces, una sola entidad geográfica está compuesta por múltiples partes desconectadas (ej. un archipiélago de islas es un solo “país” pero geométricamente son múltiples polígonos).\n\n17.2.1 MultiPoint\nUna colección de puntos desconectados tratados como una sola unidad.\nuse geo::{MultiPoint, Point};\n\nlet puntos = MultiPoint::new(vec![\n    Point::new(0.0, 0.0),\n    Point::new(10.0, 10.0),\n]);\n\n\n17.2.2 MultiLineString\nÚtil para representar redes de ríos o calles desconectadas que pertenecen a un mismo rasgo.\nuse geo::{MultiLineString, LineString};\n\nlet camino1: LineString = vec![(0.0, 0.0), (1.0, 1.0)].into();\nlet camino2: LineString = vec![(2.0, 2.0), (3.0, 3.0)].into();\n\nlet red = MultiLineString::new(vec![camino1, camino2]);\n\n\n17.2.3 MultiPolygon\nEl caso más común en fronteras administrativas (países con islas).\nuse geo::{MultiPolygon, Polygon};\n\n// Imaginemos dos polígonos simples (aquí simplificados)\nlet p1 = Polygon::new(vec![(0.,0.), (1.,1.), (1.,0.), (0.,0.)].into(), vec![]);\nlet p2 = Polygon::new(vec![(2.,2.), (3.,3.), (3.,2.), (2.,2.)].into(), vec![]);\n\nlet pais = MultiPolygon::new(vec![p1, p2]);",
     "crumbs": [
       "Rust Espacial",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Rust Espacial</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Datos Geoespaciales</span>"
     ]
   },
   {
-    "objectID": "spatial_chapter.html#algoritmos",
-    "href": "spatial_chapter.html#algoritmos",
-    "title": "16  Rust Espacial",
-    "section": "16.4 Algoritmos",
-    "text": "16.4 Algoritmos\n\n16.4.1 Triangulación de Delaunay\nÚtil para algunos tipos de análisis espacial.\n\n\n16.4.2 Voronoi\nOtro algoritmo que puede complementar la creación de celdas espaciales.\n\n\n16.4.3 Geocoding\n\n\n16.4.4 [[Geohash]]\n\n\n16.4.5 r-tree",
+    "objectID": "geotypes.html#tipos-genéricos",
+    "href": "geotypes.html#tipos-genéricos",
+    "title": "17  Datos Geoespaciales",
+    "section": "17.3 Tipos Genéricos",
+    "text": "17.3 Tipos Genéricos\n\n17.3.1 Geometría (Geometry)\n¿Qué pasa si estás leyendo un archivo GeoJSON y no sabes si contiene puntos, líneas o polígonos hasta que lo lees? Usamos el enum Geometry. Es un contenedor que puede ser cualquiera de los tipos anteriores (Point, Polygon, etc., o sus variantes Multi).\nuse geo::Geometry;\n\n// Supongamos que esta función viene de leer un archivo\nlet geom: Geometry = some_polygon.into();\n\nmatch geom {\n    Geometry::Point(p) =&gt; println!(\"Es un punto: {:?}\", p),\n    Geometry::Polygon(poly) =&gt; println!(\"Es un polígono\"),\n    _ =&gt; println!(\"Es otro tipo de geometría\"),\n}\n\n\n17.3.2 Colección de Geometrías (GeometryCollection)\nEs una colección heterogénea. Puede contener un punto, dos líneas y un polígono, todo en la misma estructura.\nuse geo::{GeometryCollection, Geometry, Point, LineString};\n\nlet p = Point::new(0.0, 0.0);\nlet l = LineString::from(vec![(1.0, 1.0), (2.0, 2.0)]);\n\nlet coleccion = GeometryCollection::from(vec![\n    Geometry::Point(p),\n    Geometry::LineString(l),\n]);",
     "crumbs": [
       "Rust Espacial",
-      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Rust Espacial</span>"
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Datos Geoespaciales</span>"
+    ]
+  },
+  {
+    "objectID": "geotypes.html#resumen-de-tipos",
+    "href": "geotypes.html#resumen-de-tipos",
+    "title": "17  Datos Geoespaciales",
+    "section": "17.4 Resumen de Tipos",
+    "text": "17.4 Resumen de Tipos\n\n\n\n\n\n\n\n\nTipo Rust\nEquivalente OGC/WKT\nDescripción\n\n\n\n\nPoint\nPOINT\nUna ubicación única (x, y).\n\n\nLine\n-\nSegmento recto entre dos puntos.\n\n\nLineString\nLINESTRING\nSecuencia de puntos conectados.\n\n\nPolygon\nPOLYGON\nÁrea delimitada por un anillo exterior y huecos.\n\n\nMultiPoint\nMULTIPOINT\nMúltiples puntos.\n\n\nMultiLineString\nMULTILINESTRING\nMúltiples líneas.\n\n\nMultiPolygon\nMULTIPOLYGON\nMúltiples polígonos.\n\n\nGeometryCollection\nGEOMETRYCOLLECTION\nMezcla de cualquier geometría.\n\n\nRect\n-\nBounding Box (caja delimitadora) alineada a los ejes.",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Datos Geoespaciales</span>"
+    ]
+  },
+  {
+    "objectID": "formats.html",
+    "href": "formats.html",
+    "title": "18  Formatos Espaciales",
+    "section": "",
+    "text": "18.1 Capacidades de GDAL\nEn Rust, la interacción con formatos de archivos geoespaciales se realiza principalmente a través de GDAL (Geospatial Data Abstraction Library). Esta es la misma “navaja suiza” que impulsa a QGIS, GeoServer, y paquetes como sf o rgdal en R.\nLa crate gdal provee bindings de alto nivel en Rust para acceder a esta poderosa librería C++.\nGDAL es una librería increíblemente poderosa. Sus capacidades principales incluyen:",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Formatos Espaciales</span>"
+    ]
+  },
+  {
+    "objectID": "formats.html#capacidades-de-gdal",
+    "href": "formats.html#capacidades-de-gdal",
+    "title": "18  Formatos Espaciales",
+    "section": "",
+    "text": "Apertura de formatos: Lectura y escritura de cientos de formatos raster (GeoTIFF, COG, ECW) y vectoriales (Shapefile, GeoPackage, KML).\nTraducción de formatos: Conversión eficiente entre diferentes tipos de archivos (funcionalidad equivalente a ogr2ogr).\nMetadatos: Lectura y escritura de metadatos asociados a datasets espaciales.\nAcceso a bandas raster: Manipulación a bajo nivel de valores de píxeles y sus propiedades.\nManejo de CRS: Lectura y escritura de sistemas de coordenadas y proyecciones (WKT, códigos EPSG).\nTransformaciones: Reproyección (warping) y re-muestreo (resampling) entre sistemas de coordenadas.",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Formatos Espaciales</span>"
+    ]
+  },
+  {
+    "objectID": "formats.html#lectura-de-datos-vectoriales",
+    "href": "formats.html#lectura-de-datos-vectoriales",
+    "title": "18  Formatos Espaciales",
+    "section": "18.2 Lectura de Datos Vectoriales",
+    "text": "18.2 Lectura de Datos Vectoriales\nPara leer datos, usamos la estructura Dataset. GDAL abstrae los detalles del formato, por lo que el código es muy similar ya sea que leas un Shapefile o un GeoPackage.\n\n18.2.1 Ejemplo: Leyendo un Shapefile o GeoPackage\nuse gdal::Dataset;\nuse gdal::vector::LayerAccess;\n\nfn main() -&gt; gdal::errors::Result&lt;()&gt; {\n    // Abre el archivo (GDAL detecta el formato automáticamente)\n    let dataset = Dataset::open(\"datos/puntos.gpkg\")?;\n\n    // Accede a una capa (por índice o nombre)\n    let mut layer = dataset.layer(0)?;\n\n    // Itera sobre las features\n    for feature in layer.features() {\n        // Obtener valores de atributos\n        let nombre: String = feature.field_as_string_by_name(\"nombre\")?\n            .unwrap_or_else(|| \"Desconocido\".to_string());\n\n        // Obtener la geometría\n        if let Some(geometry) = feature.geometry() {\n            println!(\"Feature: {}, Geometría: {:?}\", nombre, geometry.wkt()?);\n        }\n    }\n    Ok(())\n}\n\n\n18.2.2 Ejemplo: Leyendo un CSV con Latitud/Longitud\nGDAL puede tratar archivos CSV como espacios vectoriales si contienen columnas de coordenadas. A veces es necesario un archivo auxiliar .vrt o opciones de apertura especiales, pero para CSVs simples con encabezados claros, GDAL suele detectarlo.\nSin embargo, en Rust a menudo es más idiomático y liviano usar la crate csv + geo-types si el CSV es simple. Pero si necesitamos usar GDAL (por ejemplo, para aprovechar su motor de proyecciones o si el CSV es complejo):\nuse gdal::Dataset;\n\nfn main() -&gt; gdal::errors::Result&lt;()&gt; {\n    // Opciones para decirle a GDAL qué columnas son la geometría\n    // \"X_POSSIBLE_NAMES=lon,x\" y \"Y_POSSIBLE_NAMES=lat,y\" son defaults comunes\n    let path = \"datos/ubicaciones.csv\";\n    \n    // GDAL intenta abrir CSVs directamente\n    let dataset = Dataset::open(path)?;\n    let mut layer = dataset.layer(0)?;\n\n    for feature in layer.features() {\n        // Acceso igual que con otros formatos\n        let geom = feature.geometry();\n        // ...\n    }\n    Ok(())\n}\n\n[!TIP] Performance Tip: Al iterar layer.features(), GDAL carga las features una a una (streaming). Esto permite procesar datasets enormes (GBs de tamaño) sin cargar todo en la RAM.",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Formatos Espaciales</span>"
+    ]
+  },
+  {
+    "objectID": "formats.html#escritura-y-conversión",
+    "href": "formats.html#escritura-y-conversión",
+    "title": "18  Formatos Espaciales",
+    "section": "18.3 Escritura y Conversión",
+    "text": "18.3 Escritura y Conversión\nCrear nuevos archivos sigue un patrón de “Driver -&gt; Create -&gt; Layer -&gt; Feature”.\nuse gdal::DriverManager;\n\nfn guardar_shapefile() -&gt; gdal::errors::Result&lt;()&gt; {\n    // Obtener el driver \"ESRI Shapefile\"\n    let driver = DriverManager::get_driver_by_name(\"ESRI Shapefile\")?;\n    \n    // Crear el dataset\n    let mut dataset = driver.create_vector_only(\"salida.shp\")?;\n    \n    // Crear la capa\n    let mut layer = dataset.create_layer(Default::default())?;\n    \n    // Crear una feature y añadirla...\n    // (Omitido por brevedad, requiere definir campos y geometría)\n    \n    Ok(())\n}",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Formatos Espaciales</span>"
+    ]
+  },
+  {
+    "objectID": "geos.html",
+    "href": "geos.html",
+    "title": "19  Operaciones Espaciales",
+    "section": "",
+    "text": "19.1 Operaciones Constructivas\nLa crate geos es la herramienta definitiva en Rust para realizar operaciones geométricas complejas. Provee bindings a la librería C++ GEOS (Geometry Engine - Open Source), el mismo motor que potencia a PostGIS y QGIS.\nA continuación, presentamos una guía de las operaciones más utilizadas, agrupadas por categoría.\nEstas operaciones toman una o más geometrías y crean una nueva geometría modificada.",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Operaciones Espaciales</span>"
+    ]
+  },
+  {
+    "objectID": "geos.html#operaciones-constructivas",
+    "href": "geos.html#operaciones-constructivas",
+    "title": "19  Operaciones Espaciales",
+    "section": "",
+    "text": "19.1.1 Buffer (Zona de Influencia)\nExpande (o contrae) una geometría por una distancia fija.\nuse geos::Geom; // Trait necesario para usar los métodos\n\nlet geom = polygon.buffer(10.0, 8).expect(\"Error en buffer\");\n// 10.0 = distancia\n// 8 = 'quadsegs' (segmentos por cuadrante para suavizar curvas)\n\n\n19.1.2 Convex Hull (Cierre Convexo)\nEl polígono convexo más pequeño que envuelve a la geometría (como un elástico estirado alrededor de clavos).\nlet hull = geom.convex_hull().expect(\"Error en convex hull\");\n\n\n19.1.3 Envelope (Bounding Box)\nEl rectángulo alineado a los ejes más pequeño que envuelve la geometría.\nlet bbox = geom.envelope().expect(\"Error en envelope\");\n\n\n19.1.4 Simplify (Simplificación)\nReduce el número de vértices de una geometría preservando su forma general (algoritmo Douglas-Peucker).\nlet simplificada = geom.simplify(0.5).expect(\"Error simplificando\");\n// 0.5 = tolerancia (distancia máxima permitida entre la curva original y la simplificada)",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Operaciones Espaciales</span>"
+    ]
+  },
+  {
+    "objectID": "geos.html#predicados-relaciones-espaciales",
+    "href": "geos.html#predicados-relaciones-espaciales",
+    "title": "19  Operaciones Espaciales",
+    "section": "19.2 Predicados (Relaciones Espaciales)",
+    "text": "19.2 Predicados (Relaciones Espaciales)\nEstas funciones devuelven true o false y responden preguntas sobre cómo se relacionan dos geometrías en el espacio.\nlet a = ...;\nlet b = ...;\n\n// ¿Se intersectan de alguna manera?\nlet toca_o_cruza = a.intersects(&b).unwrap();\n\n// ¿Está 'b' completamente dentro de 'a'?\nlet contiene = a.contains(&b).unwrap();\n\n// ¿Son disjuntos (no tienen ningún punto en común)?\nlet separados = a.disjoint(&b).unwrap();\n\n// ¿Se tocan (tienen puntos comunes solo en el borde)?\nlet tocan = a.touches(&b).unwrap();\n\n// ¿Se cruzan (tienen puntos comunes interiores, pero no se contienen)?\nlet cruzan = a.crosses(&b).unwrap();\n\n[!TIP] Performance: Si vas a chequear el mismo predicado muchas veces contra una geometría estática (ej. “el gran polígono X ¿contiene al punto P?”), usa PreparedGeometry para acelerarlo drásticamente.",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Operaciones Espaciales</span>"
+    ]
+  },
+  {
+    "objectID": "geos.html#operaciones-de-conjuntos-set-operations",
+    "href": "geos.html#operaciones-de-conjuntos-set-operations",
+    "title": "19  Operaciones Espaciales",
+    "section": "19.3 Operaciones de Conjuntos (Set Operations)",
+    "text": "19.3 Operaciones de Conjuntos (Set Operations)\nLas operaciones clásicas de diagramas de Venn aplicadas a geometría.\n\n19.3.1 Intersección\nLa parte común compartida por dos geometrías.\nlet comun = a.intersection(&b).expect(\"Error en intersección\");\n\n\n19.3.2 Unión\nCombina dos geometrías en una sola.\nlet todo = a.union(&b).expect(\"Error en unión\");\n\n\n19.3.3 Diferencia\nResta la forma de ‘b’ a la forma de ‘a’.\nlet resto = a.difference(&b).expect(\"Error en diferencia\");\n\n\n19.3.4 Diferencia Simétrica\nEl inverso de la intersección (todo lo que está en A o en B, pero no en ambos).\nlet sym_diff = a.sym_difference(&b).expect(\"Error en diferencia simétrica\");",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Operaciones Espaciales</span>"
+    ]
+  },
+  {
+    "objectID": "geos.html#análisis-escalar",
+    "href": "geos.html#análisis-escalar",
+    "title": "19  Operaciones Espaciales",
+    "section": "19.4 Análisis Escalar",
+    "text": "19.4 Análisis Escalar\nObtener mediciones numéricas.\n// Área (para polígonos)\nlet area = geom.area().unwrap();\n\n// Longitud (para líneas) o perímetro (para polígonos)\nlet largo = geom.length().unwrap();\n\n// Distancia mínima Euclidiana entre dos geometrías\nlet dist = a.distance(&b).unwrap();",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Operaciones Espaciales</span>"
+    ]
+  },
+  {
+    "objectID": "geos.html#topología-y-validación",
+    "href": "geos.html#topología-y-validación",
+    "title": "19  Operaciones Espaciales",
+    "section": "19.5 Topología y Validación",
+    "text": "19.5 Topología y Validación\nGEOS es estricto. Trabajar con geometrías “inválidas” (ej. polígonos auto-intersectados (“moño”)) puede causar errores.\nif !geom.is_valid() {\n    println!(\"¡Geometría inválida encontrada!\");\n    println!(\"Razón: {}\", geom.get_valid_reason().unwrap_or_default());\n    \n    // Intentar arreglarla (disponible en versiones recientes de GEOS)\n    // make_valid intenta descomponer el polígono en partes válidas\n    if let Ok(fixed) = geom.make_valid() {\n        // Usar 'fixed'...\n    }\n}",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Operaciones Espaciales</span>"
+    ]
+  },
+  {
+    "objectID": "geos.html#referencias",
+    "href": "geos.html#referencias",
+    "title": "19  Operaciones Espaciales",
+    "section": "19.6 Referencias",
+    "text": "19.6 Referencias\n\nRepositorio Oficial: georust/geos\nDocumentación de Crate: docs.rs/geos\nLibrería C++ subyacente: libgeos.org",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Operaciones Espaciales</span>"
+    ]
+  },
+  {
+    "objectID": "osm.html",
+    "href": "osm.html",
+    "title": "20  OpenStreetMap (OSM)",
+    "section": "",
+    "text": "20.1 Lectura de Archivos PBF\nTrabajar con datos de OpenStreetMap suele implicar procesar archivos PBF (Protocolbuffer Binary Format) masivos. Aquí es donde Rust brilla especialmente: su capacidad para parsear estructuras binarias complejas sin overhead de Garbage Collection permite procesar el planeta entero (“planet.osm.pbf”, &gt;60GB) en una laptop convencional en tiempos razonables.\nLa crate más popular y ergonómica para esto es osmpbfreader.",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>OpenStreetMap (OSM)</span>"
+    ]
+  },
+  {
+    "objectID": "osm.html#lectura-de-archivos-pbf",
+    "href": "osm.html#lectura-de-archivos-pbf",
+    "title": "20  OpenStreetMap (OSM)",
+    "section": "",
+    "text": "[dependencies]\nosmpbfreader = \"0.16\"\n\n20.1.1 Ejemplo: Contando Nodos\nEste ejemplo básico itera sobre cada objeto en el archivo PBF y cuenta cuántos son nodos.\nuse osmpbfreader::OsmPbfReader;\nuse std::fs::File;\n\nfn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {\n    let archivo = File::open(\"chile-latest.osm.pbf\")?;\n    let mut pbf = OsmPbfReader::new(archivo);\n    \n    let mut contador_nodos = 0;\n    \n    // iter() decodifica los bloques del PBF en paralelo si es posible\n    for obj in pbf.iter() {\n        let obj = obj?;\n        if obj.is_node() {\n            contador_nodos += 1;\n        }\n    }\n    \n    println!(\"Se encontraron {} nodos\", contador_nodos);\n    Ok(())\n}\n\n\n20.1.2 Ejemplo: Filtrado y Extracción\nSupongamos que queremos encontrar todos los “pubs” (amenity=pub) y obtener sus nombres.\nuse osmpbfreader::{OsmPbfReader, OsmObj};\nuse std::fs::File;\n\nfn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {\n    let path = std::path::Path::new(\"chile-latest.osm.pbf\");\n    let r = File::open(&path)?;\n    let mut pbf = OsmPbfReader::new(r);\n\n    // .get_objs_and_deps es útil cuando necesitas reconstruir geometrías (vías necesitan sus nodos),\n    // pero para puntos simples podemos iterar y filtrar directamente.\n    \n    println!(\"Buscando pubs...\");\n    \n    let pubs: Vec&lt;String&gt; = pbf.iter()\n        .map(|r| r.unwrap())\n        .filter(|obj| {\n            // Verificamos si tiene el tag amenity=pub\n            obj.tags().contains(\"amenity\", \"pub\")\n        })\n        .map(|obj| {\n            // Extraer el nombre, o usar \"Sin Nombre\"\n            obj.tags().get(\"name\").map(|s| s.to_string()).unwrap_or(\"Sin Nombre\".to_string())\n        })\n        .collect();\n\n    println!(\"Encontrados {} pubs:\", pubs.len());\n    for nombre in pubs.iter().take(5) {\n        println!(\"- {}\", nombre);\n    }\n    \n    Ok(())\n}",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>OpenStreetMap (OSM)</span>"
+    ]
+  },
+  {
+    "objectID": "osm.html#ecosistema-de-herramientas-osm",
+    "href": "osm.html#ecosistema-de-herramientas-osm",
+    "title": "20  OpenStreetMap (OSM)",
+    "section": "20.2 Ecosistema de Herramientas OSM",
+    "text": "20.2 Ecosistema de Herramientas OSM\nEl ecosistema de Rust para OSM es vasto y especializado. Aquí tienes una referencia de las herramientas más importantes según tu caso de uso:\n\n20.2.1 Lectura y Procesamiento General\n\nosmpbfreader-rs: La opción estándar para leer archivos PBF de forma segura y razonablemente rápida.\nosmpbf: Una librería de más bajo nivel para leer el formato.\nosmx: Puerto de OSMExpress a Rust. Una base de datos archivo optimizada para lecturas aleatorias rápidas en OSM.\n\n\n\n20.2.2 Geometrías y Relaciones\n\nosm_boundaries_utils_rs: Especializada en leer relaciones de tipo type=boundary y construir MultiPolygon válidos (muy difícil de hacer manualmente debido a la fragmentación de las vías).\nosm-lump-ways: Agrupa vías de OSM basándose en topología y tags compartidos. Útil para generalización cartográfica.\n\n\n\n20.2.3 Exportación y Conversión\n\nosm-pbf-parquet: Convierte archivos PBF al formato columnar Parquet, ideal para análisis de datos masivos en nubes (AWS Athena, BigQuery).\nosm-transit-extractor: Extrae específicamente datos de transporte público a CSV.\nPbfextractor: Crea grafos (archivos de red) a partir de datos OSM y SRTM (elevación).\n\n\n\n20.2.4 Formatos Alternativos\n\nosmflat: Un formato “flatdata” para OSM. Permite acceso aleatorio a los datos mapeados en memoria, ideal para ruteo y renderizado de alto rendimiento.",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>OpenStreetMap (OSM)</span>"
+    ]
+  },
+  {
+    "objectID": "geocoding.html",
+    "href": "geocoding.html",
+    "title": "21  Geocodificación",
+    "section": "",
+    "text": "21.1 Búsqueda Naive (Fuerza Bruta)\nLa geocodificación es el proceso de convertir texto (una dirección como “Av. Providencia 1234”) en coordenadas geográficas.\nTradicionalmente, en R o Python, solemos llamar a APIs online (Google Maps, Nominatim, Mapbox). Sin embargo, Rust nos da la potencia para hacer geocodificación offline consultando directamente una base de datos local de OpenStreetMap (ej. chile-latest.osm.pbf).\nEsto tiene ventajas enormes: * Privacidad: Los datos de tus usuarios nunca salen de tu servidor. * Costo: Cero costo por request. * Velocidad: Latencia de red cero.\nSi tienes un archivo PBF de una región (ej. Santiago), puedes buscar una dirección específica iterando sobre el archivo y filtrando por los tags de dirección (addr:street, addr:housenumber).\nA continuación, un ejemplo concreto buscando una dirección en Chile:",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Geocodificación</span>"
+    ]
+  },
+  {
+    "objectID": "geocoding.html#búsqueda-naive-fuerza-bruta",
+    "href": "geocoding.html#búsqueda-naive-fuerza-bruta",
+    "title": "21  Geocodificación",
+    "section": "",
+    "text": "use osmpbfreader::{OsmPbfReader, OsmObj};\nuse std::fs::File;\n\nfn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {\n    // 1. Abrir la base de datos local (archivo PBF)\n    let path = std::path::Path::new(\"datos/chile-latest.osm.pbf\");\n    let file = File::open(&path)?;\n    let mut pbf = OsmPbfReader::new(file);\n\n    let calle_objetivo = \"Avenida Providencia\";\n    let numero_objetivo = \"1234\";\n\n    println!(\"Buscando {} #{} en la base local...\", calle_objetivo, numero_objetivo);\n\n    // 2. Iterar y filtrar\n    // Nota: Esto lee todo el archivo. Para producción, necesitarías un índice.\n    let encontrados: Vec&lt;OsmObj&gt; = pbf.iter()\n        .map(|r| r.unwrap())\n        .filter(|obj| {\n            // Verificamos si es un Nodo (punto) o Way (polígono/edificio)\n            // Y si tiene los tags coincidentes\n            let tags = obj.tags();\n            \n            // Usamos un match flexible para la calle (case insensitive sería ideal en un caso real)\n            let match_calle = tags.get(\"addr:street\")\n                .map(|s| s.contains(calle_objetivo)) // Contains es más flexible que ==\n                .unwrap_or(false);\n                \n            let match_numero = tags.get(\"addr:housenumber\")\n                .map(|n| n == numero_objetivo)\n                .unwrap_or(false);\n\n            match_calle && match_numero\n        })\n        .collect();\n\n    // 3. Mostrar resultados\n    if encontrados.is_empty() {\n        println!(\"No se encontró la dirección.\");\n    } else {\n        for obj in encontrados {\n            let id = obj.id();\n            let tags = obj.tags();\n            \n            // Para obtener Lat/Lon, depende del tipo de objeto.\n            // Si es Node, tiene lat/lon directos.\n            // Si es Way, necesitamos sus Nodos (requiere indexación previa, ver osmpbfreader docs)\n            if let OsmObj::Node(n) = obj {\n                println!(\"Encontrado: {} (lat: {}, lon: {})\", \n                    tags.get(\"name\").unwrap_or(&\"Sin nombre\".to_string()),\n                    n.lat(), n.lon()\n                );\n            } else {\n                println!(\"Encontrado objeto complejo (Way/Relation): {:?}\", id);\n            }\n        }\n    }\n    \n    Ok(())\n}",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Geocodificación</span>"
+    ]
+  },
+  {
+    "objectID": "geocoding.html#estrategias-para-producción",
+    "href": "geocoding.html#estrategias-para-producción",
+    "title": "21  Geocodificación",
+    "section": "21.2 Estrategias para Producción",
+    "text": "21.2 Estrategias para Producción\nEl método anterior es “naive” porque lee 200MB+ de archivo para cada búsqueda. Para un sistema de geocodificación real en Rust, seguirías estos pasos:\n\nIngesta: Leer el PBF una vez (con osmpbfreader).\nIndexación: Insertar las direcciones en un motor de búsqueda de texto completo.\n\nTantivy: Es la respuesta de Rust a Lucene/Elasticsearch. Extremadamente rápido.\nSQLite + FTS5: Simple y portable.\n\nConsulta: Tu programa Rust busca en el índice (milisegundos) en lugar de leer el PBF.\n\n\n21.2.1 Ejemplo conceptual con Tantivy\n// (Pseudocódigo conceptual)\nlet index = Index::create_in_dir(&path, schema)?;\nlet mut writer = index.writer(50_000_000)?;\n\n// Indexar\nfor obj in pbf.iter() {\n    if let Some(addr) = extraer_direccion(&obj) {\n        writer.add_document(doc!(\n            calle =&gt; addr.calle,\n            numero =&gt; addr.numero,\n            coords =&gt; addr.coords\n        ));\n    }\n}\nwriter.commit()?;",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Geocodificación</span>"
+    ]
+  },
+  {
+    "objectID": "geocoding.html#geocodificación-inversa-reverse-geocoding",
+    "href": "geocoding.html#geocodificación-inversa-reverse-geocoding",
+    "title": "21  Geocodificación",
+    "section": "21.3 Geocodificación Inversa (Reverse Geocoding)",
+    "text": "21.3 Geocodificación Inversa (Reverse Geocoding)\nSi tienes una coordenada y quieres saber la dirección, el enfoque es espacial. Necesitas insertar tus datos en un R-Tree (usando la crate rstar).\n\nCargas todos los edificios con dirección en un R-Tree en memoria.\nConsultas rtree.nearest_neighbor(&mi_punto).\n\nEsto en Rust es órdenes de magnitud más rápido que hacerlo en PostGIS para consultas batch masivas, ya que todo ocurre en en el stack/heap sin overhead de red ni SQL parser.",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Geocodificación</span>"
+    ]
+  },
+  {
+    "objectID": "routing.html",
+    "href": "routing.html",
+    "title": "22  Routing y Distancias",
+    "section": "",
+    "text": "22.1 Concepto y Alcance\nPara cálculos de distancia basados en redes (en lugar de línea recta) y búsqueda de caminos aproximada, la crate routrs es una excelente opción en el ecosistema Rust.\nEstá diseñada para trabajar con varios tipos de “geografos” (redes): marítimas, carreteras y ferroviarias.\nroutrs utiliza la fórmula de Haversine para distancias esféricas y el algoritmo de Dijkstra para encontrar el camino más corto en la red.",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Routing y Distancias</span>"
+    ]
+  },
+  {
+    "objectID": "routing.html#concepto-y-alcance",
+    "href": "routing.html#concepto-y-alcance",
+    "title": "22  Routing y Distancias",
+    "section": "",
+    "text": "[!IMPORTANT] Aproximación vs Navegación: Esta librería está pensada para estimaciones y visualización. No está diseñada para navegación precisa paso a paso (turn-by-turn) en tiempo real, ya que utiliza una red simplificada.",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Routing y Distancias</span>"
+    ]
+  },
+  {
+    "objectID": "routing.html#instalación",
+    "href": "routing.html#instalación",
+    "title": "22  Routing y Distancias",
+    "section": "22.2 Instalación",
+    "text": "22.2 Instalación\n[dependencies]\nroutrs = { version = \"2.0.0\", features = [\"all\"] }\nFeatures disponibles: * maritime: habilita el grafo marítimo (basado en MARNET). * highways: habilita el grafo de carreteras (basado en OSM). * railways: habilita el grafo ferroviario (basado en OSM). * concurrency: habilita el cálculo paralelo con rayon.",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Routing y Distancias</span>"
+    ]
+  },
+  {
+    "objectID": "routing.html#uso-básico",
+    "href": "routing.html#uso-básico",
+    "title": "22  Routing y Distancias",
+    "section": "22.3 Uso Básico",
+    "text": "22.3 Uso Básico\nEl flujo es simple: defines origen y destino, y la librería encuentra los puntos más cercanos en el grafo para calcular la ruta.\n\n22.3.1 Ruteo en Carreteras (Highways)\nuse routrs::prelude::*;\nuse routrs::highways::GEOGRAPH as highways;\n\nfn main() {\n    let from: Geoloc = (31.33068357, 120.902694); // Origen\n    let to: Geoloc = (31.05287995, 121.2232226);  // Destino\n\n    // Calcula: distancia total, vector de puntos, y tipo de ruta\n    let (distance, path, path_type) = highways::shortest_path(&from, &to);\n\n    println!(\"Distancia: {:.2} km\", distance);\n    println!(\"Nodos en la ruta: {}\", path.len());\n    // Path type suele ser \"ViaWaypoints\" si encontró ruta, o directo si no.\n    println!(\"Tipo de ruta: {}\", path_type); \n}\n\n\n22.3.2 Ruteo Marítimo y Ferroviario\nLa API es consistente para todos los medios de transporte.\nuse routrs::prelude::*;\nuse routrs::maritime::GEOGRAPH as maritime;\nuse routrs::railways::GEOGRAPH as railways;\n\nlet from: Geoloc = (/* ... */);\nlet to: Geoloc = (/* ... */);\n\n// Para barcos\nlet (dist_mar, _, _) = maritime::shortest_path(&from, &to);\n\n// Para trenes\nlet (dist_ren, _, _) = railways::shortest_path(&from, &to);",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Routing y Distancias</span>"
+    ]
+  },
+  {
+    "objectID": "routing.html#cálculo-concurrente-batch-processing",
+    "href": "routing.html#cálculo-concurrente-batch-processing",
+    "title": "22  Routing y Distancias",
+    "section": "22.4 Cálculo Concurrente (Batch Processing)",
+    "text": "22.4 Cálculo Concurrente (Batch Processing)\nSi necesitas calcular miles de rutas (ej. matriz de distancias), routrs se integra con rayon para usar todos los núcleos de tu CPU.\nuse routrs::concurrency::*;\nuse routrs::highways::GEOGRAPH as highways;\nuse routrs::prelude::*;\n\nlet legs: Vec&lt;Leg&lt;Geoloc&gt;&gt; = vec![\n    Leg((31.3, 120.9), (31.0, 121.2)),\n    Leg((40.7, -74.0), (34.0, -118.2)),\n    // ... miles más ...\n];\n\n// par_distance procesa en paralelo automáticamente\nlet results = highways.par_distance(&legs);\n\nfor (dist, path_type) in results {\n    println!(\"Distancia calculada: {}\", dist);\n}",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Routing y Distancias</span>"
+    ]
+  },
+  {
+    "objectID": "routing.html#grafos-personalizados",
+    "href": "routing.html#grafos-personalizados",
+    "title": "22  Routing y Distancias",
+    "section": "22.5 Grafos Personalizados",
+    "text": "22.5 Grafos Personalizados\nTambién puedes cargar tu propia topología desde un archivo JSON si tienes una red privada o específica.\nuse routrs::prelude::*;\nuse routrs::json::*;\n\nlet json_data = r#\"\n{\n    \"geograph\": \"mi_red_personal\",\n    \"nodes\": [\n        { \"id\": 0, \"coordinates\": [179.5, 51.3], \"waypoints\": [1, 2] },\n        { \"id\": 1, \"coordinates\": [177.2, 52.1], \"waypoints\": [0] },\n        { \"id\": 2, \"coordinates\": [178.0, 51.8], \"waypoints\": [0] }\n    ]\n}\n\"#;\n\nlet grafo_json: JsonGeograph = serde_json::from_str(json_data).unwrap();\nlet grafo: Geograph = grafo_json.into();\n\n// Ahora úsalo igual que los built-ins\nlet (dist, _, _) = grafo.shortest_path(&(179.5, 51.3), &(177.2, 52.1));",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Routing y Distancias</span>"
+    ]
+  },
+  {
+    "objectID": "geohash.html",
+    "href": "geohash.html",
+    "title": "23  Geohash e Indexación",
+    "section": "",
+    "text": "23.1 Instalación\nEl sistema Geohash es una técnica fundamental en computación espacial. Permite codificar un par de coordenadas (latitud, longitud) en una cadena de caracteres corta.\nTiene dos propiedades vitales: 1. Compactación: Convierte dos números flotantes en un string corto, ideal para URLs o claves de caché (Redis). 2. Localidad: Puntos cercanos geográficamente comparten prefijos comunes en sus geohashes. Esto permite búsquedas rápidas (“dame todo lo que empiece con u4p”).\nEn Rust, la crate estándar es geohash.",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Geohash e Indexación</span>"
+    ]
+  },
+  {
+    "objectID": "geohash.html#instalación",
+    "href": "geohash.html#instalación",
+    "title": "23  Geohash e Indexación",
+    "section": "",
+    "text": "[dependencies]\ngeohash = \"0.13\"",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Geohash e Indexación</span>"
+    ]
+  },
+  {
+    "objectID": "geohash.html#operaciones-básicas",
+    "href": "geohash.html#operaciones-básicas",
+    "title": "23  Geohash e Indexación",
+    "section": "23.2 Operaciones Básicas",
+    "text": "23.2 Operaciones Básicas\n\n23.2.1 Codificar (Encode)\nConvertir coordenadas en un string. Debes especificar la precisión (número de caracteres). Más caracteres = más precisión.\nuse geohash::{encode, Coordinate};\n\nfn main() -&gt; Result&lt;(), geohash::GeohashError&gt; {\n    // Santiago de Chile (aprox)\n    let coord = Coordinate { x: -70.6693, y: -33.4489 };\n    \n    // Precisión 9 (~5 metros)\n    let hash = encode(coord, 9)?;\n    \n    println!(\"Geohash: {}\", hash); // ej. \"66j9...\"\n    Ok(())\n}\n\n\n23.2.2 Decodificar (Decode)\nRecuperar el centroide del rectángulo que representa el geohash y su margen de error.\nuse geohash::decode;\n\nlet hash = \"66j9\";\nlet (coord, error_x, error_y) = decode(hash).expect(\"Hash inválido\");\n\nprintln!(\"Centro: {}, {}\", coord.x, coord.y);\nprintln!(\"Error: +/- {}, +/- {}\", error_x, error_y);",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Geohash e Indexación</span>"
+    ]
+  },
+  {
+    "objectID": "geohash.html#vecinos-y-adyacencia",
+    "href": "geohash.html#vecinos-y-adyacencia",
+    "title": "23  Geohash e Indexación",
+    "section": "23.3 Vecinos y Adyacencia",
+    "text": "23.3 Vecinos y Adyacencia\nUna de las utilidades más grandes de Geohash es encontrar rápidamente celdas adyacentes. Si estás en una celda, puedes pedir sus 8 vecinos.\nuse geohash::{neighbors, Direction};\n\nlet hash = \"66j9h\";\n\n// Obtener los 8 vecinos\nlet vecinos = neighbors(hash).expect(\"Hash inválido\");\n\nprintln!(\"Norte: {}\", vecinos.n);\nprintln!(\"Sur:   {}\", vecinos.s);\nprintln!(\"Este:  {}\", vecinos.e);\nprintln!(\"Oeste: {}\", vecinos.w);\n// ... y diagonales (ne, nw, se, sw)\n\n[!TIP] Caso de Uso: Para buscar “puntos cercanos” en una base de datos Key-Value (como DynamoDB o HBase) donde solo puedes buscar por prefijo, puedes calcular el geohash del usuario, obtener sus vecinos, y hacer 9 consultas paralelas por esos prefijos.",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Geohash e Indexación</span>"
+    ]
+  },
+  {
+    "objectID": "h3o.html",
+    "href": "h3o.html",
+    "title": "24  Indexación Hexagonal H3",
+    "section": "",
+    "text": "24.1 Instalación\nH3 es un sistema de indexación geoespacial jerárquico basado en hexágonos, desarrollado originalmente por Uber. Es el estándar de facto para análisis espacial de grandes volúmenes de datos (big data), clustering y machine learning geoespacial.\nEn Rust, la mejor opción es h3o. A diferencia de otras crates que son wrappers de la librería en C, h3o es una reimplementación pura en Rust. Esto garantiza mayor seguridad de memoria, mejor optimización y facilidad de compilación (especialmente para WebAssembly).",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Indexación Hexagonal H3</span>"
+    ]
+  },
+  {
+    "objectID": "h3o.html#instalación",
+    "href": "h3o.html#instalación",
+    "title": "24  Indexación Hexagonal H3",
+    "section": "",
+    "text": "[dependencies]\nh3o = \"0.3\"",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Indexación Hexagonal H3</span>"
+    ]
+  },
+  {
+    "objectID": "h3o.html#conceptos-clave",
+    "href": "h3o.html#conceptos-clave",
+    "title": "24  Indexación Hexagonal H3",
+    "section": "24.2 Conceptos Clave",
+    "text": "24.2 Conceptos Clave\nLa unidad fundamental en h3o es el tipo CellIndex. Es un entero de 64 bits (u64) que codifica la ubicación, resolución y jerarquía de un hexágono. Es extremadamente ligero (copy, stack-allocated).",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Indexación Hexagonal H3</span>"
+    ]
+  },
+  {
+    "objectID": "h3o.html#funciones-principales",
+    "href": "h3o.html#funciones-principales",
+    "title": "24  Indexación Hexagonal H3",
+    "section": "24.3 Funciones Principales",
+    "text": "24.3 Funciones Principales\nA continuación un recorrido por las capacidades de la librería.\n\n24.3.1 1. Indexación (Coordenada ↔︎ Celda)\nConvertir latitud/longitud a un hexágono y viceversa.\nuse h3o::{CellIndex, LatLng, Resolution};\n\nfn main() -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {\n    let coord = LatLng::new(37.77, -122.42)?; // San Francisco\n\n    // De Coordenada a Celda (Resolución 9)\n    let cell = CellIndex::try_from_latlng(coord, Resolution::Nine)?;\n    println!(\"Cell Index: {}\", cell);\n\n    // De Celda a Coordenada (Centroide)\n    let centro: LatLng = cell.into();\n    println!(\"Centrolat: {}, Centrolon: {}\", centro.lat(), centro.lng());\n    \n    Ok(())\n}\n\n\n24.3.2 2. Inspección\nConsultar propiedades del índice sin decodificarlo.\nlet res = cell.resolution(); // Resolution::Nine\nlet es_valido = cell.is_valid(); // true\nlet es_pentagono = cell.is_pentagon(); // H3 tiene 12 pentágonos por resolución\nlet area_m2 = cell.area_m2(); // Área aproximada en metros cuadrados\n\n\n24.3.3 3. Jerarquía (Zoom In / Zoom Out)\nH3 es jerárquico. Un hexágono padre contiene (aproximadamente) 7 hijos.\n// Obtener el padre (Zoom Out)\nlet parent = cell.parent(Resolution::Eight).unwrap();\n\n// Obtener los hijos directos (Zoom In)\n// Retorna un iterador\nfor child in cell.children(Resolution::Ten) {\n    println!(\"Hijo: {}\", child);\n}\n\n// Obtener el hijo central\nlet center_child = cell.center_child(Resolution::Ten).unwrap();\n\n\n24.3.4 4. Recorrido y Vecindad (Grid Traversal)\nMoverse por la grilla hexagonal es muy eficiente.\n// k-ring: Obtener el hexágono y sus vecinos hasta distancia k\n// k=1 retorna el anillo inmediato (6 vecinos + centro)\nlet k = 1;\nfor neighbor in cell.grid_disk(k) {\n    println!(\"Vecino: {}\", neighbor);\n}\n\n// Solo el anillo (sin el interior)\nlet anillo = cell.grid_ring(k).unwrap();\n\n// Distancia topológica (saltos de grilla)\nlet destino = ...;\nlet saltos = cell.grid_distance(destino).unwrap(); // Ej: 5 saltos\n\n\n24.3.5 5. Aristas Dirigidas (Directed Edges)\nH3 permite representar flujo o grafos usando “aristas dirigidas” (un índice que representa el movimiento de la celda A a la celda vecina B).\n// Obtener las 6 aristas salientes de una celda\nfor edge in cell.directed_edges() {\n    println!(\"Arista hacia vecino: {}\", edge.destination());\n}\n\n\n24.3.6 6. Regiones y Polígonos (Polyfill)\nPara convertir geometrías vectoriales (Polígonos) a un conjunto de hexágonos (H3 Set). Esto es vital para ‘discretizar’ regiones.\nh3o interactúa con la crate geo-types si activas la feature geo.\nuse geo_types::{Polygon, LineString, Coord};\nuse h3o::geom::PolygonIndex;\n\nlet exterior = LineString::from(vec![\n    Coord::from((0.0, 0.0)),\n    Coord::from((1.0, 1.0)),\n    Coord::from((1.0, 0.0)),\n    Coord::from((0.0, 0.0)),\n]);\nlet poli = Polygon::new(exterior, vec![]);\n\n// Rellenar polígono con hexágonos de resolución 5\n// Configurar el polyfill con opciones por defecto\nlet builder = PolygonIndex::builder(poli);\nlet iterador_celdas = builder.geo_to_cells(Resolution::Five);\n\nfor cell in iterador_celdas {\n    println!(\"Celda dentro del polígono: {}\", cell);\n}\n\n\n24.3.7 7. Compactación\nSi tienes millones de celdas de alta resolución que cubren un área grande, puedes “compactarlos” en menos celdas de menor resolución (padres) para ahorrar espacio.\nuse h3o::Resolution;\n\n// Supón un set de celdas\nlet muchas_celdas = vec![...];\n\n// Compactar\nlet celdas_compactadas: Vec&lt;CellIndex&gt; = CellIndex::compact(muchas_celdas).collect();\n\n// Descompactar (llevar todo a la misma resolución base)\nlet celdas_planas = CellIndex::uncompact(celdas_compactadas, Resolution::Nine);",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Indexación Hexagonal H3</span>"
+    ]
+  },
+  {
+    "objectID": "h3o.html#por-qué-indexación-hexagonal",
+    "href": "h3o.html#por-qué-indexación-hexagonal",
+    "title": "24  Indexación Hexagonal H3",
+    "section": "24.4 ¿Por qué indexación hexagonal?",
+    "text": "24.4 ¿Por qué indexación hexagonal?\n\nVecinos equidistantes: En una grilla cuadrada, las diagonales están más lejos. En hexágonos, los 6 vecinos están a la misma distancia.\nSuavizado: Ideal para mapas de calor.\nParticionamiento: H3 permite dividir el mundo en “buckets” de tamaño casi uniforme para indexar bases de datos distribuidas.",
+    "crumbs": [
+      "Rust Espacial",
+      "<span class='chapter-number'>24</span>  <span class='chapter-title'>Indexación Hexagonal H3</span>"
+    ]
+  },
+  {
+    "objectID": "integration.html",
+    "href": "integration.html",
+    "title": "25  Integración de Rust con R",
+    "section": "",
+    "text": "25.1 El puente entre dos mundos\nHasta ahora, hemos hablado de Rust como un lenguaje independiente. Pero para un analista espacial que vive en el ecosistema de R (tidyverse, sf, terra), abandonar R por completo no es práctico. R es insuperable en exploración de datos y visualización (¡ggplot2!), mientras que Rust es insuperable en cómputo crudo y gestión de memoria.\n¿La solución? Usar ambos.\nImagina a R como el Jefe de Sala (Maître): gestiona los pedidos, habla con los clientes y presenta los platos. Rust es el Equipo de Cocina: procesa los ingredientes crudos a una velocidad vertiginosa y entrega el resultado listo para servir.",
+    "crumbs": [
+      "Integración con R",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Integración de Rust con R</span>"
+    ]
+  },
+  {
+    "objectID": "integration.html#extendr-la-puerta-trasera",
+    "href": "integration.html#extendr-la-puerta-trasera",
+    "title": "25  Integración de Rust con R",
+    "section": "25.2 Extendr: La puerta trasera",
+    "text": "25.2 Extendr: La puerta trasera\nextendr es el conjunto de herramientas que permite esta comunicación fluida. A diferencia de enfoques antiguos (como usar .Call directamente en C), extendr abstrae la complejidad de la API de C de R y nos permite escribir Rust que “se siente” como Rust, pero que R puede entender.\n\n25.2.1 Componentes clave\n\nrextendr: Un paquete de R que orquesta todo el proceso. Te permite crear proyectos, compilar código Rust y cargarlo en tu sesión de R automáticamente.\nextendr-api: Una crate de Rust (librería) que proporciona tipos seguros para interactuar con objetos de R. Por ejemplo, convierte un NumericVector de R en algo que Rust puede iterar.",
+    "crumbs": [
+      "Integración con R",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Integración de Rust con R</span>"
+    ]
+  },
+  {
+    "objectID": "integration.html#tu-primera-función-híbrida",
+    "href": "integration.html#tu-primera-función-híbrida",
+    "title": "25  Integración de Rust con R",
+    "section": "25.3 Tu primera función híbrida",
+    "text": "25.3 Tu primera función híbrida\nVamos a crear una función simple que sume dos números, pero ejecutándose en Rust.\n\n25.3.1 Preparación en R\nPrimero, necesitas instalar rextendr en R:\ninstall.packages(\"rextendr\")\nrextendr::rust_zit() # Comprueba que tu entorno de Rust está listo\n\n\n25.3.2 El código Rust\nUna función típica compatible con R se ve así:\nuse extendr_api::prelude::*; // Importamos las herramientas necesarias\n\n/// Suma dos enteros\n/// @export\n#[extendr] // Esta macro hace la magia\nfn sum_rust(x: i32, y: i32) -&gt; i32 {\n    x + y\n}\n\n// Esta macro genera el código \"pegamento\" para R\nextendr_module! {\n    mod my_module;\n    fn sum_rust;\n}\n\n\n25.3.3 Ejecución desde R\nPodemos compilar y ejecutar esto al vuelo (inline) desde R:\nrextendr::rust_function(\"\nfn sum_rust(x: i32, y: i32) -&gt; i32 {\n    x + y\n}\n\")\n\nsum_rust(10, 20)\n#&gt; [1] 30\n¡Acabas de ejecutar código máquina optimizado desde tu consola de R!",
+    "crumbs": [
+      "Integración con R",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Integración de Rust con R</span>"
+    ]
+  },
+  {
+    "objectID": "integration.html#pasando-datos-vectores-y-matrices",
+    "href": "integration.html#pasando-datos-vectores-y-matrices",
+    "title": "25  Integración de Rust con R",
+    "section": "25.4 Pasando Datos: Vectores y Matrices",
+    "text": "25.4 Pasando Datos: Vectores y Matrices\nEl verdadero poder viene cuando pasamos grandes volúmenes de datos. extendr trata de ser “Zero Copy” cuando es posible, pero debemos entender los tipos.\n\n\n\nR Type\nRust Type (extendr)\nRust Type (nativo)\n\n\n\n\nnumeric\nDoubles\nVec&lt;f64&gt; o &[f64]\n\n\ninteger\nIntegers\nVec&lt;i32&gt; o &[i32]\n\n\nlogical\nLogicals\nVec&lt;bool&gt;\n\n\ncharacter\nStrings\nVec&lt;String&gt;\n\n\n\nEjemplo: Calcular la distancia euclidiana de dos vectores. En R puro, esto es rápido porque está vectorizado, pero si la lógica fuera más compleja, Rust ganaría por goleada.\n#[extendr]\nfn euclidean_dist(x: Doubles, y: Doubles) -&gt; f64 {\n    // Iteramos sobre ambos vectores simultáneamente\n    let sum_sq: f64 = x.iter().zip(y.iter())\n        .map(|(a, b)| (a - b).powi(2))\n        .sum();\n    \n    sum_sq.sqrt()\n}\nEn este ejemplo, Doubles es un wrapper inteligente sobre el vector de R. Al usar .iter(), accedemos a los datos directamente en la memoria de R sin copiarlos, lo que es extremadamente eficiente.",
+    "crumbs": [
+      "Integración con R",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Integración de Rust con R</span>"
+    ]
+  },
+  {
+    "objectID": "integration.html#resumen-de-integración",
+    "href": "integration.html#resumen-de-integración",
+    "title": "25  Integración de Rust con R",
+    "section": "25.5 Resumen de Integración",
+    "text": "25.5 Resumen de Integración\n\nR gestiona la entrada/salida y la visualización.\nRust realiza el trabajo pesado de cálculo.\nextendr convierte los tipos de datos y gestiona la seguridad entre ambos mundos.\n\nEn los siguientes capítulos, usaremos esto para construir funciones espaciales que superan en rendimiento a las implementaciones nativas.",
+    "crumbs": [
+      "Integración con R",
+      "<span class='chapter-number'>25</span>  <span class='chapter-title'>Integración de Rust con R</span>"
+    ]
+  },
+  {
+    "objectID": "h3o-R.html",
+    "href": "h3o-R.html",
+    "title": "26  H3 en R con h3o",
+    "section": "",
+    "text": "26.1 Instalación\nEl paquete {h3o} es una librería ligera de R para interactuar con el sistema de indexación geoespacial H3.\nLa magia de este paquete reside en que utiliza extendr para envolver la crate de Rust h3o, de la cual hablamos en el capítulo anterior. Esto significa que ofrece una implementación en Rust puro de H3, sin necesidad de linkear la librería C de Uber. Además, está diseñado para trabajar fluidamente con {sf} y {tidyverse}.\nPuedes instalar la versión estable desde CRAN:\nO la versión de desarrollo desde GitHub:",
+    "crumbs": [
+      "Integración con R",
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>H3 en R con h3o</span>"
+    ]
+  },
+  {
+    "objectID": "h3o-R.html#instalación",
+    "href": "h3o-R.html#instalación",
+    "title": "26  H3 en R con h3o",
+    "section": "",
+    "text": "install.packages(\"h3o\")\n\n# install.packages(\"pak\")\npak::pak(\"extendr/h3o\")",
+    "crumbs": [
+      "Integración con R",
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>H3 en R con h3o</span>"
+    ]
+  },
+  {
+    "objectID": "h3o-R.html#ejemplo-de-flujo-de-trabajo",
+    "href": "h3o-R.html#ejemplo-de-flujo-de-trabajo",
+    "title": "26  H3 en R con h3o",
+    "section": "26.2 Ejemplo de Flujo de Trabajo",
+    "text": "26.2 Ejemplo de Flujo de Trabajo\n\n26.2.1 De Puntos a Celdas H3\nLos vectores H3 se pueden crear fácilmente a partir de columnas de geometría POINT (sfc objects) de sf.\nlibrary(h3o)\nlibrary(dplyr)\nlibrary(sf)\nlibrary(tibble)\n\n# 1. Crear datos de ejemplo\nxy &lt;- data.frame(\n  x = runif(100, -5, 10),\n  y = runif(100, 40, 50)\n)\n\npnts &lt;- st_as_sf(xy, coords = c(\"x\", \"y\"), crs = 4326)\n\n# 2. Convertir puntos a H3 (resolución 5)\npnts |&gt; mutate(h3 = h3_from_points(geometry, 5))\n\n\n26.2.2 Visualización (Celdas a Polígonos)\nLos vectores H3 tienen un método st_as_sfc() que permite convertir los índices hexadecimales de vuelta a geometrías POLYGON de sf.\n# Reemplazar la geometría de puntos con los hexágonos\nh3_cells &lt;- pnts |&gt;\n  mutate(\n    h3 = h3_from_points(geometry, 4),\n    geometry = st_as_sfc(h3)\n  )\n\n# Plotear los hexágonos\nplot(st_geometry(h3_cells))\n\n\n26.2.3 Centroides\nPuedes recuperar el centroide de una celda usando h3_to_points(). Si sf está disponible, retorna un objeto sfc.\nh3s &lt;- h3_cells[[\"h3\"]]\nh3_centers &lt;- h3_to_points(h3s)\n\nplot(st_geometry(h3_cells))\nplot(h3_centers, pch = 16, add = TRUE, col = \"black\")\n\n\n26.2.4 Aristas (Edges)\nTambién puedes trabajar con las aristas compartidas entre celdas.\n# Obtener aristas de las primeras 3 celdas\ncell_edges &lt;- h3_edges(h3s[1:3])\n\n# Aplanar la lista y convertir a líneas sf\nflat_edges &lt;- flatten_edges(cell_edges)\nst_as_sfc(flat_edges)",
+    "crumbs": [
+      "Integración con R",
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>H3 en R con h3o</span>"
+    ]
+  },
+  {
+    "objectID": "h3o-R.html#rendimiento-benchmarks",
+    "href": "h3o-R.html#rendimiento-benchmarks",
+    "title": "26  H3 en R con h3o",
+    "section": "26.3 Rendimiento (Benchmarks)",
+    "text": "26.3 Rendimiento (Benchmarks)\nDado que h3o está escrito en Rust, es significativamente más rápido que otras alternativas en R que dependen de V8 o Java (como h3jsr).\n\n26.3.1 Creación de Polígonos\nComparativa de tiempo convirtiendo índices H3 a geometrías sf:\nh3_strs &lt;- as.character(h3s)\nbench::mark(\n  h3o = st_as_sfc(h3s),\n  h3jsr = h3jsr::cell_to_polygon(h3_strs)\n)\n\n\n26.3.2 Polígonos a Celdas (Polyfill)\nLlenar polígonos con hexágonos suele ser una operación costosa.\nnc &lt;- st_read(system.file(\"gpkg/nc.gpkg\", package = \"sf\"), quiet = TRUE) |&gt;\n  st_transform(4326) |&gt;\n  st_geometry()\n\nbench::mark(\n  h3o = sfc_to_cells(nc, 5, \"centroid\"),\n  h3jsr = h3jsr::polygon_to_cells(nc, 5),\n  check = FALSE\n)\nEn general, la integración directa con Rust ofrece un rendimiento superior y una gestión de memoria más eficiente para flujos de trabajo espaciales intensivos en R.",
+    "crumbs": [
+      "Integración con R",
+      "<span class='chapter-number'>26</span>  <span class='chapter-title'>H3 en R con h3o</span>"
+    ]
+  },
+  {
+    "objectID": "sqlite.html",
+    "href": "sqlite.html",
+    "title": "27  SQLite en Rust",
+    "section": "",
+    "text": "27.1 La Crate rusqlite\nSQLite es el “táper” (tupperware) de las bases de datos: autocontenido, sin servidor, y extremadamente confiable. En el mundo R, estamos acostumbrados a usar RSQLite o sf escribiendo a .sqlite/.gpkg. En Rust, la interacción es más explícita pero mucho más potente.\nLa herramienta estándar en la cocina de Rust para esto es rusqlite. Es rápida y segura.\nPara trabajar con datos espaciales en SQLite “puro” (sin SpatiaLite), lo más común es guardar las geometrías como WKT (texto) o WKB (binario/BLOB). Aquí usaremos WKT por claridad, aunque WKB es más eficiente.",
+    "crumbs": [
+      "Integracción con DDBB",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>SQLite en Rust</span>"
+    ]
+  },
+  {
+    "objectID": "sqlite.html#la-crate-rusqlite",
+    "href": "sqlite.html#la-crate-rusqlite",
+    "title": "27  SQLite en Rust",
+    "section": "",
+    "text": "27.1.1 Dependencias\nNecesitarás:\n[dependencies]\nrusqlite = \"0.29.0\"\ngeo = \"0.26.0\"\nwkt = \"0.10.0\" \n\n\n27.1.2 Ejemplo: Guardando Puntos y Polígonos\nImagina que quieres persistir las ubicaciones de tus “estaciones de cocina” y las zonas de entrega.\nuse rusqlite::{params, Connection, Result};\nuse geo::{Point, Polygon, LineString};\nuse wkt::ToWkt; // Trait para convertir geometrías a texto\n\nfn main() -&gt; Result&lt;()&gt; {\n    // 1. Conexión (en memoria para el ejemplo)\n    let conn = Connection::open_in_memory()?;\n\n    // 2. Crear tabla\n    conn.execute(\n        \"CREATE TABLE areas (\n            id   INTEGER PRIMARY KEY,\n            name TEXT NOT NULL,\n            geom TEXT NOT NULL\n        )\",\n        [],\n    )?;\n\n    // --- Guardar un PUNTO ---\n    let p = Point::new(10.0, 20.0);\n    // Convertimos a WKT: \"POINT(10 20)\"\n    let p_wkt = p.wkt_string(); \n\n    conn.execute(\n        \"INSERT INTO areas (name, geom) VALUES (?1, ?2)\",\n        params![\"Estación Central\", p_wkt],\n    )?;\n\n    // --- Guardar un POLÍGONO ---\n    let exterior = LineString::from(vec![\n        (0., 0.), (10., 0.), (10., 10.), (0., 10.), (0., 0.)\n    ]);\n    let poly = Polygon::new(exterior, vec![]);\n    let poly_wkt = poly.wkt_string();\n\n    conn.execute(\n        \"INSERT INTO areas (name, geom) VALUES (?1, ?2)\",\n        params![\"Zona de Entrega\", poly_wkt],\n    )?;\n\n    println!(\"Datos guardados exitosamente en SQLite.\");\n    Ok(())\n}\n\n\n27.1.3 ¿GeoPackage?\nSi quieres escribir archivos .gpkg (que son SQLite disfrazados), la lógica es similar, pero debes respetar rigurosamente la estructura de tablas de metaladatos de OGC (gpkg_contents, gpkg_geometry_columns). Para una solución “llave en mano”, en Rust se suele usar la crate gdal (que veremos más adelante) en lugar de rusqlite crudo, similar a cómo usas st_write en R.",
+    "crumbs": [
+      "Integracción con DDBB",
+      "<span class='chapter-number'>27</span>  <span class='chapter-title'>SQLite en Rust</span>"
+    ]
+  },
+  {
+    "objectID": "duckdb.html",
+    "href": "duckdb.html",
+    "title": "28  DuckDB en Rust",
+    "section": "",
+    "text": "28.1 Configuración\nDuckDB es el “motor de formula 1” de las bases de datos analíticas embebidas. Para los usuarios de R, DuckDB es familiar y amado por su capacidad de masticar millones de filas en segundos en un laptop.\nEn Rust, DuckDB es igual de brillante. Y lo mejor: su extensión spatial permite operaciones geométricas nativas.\nEn Rust usamos la crate duckdb.",
+    "crumbs": [
+      "Integracción con DDBB",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>DuckDB en Rust</span>"
+    ]
+  },
+  {
+    "objectID": "duckdb.html#configuración",
+    "href": "duckdb.html#configuración",
+    "title": "28  DuckDB en Rust",
+    "section": "",
+    "text": "[dependencies]\nduckdb = { version = \"0.9.0\", features = [\"bundled\"] }\ngeo = \"0.26.0\"\nwkt = \"0.10.0\"",
+    "crumbs": [
+      "Integracción con DDBB",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>DuckDB en Rust</span>"
+    ]
+  },
+  {
+    "objectID": "duckdb.html#el-poder-de-spatial-extension",
+    "href": "duckdb.html#el-poder-de-spatial-extension",
+    "title": "28  DuckDB en Rust",
+    "section": "28.2 El Poder de spatial Extension",
+    "text": "28.2 El Poder de spatial Extension\nA diferencia de SQLite crudo, con DuckDB podemos cargar la extensión espacial e insertar geometrías que la base de datos entiende, no solo strings.\n\n28.2.1 Ejemplo: Inserción de Objetos Espaciales\nVamos a guardar un punto y un polígono, aprovechando la función ST_GeomFromText de DuckDB.\nuse duckdb::{params, Connection, Result};\nuse geo::{Point, Polygon, LineString};\nuse wkt::ToWkt;\n\nfn main() -&gt; Result&lt;()&gt; {\n    // 1. Conexión\n    let conn = Connection::open_in_memory()?;\n\n    // 2. Instalar y cargar extensión espacial\n    // Nota: Esto requiere acceso a internet la primera vez para descargar la extensión\n    conn.execute_batch(\"\n        INSTALL spatial;\n        LOAD spatial;\n    \")?;\n\n    // 3. Crear tabla con tipo GEOMETRY\n    conn.execute_batch(\"\n        CREATE TABLE spatial_data (\n            id INTEGER,\n            name VARCHAR,\n            geom GEOMETRY\n        );\n    \")?;\n\n    // --- Insertar un PUNTO ---\n    let p = Point::new(-70.6, -33.4); // Santiago aprox\n    let p_wkt = p.wkt_string(); // \"POINT(-70.6 -33.4)\"\n\n    // Usamos ST_GeomFromText para convertir el string WKT a geometría nativa de DuckDB\n    conn.execute(\n        \"INSERT INTO spatial_data VALUES (?, ?, ST_GeomFromText(?))\",\n        params![1, \"Santiago\", p_wkt],\n    )?;\n\n    // --- Insertar un POLÍGONO ---\n    let poly = Polygon::new(\n        LineString::from(vec![\n            (0., 0.), (5., 0.), (5., 5.), (0., 5.), (0., 0.)\n        ]),\n        vec![],\n    );\n    let poly_wkt = poly.wkt_string();\n\n    conn.execute(\n        \"INSERT INTO spatial_data VALUES (?, ?, ST_GeomFromText(?))\",\n        params![2, \"Cuadrado Mágico\", poly_wkt],\n    )?;\n\n    // 4. Verificación: Calcular área dentro de la DB\n    // ¡DuckDB hace el cálculo, no Rust!\n    let area: f64 = conn.query_row(\n        \"SELECT ST_Area(geom) FROM spatial_data WHERE id = 2\",\n        [],\n        |row| row.get(0),\n    )?;\n\n    println!(\"El área del polígono calculada por DuckDB es: {}\", area);\n    // Output: 25.0\n\n    Ok(())\n}",
+    "crumbs": [
+      "Integracción con DDBB",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>DuckDB en Rust</span>"
+    ]
+  },
+  {
+    "objectID": "duckdb.html#duckdb-vs-r",
+    "href": "duckdb.html#duckdb-vs-r",
+    "title": "28  DuckDB en Rust",
+    "section": "28.3 DuckDB vs R",
+    "text": "28.3 DuckDB vs R\nEn R, harías esto con duckdb y dbplyr o SQL directo. En Rust, tienes la ventaja de poder generar la geometría programáticamente con toda la potencia del sistema de tipos (geo-types) antes de enviarla a la base de datos, asegurando que lo que insertas es válido antes de salir de tu código.",
+    "crumbs": [
+      "Integracción con DDBB",
+      "<span class='chapter-number'>28</span>  <span class='chapter-title'>DuckDB en Rust</span>"
     ]
   },
   {
     "objectID": "functional.html",
     "href": "functional.html",
-    "title": "Programación Funcional",
+    "title": "29  Programación Funcional",
     "section": "",
-    "text": "Además de una explicación de los conceptos básicos de la programación funcional (map, filter, fold), podrías incluir:\n\nIteradores y closures: Cómo la programación funcional se aplica a operaciones sobre datos espaciales.\nComposición de funciones: Explicar cómo utilizar funciones puras en el contexto espacial.",
+    "text": "29.1 El Diccionario de Traducción\nSi eres fanático de purrr en R, te tenemos buenas noticias: Rust es un lenguaje funcional disfrazado de lenguaje de sistemas.\nEn R, usas purrr para evitar bucles for y escribir código más declarativo (decir qué quieres hacer, no cómo). En Rust, usamos Iteradores por las mismas razones, pero con un beneficio extra: Lazy Evaluation (evaluación perezosa) y velocidad nativa.",
     "crumbs": [
       "Anexos",
-      "Programación Funcional"
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Programación Funcional</span>"
     ]
   },
   {
-    "objectID": "languages.html",
-    "href": "languages.html",
-    "title": "Otros Lenguajes",
+    "objectID": "functional.html#el-diccionario-de-traducción",
+    "href": "functional.html#el-diccionario-de-traducción",
+    "title": "29  Programación Funcional",
     "section": "",
-    "text": "Rust y R\nextendr - A safe and user-friendly R extension interface using Rust\nextendr_api",
+    "text": "Concepto\nR (purrr)\nRust (Iterator)\n\n\n\n\nTransformar\nmap() / map_dbl()\n.map()\n\n\nFiltrar\nkeep() / discard()\n.filter()\n\n\nReducir\nreduce() / accumulate()\n.fold() / .reduce()\n\n\nEfectos\nwalk()\n.for_each()\n\n\nAplanar\nflatten()\n.flatten()\n\n\nEncadenar\n%&gt;% (pipe)\n. (método encadenado)",
     "crumbs": [
       "Anexos",
-      "Otros Lenguajes"
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Programación Funcional</span>"
     ]
   },
   {
-    "objectID": "languages.html#rust-y-python",
-    "href": "languages.html#rust-y-python",
-    "title": "Otros Lenguajes",
-    "section": "Rust y Python",
-    "text": "Rust y Python",
+    "objectID": "functional.html#transformar-map-vs-.map",
+    "href": "functional.html#transformar-map-vs-.map",
+    "title": "29  Programación Funcional",
+    "section": "29.2 1. Transformar: map vs .map",
+    "text": "29.2 1. Transformar: map vs .map\nQueremos elevar al cuadrado una lista de números.\n\n29.2.1 En R (purrr)\nR calcula inmediatamente todo el vector resultado.\nlibrary(purrr)\n\nnumeros &lt;- c(1, 2, 3, 4)\ncuadrados &lt;- map_dbl(numeros, ~ .x ^ 2)\n# [1] 1 4 9 16\n\n\n29.2.2 En Rust\nRust usa iteradores. numeros.iter() crea un “cursor”. .map() transforma el valor bajo el cursor. .collect() consume el iterador y crea el vector final. ¡Sin .collect(), no sucede nada! (Lazy).\nfn main() {\n    let numeros = vec![1, 2, 3, 4];\n    \n    let cuadrados: Vec&lt;i32&gt; = numeros\n        .iter()             // 1. Crear iterador\n        .map(|x| x * x)     // 2. Transformar (lazy)\n        .collect();         // 3. Materializar resultado\n\n    println!(\"{:?}\", cuadrados);\n}\n\n\n\n\n\n\nNote\n\n\n\nDetalle Clave: En R, ~ .x ^ 2 es una función anónima (lambda). En Rust, |x| x * x es la misma idea (closure). Las barras | | definen los argumentos.",
     "crumbs": [
       "Anexos",
-      "Otros Lenguajes"
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Programación Funcional</span>"
     ]
   },
   {
-    "objectID": "languages.html#ffi-foreign-function-interface",
-    "href": "languages.html#ffi-foreign-function-interface",
-    "title": "Otros Lenguajes",
-    "section": "FFI (Foreign Function Interface)",
-    "text": "FFI (Foreign Function Interface)\nExplicar cómo Rust se puede integrar con otros lenguajes, especialmente si se piensa en interoperabilidad con Python o R.",
+    "objectID": "functional.html#filtrar-keep-vs-.filter",
+    "href": "functional.html#filtrar-keep-vs-.filter",
+    "title": "29  Programación Funcional",
+    "section": "29.3 2. Filtrar: keep vs .filter",
+    "text": "29.3 2. Filtrar: keep vs .filter\nQueremos quedarnos solo con los números pares.\n\n29.3.1 En R (purrr)\nnumeros &lt;- c(1, 2, 3, 4, 5, 6)\npares &lt;- keep(numeros, ~ .x %% 2 == 0)\n# [1] 2 4 6\n\n\n29.3.2 En Rust\nObserva el doble asterisco **x o referencia &. iter() te da referencias a los datos (&i32). filter recibe una referencia a lo que itera, así que recibe &&i32.\nfn main() {\n    let numeros = vec![1, 2, 3, 4, 5, 6];\n    \n    let pares: Vec&lt;i32&gt; = numeros\n        .into_iter()        // into_iter consume el vector original\n        .filter(|x| x % 2 == 0)\n        .collect();\n\n    println!(\"{:?}\", pares);\n}",
     "crumbs": [
       "Anexos",
-      "Otros Lenguajes"
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Programación Funcional</span>"
     ]
   },
   {
-    "objectID": "languages.html#binding-de-librerías",
-    "href": "languages.html#binding-de-librerías",
-    "title": "Otros Lenguajes",
-    "section": "Binding de librerías",
-    "text": "Binding de librerías\nCómo crear bindings en Rust para aprovechar librerías de otros lenguajes para análisis espacial.",
+    "objectID": "functional.html#reducir-reduce-vs-.fold-.reduce",
+    "href": "functional.html#reducir-reduce-vs-.fold-.reduce",
+    "title": "29  Programación Funcional",
+    "section": "29.4 3. Reducir: reduce vs .fold / .reduce",
+    "text": "29.4 3. Reducir: reduce vs .fold / .reduce\nQueremos sumar todos los elementos (o concatenar, o encontrar el máximo).\n\n29.4.1 En R (purrr)\nnumeros &lt;- 1:10\nsuma &lt;- reduce(numeros, `+`)\n# [1] 55\n\n\n29.4.2 En Rust\nHay dos sabores principales: * fold(initial_value, function): Permite cambiar el tipo de retorno. Equivale a reduce(.init = ...) de purrr. * reduce(function): Asume el primer elemento como inicial.\nfn main() {\n    let numeros = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];\n    \n    // Fold requiere un valor inicial (0)\n    let suma: i32 = numeros.iter().fold(0, |acc, x| acc + x);\n    \n    println!(\"La suma es: {}\", suma);\n}",
     "crumbs": [
       "Anexos",
-      "Otros Lenguajes"
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Programación Funcional</span>"
+    ]
+  },
+  {
+    "objectID": "functional.html#el-pipe-vs-cadenas-de-métodos",
+    "href": "functional.html#el-pipe-vs-cadenas-de-métodos",
+    "title": "29  Programación Funcional",
+    "section": "29.5 4. El “Pipe” vs Cadenas de Métodos",
+    "text": "29.5 4. El “Pipe” vs Cadenas de Métodos\nLa verdadera belleza de purrr brilla cuando encadenas operaciones.\n\n29.5.1 Escenario Complejo\nTenemos una lista de radios de círculos. Queremos: 1. Filtrar los radios negativos (invalidos). 2. Calcular el área (\\pi \\cdot r^2). 3. Filtrar áreas muy pequeñas (&lt; 10.0). 4. Sumar las áreas totales válidas.\n\n\n29.5.2 En R\nradios &lt;- c(2.0, -1.0, 5.0, 0.5)\n\narea_total &lt;- radios %&gt;% \n  keep(~ .x &gt; 0) %&gt;%                 // Filtra negativos\n  map_dbl(~ pi * .x^2) %&gt;%           // Calcula área\n  keep(~ .x &gt;= 10.0) %&gt;%             // Filtra pequeñas\n  reduce(`+`)                        // Suma\n\n\n29.5.3 En Rust\nEs casi idéntico, y a menudo, más rápido porque Rust compila todo este encadenamiento en un solo bucle optimizado. No crea vectores intermedios para cada paso (como sí hace R a menos que uses lazy_dt o similares).\nuse std::f64::consts::PI;\n\nfn main() {\n    let radios = vec![2.0, -1.0, 5.0, 0.5];\n\n    let area_total: f64 = radios.into_iter()\n        .filter(|r| *r &gt; 0.0)             // Filtra negativos\n        .map(|r| PI * r.powi(2))          // Calcula área \n        .filter(|area| *area &gt;= 10.0)     // Filtra pequeñas\n        .fold(0.0, |acc, area| acc + area); // Suma (reduce)\n\n    println!(\"Área total: {}\", area_total);\n}",
+    "crumbs": [
+      "Anexos",
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Programación Funcional</span>"
+    ]
+  },
+  {
+    "objectID": "functional.html#resumen",
+    "href": "functional.html#resumen",
+    "title": "29  Programación Funcional",
+    "section": "29.6 Resumen",
+    "text": "29.6 Resumen\nEscribir Rust “funcional” es la forma idiomática de trabajar. 1. Es seguro: Evita errores de índice fuera de rango (index out of bounds) comunes en los bucles for. 2. Es expresivo: Se lee como una historia de transformación de datos. 3. Es rápido: Los iteradores en Rust son “Zero-Cost Abstractions”. A menudo compilan al mismo código ensamblador (o mejor) que un bucle for manual.\n¡Si sabes purrr, ya sabes pensar en Rust!",
+    "crumbs": [
+      "Anexos",
+      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Programación Funcional</span>"
     ]
   }
 ]
