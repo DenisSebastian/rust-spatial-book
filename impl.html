@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>23&nbsp; Geocodificación – Rust Espacial</title>
+<title>14&nbsp; Impl – Rust Espacial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./routing.html" rel="next">
-<link href="./osm.html" rel="prev">
+<link href="./ownership.html" rel="next">
+<link href="./traits.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spatial_chapter.html">Rust Espacial</a></li><li class="breadcrumb-item"><a href="./geocoding.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geocodificación</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./impl.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Impl</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -232,7 +232,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./impl.html" class="sidebar-item-text sidebar-link">
+  <a href="./impl.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Impl</span></span></a>
   </div>
 </li>
@@ -308,7 +308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./geocoding.html" class="sidebar-item-text sidebar-link active">
+  <a href="./geocoding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geocodificación</span></span></a>
   </div>
 </li>
@@ -411,21 +411,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#búsqueda-naive-fuerza-bruta" id="toc-búsqueda-naive-fuerza-bruta" class="nav-link active" data-scroll-target="#búsqueda-naive-fuerza-bruta"><span class="header-section-number">23.1</span> Búsqueda Naive (Fuerza Bruta)</a></li>
-  <li><a href="#estrategias-para-producción" id="toc-estrategias-para-producción" class="nav-link" data-scroll-target="#estrategias-para-producción"><span class="header-section-number">23.2</span> Estrategias para Producción</a>
+  <li><a href="#concepto-fundamental" id="toc-concepto-fundamental" class="nav-link active" data-scroll-target="#concepto-fundamental"><span class="header-section-number">14.1</span> Concepto Fundamental</a>
   <ul class="collapse">
-  <li><a href="#ejemplo-conceptual-con-tantivy" id="toc-ejemplo-conceptual-con-tantivy" class="nav-link" data-scroll-target="#ejemplo-conceptual-con-tantivy"><span class="header-section-number">23.2.1</span> Ejemplo conceptual con Tantivy</a></li>
+  <li><a href="#analogía-el-robot" id="toc-analogía-el-robot" class="nav-link" data-scroll-target="#analogía-el-robot"><span class="header-section-number">14.1.1</span> 🤖 Analogía: El Robot</a></li>
   </ul></li>
-  <li><a href="#geocodificación-inversa-reverse-geocoding" id="toc-geocodificación-inversa-reverse-geocoding" class="nav-link" data-scroll-target="#geocodificación-inversa-reverse-geocoding"><span class="header-section-number">23.3</span> Geocodificación Inversa (Reverse Geocoding)</a></li>
+  <li><a href="#tipos-de-funciones-en-un-impl" id="toc-tipos-de-funciones-en-un-impl" class="nav-link" data-scroll-target="#tipos-de-funciones-en-un-impl"><span class="header-section-number">14.2</span> Tipos de Funciones en un <code>impl</code></a>
+  <ul class="collapse">
+  <li><a href="#métodos-acciones" id="toc-métodos-acciones" class="nav-link" data-scroll-target="#métodos-acciones"><span class="header-section-number">14.2.1</span> 1. Métodos (Acciones)</a></li>
+  <li><a href="#funciones-asociadas-utilidadesconstructores" id="toc-funciones-asociadas-utilidadesconstructores" class="nav-link" data-scroll-target="#funciones-asociadas-utilidadesconstructores"><span class="header-section-number">14.2.2</span> 2. Funciones Asociadas (Utilidades/Constructores)</a></li>
+  </ul></li>
+  <li><a href="#ejemplo-práctico-controlando-un-drone" id="toc-ejemplo-práctico-controlando-un-drone" class="nav-link" data-scroll-target="#ejemplo-práctico-controlando-un-drone"><span class="header-section-number">14.3</span> Ejemplo Práctico: Controlando un Drone</a></li>
+  <li><a href="#comparación-con-r" id="toc-comparación-con-r" class="nav-link" data-scroll-target="#comparación-con-r"><span class="header-section-number">14.4</span> Comparación con R</a>
+  <ul class="collapse">
+  <li><a href="#en-r-estilo-s3-funcional" id="toc-en-r-estilo-s3-funcional" class="nav-link" data-scroll-target="#en-r-estilo-s3-funcional"><span class="header-section-number">14.4.1</span> En R (Estilo S3 Funcional)</a></li>
+  <li><a href="#en-rust-impl" id="toc-en-rust-impl" class="nav-link" data-scroll-target="#en-rust-impl"><span class="header-section-number">14.4.2</span> En Rust (<code>impl</code>)</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spatial_chapter.html">Rust Espacial</a></li><li class="breadcrumb-item"><a href="./geocoding.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geocodificación</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./impl.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Impl</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geocodificación</span></h1>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Impl</span></h1>
+<p class="subtitle lead">Implementaciones: Dando Vida a los Datos</p>
 </div>
 
 
@@ -442,115 +452,119 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>La geocodificación es el proceso de convertir texto (una dirección como “Av. Providencia 1234”) en coordenadas geográficas.</p>
-<p>Tradicionalmente, en R o Python, solemos llamar a APIs online (Google Maps, Nominatim, Mapbox). Sin embargo, Rust nos da la potencia para hacer <strong>geocodificación offline</strong> consultando directamente una base de datos local de OpenStreetMap (ej. <code>chile-latest.osm.pbf</code>).</p>
-<p>Esto tiene ventajas enormes: * <strong>Privacidad</strong>: Los datos de tus usuarios nunca salen de tu servidor. * <strong>Costo</strong>: Cero costo por request. * <strong>Velocidad</strong>: Latencia de red cero.</p>
-<section id="búsqueda-naive-fuerza-bruta" class="level2" data-number="23.1">
-<h2 data-number="23.1" class="anchored" data-anchor-id="búsqueda-naive-fuerza-bruta"><span class="header-section-number">23.1</span> Búsqueda Naive (Fuerza Bruta)</h2>
-<p>Si tienes un archivo PBF de una región (ej. Santiago), puedes buscar una dirección específica iterando sobre el archivo y filtrando por los tags de dirección (<code>addr:street</code>, <code>addr:housenumber</code>).</p>
-<p>A continuación, un ejemplo concreto buscando una dirección en Chile:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">osmpbfreader::</span><span class="op">{</span>OsmPbfReader<span class="op">,</span> OsmObj<span class="op">};</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::fs::</span>File<span class="op">;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">,</span> <span class="dt">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="pp">std::error::</span><span class="bu">Error</span><span class="op">&gt;&gt;</span> <span class="op">{</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 1. Abrir la base de datos local (archivo PBF)</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> path <span class="op">=</span> <span class="pp">std::path::</span><span class="dt">Path</span><span class="pp">::</span>new(<span class="st">"datos/chile-latest.osm.pbf"</span>)<span class="op">;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> file <span class="op">=</span> <span class="pp">File::</span>open(<span class="op">&amp;</span>path)<span class="op">?;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> pbf <span class="op">=</span> <span class="pp">OsmPbfReader::</span>new(file)<span class="op">;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> calle_objetivo <span class="op">=</span> <span class="st">"Avenida Providencia"</span><span class="op">;</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> numero_objetivo <span class="op">=</span> <span class="st">"1234"</span><span class="op">;</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Buscando {} #{} en la base local..."</span><span class="op">,</span> calle_objetivo<span class="op">,</span> numero_objetivo)<span class="op">;</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 2. Iterar y filtrar</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Nota: Esto lee todo el archivo. Para producción, necesitarías un índice.</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> encontrados<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span>OsmObj<span class="op">&gt;</span> <span class="op">=</span> pbf<span class="op">.</span>iter()</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map(<span class="op">|</span>r<span class="op">|</span> r<span class="op">.</span>unwrap())</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>filter(<span class="op">|</span>obj<span class="op">|</span> <span class="op">{</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Verificamos si es un Nodo (punto) o Way (polígono/edificio)</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Y si tiene los tags coincidentes</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> tags <span class="op">=</span> obj<span class="op">.</span>tags()<span class="op">;</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Usamos un match flexible para la calle (case insensitive sería ideal en un caso real)</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> match_calle <span class="op">=</span> tags<span class="op">.</span>get(<span class="st">"addr:street"</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span>map(<span class="op">|</span>s<span class="op">|</span> s<span class="op">.</span>contains(calle_objetivo)) <span class="co">// Contains es más flexible que ==</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span>unwrap_or(<span class="cn">false</span>)<span class="op">;</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                </span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> match_numero <span class="op">=</span> tags<span class="op">.</span>get(<span class="st">"addr:housenumber"</span>)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span>map(<span class="op">|</span>n<span class="op">|</span> n <span class="op">==</span> numero_objetivo)</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span>unwrap_or(<span class="cn">false</span>)<span class="op">;</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>            match_calle <span class="op">&amp;&amp;</span> match_numero</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span>)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>collect()<span class="op">;</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 3. Mostrar resultados</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> encontrados<span class="op">.</span>is_empty() <span class="op">{</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"No se encontró la dirección."</span>)<span class="op">;</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> obj <span class="kw">in</span> encontrados <span class="op">{</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> id <span class="op">=</span> obj<span class="op">.</span>id()<span class="op">;</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> tags <span class="op">=</span> obj<span class="op">.</span>tags()<span class="op">;</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Para obtener Lat/Lon, depende del tipo de objeto.</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Si es Node, tiene lat/lon directos.</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Si es Way, necesitamos sus Nodos (requiere indexación previa, ver osmpbfreader docs)</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="kw">let</span> <span class="pp">OsmObj::</span>Node(n) <span class="op">=</span> obj <span class="op">{</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>                <span class="pp">println!</span>(<span class="st">"Encontrado: {} (lat: {}, lon: {})"</span><span class="op">,</span> </span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>                    tags<span class="op">.</span>get(<span class="st">"name"</span>)<span class="op">.</span>unwrap_or(<span class="op">&amp;</span><span class="st">"Sin nombre"</span><span class="op">.</span>to_string())<span class="op">,</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>                    n<span class="op">.</span>lat()<span class="op">,</span> n<span class="op">.</span>lon()</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>                )<span class="op">;</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>                <span class="pp">println!</span>(<span class="st">"Encontrado objeto complejo (Way/Relation): {:?}"</span><span class="op">,</span> id)<span class="op">;</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(())</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="estrategias-para-producción" class="level2" data-number="23.2">
-<h2 data-number="23.2" class="anchored" data-anchor-id="estrategias-para-producción"><span class="header-section-number">23.2</span> Estrategias para Producción</h2>
-<p>El método anterior es “naive” porque lee 200MB+ de archivo para <em>cada</em> búsqueda. Para un sistema de geocodificación real en Rust, seguirías estos pasos:</p>
-<ol type="1">
-<li><strong>Ingesta</strong>: Leer el PBF una vez (con <code>osmpbfreader</code>).</li>
-<li><strong>Indexación</strong>: Insertar las direcciones en un motor de búsqueda de texto completo.
+<p>Hasta ahora hemos visto cómo estructurar datos con <strong>Structs</strong> y <strong>Enums</strong>. Sin embargo, por sí solos, son solo contenedores de datos pasivos. No “hacen” nada.</p>
+<p>El bloque <code>impl</code> (implementación) es la herramienta que nos permite definir el <strong>comportamiento</strong> asociado a un tipo de dato. Es aquí donde transformamos simples estructuras de datos en objetos con funcionalidad propia.</p>
+<section id="concepto-fundamental" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="concepto-fundamental"><span class="header-section-number">14.1</span> Concepto Fundamental</h2>
+<section id="analogía-el-robot" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="analogía-el-robot"><span class="header-section-number">14.1.1</span> 🤖 Analogía: El Robot</h3>
+<p>Imagina un robot:</p>
 <ul>
-<li><strong>Tantivy</strong>: Es la respuesta de Rust a Lucene/Elasticsearch. Extremadamente rápido.</li>
-<li><strong>SQLite + FTS5</strong>: Simple y portable.</li>
-</ul></li>
-<li><strong>Consulta</strong>: Tu programa Rust busca en el índice (milisegundos) en lugar de leer el PBF.</li>
-</ol>
-<section id="ejemplo-conceptual-con-tantivy" class="level3" data-number="23.2.1">
-<h3 data-number="23.2.1" class="anchored" data-anchor-id="ejemplo-conceptual-con-tantivy"><span class="header-section-number">23.2.1</span> Ejemplo conceptual con Tantivy</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// (Pseudocódigo conceptual)</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> index <span class="op">=</span> <span class="bu">Index</span><span class="pp">::</span>create_in_dir(<span class="op">&amp;</span>path<span class="op">,</span> schema)<span class="op">?;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">mut</span> writer <span class="op">=</span> index<span class="op">.</span>writer(<span class="dv">50_000_000</span>)<span class="op">?;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Indexar</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> obj <span class="kw">in</span> pbf<span class="op">.</span>iter() <span class="op">{</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">let</span> <span class="cn">Some</span>(addr) <span class="op">=</span> extraer_direccion(<span class="op">&amp;</span>obj) <span class="op">{</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        writer<span class="op">.</span>add_document(<span class="pp">doc!</span>(</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            calle <span class="op">=&gt;</span> addr<span class="op">.</span>calle<span class="op">,</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            numero <span class="op">=&gt;</span> addr<span class="op">.</span>numero<span class="op">,</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>            coords <span class="op">=&gt;</span> addr<span class="op">.</span>coords</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        ))<span class="op">;</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>writer<span class="op">.</span>commit()<span class="op">?;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<li>El <strong>Struct</strong> es el <strong>Hardware</strong>: La lista de piezas, sensores, ruedas y cables. Define <em>qué tiene</em> el robot.</li>
+<li>El <strong>Impl</strong> es el <strong>Software</strong>: El código que le dice cómo moverse, cómo leer los sensores y cómo reaccionar. Define <em>qué puede hacer</em> el robot.</li>
+</ul>
+<p>Sin el <code>impl</code>, el robot es solo un montón de metal inmóvil.</p>
 </section>
 </section>
-<section id="geocodificación-inversa-reverse-geocoding" class="level2" data-number="23.3">
-<h2 data-number="23.3" class="anchored" data-anchor-id="geocodificación-inversa-reverse-geocoding"><span class="header-section-number">23.3</span> Geocodificación Inversa (Reverse Geocoding)</h2>
-<p>Si tienes una coordenada y quieres saber la dirección, el enfoque es espacial. Necesitas insertar tus datos en un <strong>R-Tree</strong> (usando la crate <code>rstar</code>).</p>
-<ol type="1">
-<li>Cargas todos los edificios con dirección en un R-Tree en memoria.</li>
-<li>Consultas <code>rtree.nearest_neighbor(&amp;mi_punto)</code>.</li>
-</ol>
-<p>Esto en Rust es órdenes de magnitud más rápido que hacerlo en PostGIS para consultas batch masivas, ya que todo ocurre en en el stack/heap sin overhead de red ni SQL parser.</p>
+<section id="tipos-de-funciones-en-un-impl" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="tipos-de-funciones-en-un-impl"><span class="header-section-number">14.2</span> Tipos de Funciones en un <code>impl</code></h2>
+<p>Dentro de un bloque <code>impl</code>, podemos definir dos tipos de funciones:</p>
+<section id="métodos-acciones" class="level3" data-number="14.2.1">
+<h3 data-number="14.2.1" class="anchored" data-anchor-id="métodos-acciones"><span class="header-section-number">14.2.1</span> 1. Métodos (Acciones)</h3>
+<p>Son funciones que actúan sobre una instancia específica del struct. Siempre toman <code>self</code> (o <code>&amp;self</code>, <code>&amp;mut self</code>) como primer argumento. Representan lo que el objeto puede hacerse a sí mismo o con sus datos.</p>
+<p><em>Ejemplo:</em> “Edificio, enciende tus luces”.</p>
+</section>
+<section id="funciones-asociadas-utilidadesconstructores" class="level3" data-number="14.2.2">
+<h3 data-number="14.2.2" class="anchored" data-anchor-id="funciones-asociadas-utilidadesconstructores"><span class="header-section-number">14.2.2</span> 2. Funciones Asociadas (Utilidades/Constructores)</h3>
+<p>Son funciones relacionadas con el tipo, pero que no necesitan una instancia específica para funcionar. Se usan a menudo como “constructores” para crear nuevas instancias. No toman <code>self</code>.</p>
+<p><em>Ejemplo:</em> “Plano, crea un nuevo edificio”.</p>
+<hr>
+</section>
+</section>
+<section id="ejemplo-práctico-controlando-un-drone" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="ejemplo-práctico-controlando-un-drone"><span class="header-section-number">14.3</span> Ejemplo Práctico: Controlando un Drone</h2>
+<p>Siguiendo nuestra temática de ciudad y tecnología, usemos un <strong>Drone</strong> como ejemplo.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Drone <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    nombre<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    bateria<span class="op">:</span> <span class="dt">u8</span><span class="op">,</span> <span class="co">// Porcentaje 0-100</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    en_vuelo<span class="op">:</span> <span class="dt">bool</span><span class="op">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Aquí empieza la "vida" del Drone</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Drone <span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// FUNCIÓN ASOCIADA (Constructor)</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// No usa &amp;self. Se llama como Drone::nuevo(...)</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> nuevo(nombre<span class="op">:</span> <span class="dt">String</span>) <span class="op">-&gt;</span> Drone <span class="op">{</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        Drone <span class="op">{</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>            nombre<span class="op">,</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>            bateria<span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="co">// Empieza siempre lleno y en el suelo</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>            en_vuelo<span class="op">:</span> <span class="cn">false</span><span class="op">,</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">// MÉTODO (Lee el estado)</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Usa &amp;self (lectura inmutable)</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> describir(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">{</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> estado <span class="op">=</span> <span class="cf">if</span> <span class="kw">self</span><span class="op">.</span>en_vuelo <span class="op">{</span> <span class="st">"Voplando"</span> <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span> <span class="st">"En tierra"</span> <span class="op">};</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"Drone '{}': Batería {}% - Estado: {}"</span><span class="op">,</span> <span class="kw">self</span><span class="op">.</span>nombre<span class="op">,</span> <span class="kw">self</span><span class="op">.</span>bateria<span class="op">,</span> estado)<span class="op">;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="co">// MÉTODO (Modifica el estado)</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Usa &amp;mut self (lectura y escritura)</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> despegar(<span class="op">&amp;</span><span class="kw">mut</span> <span class="kw">self</span>) <span class="op">{</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">self</span><span class="op">.</span>bateria <span class="op">&gt;</span> <span class="dv">20</span> <span class="op">{</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>            <span class="kw">self</span><span class="op">.</span>en_vuelo <span class="op">=</span> <span class="cn">true</span><span class="op">;</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>            <span class="kw">self</span><span class="op">.</span>bateria <span class="op">-=</span> <span class="dv">10</span><span class="op">;</span> <span class="co">// Gasta batería al despegar</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>            <span class="pp">println!</span>(<span class="st">"🚀 {} ha despegado."</span><span class="op">,</span> <span class="kw">self</span><span class="op">.</span>nombre)<span class="op">;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>            <span class="pp">println!</span>(<span class="st">"⚠️ {} no tiene suficiente batería para despegar."</span><span class="op">,</span> <span class="kw">self</span><span class="op">.</span>nombre)<span class="op">;</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Usamos la función asociada para crear el dron</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> mi_drone <span class="op">=</span> <span class="pp">Drone::</span>nuevo(<span class="st">"Halcón 1"</span><span class="op">.</span>to_string())<span class="op">;</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    mi_drone<span class="op">.</span>describir()<span class="op">;</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    mi_drone<span class="op">.</span>despegar()<span class="op">;</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    mi_drone<span class="op">.</span>describir()<span class="op">;</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="comparación-con-r" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="comparación-con-r"><span class="header-section-number">14.4</span> Comparación con R</h2>
+<p>Si vienes de R, especialmente de usar <strong>S3</strong>, notarás una diferencia clave en la organización.</p>
+<section id="en-r-estilo-s3-funcional" class="level3" data-number="14.4.1">
+<h3 data-number="14.4.1" class="anchored" data-anchor-id="en-r-estilo-s3-funcional"><span class="header-section-number">14.4.1</span> En R (Estilo S3 Funcional)</h3>
+<p>En R, los datos y las funciones suelen estar separados. Defines la estructura (una lista) y luego funciones sueltas que operan sobre esa lista.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definición de datos</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>crear_drone <span class="ot">&lt;-</span> <span class="cf">function</span>(nombre) {</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">nombre =</span> nombre, <span class="at">bateria =</span> <span class="dv">100</span>, <span class="at">en_vuelo =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Funciones sueltas</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>despegar_drone <span class="ot">&lt;-</span> <span class="cf">function</span>(drone) {</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  drone<span class="sc">$</span>en_vuelo <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(drone)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Uso</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>mi_drone <span class="ot">&lt;-</span> <span class="fu">crear_drone</span>(<span class="st">"Halcón 1"</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>mi_drone <span class="ot">&lt;-</span> <span class="fu">despegar_drone</span>(mi_drone)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El problema en R a veces es saber: <em>¿Qué funciones existen para este objeto?</em> Tienes que buscar en la documentación o adivinar el nombre.</p>
+</section>
+<section id="en-rust-impl" class="level3" data-number="14.4.2">
+<h3 data-number="14.4.2" class="anchored" data-anchor-id="en-rust-impl"><span class="header-section-number">14.4.2</span> En Rust (<code>impl</code>)</h3>
+<p>Rust agrupa todas las funciones que pertenecen al <code>Drone</code> dentro del bloque <code>impl Drone</code>.</p>
+<ul>
+<li><strong>Organización</strong>: Sabes exactamente dónde buscar el código relacionado con <code>Drone</code>.</li>
+<li><strong>Autocompletado</strong>: Los editores de código pueden mostrarte instantáneamente qué métodos están disponibles en cuanto escribes un punto (<code>.</code>).</li>
+<li><strong>Encapsulamiento</strong>: Queda claro qué lógica pertenece exclusivamente a este tipo de dato.</li>
+</ul>
+<p>El bloque <code>impl</code> actúa como el “hogar” de la lógica de tus datos.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -955,13 +969,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./osm.html" class="pagination-link" aria-label="OpenStreetMap (OSM)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span>
+      <a href="./traits.html" class="pagination-link" aria-label="Traits">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Traits</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./routing.html" class="pagination-link" aria-label="Routing y Distancias">
-        <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ownership.html" class="pagination-link" aria-label="Ownership y Borrowing">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

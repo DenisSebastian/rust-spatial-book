@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>23&nbsp; Geocodificación – Rust Espacial</title>
+<title>13&nbsp; Traits – Rust Espacial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,8 +65,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./routing.html" rel="next">
-<link href="./osm.html" rel="prev">
+<link href="./impl.html" rel="next">
+<link href="./struct.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spatial_chapter.html">Rust Espacial</a></li><li class="breadcrumb-item"><a href="./geocoding.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geocodificación</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./traits.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Traits</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -226,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./traits.html" class="sidebar-item-text sidebar-link">
+  <a href="./traits.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Traits</span></span></a>
   </div>
 </li>
@@ -308,7 +308,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./geocoding.html" class="sidebar-item-text sidebar-link active">
+  <a href="./geocoding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geocodificación</span></span></a>
   </div>
 </li>
@@ -411,21 +411,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#búsqueda-naive-fuerza-bruta" id="toc-búsqueda-naive-fuerza-bruta" class="nav-link active" data-scroll-target="#búsqueda-naive-fuerza-bruta"><span class="header-section-number">23.1</span> Búsqueda Naive (Fuerza Bruta)</a></li>
-  <li><a href="#estrategias-para-producción" id="toc-estrategias-para-producción" class="nav-link" data-scroll-target="#estrategias-para-producción"><span class="header-section-number">23.2</span> Estrategias para Producción</a>
+  <li><a href="#entendiendo-el-concepto" id="toc-entendiendo-el-concepto" class="nav-link active" data-scroll-target="#entendiendo-el-concepto"><span class="header-section-number">13.1</span> Entendiendo el Concepto</a>
   <ul class="collapse">
-  <li><a href="#ejemplo-conceptual-con-tantivy" id="toc-ejemplo-conceptual-con-tantivy" class="nav-link" data-scroll-target="#ejemplo-conceptual-con-tantivy"><span class="header-section-number">23.2.1</span> Ejemplo conceptual con Tantivy</a></li>
+  <li><a href="#analogía-1-el-contrato-de-trabajo" id="toc-analogía-1-el-contrato-de-trabajo" class="nav-link" data-scroll-target="#analogía-1-el-contrato-de-trabajo"><span class="header-section-number">13.1.1</span> Analogía 1: El Contrato de Trabajo</a></li>
+  <li><a href="#analogía-2-la-ciudad-nuestra-temática" id="toc-analogía-2-la-ciudad-nuestra-temática" class="nav-link" data-scroll-target="#analogía-2-la-ciudad-nuestra-temática"><span class="header-section-number">13.1.2</span> Analogía 2: La Ciudad (Nuestra temática)</a></li>
   </ul></li>
-  <li><a href="#geocodificación-inversa-reverse-geocoding" id="toc-geocodificación-inversa-reverse-geocoding" class="nav-link" data-scroll-target="#geocodificación-inversa-reverse-geocoding"><span class="header-section-number">23.3</span> Geocodificación Inversa (Reverse Geocoding)</a></li>
+  <li><a href="#comparación-con-r-s3-generics" id="toc-comparación-con-r-s3-generics" class="nav-link" data-scroll-target="#comparación-con-r-s3-generics"><span class="header-section-number">13.2</span> Comparación con R: S3 Generics</a></li>
+  <li><a href="#definición-y-uso-en-rust" id="toc-definición-y-uso-en-rust" class="nav-link" data-scroll-target="#definición-y-uso-en-rust"><span class="header-section-number">13.3</span> Definición y Uso en Rust</a>
+  <ul class="collapse">
+  <li><a href="#por-qué-son-útiles" id="toc-por-qué-son-útiles" class="nav-link" data-scroll-target="#por-qué-son-útiles"><span class="header-section-number">13.3.1</span> ¿Por qué son útiles?</a></li>
+  </ul></li>
+  <li><a href="#traits-derivables" id="toc-traits-derivables" class="nav-link" data-scroll-target="#traits-derivables"><span class="header-section-number">13.4</span> Traits Derivables</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spatial_chapter.html">Rust Espacial</a></li><li class="breadcrumb-item"><a href="./geocoding.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geocodificación</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./traits.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Traits</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geocodificación</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Traits</span></h1>
+<p class="subtitle lead">Definiendo Comportamiento Compartido</p>
 </div>
 
 
@@ -442,113 +448,134 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>La geocodificación es el proceso de convertir texto (una dirección como “Av. Providencia 1234”) en coordenadas geográficas.</p>
-<p>Tradicionalmente, en R o Python, solemos llamar a APIs online (Google Maps, Nominatim, Mapbox). Sin embargo, Rust nos da la potencia para hacer <strong>geocodificación offline</strong> consultando directamente una base de datos local de OpenStreetMap (ej. <code>chile-latest.osm.pbf</code>).</p>
-<p>Esto tiene ventajas enormes: * <strong>Privacidad</strong>: Los datos de tus usuarios nunca salen de tu servidor. * <strong>Costo</strong>: Cero costo por request. * <strong>Velocidad</strong>: Latencia de red cero.</p>
-<section id="búsqueda-naive-fuerza-bruta" class="level2" data-number="23.1">
-<h2 data-number="23.1" class="anchored" data-anchor-id="búsqueda-naive-fuerza-bruta"><span class="header-section-number">23.1</span> Búsqueda Naive (Fuerza Bruta)</h2>
-<p>Si tienes un archivo PBF de una región (ej. Santiago), puedes buscar una dirección específica iterando sobre el archivo y filtrando por los tags de dirección (<code>addr:street</code>, <code>addr:housenumber</code>).</p>
-<p>A continuación, un ejemplo concreto buscando una dirección en Chile:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">osmpbfreader::</span><span class="op">{</span>OsmPbfReader<span class="op">,</span> OsmObj<span class="op">};</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::fs::</span>File<span class="op">;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">,</span> <span class="dt">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="pp">std::error::</span><span class="bu">Error</span><span class="op">&gt;&gt;</span> <span class="op">{</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 1. Abrir la base de datos local (archivo PBF)</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> path <span class="op">=</span> <span class="pp">std::path::</span><span class="dt">Path</span><span class="pp">::</span>new(<span class="st">"datos/chile-latest.osm.pbf"</span>)<span class="op">;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> file <span class="op">=</span> <span class="pp">File::</span>open(<span class="op">&amp;</span>path)<span class="op">?;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> pbf <span class="op">=</span> <span class="pp">OsmPbfReader::</span>new(file)<span class="op">;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> calle_objetivo <span class="op">=</span> <span class="st">"Avenida Providencia"</span><span class="op">;</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> numero_objetivo <span class="op">=</span> <span class="st">"1234"</span><span class="op">;</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Buscando {} #{} en la base local..."</span><span class="op">,</span> calle_objetivo<span class="op">,</span> numero_objetivo)<span class="op">;</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 2. Iterar y filtrar</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Nota: Esto lee todo el archivo. Para producción, necesitarías un índice.</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> encontrados<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span>OsmObj<span class="op">&gt;</span> <span class="op">=</span> pbf<span class="op">.</span>iter()</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>map(<span class="op">|</span>r<span class="op">|</span> r<span class="op">.</span>unwrap())</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>filter(<span class="op">|</span>obj<span class="op">|</span> <span class="op">{</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Verificamos si es un Nodo (punto) o Way (polígono/edificio)</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Y si tiene los tags coincidentes</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> tags <span class="op">=</span> obj<span class="op">.</span>tags()<span class="op">;</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Usamos un match flexible para la calle (case insensitive sería ideal en un caso real)</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> match_calle <span class="op">=</span> tags<span class="op">.</span>get(<span class="st">"addr:street"</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span>map(<span class="op">|</span>s<span class="op">|</span> s<span class="op">.</span>contains(calle_objetivo)) <span class="co">// Contains es más flexible que ==</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span>unwrap_or(<span class="cn">false</span>)<span class="op">;</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                </span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> match_numero <span class="op">=</span> tags<span class="op">.</span>get(<span class="st">"addr:housenumber"</span>)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span>map(<span class="op">|</span>n<span class="op">|</span> n <span class="op">==</span> numero_objetivo)</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span>unwrap_or(<span class="cn">false</span>)<span class="op">;</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>            match_calle <span class="op">&amp;&amp;</span> match_numero</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span>)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>collect()<span class="op">;</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 3. Mostrar resultados</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> encontrados<span class="op">.</span>is_empty() <span class="op">{</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"No se encontró la dirección."</span>)<span class="op">;</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> obj <span class="kw">in</span> encontrados <span class="op">{</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> id <span class="op">=</span> obj<span class="op">.</span>id()<span class="op">;</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> tags <span class="op">=</span> obj<span class="op">.</span>tags()<span class="op">;</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Para obtener Lat/Lon, depende del tipo de objeto.</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Si es Node, tiene lat/lon directos.</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Si es Way, necesitamos sus Nodos (requiere indexación previa, ver osmpbfreader docs)</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="kw">let</span> <span class="pp">OsmObj::</span>Node(n) <span class="op">=</span> obj <span class="op">{</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>                <span class="pp">println!</span>(<span class="st">"Encontrado: {} (lat: {}, lon: {})"</span><span class="op">,</span> </span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>                    tags<span class="op">.</span>get(<span class="st">"name"</span>)<span class="op">.</span>unwrap_or(<span class="op">&amp;</span><span class="st">"Sin nombre"</span><span class="op">.</span>to_string())<span class="op">,</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>                    n<span class="op">.</span>lat()<span class="op">,</span> n<span class="op">.</span>lon()</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>                )<span class="op">;</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>                <span class="pp">println!</span>(<span class="st">"Encontrado objeto complejo (Way/Relation): {:?}"</span><span class="op">,</span> id)<span class="op">;</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(())</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="estrategias-para-producción" class="level2" data-number="23.2">
-<h2 data-number="23.2" class="anchored" data-anchor-id="estrategias-para-producción"><span class="header-section-number">23.2</span> Estrategias para Producción</h2>
-<p>El método anterior es “naive” porque lee 200MB+ de archivo para <em>cada</em> búsqueda. Para un sistema de geocodificación real en Rust, seguirías estos pasos:</p>
-<ol type="1">
-<li><strong>Ingesta</strong>: Leer el PBF una vez (con <code>osmpbfreader</code>).</li>
-<li><strong>Indexación</strong>: Insertar las direcciones en un motor de búsqueda de texto completo.
+<p>Un <strong>Trait</strong> (rasgo) en Rust es un mecanismo para definir comportamiento compartido. Es una forma de decirle al compilador que un tipo de dato tiene cierta funcionalidad que otros tipos también pueden tener.</p>
+<section id="entendiendo-el-concepto" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="entendiendo-el-concepto"><span class="header-section-number">13.1</span> Entendiendo el Concepto</h2>
+<section id="analogía-1-el-contrato-de-trabajo" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="analogía-1-el-contrato-de-trabajo"><span class="header-section-number">13.1.1</span> Analogía 1: El Contrato de Trabajo</h3>
+<p>Imagina que estás contratando personal para una ciudad. Necesitas un “Conductor”. No te importa si el candidato es una persona, un robot o un sistema de conducción autónoma; lo único que te importa es que cumpla con el “contrato” de saber conducir (acelerar, frenar, girar).</p>
+<p>En Rust:</p>
 <ul>
-<li><strong>Tantivy</strong>: Es la respuesta de Rust a Lucene/Elasticsearch. Extremadamente rápido.</li>
-<li><strong>SQLite + FTS5</strong>: Simple y portable.</li>
-</ul></li>
-<li><strong>Consulta</strong>: Tu programa Rust busca en el índice (milisegundos) en lugar de leer el PBF.</li>
-</ol>
-<section id="ejemplo-conceptual-con-tantivy" class="level3" data-number="23.2.1">
-<h3 data-number="23.2.1" class="anchored" data-anchor-id="ejemplo-conceptual-con-tantivy"><span class="header-section-number">23.2.1</span> Ejemplo conceptual con Tantivy</h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// (Pseudocódigo conceptual)</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> index <span class="op">=</span> <span class="bu">Index</span><span class="pp">::</span>create_in_dir(<span class="op">&amp;</span>path<span class="op">,</span> schema)<span class="op">?;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">mut</span> writer <span class="op">=</span> index<span class="op">.</span>writer(<span class="dv">50_000_000</span>)<span class="op">?;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Indexar</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> obj <span class="kw">in</span> pbf<span class="op">.</span>iter() <span class="op">{</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">let</span> <span class="cn">Some</span>(addr) <span class="op">=</span> extraer_direccion(<span class="op">&amp;</span>obj) <span class="op">{</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        writer<span class="op">.</span>add_document(<span class="pp">doc!</span>(</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            calle <span class="op">=&gt;</span> addr<span class="op">.</span>calle<span class="op">,</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            numero <span class="op">=&gt;</span> addr<span class="op">.</span>numero<span class="op">,</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>            coords <span class="op">=&gt;</span> addr<span class="op">.</span>coords</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        ))<span class="op">;</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>writer<span class="op">.</span>commit()<span class="op">?;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<li>Los <strong>Tipos</strong> (Structs/Enums) son los candidatos (ej. <code>Persona</code>, <code>Robot</code>).</li>
+<li>El <strong>Trait</strong> es el “contrato” o la descripción de la habilidad (ej. <code>Conducible</code>).</li>
+<li>La <strong>Implementación</strong> (<code>impl</code>) es cómo cada candidato realiza específicamente esa tarea.</li>
+</ul>
+</section>
+<section id="analogía-2-la-ciudad-nuestra-temática" class="level3" data-number="13.1.2">
+<h3 data-number="13.1.2" class="anchored" data-anchor-id="analogía-2-la-ciudad-nuestra-temática"><span class="header-section-number">13.1.2</span> Analogía 2: La Ciudad (Nuestra temática)</h3>
+<p>Siguiendo la temática de este libro: tienes edificios diferentes, como una <code>Casa</code> y un <code>Hospital</code>. Son estructuras diferentes con datos diferentes (la casa tiene habitaciones, el hospital tiene camas). Sin embargo, ambos pueden compartir funcionalidades:</p>
+<ul>
+<li>Ambos pueden ser <strong>“Abastecibles”</strong> (recibir agua/luz).</li>
+<li>Ambos pueden ser <strong>“Pintables”</strong>.</li>
+</ul>
+<p>Un trait define <em>qué</em> se puede hacer (ej. <code>pintar()</code>), pero no <em>cómo</em> se hace. Pintar una casa pequeña es diferente a pintar un rascacielos, pero ambos son “pintables”.</p>
 </section>
 </section>
-<section id="geocodificación-inversa-reverse-geocoding" class="level2" data-number="23.3">
-<h2 data-number="23.3" class="anchored" data-anchor-id="geocodificación-inversa-reverse-geocoding"><span class="header-section-number">23.3</span> Geocodificación Inversa (Reverse Geocoding)</h2>
-<p>Si tienes una coordenada y quieres saber la dirección, el enfoque es espacial. Necesitas insertar tus datos en un <strong>R-Tree</strong> (usando la crate <code>rstar</code>).</p>
-<ol type="1">
-<li>Cargas todos los edificios con dirección en un R-Tree en memoria.</li>
-<li>Consultas <code>rtree.nearest_neighbor(&amp;mi_punto)</code>.</li>
-</ol>
-<p>Esto en Rust es órdenes de magnitud más rápido que hacerlo en PostGIS para consultas batch masivas, ya que todo ocurre en en el stack/heap sin overhead de red ni SQL parser.</p>
+<section id="comparación-con-r-s3-generics" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="comparación-con-r-s3-generics"><span class="header-section-number">13.2</span> Comparación con R: S3 Generics</h2>
+<p>Si vienes del mundo de R, los Traits son conceptualmente muy similares a los <strong>sistemas S3</strong> y sus funciones genéricas.</p>
+<p>En R, tienes funciones como <code>print()</code>, <code>plot()</code> o <code>summary()</code>. Estas funciones se comportan de manera diferente según el objeto que les pases.</p>
+<ul>
+<li>Si haces <code>plot(mis_datos_geoespaciales)</code>, R busca internamente <code>plot.sf</code> (si usas la librería <code>sf</code>).</li>
+<li>Si haces <code>plot(mi_modelo_lineal)</code>, R busca <code>plot.lm</code>.</li>
+</ul>
+<p>Esto es <strong>Polimorfismo</strong>.</p>
+<section id="ejemplo-en-r" class="level4" data-number="13.2.0.1">
+<h4 data-number="13.2.0.1" class="anchored" data-anchor-id="ejemplo-en-r"><span class="header-section-number">13.2.0.1</span> Ejemplo en R</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definimos dos "clases" diferentes</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rectangulo <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">ancho =</span> <span class="dv">10</span>, <span class="at">alto =</span> <span class="dv">20</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(rectangulo) <span class="ot">&lt;-</span> <span class="st">"Rectangulo"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>circulo <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">radio =</span> <span class="dv">5</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(circulo) <span class="ot">&lt;-</span> <span class="st">"Circulo"</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Definimos una función genérica "area" (Esto sería el Trait en Rust)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>area <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">UseMethod</span>(<span class="st">"area"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Implementamos para Rectangulo</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>area.Rectangulo <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  x<span class="sc">$</span>ancho <span class="sc">*</span> x<span class="sc">$</span>alto</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Implementamos para Circulo</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>area.Circulo <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  pi <span class="sc">*</span> x<span class="sc">$</span>radio<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># La función area() funciona para ambos, aunque son distintos</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">area</span>(rectangulo)) </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">area</span>(circulo))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Rust hace esto mismo, pero el compilador verifica que <em>realmente</em> hayas implementado la función <code>area</code> para esos tipos antes de dejarte ejecutar el código, evitando errores en tiempo de ejecución.</p>
+</section>
+</section>
+<section id="definición-y-uso-en-rust" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="definición-y-uso-en-rust"><span class="header-section-number">13.3</span> Definición y Uso en Rust</h2>
+<p>Volvamos a nuestra ciudad. Definamos un trait <code>Habilidad</code> que permita a los edificios realizar una acción.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// 1. Definimos el Trait (El contrato)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Cualquier tipo que quiera tener "Habilidad" DEBE tener un método activar_funcion</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> Habilidad <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> activar_funcion(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">String</span><span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Structs de nuestra ciudad</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Edificio <span class="op">{</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    nombre<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    pisos<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Parque <span class="op">{</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    nombre<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    area_verde<span class="op">:</span> <span class="dt">bool</span><span class="op">,</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">// 2. Implementamos Habilidad para Edificio</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Habilidad <span class="cf">for</span> Edificio <span class="op">{</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> activar_funcion(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">String</span> <span class="op">{</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        <span class="pp">format!</span>(<span class="st">"El edificio {} enciende sus luces."</span><span class="op">,</span> <span class="kw">self</span><span class="op">.</span>nombre)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co">// 3. Implementamos Habilidad para Parque</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Habilidad <span class="cf">for</span> Parque <span class="op">{</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> activar_funcion(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">String</span> <span class="op">{</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">self</span><span class="op">.</span>area_verde <span class="op">{</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>            <span class="st">"El parque abre sus puertas y riega el pasto."</span><span class="op">.</span>to_string()</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>            <span class="st">"El parque abre sus puertas."</span><span class="op">.</span>to_string()</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> torre <span class="op">=</span> Edificio <span class="op">{</span> nombre<span class="op">:</span> <span class="st">"Torre Central"</span><span class="op">.</span>to_string()<span class="op">,</span> pisos<span class="op">:</span> <span class="dv">20</span> <span class="op">};</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> plaza <span class="op">=</span> Parque <span class="op">{</span> nombre<span class="op">:</span> <span class="st">"Plaza Mayor"</span><span class="op">.</span>to_string()<span class="op">,</span> area_verde<span class="op">:</span> <span class="cn">true</span> <span class="op">};</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Ambos tipos distintos comparten el mismo comportamiento</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> torre<span class="op">.</span>activar_funcion())<span class="op">;</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> plaza<span class="op">.</span>activar_funcion())<span class="op">;</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="por-qué-son-útiles" class="level3" data-number="13.3.1">
+<h3 data-number="13.3.1" class="anchored" data-anchor-id="por-qué-son-útiles"><span class="header-section-number">13.3.1</span> ¿Por qué son útiles?</h3>
+<p>La magia ocurre cuando escribes funciones que aceptan <strong>Traits</strong> en lugar de tipos concretos.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Esta función acepta CUALQUIER cosa que tenga la Habilidad</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co">// No le importa si es un Edificio, un Parque o un Coche.</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> ejecutar_accion_ciudadana(elemento<span class="op">:</span> <span class="op">&amp;</span><span class="kw">impl</span> Habilidad) <span class="op">{</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Evento en la ciudad: {}"</span><span class="op">,</span> elemento<span class="op">.</span>activar_funcion())<span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Esto permite escribir código extremadamente flexible y reutilizable (<code>Generic Programming</code>).</p>
+</section>
+</section>
+<section id="traits-derivables" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="traits-derivables"><span class="header-section-number">13.4</span> Traits Derivables</h2>
+<p>En Rust, verás muy seguido esto encima de los structs:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>derive<span class="at">(</span><span class="bu">Debug</span><span class="op">,</span> <span class="bu">Clone</span><span class="op">,</span> <span class="bu">PartialEq</span><span class="at">)]</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Casa <span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    numero<span class="op">:</span> <span class="dt">u32</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>Debug</code>, <code>Clone</code> y <code>PartialEq</code> son Traits. - <code>Debug</code>: Permite imprimir el struct con <code>{:?}</code> (como el <code>print()</code> básico de R). - <code>Clone</code>: Permite hacer copias del objeto. - <code>PartialEq</code>: Permite comparar si <code>casa1 == casa2</code>.</p>
+<p>La instrucción <code>#[derive(...)]</code> le dice al compilador: “Por favor, escribe la implementación por defecto de estos traits por mí, no quiero escribirla manualmente”. Es un ahorro de tiempo enorme para comportamientos estándar.</p>
 
 
 </section>
@@ -955,13 +982,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./osm.html" class="pagination-link" aria-label="OpenStreetMap (OSM)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span>
+      <a href="./struct.html" class="pagination-link" aria-label="Structs y Enums">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Structs y Enums</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./routing.html" class="pagination-link" aria-label="Routing y Distancias">
-        <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./impl.html" class="pagination-link" aria-label="Impl">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Impl</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>13&nbsp; Ownership y Borrowing – Rust Espacial</title>
+<title>15&nbsp; Ownership y Borrowing – Rust Espacial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./optimization.html" rel="next">
-<link href="./struct.html" rel="prev">
+<link href="./impl.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./ownership.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./ownership.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -221,13 +221,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./struct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Structs, Enums y Traits</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Structs y Enums</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./traits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Traits</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./impl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Impl</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ownership.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
   </div>
 </li>
       </ul>
@@ -244,13 +256,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./optimization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./paralelization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Paralelización</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Paralelización</span></span></a>
   </div>
 </li>
       </ul>
@@ -267,55 +279,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./spatial_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geotypes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Datos Geoespaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Datos Geoespaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Operaciones Espaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Operaciones Espaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./osm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geocoding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Geocodificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geocodificación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./routing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geohash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geohash e Indexación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Geohash e Indexación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./h3o.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></span></a>
   </div>
 </li>
       </ul>
@@ -332,13 +344,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./integration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./h3o-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">H3 en R con h3o</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">H3 en R con h3o</span></span></a>
   </div>
 </li>
       </ul>
@@ -355,13 +367,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sqlite.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">SQLite en Rust</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">SQLite en Rust</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./duckdb.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">DuckDB en Rust</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">DuckDB en Rust</span></span></a>
   </div>
 </li>
       </ul>
@@ -378,7 +390,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functional.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
   </div>
 </li>
       </ul>
@@ -399,18 +411,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#definción" id="toc-definción" class="nav-link active" data-scroll-target="#definción"><span class="header-section-number">13.1</span> Definción</a></li>
-  <li><a href="#ownership" id="toc-ownership" class="nav-link" data-scroll-target="#ownership"><span class="header-section-number">13.2</span> Ownership</a></li>
-  <li><a href="#borrowing" id="toc-borrowing" class="nav-link" data-scroll-target="#borrowing"><span class="header-section-number">13.3</span> Borrowing</a></li>
-  <li><a href="#lifetimes" id="toc-lifetimes" class="nav-link" data-scroll-target="#lifetimes"><span class="header-section-number">13.4</span> Lifetimes</a></li>
-  <li><a href="#resumen-visual" id="toc-resumen-visual" class="nav-link" data-scroll-target="#resumen-visual"><span class="header-section-number">13.5</span> Resumen Visual</a></li>
-  <li><a href="#slices" id="toc-slices" class="nav-link" data-scroll-target="#slices"><span class="header-section-number">13.6</span> Slices</a></li>
-  <li><a href="#borrow-checker" id="toc-borrow-checker" class="nav-link" data-scroll-target="#borrow-checker"><span class="header-section-number">13.7</span> Borrow Checker</a></li>
-  <li><a href="#errores-comunes-y-cómo-evitarlos" id="toc-errores-comunes-y-cómo-evitarlos" class="nav-link" data-scroll-target="#errores-comunes-y-cómo-evitarlos"><span class="header-section-number">13.8</span> Errores Comunes y Cómo Evitarlos</a>
+  <li><a href="#definción" id="toc-definción" class="nav-link active" data-scroll-target="#definción"><span class="header-section-number">15.1</span> Definción</a></li>
+  <li><a href="#ownership" id="toc-ownership" class="nav-link" data-scroll-target="#ownership"><span class="header-section-number">15.2</span> Ownership</a></li>
+  <li><a href="#borrowing" id="toc-borrowing" class="nav-link" data-scroll-target="#borrowing"><span class="header-section-number">15.3</span> Borrowing</a></li>
+  <li><a href="#lifetimes" id="toc-lifetimes" class="nav-link" data-scroll-target="#lifetimes"><span class="header-section-number">15.4</span> Lifetimes</a></li>
+  <li><a href="#resumen-visual" id="toc-resumen-visual" class="nav-link" data-scroll-target="#resumen-visual"><span class="header-section-number">15.5</span> Resumen Visual</a></li>
+  <li><a href="#slices" id="toc-slices" class="nav-link" data-scroll-target="#slices"><span class="header-section-number">15.6</span> Slices</a></li>
+  <li><a href="#borrow-checker" id="toc-borrow-checker" class="nav-link" data-scroll-target="#borrow-checker"><span class="header-section-number">15.7</span> Borrow Checker</a></li>
+  <li><a href="#errores-comunes-y-cómo-evitarlos" id="toc-errores-comunes-y-cómo-evitarlos" class="nav-link" data-scroll-target="#errores-comunes-y-cómo-evitarlos"><span class="header-section-number">15.8</span> Errores Comunes y Cómo Evitarlos</a>
   <ul class="collapse">
-  <li><a href="#uso-después-de-transferencia" id="toc-uso-después-de-transferencia" class="nav-link" data-scroll-target="#uso-después-de-transferencia"><span class="header-section-number">13.8.1</span> Uso después de transferencia</a></li>
-  <li><a href="#conflictos-en-préstamos-mutables" id="toc-conflictos-en-préstamos-mutables" class="nav-link" data-scroll-target="#conflictos-en-préstamos-mutables"><span class="header-section-number">13.8.2</span> Conflictos en préstamos mutables</a></li>
-  <li><a href="#referencias-a-datos-no-válidos" id="toc-referencias-a-datos-no-válidos" class="nav-link" data-scroll-target="#referencias-a-datos-no-válidos"><span class="header-section-number">13.8.3</span> Referencias a datos no válidos</a></li>
+  <li><a href="#uso-después-de-transferencia" id="toc-uso-después-de-transferencia" class="nav-link" data-scroll-target="#uso-después-de-transferencia"><span class="header-section-number">15.8.1</span> Uso después de transferencia</a></li>
+  <li><a href="#conflictos-en-préstamos-mutables" id="toc-conflictos-en-préstamos-mutables" class="nav-link" data-scroll-target="#conflictos-en-préstamos-mutables"><span class="header-section-number">15.8.2</span> Conflictos en préstamos mutables</a></li>
+  <li><a href="#referencias-a-datos-no-válidos" id="toc-referencias-a-datos-no-válidos" class="nav-link" data-scroll-target="#referencias-a-datos-no-válidos"><span class="header-section-number">15.8.3</span> Referencias a datos no válidos</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -418,9 +430,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./ownership.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./ownership.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></h1>
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></h1>
 </div>
 
 
@@ -438,12 +450,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>El sistema de <strong>Ownership</strong> (propiedad) y <strong>Borrowing</strong> (préstamo) es el corazón de Rust y lo que garantiza su <strong>seguridad en memoria</strong> sin necesidad de un recolector de basura. Aunque puede sonar complejo al principio, usando analogías simples podemos descomponerlo en conceptos fáciles de entender.</p>
-<section id="definción" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="definción"><span class="header-section-number">13.1</span> Definción</h2>
+<section id="definción" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="definción"><span class="header-section-number">15.1</span> Definción</h2>
 <p>El ownership es un conjunto de reglas que definen cómo un programa de Rust administra la memoria. Todos los programas tienen que administrar la forma en que usan la memoria de un computador mientras se ejecutan. Algunos lenguajes tienen recolección de basura que busca regularmente la memoria que ya no se usa mientras el programa se ejecuta; en otros lenguajes, el programador debe asignar y liberar la memoria explícitamente. Rust usa un tercer enfoque: la memoria se administra a través de un sistema de ownership con un conjunto de reglas que el compilador verifica. Si alguna de las reglas se viola, el programa no se compilará. Ninguna de las características del ownership ralentizará su programa mientras se ejecuta.</p>
 </section>
-<section id="ownership" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="ownership"><span class="header-section-number">13.2</span> Ownership</h2>
+<section id="ownership" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="ownership"><span class="header-section-number">15.2</span> Ownership</h2>
 <p>En Rust, cada valor tiene un <strong>dueño</strong>. Piensa en una mochila que contiene un objeto (datos). Solo <strong>una persona</strong> puede ser dueña de esa mochila en un momento dado.</p>
 <p><strong>Reglas de Ownership</strong></p>
 <ol type="1">
@@ -471,8 +483,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> nueva_mochila)<span class="op">;</span> <span class="co">// Ahora "nueva_mochila" es el dueño.</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="borrowing" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="borrowing"><span class="header-section-number">13.3</span> Borrowing</h2>
+<section id="borrowing" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="borrowing"><span class="header-section-number">15.3</span> Borrowing</h2>
 <p>A veces, en lugar de transferir completamente la propiedad, necesitas <strong>prestar</strong> tu mochila a alguien más. En Rust, esto se logra usando <strong>referencias</strong>.</p>
 <p><strong>Reglas de Borrowing</strong></p>
 <ol type="1">
@@ -515,8 +527,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{}"</span><span class="op">,</span> referencia_mutable)<span class="op">;</span> <span class="co">// Mochila modificada.</span></span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="lifetimes" class="level2" data-number="13.4">
-<h2 data-number="13.4" class="anchored" data-anchor-id="lifetimes"><span class="header-section-number">13.4</span> Lifetimes</h2>
+<section id="lifetimes" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="lifetimes"><span class="header-section-number">15.4</span> Lifetimes</h2>
 <p>Cuando prestas algo, el tiempo que alguien lo tiene debe ser <strong>claro</strong> para evitar conflictos. En Rust, esto se maneja con las <strong>lifetimes</strong>.</p>
 <p><strong>Reglas Básicas</strong> 1. Un préstamo no puede durar más que el dueño original. 2. El compilador verifica que todos los préstamos sean seguros.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -541,8 +553,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Cuando la mochila "muere", la referencia también deja de ser válida.</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="resumen-visual" class="level2" data-number="13.5">
-<h2 data-number="13.5" class="anchored" data-anchor-id="resumen-visual"><span class="header-section-number">13.5</span> Resumen Visual</h2>
+<section id="resumen-visual" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="resumen-visual"><span class="header-section-number">15.5</span> Resumen Visual</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 23%">
@@ -580,8 +592,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 </section>
-<section id="slices" class="level2" data-number="13.6">
-<h2 data-number="13.6" class="anchored" data-anchor-id="slices"><span class="header-section-number">13.6</span> Slices</h2>
+<section id="slices" class="level2" data-number="15.6">
+<h2 data-number="15.6" class="anchored" data-anchor-id="slices"><span class="header-section-number">15.6</span> Slices</h2>
 <p>En Rust, los <strong>slices</strong> son una forma especial de préstamo, que permite acceder a una parte de una colección (como un array o un <code>String</code>) sin transferir la propiedad ni copiar los datos.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -640,8 +652,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Los slices son herramientas poderosas para acceder a partes de datos sin necesidad de copiar ni transferir propiedad, lo que los hace eficientes y seguros. Son una extensión directa del sistema de <strong>ownership y borrowing</strong>, y demuestran cómo Rust optimiza el manejo de datos respetando la seguridad de memoria.</p>
 </section>
-<section id="borrow-checker" class="level2" data-number="13.7">
-<h2 data-number="13.7" class="anchored" data-anchor-id="borrow-checker"><span class="header-section-number">13.7</span> Borrow Checker</h2>
+<section id="borrow-checker" class="level2" data-number="15.7">
+<h2 data-number="15.7" class="anchored" data-anchor-id="borrow-checker"><span class="header-section-number">15.7</span> Borrow Checker</h2>
 <p>El <strong>Borrow Checker</strong> es una herramienta interna del compilador de Rust que garantiza que todas las reglas de <strong>ownership</strong>, <strong>borrowing</strong> y <strong>lifetimes</strong> se respeten en tiempo de compilación. Esto asegura que los programas sean seguros en memoria y libres de errores comunes como referencias colgantes o conflictos de préstamos.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -710,10 +722,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Gracias al Borrow Checker, Rust garantiza seguridad de memoria en tiempo de compilación, haciendo innecesario un recolector de basura y optimizando el rendimiento del programa.</p>
 </section>
-<section id="errores-comunes-y-cómo-evitarlos" class="level2" data-number="13.8">
-<h2 data-number="13.8" class="anchored" data-anchor-id="errores-comunes-y-cómo-evitarlos"><span class="header-section-number">13.8</span> Errores Comunes y Cómo Evitarlos</h2>
-<section id="uso-después-de-transferencia" class="level3" data-number="13.8.1">
-<h3 data-number="13.8.1" class="anchored" data-anchor-id="uso-después-de-transferencia"><span class="header-section-number">13.8.1</span> Uso después de transferencia</h3>
+<section id="errores-comunes-y-cómo-evitarlos" class="level2" data-number="15.8">
+<h2 data-number="15.8" class="anchored" data-anchor-id="errores-comunes-y-cómo-evitarlos"><span class="header-section-number">15.8</span> Errores Comunes y Cómo Evitarlos</h2>
+<section id="uso-después-de-transferencia" class="level3" data-number="15.8.1">
+<h3 data-number="15.8.1" class="anchored" data-anchor-id="uso-después-de-transferencia"><span class="header-section-number">15.8.1</span> Uso después de transferencia</h3>
 <ul>
 <li><strong>Error</strong>: Usar un valor después de transferir su propiedad.</li>
 <li><strong>Ejemplo</strong>:</li>
@@ -727,8 +739,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Solución</strong>: Revisa si has movido el valor o usa referencias si necesitas acceder a él.</li>
 </ul>
 </section>
-<section id="conflictos-en-préstamos-mutables" class="level3" data-number="13.8.2">
-<h3 data-number="13.8.2" class="anchored" data-anchor-id="conflictos-en-préstamos-mutables"><span class="header-section-number">13.8.2</span> Conflictos en préstamos mutables</h3>
+<section id="conflictos-en-préstamos-mutables" class="level3" data-number="15.8.2">
+<h3 data-number="15.8.2" class="anchored" data-anchor-id="conflictos-en-préstamos-mutables"><span class="header-section-number">15.8.2</span> Conflictos en préstamos mutables</h3>
 <ul>
 <li><strong>Error</strong>: Prestar un valor de forma mutable mientras tienes préstamos inmutables activos.</li>
 <li><strong>Ejemplo</strong>:</li>
@@ -742,8 +754,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Solución</strong>: Asegúrate de que no hay múltiples accesos conflictivos al mismo tiempo.</li>
 </ul>
 </section>
-<section id="referencias-a-datos-no-válidos" class="level3" data-number="13.8.3">
-<h3 data-number="13.8.3" class="anchored" data-anchor-id="referencias-a-datos-no-válidos"><span class="header-section-number">13.8.3</span> Referencias a datos no válidos</h3>
+<section id="referencias-a-datos-no-válidos" class="level3" data-number="15.8.3">
+<h3 data-number="15.8.3" class="anchored" data-anchor-id="referencias-a-datos-no-válidos"><span class="header-section-number">15.8.3</span> Referencias a datos no válidos</h3>
 <ul>
 <li><strong>Error</strong>: Crear una referencia que vive más que el valor original.</li>
 <li><strong>Ejemplo</strong>:</li>
@@ -1166,13 +1178,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./struct.html" class="pagination-link" aria-label="Structs, Enums y Traits">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Structs, Enums y Traits</span></span>
+      <a href="./impl.html" class="pagination-link" aria-label="Impl">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Impl</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./optimization.html" class="pagination-link" aria-label="Optimización">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Optimización</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Optimización</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
