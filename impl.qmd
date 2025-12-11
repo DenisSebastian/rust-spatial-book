@@ -1,0 +1,125 @@
+---
+title: "Impl"
+subtitle: "Implementaciones: Dando Vida a los Datos"
+---
+
+
+Hasta ahora hemos visto cómo estructurar datos con **Structs** y **Enums**. Sin embargo, por sí solos, son solo contenedores de datos pasivos. No "hacen" nada.
+
+El bloque `impl` (implementación) es la herramienta que nos permite definir el **comportamiento** asociado a un tipo de dato. Es aquí donde transformamos simples estructuras de datos en objetos con funcionalidad propia.
+
+## Concepto Fundamental
+
+### 🤖 Analogía: El Robot
+
+Imagina un robot:
+
+*   El **Struct** es el **Hardware**: La lista de piezas, sensores, ruedas y cables. Define *qué tiene* el robot.
+*   El **Impl** es el **Software**: El código que le dice cómo moverse, cómo leer los sensores y cómo reaccionar. Define *qué puede hacer* el robot.
+
+Sin el `impl`, el robot es solo un montón de metal inmóvil.
+
+## Tipos de Funciones en un `impl`
+
+Dentro de un bloque `impl`, podemos definir dos tipos de funciones:
+
+### 1. Métodos (Acciones)
+
+Son funciones que actúan sobre una instancia específica del struct. Siempre toman `self` (o `&self`, `&mut self`) como primer argumento. Representan lo que el objeto puede hacerse a sí mismo o con sus datos.
+
+*Ejemplo:* "Edificio, enciende tus luces".
+
+### 2. Funciones Asociadas (Utilidades/Constructores)
+Son funciones relacionadas con el tipo, pero que no necesitan una instancia específica para funcionar. Se usan a menudo como "constructores" para crear nuevas instancias. No toman `self`.
+
+*Ejemplo:* "Plano, crea un nuevo edificio".
+
+---
+
+## Ejemplo Práctico: Controlando un Drone
+
+Siguiendo nuestra temática de ciudad y tecnología, usemos un **Drone** como ejemplo.
+
+```rust
+struct Drone {
+    nombre: String,
+    bateria: u8, // Porcentaje 0-100
+    en_vuelo: bool,
+}
+
+// Aquí empieza la "vida" del Drone
+impl Drone {
+    // FUNCIÓN ASOCIADA (Constructor)
+    // No usa &self. Se llama como Drone::nuevo(...)
+    fn nuevo(nombre: String) -> Drone {
+        Drone {
+            nombre,
+            bateria: 100, // Empieza siempre lleno y en el suelo
+            en_vuelo: false,
+        }
+    }
+
+    // MÉTODO (Lee el estado)
+    // Usa &self (lectura inmutable)
+    fn describir(&self) {
+        let estado = if self.en_vuelo { "Voplando" } else { "En tierra" };
+        println!("Drone '{}': Batería {}% - Estado: {}", self.nombre, self.bateria, estado);
+    }
+
+    // MÉTODO (Modifica el estado)
+    // Usa &mut self (lectura y escritura)
+    fn despegar(&mut self) {
+        if self.bateria > 20 {
+            self.en_vuelo = true;
+            self.bateria -= 10; // Gasta batería al despegar
+            println!("🚀 {} ha despegado.", self.nombre);
+        } else {
+            println!("⚠️ {} no tiene suficiente batería para despegar.", self.nombre);
+        }
+    }
+}
+
+fn main() {
+    // Usamos la función asociada para crear el dron
+    let mut mi_drone = Drone::nuevo("Halcón 1".to_string());
+    
+    mi_drone.describir();
+    mi_drone.despegar();
+    mi_drone.describir();
+}
+```
+
+## Comparación con R
+
+Si vienes de R, especialmente de usar **S3**, notarás una diferencia clave en la organización.
+
+### En R (Estilo S3 Funcional)
+En R, los datos y las funciones suelen estar separados. Defines la estructura (una lista) y luego funciones sueltas que operan sobre esa lista.
+
+```r
+# Definición de datos
+crear_drone <- function(nombre) {
+  list(nombre = nombre, bateria = 100, en_vuelo = FALSE)
+}
+
+# Funciones sueltas
+despegar_drone <- function(drone) {
+  drone$en_vuelo <- TRUE
+  return(drone)
+}
+
+# Uso
+mi_drone <- crear_drone("Halcón 1")
+mi_drone <- despegar_drone(mi_drone)
+```
+
+El problema en R a veces es saber: *¿Qué funciones existen para este objeto?* Tienes que buscar en la documentación o adivinar el nombre.
+
+### En Rust (`impl`)
+Rust agrupa todas las funciones que pertenecen al `Drone` dentro del bloque `impl Drone`.
+
+*   **Organización**: Sabes exactamente dónde buscar el código relacionado con `Drone`.
+*   **Autocompletado**: Los editores de código pueden mostrarte instantáneamente qué métodos están disponibles en cuanto escribes un punto (`.`).
+*   **Encapsulamiento**: Queda claro qué lógica pertenece exclusivamente a este tipo de dato.
+
+El bloque `impl` actúa como el "hogar" de la lógica de tus datos.

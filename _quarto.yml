@@ -6,7 +6,7 @@ book:
   subtitle: "Procesos y Operaciones Espaciales Avanzadas"
   # affiliation-title: "Universidad Adolfo Ibáñez - Chile"
   author: "Denis Berroeta González (denis.berroeta@uai.cl)"
-  date: "2024-10-05"
+  date: "2025-10-05"
   language: "es"
   # number-sections: 3
   page-footer:
@@ -26,6 +26,8 @@ book:
         - closures.qmd
         - errors.qmd
         - struct.qmd
+        - traits.qmd
+        - impl.qmd
         - ownership.qmd
     - part: "Optimización"
       chapters:

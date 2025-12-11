@@ -2,12 +2,11 @@
 subtitle: "Diseñando una Ciudad en Rust"
 ---
 
-# Structs, Enums y Traits
+# Structs y Enums
 
-Rust ofrece herramientas poderosas para organizar datos y definir comportamientos. Los **Structs**, **Enums**, y **Traits** son fundamentales para escribir código limpio, eficiente y mantenible.
+Rust ofrece herramientas poderosas para organizar datos. Los **Structs** y **Enums** son fundamentales para escribir código limpio y estructurado.
 
-En este capítulo, exploraremos cómo estos tres conceptos funcionan y se relacionan, utilizando la analogía de una **ciudad** para facilitar su comprensión.
-
+En este capítulo, exploraremos cómo estos dos conceptos funcionan y se relacionan, utilizando la analogía de una **ciudad** para facilitar su comprensión.
 
 
 ## Structs: Los Planos de los Edificios
@@ -95,118 +94,48 @@ enum TipoDeEdificio {
 }
 ```
 
-
-## Traits: Las Habilidades de los Edificios
-
-### ¿Qué son los Traits?
-
-Un `trait` define un conjunto de **métodos** que un tipo debe implementar. Son similares a interfaces en otros lenguajes y permiten compartir comportamientos entre tipos diferentes.
-
-**Relación con el Código**
-
-Los traits permiten que diferentes tipos, como structs y enums, compartan comportamientos. También son esenciales para el polimorfismo en Rust.
-
-
-
-::: {.callout-tip}
-##  🕋 Analogía: Funcionalidades de los Edificios
-
-Un trait es como una funcionalidad que los edificios pueden adoptar:
-
-- Algunos edificios tienen luces automáticas.
-- Otros pueden ser resistentes a terremotos.
-- Algunos tienen ascensores.
-
-Cada edificio puede implementar uno o más traits según las funcionalidades que necesita.
-:::
-
-Ejemplo de Traits
-
-```rust
-trait Habilidad {
-    fn activar_funcion(&self) -> String;
-}
-
-impl Habilidad for Edificio {
-    fn activar_funcion(&self) -> String {
-        format!("El edificio {} activa sus luces automáticas.", self.nombre)
-    }
-}
-```
-
 ---
 
-## Ejemplo Integrado: Diseñando una Ciudad con Structs, Enums y Traits
+## Ejemplo Integrado: La Ciudad
 
-Combinemos estos tres conceptos para diseñar una ciudad con edificios, tipos de edificios y habilidades compartidas.
-
-Código de Ejemplo
+Combinemos Structs y Enums para representar partes de nuestra ciudad.
 
 ```rust
-// Struct para representar un edificio
-struct Edificio {
+// Representamos un edificio concreto
+struct EdificioConcreto {
     nombre: String,
-    pisos: u32,
+    ubicacion: (f64, f64), // Una tupla simple para coordenadas
+    tipo: TipoDeEdificio,  // Usamos el Enum dentro del Struct
 }
 
-// Enum para representar tipos de edificios
+// Enum para representar el uso específico
 enum TipoDeEdificio {
-    Casa,
-    Hospital,
-    Oficina,
-}
-
-// Trait para definir habilidades
-trait Habilidad {
-    fn activar_funcion(&self) -> String;
-}
-
-// Implementación del Trait para Struct
-impl Habilidad for Edificio {
-    fn activar_funcion(&self) -> String {
-        format!("El edificio {} activa sus luces automáticas.", self.nombre)
-    }
-}
-
-// Implementación del Trait para Enum
-impl Habilidad for TipoDeEdificio {
-    fn activar_funcion(&self) -> String {
-        match self {
-            TipoDeEdificio::Casa => "La casa utiliza energía renovable.".to_string(),
-            TipoDeEdificio::Hospital => "El hospital activa su sistema de emergencias.".to_string(),
-            TipoDeEdificio::Oficina => "La oficina enciende su aire acondicionado.".to_string(),
-        }
-    }
+    Residencial,
+    Comercial,
+    Industrial,
 }
 
 fn main() {
-    let edificio = Edificio {
-        nombre: "Edificio Central".to_string(),
-        pisos: 10,
+    let mi_casa = EdificioConcreto {
+        nombre: "Torre A".to_string(),
+        ubicacion: (10.5, 20.3),
+        tipo: TipoDeEdificio::Residencial,
     };
-
-    let tipo = TipoDeEdificio::Hospital;
-
-    println!("{}", edificio.activar_funcion());
-    println!("{}", tipo.activar_funcion());
+    
+    match mi_casa.tipo {
+        TipoDeEdificio::Residencial => println!("Es una zona tranquila."),
+        _ => println!("Zona de actividad."),
+    }
 }
-```
-
-**Salida**
-
-```console
-El edificio Edificio Central activa sus luces automáticas.
-El hospital activa su sistema de emergencias.
 ```
 
 ---
 
 ## Conclusión
 
-En Rust, **Structs, Enums y Traits** trabajan juntos para organizar datos y definir comportamientos. Usando la analogía de una ciudad:
+En Rust, **Structs y Enums** trabajan juntos para organizar datos.
 
-- Los structs son los planos de los edificios.
-- Los enums son los tipos de edificios que puedes construir.
-- Los traits son las habilidades que los edificios pueden tener.
+*   Los **Structs** permiten agrupar datos relacionados (como las propiedades de un edificio).
+*   Los **Enums** permiten enumerar las posibles variantes de una entidad (como los tipos de edificios).
 
-Esta combinación permite crear software modular, claro y extensible, al igual que diseñar una ciudad bien planificada.
+En el próximo capítulo, veremos los **Traits**, que nos permitirán dar vida y comportamiento a estas estructuras de datos.
