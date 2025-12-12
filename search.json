@@ -1394,80 +1394,223 @@
     ]
   },
   {
+    "objectID": "project_1.html",
+    "href": "project_1.html",
+    "title": "31  Tu primera estructura espacial",
+    "section": "",
+    "text": "32 Introducción\n¡Bienvenido a tu primer proyecto práctico! Hasta ahora hemos hablado de edificios, robots y ciudades en abstracto. Ahora nos pondremos el casco de ingenieros y construiremos código real que podrías usar (y de hecho, se usa de forma muy similar) en herramientas profesionales de GIS.\nEn este capítulo, vamos a construir desde cero una estructura para manejar Polígonos. No usaremos librerías externas mágicas todavía (como geo-types), porque quiero que entiendas cómo funcionan por dentro.\nNuestro objetivo hoy es:\n¡Manos a la obra!",
+    "crumbs": [
+      "Proyectos",
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Tu primera estructura espacial</span>"
+    ]
+  },
+  {
+    "objectID": "project_1.html#el-átomo-espacial-el-punto-point",
+    "href": "project_1.html#el-átomo-espacial-el-punto-point",
+    "title": "31  Tu primera estructura espacial",
+    "section": "32.1 1. El Átomo Espacial: El Punto (Point)",
+    "text": "32.1 1. El Átomo Espacial: El Punto (Point)\nTodo empieza con un punto. En un plano 2D, un punto no es más que una coordenada X y una Y.\nVamos a definir nuestro struct Point.\n// Derivamos Debug para poder imprimirlo en la consola.\n// Derivamos Clone y Copy porque un punto es muy ligero (solo dos números),\n// y es más fácil copiarlo que pasarlo por referencia constantemente.\n#[derive(Debug, Clone, Copy)]\npub struct Point {\n    pub x: f64,\n    pub y: f64,\n}\n\nimpl Point {\n    // Un \"constructor\" simple\n    pub fn new(x: f64, y: f64) -&gt; Self {\n        Point { x, y }\n    }\n}\n\n\n\n\n\n\nNote\n\n\n\n¿Por qué f64? En computación científica y geoespacial, usamos f64 (flotante de doble precisión) para minimizar los errores de redondeo. Un f32 (precisión simple) podría perder precisión si trabajas con coordenadas geográficas muy grandes (como UTM).",
+    "crumbs": [
+      "Proyectos",
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Tu primera estructura espacial</span>"
+    ]
+  },
+  {
+    "objectID": "project_1.html#construyendo-geometrías-el-polígono-polygon",
+    "href": "project_1.html#construyendo-geometrías-el-polígono-polygon",
+    "title": "31  Tu primera estructura espacial",
+    "section": "32.2 2. Construyendo Geometrías: El Polígono (Polygon)",
+    "text": "32.2 2. Construyendo Geometrías: El Polígono (Polygon)\nUn polígono simple se puede definir como una lista ordenada de puntos que forman un anillo exterior.\n#[derive(Debug, Clone)]\npub struct Polygon {\n    // Usamos Vec (Vector) porque el polígono puede tener 3, 4, 100 o mil puntos.\n    // Es una lista dinámica.\n    pub exterior: Vec&lt;Point&gt;,\n}\nFíjate que Polygon tiene Vec&lt;Point&gt;. Aquí Polygon es el “dueño” de esos puntos.",
+    "crumbs": [
+      "Proyectos",
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Tu primera estructura espacial</span>"
+    ]
+  },
+  {
+    "objectID": "project_1.html#dando-vida-cálculo-de-área-impl",
+    "href": "project_1.html#dando-vida-cálculo-de-área-impl",
+    "title": "31  Tu primera estructura espacial",
+    "section": "32.3 3. Dando Vida: Cálculo de Área (impl)",
+    "text": "32.3 3. Dando Vida: Cálculo de Área (impl)\nUn polígono que solo guarda puntos es aburrido. Queremos saber cuán grande es. Vamos a implementar el Algoritmo del Cordón (Shoelace Formula) para calcular el área.\nNo te asustes por la matemática, el código es sorprendentemente limpio en Rust.\nimpl Polygon {\n    // Constructor básico\n    pub fn new(points: Vec&lt;Point&gt;) -&gt; Self {\n        Polygon { exterior: points }\n    }\n\n    // Método para calcular el área\n    // &self significa: \"Me leo a mí mismo, pero no me modifico\"\n    pub fn area(&self) -&gt; f64 {\n        let points = &self.exterior;\n        let n = points.len();\n        \n        if n &lt; 3 {\n            return 0.0; // No es un polígono si tiene menos de 3 puntos\n        }\n\n        let mut sum = 0.0;\n\n        for i in 0..n {\n            // Conectamos el punto actual (i) con el siguiente (j)\n            // Si i es el último, j debe ser el primero (el índice 0)\n            let j = (i + 1) % n; \n            \n            sum += points[i].x * points[j].y;\n            sum -= points[j].x * points[i].y;\n        }\n\n        (sum / 2.0).abs()\n    }\n}\n\n32.3.1 Probémoslo\nPuedes copiar y pegar esto en tu main.rs para probarlo:\nfn main() {\n    // Creamos un cuadrado 10x10\n    let puntos = vec![\n        Point::new(0.0, 0.0),\n        Point::new(10.0, 0.0),\n        Point::new(10.0, 10.0),\n        Point::new(0.0, 10.0),\n        Point::new(0.0, 0.0), // Cerramos el ciclo\n    ];\n\n    let mi_poligono = Polygon::new(puntos);\n\n    println!(\"Área del polígono: {}\", mi_poligono.area());\n}\nSi corres esto, deberías ver Área del polígono: 100.",
+    "crumbs": [
+      "Proyectos",
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Tu primera estructura espacial</span>"
+    ]
+  },
+  {
+    "objectID": "project_1.html#el-contrato-espacial-trait",
+    "href": "project_1.html#el-contrato-espacial-trait",
+    "title": "31  Tu primera estructura espacial",
+    "section": "32.4 4. El Contrato Espacial (trait)",
+    "text": "32.4 4. El Contrato Espacial (trait)\nAhora imagina que también tenemos Circle (Círculo) o LineString (Línea). Todos tienen área (bueno, la línea tiene área 0, pero se entiende).\nPara tratar a todas las geometrías por igual, definimos un Trait.\npub trait SpatialObject {\n    // Cualquier objeto espacial debe saber decirme su área\n    fn area(&self) -&gt; f64;\n    \n    // Y digamos que también queremos saber su tipo como texto\n    fn geometry_type(&self) -&gt; &str;\n}\nAhora, implementamos este “contrato” para nuestro Polígono:\nimpl SpatialObject for Polygon {\n    fn area(&self) -&gt; f64 {\n        // Reusamos la lógica que ya escribimos arriba por conveniencia\n        self.area()\n    }\n\n    fn geometry_type(&self) -&gt; &str {\n        \"Polygon\"\n    }\n}\nEsto nos permite escribir funciones genéricas poderosas:\n\n32.4.1 Probémoslo en main\nPara que esto funcione, colocamos la función genérica y la llamamos desde el main:\nfn main() {\n    let puntos = vec![\n        Point::new(0.0, 0.0), Point::new(4.0, 0.0),\n        Point::new(4.0, 4.0), Point::new(0.0, 4.0),\n        Point::new(0.0, 0.0),\n    ];\n    \n    // Creamos el polígono\n    let cuadrado = Polygon::new(puntos);\n\n    // ¡Aquí está la magia!\n    // Pasamos el polígono a una función que SOLO espera un \"SpatialObject\"\n    reporte_espacial(&cuadrado);\n}\n\n// Esta función acepta CUALQUIER cosa que cumpla el contrato SpatialObject\nfn reporte_espacial(objeto: &impl SpatialObject) {\n    println!(\"--- REPORTE ---\");\n    println!(\"Tipo de Geometría: {}\", objeto.geometry_type());\n    println!(\"Medida Espacial:   {}\", objeto.area());\n    println!(\"-----------------\");\n}",
+    "crumbs": [
+      "Proyectos",
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Tu primera estructura espacial</span>"
+    ]
+  },
+  {
+    "objectID": "project_1.html#validación-y-robustez-evitando-geometrías-imposibles",
+    "href": "project_1.html#validación-y-robustez-evitando-geometrías-imposibles",
+    "title": "31  Tu primera estructura espacial",
+    "section": "32.5 5. Validación y Robustez: Evitando Geometrías Imposibles",
+    "text": "32.5 5. Validación y Robustez: Evitando Geometrías Imposibles\nEn el mundo real, los datos vienen sucios. Un polígono podría tener solo 2 puntos (una línea) o no estar cerrado (el último punto no es igual al primero).\nRust nos invita a manejar esto explícitamente.\nMejoremos nuestro constructor new para que sea inteligente. En lugar de devolver un Polygon “a la fuerza”, devolverá un Option&lt;Polygon&gt;.\n\nSome(Polygon) si todo está bien.\nNone si los datos son inválidos.\n\nimpl Polygon {\n    // Ahora devolvemos Option&lt;Self&gt;\n    pub fn new_checked(points: Vec&lt;Point&gt;) -&gt; Option&lt;Self&gt; {\n        if points.len() &lt; 4 {\n            // Un polígono cerrado necesita al menos 3 vértices + 1 de cierre = 4 puntos\n            return None; \n        }\n\n        // Verificamos si está cerrado (primero == último)\n        // Ojo: comparar f64 con == es peligroso por decimales, pero para este ejemplo sirve.\n        let first = points.first().unwrap();\n        let last = points.last().unwrap();\n\n        // Pequeño truco para comparar float: la diferencia debe ser muy pequeña\n        if (first.x - last.x).abs() &gt; 1e-6 || (first.y - last.y).abs() &gt; 1e-6 {\n             return None; // No está cerrado\n        }\n\n        Some(Polygon { exterior: points })\n    }\n}\nAhora el usuario está obligado a manejar el error:\n\n32.5.1 Probémoslo en main\nIntenta romper tu propio código pasando datos incorrectos:\nfn main() {\n    // Caso 1: Puntos insuficientes (solo una línea)\n    let puntos_malos = vec![\n        Point::new(0.0, 0.0), \n        Point::new(10.0, 10.0)\n    ];\n\n    println!(\"Intentando crear polígono inválido...\");\n    let resultado = Polygon::new_checked(puntos_malos);\n\n    match resultado {\n        Some(p) =&gt; println!(\"¡Creado! Área: {}\", p.area()),\n        None =&gt; println!(\"&gt;&gt; Error: No se pudo crear el polígono. Datos inválidos.\"),\n    }\n\n    // Caso 2: Datos correctos\n    let puntos_buenos = vec![\n        Point::new(0.0, 0.0), Point::new(5.0, 0.0),\n        Point::new(5.0, 5.0), Point::new(0.0, 5.0),\n        Point::new(0.0, 0.0) // Cerrado\n    ];\n    \n    println!(\"\\nIntentando crear polígono válido...\");\n    if let Some(poly) = Polygon::new_checked(puntos_buenos) {\n        println!(\"&gt;&gt; ¡Éxito! Polígono creado correctamente.\");\n    }\n}",
+    "crumbs": [
+      "Proyectos",
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Tu primera estructura espacial</span>"
+    ]
+  },
+  {
+    "objectID": "project_1.html#integración-con-base-de-datos-simulación",
+    "href": "project_1.html#integración-con-base-de-datos-simulación",
+    "title": "31  Tu primera estructura espacial",
+    "section": "32.6 6. Integración con Base de Datos (Simulación)",
+    "text": "32.6 6. Integración con Base de Datos (Simulación)\nFinalmente, queremos guardar esto. Digamos que usamos una base de datos que acepta formato WKT (Well-Known Text), como POLYGON((0 0, 10 0, 10 10, 0 10, 0 0)).\nPodemos agregar un método a nuestro Trait o al Struct para convertirlo a WKT.\nimpl Polygon {\n    pub fn to_wkt(&self) -&gt; String {\n        let coords: Vec&lt;String&gt; = self.exterior\n            .iter()\n            .map(|p| format!(\"{} {}\", p.x, p.y)) // \"x y\"\n            .collect();\n            \n        // Unimos con comas\n        let coords_str = coords.join(\", \");\n        \n        format!(\"POLYGON(({}))\", coords_str)\n    }\n}\n\n32.6.1 El Flujo Completo\nImagina que recibes datos crudos (quizás de un CSV), los validas y los preparas para insertar en DuckDB:\nJuntemos todo en un ejemplo final que simula un pequeño motor de procesamiento de datos.\nfn main() {\n    // Imaginemos que esto viene de leer un archivo CSV\n    let lote_de_datos = vec![\n        // Polígono 1: Válido (Triángulo)\n        vec![\n            Point::new(0.0, 0.0), Point::new(10.0, 0.0), \n            Point::new(5.0, 10.0), Point::new(0.0, 0.0)\n        ],\n        // Polígono 2: Inválido (Línea)\n        vec![\n            Point::new(0.0, 0.0), Point::new(10.0, 10.0)\n        ],\n    ];\n\n    println!(\"Iniciando procesamiento por lotes...\\n\");\n\n    for (i, datos) in lote_de_datos.iter().enumerate() {\n        println!(\"Procesando registro #{}...\", i + 1);\n        procesar_datos_entrada(datos.clone());\n        println!(\"---\");\n    }\n}\n\nfn procesar_datos_entrada(datos_crudos: Vec&lt;Point&gt;) {\n    // 1. Intentar crear el polígono (Validación)\n    // El 'if let' es una forma corta y elegante de hacer match solo si es Some\n    if let Some(poly) = Polygon::new_checked(datos_crudos) {\n        \n        // 2. Calcular propiedades (Cómputo)\n        let area = poly.area();\n        println!(\"  ✅ Geometría válida detectada.\");\n        println!(\"  📊 Área calculada: {:.2}\", area);\n\n        // 3. Serializar para DB (Persistencia)\n        let wkt = poly.to_wkt();\n        println!(\"  💾 Guardando en DB: INSERT INTO geom_table VALUES ('{}');\", wkt);\n        \n    } else {\n        println!(\"  ❌ Error: Geometría corrupta o inválida. Registro descartado.\");\n    }\n}",
+    "crumbs": [
+      "Proyectos",
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Tu primera estructura espacial</span>"
+    ]
+  },
+  {
+    "objectID": "project_1.html#conclusión",
+    "href": "project_1.html#conclusión",
+    "title": "31  Tu primera estructura espacial",
+    "section": "32.7 Conclusión",
+    "text": "32.7 Conclusión\nHas creado una estructura espacial completa desde cero.\n\nDefiniste la Estructura de datos (struct).\nImplementaste Comportamiento propio (impl).\nTe adheriste a un Contrato estándar (trait).\nAgregaste Validación para robustez (Option).\nPreparaste la Serialización para transporte o base de datos.\n\nEsta es la base de todo sistema GIS moderno. Rust solo te pide que seas explícito con estas reglas desde el principio, lo que te ahorra miles de horas de depuración en el futuro.",
+    "crumbs": [
+      "Proyectos",
+      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Tu primera estructura espacial</span>"
+    ]
+  },
+  {
+    "objectID": "project_2.html",
+    "href": "project_2.html",
+    "title": "32  Optimización Espacial",
+    "section": "",
+    "text": "32.1 Objetivo\nEnseñar cómo optimizar búsquedas espaciales usando estructuras como quadtrees o geohashes, y mejorar el rendimiento de las consultas espaciales.",
+    "crumbs": [
+      "Proyectos",
+      "<span class='chapter-number'>32</span>  <span class='chapter-title'>Optimización Espacial</span>"
+    ]
+  },
+  {
+    "objectID": "project_2.html#introducción",
+    "href": "project_2.html#introducción",
+    "title": "32  Optimización Espacial",
+    "section": "32.2 Introducción",
+    "text": "32.2 Introducción\nEste capítulo guiará al lector en la implementación de índices espaciales en Rust para acelerar operaciones como determinar a qué polígono pertenece un punto. Se explorarán métodos de indexación como quadtrees o H3, integrando estas técnicas para hacer que las consultas sean más eficientes.",
+    "crumbs": [
+      "Proyectos",
+      "<span class='chapter-number'>32</span>  <span class='chapter-title'>Optimización Espacial</span>"
+    ]
+  },
+  {
+    "objectID": "project_2.html#desarrollo",
+    "href": "project_2.html#desarrollo",
+    "title": "32  Optimización Espacial",
+    "section": "32.3 Desarrollo",
+    "text": "32.3 Desarrollo",
+    "crumbs": [
+      "Proyectos",
+      "<span class='chapter-number'>32</span>  <span class='chapter-title'>Optimización Espacial</span>"
+    ]
+  },
+  {
+    "objectID": "project_2.html#resultados",
+    "href": "project_2.html#resultados",
+    "title": "32  Optimización Espacial",
+    "section": "32.4 Resultados",
+    "text": "32.4 Resultados",
+    "crumbs": [
+      "Proyectos",
+      "<span class='chapter-number'>32</span>  <span class='chapter-title'>Optimización Espacial</span>"
+    ]
+  },
+  {
+    "objectID": "project_2.html#conclusiones",
+    "href": "project_2.html#conclusiones",
+    "title": "32  Optimización Espacial",
+    "section": "32.5 Conclusiones",
+    "text": "32.5 Conclusiones",
+    "crumbs": [
+      "Proyectos",
+      "<span class='chapter-number'>32</span>  <span class='chapter-title'>Optimización Espacial</span>"
+    ]
+  },
+  {
     "objectID": "functional.html",
     "href": "functional.html",
-    "title": "31  Programación Funcional",
+    "title": "33  Programación Funcional",
     "section": "",
-    "text": "31.1 El Diccionario de Traducción\nSi eres fanático de purrr en R, te tenemos buenas noticias: Rust es un lenguaje funcional disfrazado de lenguaje de sistemas.\nEn R, usas purrr para evitar bucles for y escribir código más declarativo (decir qué quieres hacer, no cómo). En Rust, usamos Iteradores por las mismas razones, pero con un beneficio extra: Lazy Evaluation (evaluación perezosa) y velocidad nativa.",
+    "text": "33.1 El Diccionario de Traducción\nSi eres fanático de purrr en R, te tenemos buenas noticias: Rust es un lenguaje funcional disfrazado de lenguaje de sistemas.\nEn R, usas purrr para evitar bucles for y escribir código más declarativo (decir qué quieres hacer, no cómo). En Rust, usamos Iteradores por las mismas razones, pero con un beneficio extra: Lazy Evaluation (evaluación perezosa) y velocidad nativa.",
     "crumbs": [
       "Anexos",
-      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Programación Funcional</span>"
+      "<span class='chapter-number'>33</span>  <span class='chapter-title'>Programación Funcional</span>"
     ]
   },
   {
     "objectID": "functional.html#el-diccionario-de-traducción",
     "href": "functional.html#el-diccionario-de-traducción",
-    "title": "31  Programación Funcional",
+    "title": "33  Programación Funcional",
     "section": "",
     "text": "Concepto\nR (purrr)\nRust (Iterator)\n\n\n\n\nTransformar\nmap() / map_dbl()\n.map()\n\n\nFiltrar\nkeep() / discard()\n.filter()\n\n\nReducir\nreduce() / accumulate()\n.fold() / .reduce()\n\n\nEfectos\nwalk()\n.for_each()\n\n\nAplanar\nflatten()\n.flatten()\n\n\nEncadenar\n%&gt;% (pipe)\n. (método encadenado)",
     "crumbs": [
       "Anexos",
-      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Programación Funcional</span>"
+      "<span class='chapter-number'>33</span>  <span class='chapter-title'>Programación Funcional</span>"
     ]
   },
   {
     "objectID": "functional.html#transformar-map-vs-.map",
     "href": "functional.html#transformar-map-vs-.map",
-    "title": "31  Programación Funcional",
-    "section": "31.2 1. Transformar: map vs .map",
-    "text": "31.2 1. Transformar: map vs .map\nQueremos elevar al cuadrado una lista de números.\n\n31.2.1 En R (purrr)\nR calcula inmediatamente todo el vector resultado.\nlibrary(purrr)\n\nnumeros &lt;- c(1, 2, 3, 4)\ncuadrados &lt;- map_dbl(numeros, ~ .x ^ 2)\n# [1] 1 4 9 16\n\n\n31.2.2 En Rust\nRust usa iteradores. numeros.iter() crea un “cursor”. .map() transforma el valor bajo el cursor. .collect() consume el iterador y crea el vector final. ¡Sin .collect(), no sucede nada! (Lazy).\nfn main() {\n    let numeros = vec![1, 2, 3, 4];\n    \n    let cuadrados: Vec&lt;i32&gt; = numeros\n        .iter()             // 1. Crear iterador\n        .map(|x| x * x)     // 2. Transformar (lazy)\n        .collect();         // 3. Materializar resultado\n\n    println!(\"{:?}\", cuadrados);\n}\n\n\n\n\n\n\nNote\n\n\n\nDetalle Clave: En R, ~ .x ^ 2 es una función anónima (lambda). En Rust, |x| x * x es la misma idea (closure). Las barras | | definen los argumentos.",
+    "title": "33  Programación Funcional",
+    "section": "33.2 1. Transformar: map vs .map",
+    "text": "33.2 1. Transformar: map vs .map\nQueremos elevar al cuadrado una lista de números.\n\n33.2.1 En R (purrr)\nR calcula inmediatamente todo el vector resultado.\nlibrary(purrr)\n\nnumeros &lt;- c(1, 2, 3, 4)\ncuadrados &lt;- map_dbl(numeros, ~ .x ^ 2)\n# [1] 1 4 9 16\n\n\n33.2.2 En Rust\nRust usa iteradores. numeros.iter() crea un “cursor”. .map() transforma el valor bajo el cursor. .collect() consume el iterador y crea el vector final. ¡Sin .collect(), no sucede nada! (Lazy).\nfn main() {\n    let numeros = vec![1, 2, 3, 4];\n    \n    let cuadrados: Vec&lt;i32&gt; = numeros\n        .iter()             // 1. Crear iterador\n        .map(|x| x * x)     // 2. Transformar (lazy)\n        .collect();         // 3. Materializar resultado\n\n    println!(\"{:?}\", cuadrados);\n}\n\n\n\n\n\n\nNote\n\n\n\nDetalle Clave: En R, ~ .x ^ 2 es una función anónima (lambda). En Rust, |x| x * x es la misma idea (closure). Las barras | | definen los argumentos.",
     "crumbs": [
       "Anexos",
-      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Programación Funcional</span>"
+      "<span class='chapter-number'>33</span>  <span class='chapter-title'>Programación Funcional</span>"
     ]
   },
   {
     "objectID": "functional.html#filtrar-keep-vs-.filter",
     "href": "functional.html#filtrar-keep-vs-.filter",
-    "title": "31  Programación Funcional",
-    "section": "31.3 2. Filtrar: keep vs .filter",
-    "text": "31.3 2. Filtrar: keep vs .filter\nQueremos quedarnos solo con los números pares.\n\n31.3.1 En R (purrr)\nnumeros &lt;- c(1, 2, 3, 4, 5, 6)\npares &lt;- keep(numeros, ~ .x %% 2 == 0)\n# [1] 2 4 6\n\n\n31.3.2 En Rust\nObserva el doble asterisco **x o referencia &. iter() te da referencias a los datos (&i32). filter recibe una referencia a lo que itera, así que recibe &&i32.\nfn main() {\n    let numeros = vec![1, 2, 3, 4, 5, 6];\n    \n    let pares: Vec&lt;i32&gt; = numeros\n        .into_iter()        // into_iter consume el vector original\n        .filter(|x| x % 2 == 0)\n        .collect();\n\n    println!(\"{:?}\", pares);\n}",
+    "title": "33  Programación Funcional",
+    "section": "33.3 2. Filtrar: keep vs .filter",
+    "text": "33.3 2. Filtrar: keep vs .filter\nQueremos quedarnos solo con los números pares.\n\n33.3.1 En R (purrr)\nnumeros &lt;- c(1, 2, 3, 4, 5, 6)\npares &lt;- keep(numeros, ~ .x %% 2 == 0)\n# [1] 2 4 6\n\n\n33.3.2 En Rust\nObserva el doble asterisco **x o referencia &. iter() te da referencias a los datos (&i32). filter recibe una referencia a lo que itera, así que recibe &&i32.\nfn main() {\n    let numeros = vec![1, 2, 3, 4, 5, 6];\n    \n    let pares: Vec&lt;i32&gt; = numeros\n        .into_iter()        // into_iter consume el vector original\n        .filter(|x| x % 2 == 0)\n        .collect();\n\n    println!(\"{:?}\", pares);\n}",
     "crumbs": [
       "Anexos",
-      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Programación Funcional</span>"
+      "<span class='chapter-number'>33</span>  <span class='chapter-title'>Programación Funcional</span>"
     ]
   },
   {
     "objectID": "functional.html#reducir-reduce-vs-.fold-.reduce",
     "href": "functional.html#reducir-reduce-vs-.fold-.reduce",
-    "title": "31  Programación Funcional",
-    "section": "31.4 3. Reducir: reduce vs .fold / .reduce",
-    "text": "31.4 3. Reducir: reduce vs .fold / .reduce\nQueremos sumar todos los elementos (o concatenar, o encontrar el máximo).\n\n31.4.1 En R (purrr)\nnumeros &lt;- 1:10\nsuma &lt;- reduce(numeros, `+`)\n# [1] 55\n\n\n31.4.2 En Rust\nHay dos sabores principales: * fold(initial_value, function): Permite cambiar el tipo de retorno. Equivale a reduce(.init = ...) de purrr. * reduce(function): Asume el primer elemento como inicial.\nfn main() {\n    let numeros = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];\n    \n    // Fold requiere un valor inicial (0)\n    let suma: i32 = numeros.iter().fold(0, |acc, x| acc + x);\n    \n    println!(\"La suma es: {}\", suma);\n}",
+    "title": "33  Programación Funcional",
+    "section": "33.4 3. Reducir: reduce vs .fold / .reduce",
+    "text": "33.4 3. Reducir: reduce vs .fold / .reduce\nQueremos sumar todos los elementos (o concatenar, o encontrar el máximo).\n\n33.4.1 En R (purrr)\nnumeros &lt;- 1:10\nsuma &lt;- reduce(numeros, `+`)\n# [1] 55\n\n\n33.4.2 En Rust\nHay dos sabores principales: * fold(initial_value, function): Permite cambiar el tipo de retorno. Equivale a reduce(.init = ...) de purrr. * reduce(function): Asume el primer elemento como inicial.\nfn main() {\n    let numeros = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 10];\n    \n    // Fold requiere un valor inicial (0)\n    let suma: i32 = numeros.iter().fold(0, |acc, x| acc + x);\n    \n    println!(\"La suma es: {}\", suma);\n}",
     "crumbs": [
       "Anexos",
-      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Programación Funcional</span>"
+      "<span class='chapter-number'>33</span>  <span class='chapter-title'>Programación Funcional</span>"
     ]
   },
   {
     "objectID": "functional.html#el-pipe-vs-cadenas-de-métodos",
     "href": "functional.html#el-pipe-vs-cadenas-de-métodos",
-    "title": "31  Programación Funcional",
-    "section": "31.5 4. El “Pipe” vs Cadenas de Métodos",
-    "text": "31.5 4. El “Pipe” vs Cadenas de Métodos\nLa verdadera belleza de purrr brilla cuando encadenas operaciones.\n\n31.5.1 Escenario Complejo\nTenemos una lista de radios de círculos. Queremos: 1. Filtrar los radios negativos (invalidos). 2. Calcular el área (\\pi \\cdot r^2). 3. Filtrar áreas muy pequeñas (&lt; 10.0). 4. Sumar las áreas totales válidas.\n\n\n31.5.2 En R\nradios &lt;- c(2.0, -1.0, 5.0, 0.5)\n\narea_total &lt;- radios %&gt;% \n  keep(~ .x &gt; 0) %&gt;%                 // Filtra negativos\n  map_dbl(~ pi * .x^2) %&gt;%           // Calcula área\n  keep(~ .x &gt;= 10.0) %&gt;%             // Filtra pequeñas\n  reduce(`+`)                        // Suma\n\n\n31.5.3 En Rust\nEs casi idéntico, y a menudo, más rápido porque Rust compila todo este encadenamiento en un solo bucle optimizado. No crea vectores intermedios para cada paso (como sí hace R a menos que uses lazy_dt o similares).\nuse std::f64::consts::PI;\n\nfn main() {\n    let radios = vec![2.0, -1.0, 5.0, 0.5];\n\n    let area_total: f64 = radios.into_iter()\n        .filter(|r| *r &gt; 0.0)             // Filtra negativos\n        .map(|r| PI * r.powi(2))          // Calcula área \n        .filter(|area| *area &gt;= 10.0)     // Filtra pequeñas\n        .fold(0.0, |acc, area| acc + area); // Suma (reduce)\n\n    println!(\"Área total: {}\", area_total);\n}",
+    "title": "33  Programación Funcional",
+    "section": "33.5 4. El “Pipe” vs Cadenas de Métodos",
+    "text": "33.5 4. El “Pipe” vs Cadenas de Métodos\nLa verdadera belleza de purrr brilla cuando encadenas operaciones.\n\n33.5.1 Escenario Complejo\nTenemos una lista de radios de círculos. Queremos: 1. Filtrar los radios negativos (invalidos). 2. Calcular el área (\\pi \\cdot r^2). 3. Filtrar áreas muy pequeñas (&lt; 10.0). 4. Sumar las áreas totales válidas.\n\n\n33.5.2 En R\nradios &lt;- c(2.0, -1.0, 5.0, 0.5)\n\narea_total &lt;- radios %&gt;% \n  keep(~ .x &gt; 0) %&gt;%                 // Filtra negativos\n  map_dbl(~ pi * .x^2) %&gt;%           // Calcula área\n  keep(~ .x &gt;= 10.0) %&gt;%             // Filtra pequeñas\n  reduce(`+`)                        // Suma\n\n\n33.5.3 En Rust\nEs casi idéntico, y a menudo, más rápido porque Rust compila todo este encadenamiento en un solo bucle optimizado. No crea vectores intermedios para cada paso (como sí hace R a menos que uses lazy_dt o similares).\nuse std::f64::consts::PI;\n\nfn main() {\n    let radios = vec![2.0, -1.0, 5.0, 0.5];\n\n    let area_total: f64 = radios.into_iter()\n        .filter(|r| *r &gt; 0.0)             // Filtra negativos\n        .map(|r| PI * r.powi(2))          // Calcula área \n        .filter(|area| *area &gt;= 10.0)     // Filtra pequeñas\n        .fold(0.0, |acc, area| acc + area); // Suma (reduce)\n\n    println!(\"Área total: {}\", area_total);\n}",
     "crumbs": [
       "Anexos",
-      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Programación Funcional</span>"
+      "<span class='chapter-number'>33</span>  <span class='chapter-title'>Programación Funcional</span>"
     ]
   },
   {
     "objectID": "functional.html#resumen",
     "href": "functional.html#resumen",
-    "title": "31  Programación Funcional",
-    "section": "31.6 Resumen",
-    "text": "31.6 Resumen\nEscribir Rust “funcional” es la forma idiomática de trabajar. 1. Es seguro: Evita errores de índice fuera de rango (index out of bounds) comunes en los bucles for. 2. Es expresivo: Se lee como una historia de transformación de datos. 3. Es rápido: Los iteradores en Rust son “Zero-Cost Abstractions”. A menudo compilan al mismo código ensamblador (o mejor) que un bucle for manual.\n¡Si sabes purrr, ya sabes pensar en Rust!",
+    "title": "33  Programación Funcional",
+    "section": "33.6 Resumen",
+    "text": "33.6 Resumen\nEscribir Rust “funcional” es la forma idiomática de trabajar. 1. Es seguro: Evita errores de índice fuera de rango (index out of bounds) comunes en los bucles for. 2. Es expresivo: Se lee como una historia de transformación de datos. 3. Es rápido: Los iteradores en Rust son “Zero-Cost Abstractions”. A menudo compilan al mismo código ensamblador (o mejor) que un bucle for manual.\n¡Si sabes purrr, ya sabes pensar en Rust!",
     "crumbs": [
       "Anexos",
-      "<span class='chapter-number'>31</span>  <span class='chapter-title'>Programación Funcional</span>"
+      "<span class='chapter-number'>33</span>  <span class='chapter-title'>Programación Funcional</span>"
     ]
   }
 ]
