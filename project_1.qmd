@@ -1,0 +1,344 @@
+---
+title: "Tu primera estructura espacial"
+subtitle: "De la teoría a la práctica: Implementando Polígonos"
+---
+
+# Introducción
+
+¡Bienvenido a tu primer proyecto práctico! Hasta ahora hemos hablado de edificios, robots y ciudades en abstracto. Ahora nos pondremos el casco de ingenieros y construiremos código real que podrías usar (y de hecho, se usa de forma muy similar) en herramientas profesionales de GIS.
+
+En este capítulo, vamos a construir desde cero una estructura para manejar **Polígonos**. No usaremos librerías externas mágicas todavía (como `geo-types`), porque quiero que *entiendas* cómo funcionan por dentro.
+
+Nuestro objetivo hoy es:
+
+1.  Crear un objeto `Point` (Punto).
+2.  Crear un objeto `Polygon` (Polígono) compuesto de puntos.
+3.  Calcular su área matemáticamente (implementando métodos).
+4.  Definir un comportamiento estándar (Trait) para geometrías.
+5.  Asegurarnos de que el polígono sea válido (Validación).
+6.  Prepararlo para guardarlo en una base de datos (Persistencia).
+
+¡Manos a la obra!
+
+## 1. El Átomo Espacial: El Punto (`Point`)
+
+Todo empieza con un punto. En un plano 2D, un punto no es más que una coordenada X y una Y.
+
+Vamos a definir nuestro `struct Point`.
+
+```rust
+// Derivamos Debug para poder imprimirlo en la consola.
+// Derivamos Clone y Copy porque un punto es muy ligero (solo dos números),
+// y es más fácil copiarlo que pasarlo por referencia constantemente.
+#[derive(Debug, Clone, Copy)]
+pub struct Point {
+    pub x: f64,
+    pub y: f64,
+}
+
+impl Point {
+    // Un "constructor" simple
+    pub fn new(x: f64, y: f64) -> Self {
+        Point { x, y }
+    }
+}
+```
+
+::: {.callout-note}
+**¿Por qué `f64`?**
+En computación científica y geoespacial, usamos `f64` (flotante de doble precisión) para minimizar los errores de redondeo. Un `f32` (precisión simple) podría perder precisión si trabajas con coordenadas geográficas muy grandes (como UTM).
+:::
+
+## 2. Construyendo Geometrías: El Polígono (`Polygon`)
+
+Un polígono simple se puede definir como una lista ordenada de puntos que forman un anillo exterior.
+
+```rust
+#[derive(Debug, Clone)]
+pub struct Polygon {
+    // Usamos Vec (Vector) porque el polígono puede tener 3, 4, 100 o mil puntos.
+    // Es una lista dinámica.
+    pub exterior: Vec<Point>,
+}
+```
+
+Fíjate que `Polygon` tiene `Vec<Point>`. Aquí `Polygon` es el "dueño" de esos puntos.
+
+## 3. Dando Vida: Cálculo de Área (`impl`)
+
+Un polígono que solo guarda puntos es aburrido. Queremos saber cuán grande es. Vamos a implementar el **Algoritmo del Cordón (Shoelace Formula)** para calcular el área.
+
+No te asustes por la matemática, el código es sorprendentemente limpio en Rust.
+
+```rust
+impl Polygon {
+    // Constructor básico
+    pub fn new(points: Vec<Point>) -> Self {
+        Polygon { exterior: points }
+    }
+
+    // Método para calcular el área
+    // &self significa: "Me leo a mí mismo, pero no me modifico"
+    pub fn area(&self) -> f64 {
+        let points = &self.exterior;
+        let n = points.len();
+        
+        if n < 3 {
+            return 0.0; // No es un polígono si tiene menos de 3 puntos
+        }
+
+        let mut sum = 0.0;
+
+        for i in 0..n {
+            // Conectamos el punto actual (i) con el siguiente (j)
+            // Si i es el último, j debe ser el primero (el índice 0)
+            let j = (i + 1) % n; 
+            
+            sum += points[i].x * points[j].y;
+            sum -= points[j].x * points[i].y;
+        }
+
+        (sum / 2.0).abs()
+    }
+}
+```
+
+### Probémoslo
+
+Puedes copiar y pegar esto en tu `main.rs` para probarlo:
+
+```rust
+fn main() {
+    // Creamos un cuadrado 10x10
+    let puntos = vec![
+        Point::new(0.0, 0.0),
+        Point::new(10.0, 0.0),
+        Point::new(10.0, 10.0),
+        Point::new(0.0, 10.0),
+        Point::new(0.0, 0.0), // Cerramos el ciclo
+    ];
+
+    let mi_poligono = Polygon::new(puntos);
+
+    println!("Área del polígono: {}", mi_poligono.area());
+}
+```
+
+Si corres esto, deberías ver `Área del polígono: 100`.
+
+## 4. El Contrato Espacial (`trait`)
+
+Ahora imagina que también tenemos `Circle` (Círculo) o `LineString` (Línea). Todos tienen área (bueno, la línea tiene área 0, pero se entiende).
+
+Para tratar a todas las geometrías por igual, definimos un **Trait**.
+
+```rust
+pub trait SpatialObject {
+    // Cualquier objeto espacial debe saber decirme su área
+    fn area(&self) -> f64;
+    
+    // Y digamos que también queremos saber su tipo como texto
+    fn geometry_type(&self) -> &str;
+}
+```
+
+Ahora, implementamos este "contrato" para nuestro Polígono:
+
+```rust
+impl SpatialObject for Polygon {
+    fn area(&self) -> f64 {
+        // Reusamos la lógica que ya escribimos arriba por conveniencia
+        self.area()
+    }
+
+    fn geometry_type(&self) -> &str {
+        "Polygon"
+    }
+}
+```
+
+Esto nos permite escribir funciones genéricas poderosas:
+
+### Probémoslo en `main`
+
+Para que esto funcione, colocamos la función genérica y la llamamos desde el `main`:
+
+```rust
+fn main() {
+    let puntos = vec![
+        Point::new(0.0, 0.0), Point::new(4.0, 0.0),
+        Point::new(4.0, 4.0), Point::new(0.0, 4.0),
+        Point::new(0.0, 0.0),
+    ];
+    
+    // Creamos el polígono
+    let cuadrado = Polygon::new(puntos);
+
+    // ¡Aquí está la magia!
+    // Pasamos el polígono a una función que SOLO espera un "SpatialObject"
+    reporte_espacial(&cuadrado);
+}
+
+// Esta función acepta CUALQUIER cosa que cumpla el contrato SpatialObject
+fn reporte_espacial(objeto: &impl SpatialObject) {
+    println!("--- REPORTE ---");
+    println!("Tipo de Geometría: {}", objeto.geometry_type());
+    println!("Medida Espacial:   {}", objeto.area());
+    println!("-----------------");
+}
+```
+
+## 5. Validación y Robustez: Evitando Geometrías Imposibles
+
+En el mundo real, los datos vienen sucios. Un polígono podría tener solo 2 puntos (una línea) o no estar cerrado (el último punto no es igual al primero).
+
+Rust nos invita a manejar esto explícitamente.
+
+Mejoremos nuestro constructor `new` para que sea inteligente. En lugar de devolver un `Polygon` "a la fuerza", devolverá un `Option<Polygon>`.
+
+- `Some(Polygon)` si todo está bien.
+- `None` si los datos son inválidos.
+
+```rust
+impl Polygon {
+    // Ahora devolvemos Option<Self>
+    pub fn new_checked(points: Vec<Point>) -> Option<Self> {
+        if points.len() < 4 {
+            // Un polígono cerrado necesita al menos 3 vértices + 1 de cierre = 4 puntos
+            return None; 
+        }
+
+        // Verificamos si está cerrado (primero == último)
+        // Ojo: comparar f64 con == es peligroso por decimales, pero para este ejemplo sirve.
+        let first = points.first().unwrap();
+        let last = points.last().unwrap();
+
+        // Pequeño truco para comparar float: la diferencia debe ser muy pequeña
+        if (first.x - last.x).abs() > 1e-6 || (first.y - last.y).abs() > 1e-6 {
+             return None; // No está cerrado
+        }
+
+        Some(Polygon { exterior: points })
+    }
+}
+```
+
+Ahora el usuario está obligado a manejar el error:
+
+### Probémoslo en `main`
+
+Intenta romper tu propio código pasando datos incorrectos:
+
+```rust
+fn main() {
+    // Caso 1: Puntos insuficientes (solo una línea)
+    let puntos_malos = vec![
+        Point::new(0.0, 0.0), 
+        Point::new(10.0, 10.0)
+    ];
+
+    println!("Intentando crear polígono inválido...");
+    let resultado = Polygon::new_checked(puntos_malos);
+
+    match resultado {
+        Some(p) => println!("¡Creado! Área: {}", p.area()),
+        None => println!(">> Error: No se pudo crear el polígono. Datos inválidos."),
+    }
+
+    // Caso 2: Datos correctos
+    let puntos_buenos = vec![
+        Point::new(0.0, 0.0), Point::new(5.0, 0.0),
+        Point::new(5.0, 5.0), Point::new(0.0, 5.0),
+        Point::new(0.0, 0.0) // Cerrado
+    ];
+    
+    println!("\nIntentando crear polígono válido...");
+    if let Some(poly) = Polygon::new_checked(puntos_buenos) {
+        println!(">> ¡Éxito! Polígono creado correctamente.");
+    }
+}
+```
+
+## 6. Integración con Base de Datos (Simulación)
+
+Finalmente, queremos guardar esto. Digamos que usamos una base de datos que acepta formato WKT (Well-Known Text), como `POLYGON((0 0, 10 0, 10 10, 0 10, 0 0))`.
+
+Podemos agregar un método a nuestro Trait o al Struct para convertirlo a WKT.
+
+```rust
+impl Polygon {
+    pub fn to_wkt(&self) -> String {
+        let coords: Vec<String> = self.exterior
+            .iter()
+            .map(|p| format!("{} {}", p.x, p.y)) // "x y"
+            .collect();
+            
+        // Unimos con comas
+        let coords_str = coords.join(", ");
+        
+        format!("POLYGON(({}))", coords_str)
+    }
+}
+```
+
+### El Flujo Completo
+
+Imagina que recibes datos crudos (quizás de un CSV), los validas y los preparas para insertar en DuckDB:
+
+Juntemos todo en un ejemplo final que simula un pequeño motor de procesamiento de datos.
+
+```rust
+fn main() {
+    // Imaginemos que esto viene de leer un archivo CSV
+    let lote_de_datos = vec![
+        // Polígono 1: Válido (Triángulo)
+        vec![
+            Point::new(0.0, 0.0), Point::new(10.0, 0.0), 
+            Point::new(5.0, 10.0), Point::new(0.0, 0.0)
+        ],
+        // Polígono 2: Inválido (Línea)
+        vec![
+            Point::new(0.0, 0.0), Point::new(10.0, 10.0)
+        ],
+    ];
+
+    println!("Iniciando procesamiento por lotes...\n");
+
+    for (i, datos) in lote_de_datos.iter().enumerate() {
+        println!("Procesando registro #{}...", i + 1);
+        procesar_datos_entrada(datos.clone());
+        println!("---");
+    }
+}
+
+fn procesar_datos_entrada(datos_crudos: Vec<Point>) {
+    // 1. Intentar crear el polígono (Validación)
+    // El 'if let' es una forma corta y elegante de hacer match solo si es Some
+    if let Some(poly) = Polygon::new_checked(datos_crudos) {
+        
+        // 2. Calcular propiedades (Cómputo)
+        let area = poly.area();
+        println!("  ✅ Geometría válida detectada.");
+        println!("  📊 Área calculada: {:.2}", area);
+
+        // 3. Serializar para DB (Persistencia)
+        let wkt = poly.to_wkt();
+        println!("  💾 Guardando en DB: INSERT INTO geom_table VALUES ('{}');", wkt);
+        
+    } else {
+        println!("  ❌ Error: Geometría corrupta o inválida. Registro descartado.");
+    }
+}
+```
+
+## Conclusión
+
+Has creado una estructura espacial completa desde cero.
+
+1.  Definiste la **Estructura** de datos (`struct`).
+2.  Implementaste **Comportamiento** propio (`impl`).
+3.  Te adheriste a un **Contrato** estándar (`trait`).
+4.  Agregaste **Validación** para robustez (`Option`).
+5.  Preparaste la **Serialización** para transporte o base de datos.
+
+Esta es la base de todo sistema GIS moderno. Rust solo te pide que seas explícito con estas reglas desde el principio, lo que te ahorra miles de horas de depuración en el futuro.

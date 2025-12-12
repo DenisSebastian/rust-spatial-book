@@ -1,0 +1,17 @@
+---
+title: "Optimización Espacial"
+subtitle: "Índices Espaciales y Optimización Geoespacial"
+---
+
+
+## Objetivo
+Enseñar cómo optimizar búsquedas espaciales usando estructuras como quadtrees o geohashes, y mejorar el rendimiento de las consultas espaciales.
+
+## Introducción
+Este capítulo guiará al lector en la implementación de índices espaciales en Rust para acelerar operaciones como determinar a qué polígono pertenece un punto. Se explorarán métodos de indexación como quadtrees o H3, integrando estas técnicas para hacer que las consultas sean más eficientes.
+
+## Desarrollo
+
+## Resultados
+
+## Conclusiones

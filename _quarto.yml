@@ -57,9 +57,10 @@ book:
     #- part: "Práctica"
      # chapters:
      #   - scrapping.qmd
-    #- part: "Proyectos"
-      #chapters:
-      #  - project.qmd
+    - part: "Proyectos"
+      chapters:
+        - project_1.qmd
+        - project_2.qmd
     - part: "Anexos"
       chapters:
         - functional.qmd
