@@ -17,6 +17,8 @@ _book/
 # Jupyter notebooks (borradores)
 *.ipynb
 
+CLAUDE.md
+
 # Archivos temporales / borradores sin contenido
 raster.qmd
 rtree.qmd
