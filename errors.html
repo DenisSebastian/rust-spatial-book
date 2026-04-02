@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>11&nbsp; Manejo de errores – Rust Espacial</title>
+<title>16&nbsp; Manejo de Errores – Rust Espacial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./struct.html" rel="next">
+<link href="./optimization.html" rel="next">
 <link href="./closures.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9b9bc5c6cf0e03258a6f875fe8ecbd1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d21c9a8da7bf5350d80c9d9136efc65f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./errors.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./errors.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Manejo de Errores</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -184,62 +184,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./colecciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Colecciones Esenciales</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./scope.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Scope</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./funcions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funciones</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./macros.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Macros</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./iterators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Iteradores</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./closures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closures</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./errors.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./struct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Structs y Enums</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./traits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Traits</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./impl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Impl</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Scope</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ownership.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./funcions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Funciones</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./struct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Structs y Enums</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./traits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Traits</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./impl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Impl</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./macros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Macros</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./iterators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Iteradores</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./closures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Closures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./errors.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Manejo de Errores</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,13 +262,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./optimization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./paralelization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Paralelización</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Paralelización</span></span></a>
   </div>
 </li>
       </ul>
@@ -279,55 +285,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./spatial_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geotypes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Datos Geoespaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Datos Geoespaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Operaciones Espaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Operaciones Espaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./osm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geocoding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geocodificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Geocodificación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./routing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geohash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Geohash e Indexación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Geohash e Indexación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./h3o.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></span></a>
   </div>
 </li>
       </ul>
@@ -344,13 +350,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./integration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./h3o-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">H3 en R con h3o</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">H3 en R con h3o</span></span></a>
   </div>
 </li>
       </ul>
@@ -367,13 +373,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sqlite.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">SQLite en Rust</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">SQLite en Rust</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./duckdb.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">DuckDB en Rust</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">DuckDB en Rust</span></span></a>
   </div>
 </li>
       </ul>
@@ -390,13 +396,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Tu primera estructura espacial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Tu primera estructura espacial</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Optimización Espacial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Sistema de Optimización Espacial con Indexación H3</span></span></a>
   </div>
 </li>
       </ul>
@@ -413,7 +419,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functional.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
   </div>
 </li>
       </ul>
@@ -429,15 +435,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#r-vs-rust-la-filosofía-del-error" id="toc-r-vs-rust-la-filosofía-del-error" class="nav-link active" data-scroll-target="#r-vs-rust-la-filosofía-del-error"><span class="header-section-number">16.1</span> R vs Rust: la filosofía del error</a></li>
+  <li><a href="#resultt-e-errores-recuperables" id="toc-resultt-e-errores-recuperables" class="nav-link" data-scroll-target="#resultt-e-errores-recuperables"><span class="header-section-number">16.2</span> <code>Result&lt;T, E&gt;</code>: Errores Recuperables</a></li>
+  <li><a href="#el-operador-propagación-de-errores" id="toc-el-operador-propagación-de-errores" class="nav-link" data-scroll-target="#el-operador-propagación-de-errores"><span class="header-section-number">16.3</span> El Operador <code>?</code>: Propagación de Errores</a></li>
+  <li><a href="#optiont-valores-opcionales" id="toc-optiont-valores-opcionales" class="nav-link" data-scroll-target="#optiont-valores-opcionales"><span class="header-section-number">16.4</span> <code>Option&lt;T&gt;</code>: Valores Opcionales</a></li>
+  <li><a href="#cuándo-usar-qué" id="toc-cuándo-usar-qué" class="nav-link" data-scroll-target="#cuándo-usar-qué"><span class="header-section-number">16.5</span> Cuándo Usar Qué</a></li>
+  <li><a href="#boxdyn-error-para-main-y-funciones-genéricas" id="toc-boxdyn-error-para-main-y-funciones-genéricas" class="nav-link" data-scroll-target="#boxdyn-error-para-main-y-funciones-genéricas"><span class="header-section-number">16.6</span> <code>Box&lt;dyn Error&gt;</code> para <code>main</code> y Funciones Genéricas</a></li>
+  <li><a href="#map_err-transformar-errores" id="toc-map_err-transformar-errores" class="nav-link" data-scroll-target="#map_err-transformar-errores"><span class="header-section-number">16.7</span> <code>map_err</code>: Transformar Errores</a></li>
+  <li><a href="#reto-práctico" id="toc-reto-práctico" class="nav-link" data-scroll-target="#reto-práctico"><span class="header-section-number">16.8</span> Reto Práctico</a></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="header-section-number">16.9</span> Resumen</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./errors.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./errors.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Manejo de Errores</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></h1>
+<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Manejo de Errores</span></h1>
 </div>
 
 
@@ -454,52 +474,381 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>En Rust, el manejo de errores se divide en dos categorías principales: errores recuperables (gestionados con Result) y errores irrecuperables (gestionados con panic!).</p>
-<p>Result: Errores Recuperables</p>
-<p>El tipo Result es usado cuando una operación puede tener éxito o fallar. Tiene dos variantes:</p>
-<ul>
-<li>Ok(T): Representa un éxito y contiene un valor.</li>
-<li>Err(E): Representa un error y contiene información del mismo.</li>
-</ul>
-<p>Ejemplo básico:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::fs::</span>File<span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> archivo <span class="op">=</span> <span class="pp">File::</span>open(<span class="st">"archivo.txt"</span>)<span class="op">;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> archivo <span class="op">{</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Ok</span>(_) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Archivo abierto."</span>)<span class="op">,</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Err</span>(e) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Error: {}"</span><span class="op">,</span> e)<span class="op">,</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>También puedes usar el operador ? para simplificar el manejo de errores, propagando el error si ocurre:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> leer_archivo() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">,</span> <span class="pp">std::io::</span><span class="bu">Error</span><span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> archivo <span class="op">=</span> <span class="pp">File::</span>open(<span class="st">"archivo.txt"</span>)<span class="op">?;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> contenido <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>new()<span class="op">;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    archivo<span class="op">.</span>read_to_string(<span class="op">&amp;</span><span class="kw">mut</span> contenido)<span class="op">?;</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(contenido)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Option: Valores Opcionales</strong></p>
-<p>Option es usado para manejar valores que pueden estar presentes o no. Tiene dos variantes:</p>
-<ul>
-<li>Some(T): Representa un valor.</li>
-<li>None: Representa la ausencia de un valor.</li>
-</ul>
-<p>Ejemplo:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> dividir(dividendo<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span> divisor<span class="op">:</span> <span class="dt">f64</span>) <span class="op">-&gt;</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;</span> <span class="op">{</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> divisor <span class="op">==</span> <span class="dv">0.0</span> <span class="op">{</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cn">None</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Some</span>(dividendo <span class="op">/</span> divisor)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>panic!: Errores Irrecuperables</strong></p>
-<p>Cuando ocurre un error grave del que el programa no puede recuperarse, se usa panic! para detener la ejecución:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="pp">panic!</span>(<span class="st">"¡Error grave!"</span>)<span class="op">;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En R, los errores son eventos relativamente raros que se capturan con <code>tryCatch()</code> o se ignoran hasta que rompen el script. En Rust, el manejo de errores es parte central del diseño del lenguaje: el compilador te obliga a decidir qué hacer cuando algo puede fallar. Esto puede parecer verboso al principio, pero elimina toda una clase de bugs en tiempo de compilación.</p>
+<section id="r-vs-rust-la-filosofía-del-error" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="r-vs-rust-la-filosofía-del-error"><span class="header-section-number">16.1</span> R vs Rust: la filosofía del error</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Concepto en R</th>
+<th>Equivalente en Rust</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>tryCatch(expr, error = f)</code></td>
+<td><code>match result { Ok(v) =&gt; ..., Err(e) =&gt; ... }</code></td>
+<td>Manejo explícito de éxito o falla</td>
+</tr>
+<tr class="even">
+<td><code>NULL</code></td>
+<td><code>Option&lt;T&gt;</code></td>
+<td>Valor que puede estar presente o ausente</td>
+</tr>
+<tr class="odd">
+<td><code>stop("mensaje")</code></td>
+<td><code>panic!("mensaje")</code></td>
+<td>Error irrecuperable, termina el programa</td>
+</tr>
+<tr class="even">
+<td><code>warning("aviso")</code></td>
+<td><code>eprintln!("aviso")</code></td>
+<td>Mensaje de advertencia (no hay tipo dedicado)</td>
+</tr>
+<tr class="odd">
+<td>La función devuelve <code>NULL</code> silenciosamente</td>
+<td><code>Result&lt;T, E&gt;</code></td>
+<td>Error explícito, el compilador te obliga a manejarlo</td>
+</tr>
+</tbody>
+</table>
+<p>La diferencia clave: en R puedes ignorar un error hasta que explota en producción. En Rust, si una función puede fallar, su tipo de retorno lo dice explícitamente, y el compilador no te deja ignorarlo.</p>
+<hr>
+</section>
+<section id="resultt-e-errores-recuperables" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="resultt-e-errores-recuperables"><span class="header-section-number">16.2</span> <code>Result&lt;T, E&gt;</code>: Errores Recuperables</h2>
+<p><code>Result</code> es el tipo central del manejo de errores en Rust. Representa una operación que puede tener éxito (<code>Ok</code>) o fallar (<code>Err</code>):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Result tiene dos variantes:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Ok(T)  -&gt; la operación tuvo éxito y contiene un valor de tipo T</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Err(E) -&gt; la operación falló y contiene un error de tipo E</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El ejemplo más clásico es abrir un archivo: puede que no exista, que no tengas permisos, o que el disco esté lleno.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::fs::</span>File<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> resultado <span class="op">=</span> <span class="pp">File::</span>open(<span class="st">"datos.csv"</span>)<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> resultado <span class="op">{</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Ok</span>(archivo) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Archivo abierto correctamente: {:?}"</span><span class="op">,</span> archivo)<span class="op">,</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Err</span>(error) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"No se pudo abrir el archivo: {}"</span><span class="op">,</span> error)<span class="op">,</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Esto es equivalente a:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">tryCatch</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">readLines</span>(<span class="st">"datos.csv"</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">error =</span> <span class="cf">function</span>(e) <span class="fu">paste</span>(<span class="st">"Error:"</span>, e<span class="sc">$</span>message)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La ventaja del enfoque Rust: si te olvidas del <code>match</code>, el compilador emite una advertencia. En R, puedes olvidarte del <code>tryCatch</code> y el error solo aparece en ejecución.</p>
+<hr>
+</section>
+<section id="el-operador-propagación-de-errores" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="el-operador-propagación-de-errores"><span class="header-section-number">16.3</span> El Operador <code>?</code>: Propagación de Errores</h2>
+<p>Escribir un <code>match</code> completo para cada operación que puede fallar se vuelve repetitivo. El operador <code>?</code> es un atajo idiomático: si el <code>Result</code> es <code>Ok</code>, extrae el valor; si es <code>Err</code>, retorna el error inmediatamente hacia quien llamó la función.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::fs::</span>File<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::io::</span><span class="bu">Read</span><span class="op">;</span> <span class="co">// necesario para el método read_to_string</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> leer_archivo(ruta<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">String</span><span class="op">,</span> <span class="pp">std::io::</span><span class="bu">Error</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Si File::open falla, el error se retorna de inmediato</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> archivo <span class="op">=</span> <span class="pp">File::</span>open(ruta)<span class="op">?;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> contenido <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>new()<span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Si read_to_string falla, el error se retorna de inmediato</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    archivo<span class="op">.</span>read_to_string(<span class="op">&amp;</span><span class="kw">mut</span> contenido)<span class="op">?;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Solo llegamos aquí si todo salió bien</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(contenido)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> leer_archivo(<span class="st">"datos.csv"</span>) <span class="op">{</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Ok</span>(texto) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Contenido:</span><span class="sc">\n</span><span class="st">{}"</span><span class="op">,</span> texto)<span class="op">,</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Err</span>(e) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Error al leer: {}"</span><span class="op">,</span> e)<span class="op">,</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Que hace exactamente <code>?</code></strong></p>
+<p>La expresión <code>archivo.read_to_string(&amp;mut contenido)?</code> es equivalente a:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="cf">match</span> archivo<span class="op">.</span>read_to_string(<span class="op">&amp;</span><span class="kw">mut</span> contenido) <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(bytes) <span class="op">=&gt;</span> bytes<span class="op">,</span>   <span class="co">// extrae el valor y continúa</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Err</span>(e) <span class="op">=&gt;</span> <span class="cf">return</span> <span class="cn">Err</span>(e<span class="op">.</span>into())<span class="op">,</span> <span class="co">// retorna el error al llamador</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>El <code>.into()</code> convierte automáticamente el tipo de error cuando sea necesario. Esto lo hace muy poderoso: puedes encadenar múltiples operaciones que pueden fallar sin anidar matches.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="optiont-valores-opcionales" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="optiont-valores-opcionales"><span class="header-section-number">16.4</span> <code>Option&lt;T&gt;</code>: Valores Opcionales</h2>
+<p><code>Option</code> modela la ausencia de un valor, lo que en R harías con <code>NULL</code>. Tiene dos variantes: <code>Some(valor)</code> cuando hay algo, y <code>None</code> cuando no hay nada.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> dividir(dividendo<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span> divisor<span class="op">:</span> <span class="dt">f64</span>) <span class="op">-&gt;</span> <span class="dt">Option</span><span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> divisor <span class="op">==</span> <span class="dv">0.0</span> <span class="op">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cn">None</span> <span class="co">// No existe un resultado válido</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Some</span>(dividendo <span class="op">/</span> divisor)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> dividir(<span class="dv">10.0</span><span class="op">,</span> <span class="dv">2.0</span>) <span class="op">{</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Some</span>(resultado) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Resultado: {}"</span><span class="op">,</span> resultado)<span class="op">,</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>        <span class="cn">None</span> <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"No se puede dividir por cero"</span>)<span class="op">,</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// También puedes usar if let para el caso que te importa</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">let</span> <span class="cn">Some</span>(r) <span class="op">=</span> dividir(<span class="dv">10.0</span><span class="op">,</span> <span class="dv">0.0</span>) <span class="op">{</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"Resultado: {}"</span><span class="op">,</span> r)<span class="op">;</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"División no válida"</span>)<span class="op">;</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En R escribirías:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dividir <span class="ot">&lt;-</span> <span class="cf">function</span>(dividendo, divisor) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (divisor <span class="sc">==</span> <span class="dv">0</span>) <span class="cn">NULL</span> <span class="cf">else</span> dividendo <span class="sc">/</span> divisor</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>resultado <span class="ot">&lt;-</span> <span class="fu">dividir</span>(<span class="dv">10</span>, <span class="dv">0</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="fu">is.null</span>(resultado)) <span class="fu">message</span>(<span class="st">"División no válida"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La diferencia: en Rust, el tipo <code>Option&lt;f64&gt;</code> aparece en la firma de la función. Quien llama a <code>dividir</code> sabe desde la declaración que puede no obtener un número.</p>
+<hr>
+</section>
+<section id="cuándo-usar-qué" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="cuándo-usar-qué"><span class="header-section-number">16.5</span> Cuándo Usar Qué</h2>
+<p>Con cuatro mecanismos disponibles (<code>panic!</code>, <code>unwrap</code>, <code>expect</code>, <code>?</code>), es fácil confundirse. Esta es la política que el libro seguirá en todos los capítulos:</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Política de manejo de errores</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mecanismo</th>
+<th>Cuándo usarlo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>panic!("mensaje")</code></td>
+<td>Solo cuando el fallo es imposible de recuperar y es un bug del programador (invariante violada). Nunca para errores de entrada del usuario o del sistema de archivos.</td>
+</tr>
+<tr class="even">
+<td><code>unwrap()</code></td>
+<td>Solo en prototipos rápidos o en ejemplos muy cortos donde el contexto hace obvio que no puede fallar. Evitar en código de producción.</td>
+</tr>
+<tr class="odd">
+<td><code>expect("contexto")</code></td>
+<td>En código de aprendizaje y ejemplos del libro: más informativo que <code>unwrap</code> porque el mensaje aparece cuando falla.</td>
+</tr>
+<tr class="even">
+<td><code>?</code></td>
+<td>En código real: propaga el error hacia arriba para que el llamador decida. Es el patrón idiomático de Rust.</td>
+</tr>
+</tbody>
+</table>
+<p>La regla simple: <strong>en código de producción, usa <code>?</code>. En ejemplos pedagógicos, usa <code>expect</code>. Usa <code>panic!</code> y <code>unwrap</code> con mucha consciencia.</strong></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="boxdyn-error-para-main-y-funciones-genéricas" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="boxdyn-error-para-main-y-funciones-genéricas"><span class="header-section-number">16.6</span> <code>Box&lt;dyn Error&gt;</code> para <code>main</code> y Funciones Genéricas</h2>
+<p>Cuando una función puede producir distintos tipos de error (un <code>io::Error</code> aquí, un <code>ParseIntError</code> allá), no siempre quieres declarar un tipo de error específico. <code>Box&lt;dyn Error&gt;</code> es un tipo que puede contener <em>cualquier</em> error, lo que resulta muy cómodo en <code>main</code> y en código exploratorio.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::fs::</span>File<span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::io::</span><span class="bu">Read</span><span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Box&lt;dyn std::error::Error&gt; significa "algún tipo que implementa Error"</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">// El signo de interrogación al final indica que es un Result</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">,</span> <span class="dt">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="pp">std::error::</span><span class="bu">Error</span><span class="op">&gt;&gt;</span> <span class="op">{</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> archivo <span class="op">=</span> <span class="pp">File::</span>open(<span class="st">"datos.csv"</span>)<span class="op">?;</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> <span class="kw">mut</span> contenido <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>new()<span class="op">;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    archivo<span class="op">.</span>read_to_string(<span class="op">&amp;</span><span class="kw">mut</span> contenido)<span class="op">?;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// parse::&lt;i32&gt;() retorna un tipo de error diferente (ParseIntError)</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// pero ? lo convierte automáticamente a Box&lt;dyn Error&gt;</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> numero<span class="op">:</span> <span class="dt">i32</span> <span class="op">=</span> contenido<span class="op">.</span>trim()<span class="op">.</span><span class="pp">parse::</span><span class="op">&lt;</span><span class="dt">i32</span><span class="op">&gt;</span>()<span class="op">?;</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"El número del archivo es: {}"</span><span class="op">,</span> numero)<span class="op">;</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(()) <span class="co">// main retorna Ok con el valor vacío ()</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Por qué <code>Box&lt;dyn Error&gt;</code> es común en los capítulos espaciales</strong></p>
+<p>Los capítulos de <code>geos</code>, <code>h3o</code>, <code>osm</code> y otros usan <code>Box&lt;dyn std::error::Error&gt;</code> frecuentemente porque combinan errores de diferentes fuentes: errores de I/O, errores de parseo, errores de la crate geoespacial. Con este tipo puedes usar <code>?</code> sin preocuparte por unificar manualmente los tipos de error.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="map_err-transformar-errores" class="level2" data-number="16.7">
+<h2 data-number="16.7" class="anchored" data-anchor-id="map_err-transformar-errores"><span class="header-section-number">16.7</span> <code>map_err</code>: Transformar Errores</h2>
+<p>A veces tienes un <code>Result</code> con un tipo de error que no encaja en lo que necesitas retornar. <code>map_err</code> te permite transformar el error sin tocar el valor <code>Ok</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::num::</span>ParseIntError<span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Error propio para nuestro dominio</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>derive<span class="at">(</span><span class="bu">Debug</span><span class="at">)]</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> ErrorCoordenada <span class="op">{</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    FormatoInvalido(<span class="dt">String</span>)<span class="op">,</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> parsear_latitud(texto<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">f64</span><span class="op">,</span> ErrorCoordenada<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// parse::&lt;f64&gt;() retorna Result&lt;f64, ParseFloatError&gt;</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="co">// map_err convierte ParseFloatError en nuestro ErrorCoordenada</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    texto<span class="op">.</span>trim()<span class="op">.</span><span class="pp">parse::</span><span class="op">&lt;</span><span class="dt">f64</span><span class="op">&gt;</span>()<span class="op">.</span>map_err(<span class="op">|</span>e<span class="op">|</span> <span class="op">{</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        <span class="pp">ErrorCoordenada::</span>FormatoInvalido(<span class="pp">format!</span>(<span class="st">"'{}' no es una latitud válida: {}"</span><span class="op">,</span> texto<span class="op">,</span> e))</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> parsear_latitud(<span class="st">"40.7128"</span>) <span class="op">{</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Ok</span>(lat) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Latitud: {}"</span><span class="op">,</span> lat)<span class="op">,</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Err</span>(<span class="pp">ErrorCoordenada::</span>FormatoInvalido(msg)) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Error: {}"</span><span class="op">,</span> msg)<span class="op">,</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> parsear_latitud(<span class="st">"cuarenta grados"</span>) <span class="op">{</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Ok</span>(lat) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Latitud: {}"</span><span class="op">,</span> lat)<span class="op">,</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        <span class="cn">Err</span>(<span class="pp">ErrorCoordenada::</span>FormatoInvalido(msg)) <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Error: {}"</span><span class="op">,</span> msg)<span class="op">,</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>map_err</code> es especialmente útil en los capítulos espaciales, donde una crate como <code>geos</code> retorna su propio tipo de error y necesitas adaptarlo al tipo que tu función declara.</p>
+<hr>
+</section>
+<section id="reto-práctico" class="level2" data-number="16.8">
+<h2 data-number="16.8" class="anchored" data-anchor-id="reto-práctico"><span class="header-section-number">16.8</span> Reto Práctico</h2>
+<p>Escribe una función llamada <code>texto_a_entero</code> que:</p>
+<ol type="1">
+<li>Reciba un <code>&amp;str</code> como parámetro.</li>
+<li>Intente convertirlo a <code>i32</code> usando <code>parse::&lt;i32&gt;()</code>.</li>
+<li>Retorne <code>Result&lt;i32, _&gt;</code> (puedes usar <code>Box&lt;dyn std::error::Error&gt;</code> como tipo de error).</li>
+<li>En <code>main</code>, llama a la función con <code>?</code> y muestra el resultado.</li>
+</ol>
+<p>Prueba tu solución con los valores <code>"42"</code>, <code>"-7"</code>, y <code>"hola"</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Solución</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> texto_a_entero(texto<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span>) <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span><span class="dt">i32</span><span class="op">,</span> <span class="dt">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="pp">std::error::</span><span class="bu">Error</span><span class="op">&gt;&gt;</span> <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> numero <span class="op">=</span> texto<span class="op">.</span>trim()<span class="op">.</span><span class="pp">parse::</span><span class="op">&lt;</span><span class="dt">i32</span><span class="op">&gt;</span>()<span class="op">?;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(numero)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">,</span> <span class="dt">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="pp">std::error::</span><span class="bu">Error</span><span class="op">&gt;&gt;</span> <span class="op">{</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> a <span class="op">=</span> texto_a_entero(<span class="st">"42"</span>)<span class="op">?;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"42 como entero: {}"</span><span class="op">,</span> a)<span class="op">;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> b <span class="op">=</span> texto_a_entero(<span class="st">"-7"</span>)<span class="op">?;</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"-7 como entero: {}"</span><span class="op">,</span> b)<span class="op">;</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Esta línea haría fallar main con un ParseIntError descriptivo:</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">// let c = texto_a_entero("hola")?;</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(())</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Para manejar el error de <code>"hola"</code> sin detener el programa, usa <code>match</code> o <code>unwrap_or</code> en lugar de <code>?</code>.</p>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="resumen" class="level2" data-number="16.9">
+<h2 data-number="16.9" class="anchored" data-anchor-id="resumen"><span class="header-section-number">16.9</span> Resumen</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Patrón</th>
+<th>Sintaxis</th>
+<th>Cuándo usarlo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Match sobre Result</td>
+<td><code>match op() { Ok(v) =&gt; ..., Err(e) =&gt; ... }</code></td>
+<td>Cuando quieres manejar el error en el sitio</td>
+</tr>
+<tr class="even">
+<td>Propagación con <code>?</code></td>
+<td><code>let v = op()?;</code></td>
+<td>En funciones que retornan <code>Result</code>: deja que el llamador maneje el error</td>
+</tr>
+<tr class="odd">
+<td><code>expect</code> con mensaje</td>
+<td><code>op().expect("contexto")</code></td>
+<td>En ejemplos pedagógicos; hace el panic informativo</td>
+</tr>
+<tr class="even">
+<td><code>unwrap</code></td>
+<td><code>op().unwrap()</code></td>
+<td>Solo en prototipos; panic silencioso si falla</td>
+</tr>
+<tr class="odd">
+<td><code>Box&lt;dyn Error&gt;</code></td>
+<td><code>Result&lt;T, Box&lt;dyn std::error::Error&gt;&gt;</code></td>
+<td>Cuando la función puede producir distintos tipos de error</td>
+</tr>
+<tr class="even">
+<td><code>map_err</code></td>
+<td><code>op().map_err(\|e\| MiError::from(e))</code></td>
+<td>Para convertir entre tipos de error</td>
+</tr>
+<tr class="odd">
+<td><code>Option</code></td>
+<td><code>match op() { Some(v) =&gt; ..., None =&gt; ... }</code></td>
+<td>Cuando la ausencia de valor no es un error, sino un caso válido</td>
+</tr>
+</tbody>
+</table>
+<p>A partir del siguiente capítulo, el código espacial usará <code>?</code> y <code>Box&lt;dyn Error&gt;</code> con frecuencia. Con este modelo en mente, podrás leer esos ejemplos sin sorpresas.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -904,12 +1253,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./closures.html" class="pagination-link" aria-label="Closures">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closures</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Closures</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./struct.html" class="pagination-link" aria-label="Structs y Enums">
-        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Structs y Enums</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./optimization.html" class="pagination-link" aria-label="Optimización">
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Optimización</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -917,7 +1266,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Copyright 2024, Denis Berroeta</p>
+<p>Copyright 2026, Denis Berroeta</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

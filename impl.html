@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>14&nbsp; Impl – Rust Espacial</title>
+<title>12&nbsp; Impl – Rust Espacial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ownership.html" rel="next">
+<link href="./macros.html" rel="next">
 <link href="./traits.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9b9bc5c6cf0e03258a6f875fe8ecbd1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d21c9a8da7bf5350d80c9d9136efc65f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./impl.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Impl</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./impl.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Impl</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -184,62 +184,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./colecciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Colecciones Esenciales</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./scope.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Scope</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./funcions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funciones</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./macros.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Macros</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./iterators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Iteradores</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./closures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closures</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./errors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./struct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Structs y Enums</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./traits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Traits</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./impl.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Impl</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Scope</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ownership.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./funcions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Funciones</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./struct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Structs y Enums</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./traits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Traits</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./impl.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Impl</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./macros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Macros</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./iterators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Iteradores</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./closures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Closures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./errors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Manejo de Errores</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,13 +262,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./optimization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./paralelization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Paralelización</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Paralelización</span></span></a>
   </div>
 </li>
       </ul>
@@ -279,55 +285,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./spatial_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geotypes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Datos Geoespaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Datos Geoespaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Operaciones Espaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Operaciones Espaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./osm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geocoding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geocodificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Geocodificación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./routing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geohash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Geohash e Indexación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Geohash e Indexación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./h3o.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></span></a>
   </div>
 </li>
       </ul>
@@ -344,13 +350,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./integration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./h3o-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">H3 en R con h3o</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">H3 en R con h3o</span></span></a>
   </div>
 </li>
       </ul>
@@ -367,13 +373,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sqlite.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">SQLite en Rust</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">SQLite en Rust</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./duckdb.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">DuckDB en Rust</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">DuckDB en Rust</span></span></a>
   </div>
 </li>
       </ul>
@@ -390,13 +396,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Tu primera estructura espacial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Tu primera estructura espacial</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Optimización Espacial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Sistema de Optimización Espacial con Indexación H3</span></span></a>
   </div>
 </li>
       </ul>
@@ -413,7 +419,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functional.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
   </div>
 </li>
       </ul>
@@ -434,30 +440,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#concepto-fundamental" id="toc-concepto-fundamental" class="nav-link active" data-scroll-target="#concepto-fundamental"><span class="header-section-number">14.1</span> Concepto Fundamental</a>
+  <li><a href="#concepto-fundamental" id="toc-concepto-fundamental" class="nav-link active" data-scroll-target="#concepto-fundamental"><span class="header-section-number">12.1</span> Concepto Fundamental</a>
   <ul class="collapse">
-  <li><a href="#analogía-el-robot" id="toc-analogía-el-robot" class="nav-link" data-scroll-target="#analogía-el-robot"><span class="header-section-number">14.1.1</span> 🤖 Analogía: El Robot</a></li>
+  <li><a href="#analogía-el-robot" id="toc-analogía-el-robot" class="nav-link" data-scroll-target="#analogía-el-robot"><span class="header-section-number">12.1.1</span> 🤖 Analogía: El Robot</a></li>
   </ul></li>
-  <li><a href="#tipos-de-funciones-en-un-impl" id="toc-tipos-de-funciones-en-un-impl" class="nav-link" data-scroll-target="#tipos-de-funciones-en-un-impl"><span class="header-section-number">14.2</span> Tipos de Funciones en un <code>impl</code></a>
+  <li><a href="#tipos-de-funciones-en-un-impl" id="toc-tipos-de-funciones-en-un-impl" class="nav-link" data-scroll-target="#tipos-de-funciones-en-un-impl"><span class="header-section-number">12.2</span> Tipos de Funciones en un <code>impl</code></a>
   <ul class="collapse">
-  <li><a href="#métodos-acciones" id="toc-métodos-acciones" class="nav-link" data-scroll-target="#métodos-acciones"><span class="header-section-number">14.2.1</span> 1. Métodos (Acciones)</a></li>
-  <li><a href="#funciones-asociadas-utilidadesconstructores" id="toc-funciones-asociadas-utilidadesconstructores" class="nav-link" data-scroll-target="#funciones-asociadas-utilidadesconstructores"><span class="header-section-number">14.2.2</span> 2. Funciones Asociadas (Utilidades/Constructores)</a></li>
+  <li><a href="#métodos-acciones" id="toc-métodos-acciones" class="nav-link" data-scroll-target="#métodos-acciones"><span class="header-section-number">12.2.1</span> 1. Métodos (Acciones)</a></li>
+  <li><a href="#funciones-asociadas-utilidadesconstructores" id="toc-funciones-asociadas-utilidadesconstructores" class="nav-link" data-scroll-target="#funciones-asociadas-utilidadesconstructores"><span class="header-section-number">12.2.2</span> 2. Funciones Asociadas (Utilidades/Constructores)</a></li>
   </ul></li>
-  <li><a href="#ejemplo-práctico-controlando-un-drone" id="toc-ejemplo-práctico-controlando-un-drone" class="nav-link" data-scroll-target="#ejemplo-práctico-controlando-un-drone"><span class="header-section-number">14.3</span> Ejemplo Práctico: Controlando un Drone</a></li>
-  <li><a href="#comparación-con-r" id="toc-comparación-con-r" class="nav-link" data-scroll-target="#comparación-con-r"><span class="header-section-number">14.4</span> Comparación con R</a>
+  <li><a href="#ejemplo-práctico-controlando-un-drone" id="toc-ejemplo-práctico-controlando-un-drone" class="nav-link" data-scroll-target="#ejemplo-práctico-controlando-un-drone"><span class="header-section-number">12.3</span> Ejemplo Práctico: Controlando un Drone</a></li>
+  <li><a href="#comparación-con-r" id="toc-comparación-con-r" class="nav-link" data-scroll-target="#comparación-con-r"><span class="header-section-number">12.4</span> Comparación con R</a>
   <ul class="collapse">
-  <li><a href="#en-r-estilo-s3-funcional" id="toc-en-r-estilo-s3-funcional" class="nav-link" data-scroll-target="#en-r-estilo-s3-funcional"><span class="header-section-number">14.4.1</span> En R (Estilo S3 Funcional)</a></li>
-  <li><a href="#en-rust-impl" id="toc-en-rust-impl" class="nav-link" data-scroll-target="#en-rust-impl"><span class="header-section-number">14.4.2</span> En Rust (<code>impl</code>)</a></li>
+  <li><a href="#en-r-estilo-s3-funcional" id="toc-en-r-estilo-s3-funcional" class="nav-link" data-scroll-target="#en-r-estilo-s3-funcional"><span class="header-section-number">12.4.1</span> En R (Estilo S3 Funcional)</a></li>
+  <li><a href="#en-rust-impl" id="toc-en-rust-impl" class="nav-link" data-scroll-target="#en-rust-impl"><span class="header-section-number">12.4.2</span> En Rust (<code>impl</code>)</a></li>
   </ul></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="header-section-number">12.5</span> Resumen</a></li>
+  <li><a href="#reto-práctico" id="toc-reto-práctico" class="nav-link" data-scroll-target="#reto-práctico"><span class="header-section-number">12.6</span> Reto Práctico</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./impl.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Impl</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./impl.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Impl</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Impl</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Impl</span></h1>
 <p class="subtitle lead">Implementaciones: Dando Vida a los Datos</p>
 </div>
 
@@ -477,10 +485,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>Hasta ahora hemos visto cómo estructurar datos con <strong>Structs</strong> y <strong>Enums</strong>. Sin embargo, por sí solos, son solo contenedores de datos pasivos. No “hacen” nada.</p>
 <p>El bloque <code>impl</code> (implementación) es la herramienta que nos permite definir el <strong>comportamiento</strong> asociado a un tipo de dato. Es aquí donde transformamos simples estructuras de datos en objetos con funcionalidad propia.</p>
-<section id="concepto-fundamental" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="concepto-fundamental"><span class="header-section-number">14.1</span> Concepto Fundamental</h2>
-<section id="analogía-el-robot" class="level3" data-number="14.1.1">
-<h3 data-number="14.1.1" class="anchored" data-anchor-id="analogía-el-robot"><span class="header-section-number">14.1.1</span> 🤖 Analogía: El Robot</h3>
+<section id="concepto-fundamental" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="concepto-fundamental"><span class="header-section-number">12.1</span> Concepto Fundamental</h2>
+<section id="analogía-el-robot" class="level3" data-number="12.1.1">
+<h3 data-number="12.1.1" class="anchored" data-anchor-id="analogía-el-robot"><span class="header-section-number">12.1.1</span> 🤖 Analogía: El Robot</h3>
 <p>Imagina un robot:</p>
 <ul>
 <li>El <strong>Struct</strong> es el <strong>Hardware</strong>: La lista de piezas, sensores, ruedas y cables. Define <em>qué tiene</em> el robot.</li>
@@ -489,23 +497,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Sin el <code>impl</code>, el robot es solo un montón de metal inmóvil.</p>
 </section>
 </section>
-<section id="tipos-de-funciones-en-un-impl" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="tipos-de-funciones-en-un-impl"><span class="header-section-number">14.2</span> Tipos de Funciones en un <code>impl</code></h2>
+<section id="tipos-de-funciones-en-un-impl" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="tipos-de-funciones-en-un-impl"><span class="header-section-number">12.2</span> Tipos de Funciones en un <code>impl</code></h2>
 <p>Dentro de un bloque <code>impl</code>, podemos definir dos tipos de funciones:</p>
-<section id="métodos-acciones" class="level3" data-number="14.2.1">
-<h3 data-number="14.2.1" class="anchored" data-anchor-id="métodos-acciones"><span class="header-section-number">14.2.1</span> 1. Métodos (Acciones)</h3>
+<section id="métodos-acciones" class="level3" data-number="12.2.1">
+<h3 data-number="12.2.1" class="anchored" data-anchor-id="métodos-acciones"><span class="header-section-number">12.2.1</span> 1. Métodos (Acciones)</h3>
 <p>Son funciones que actúan sobre una instancia específica del struct. Siempre toman <code>self</code> (o <code>&amp;self</code>, <code>&amp;mut self</code>) como primer argumento. Representan lo que el objeto puede hacerse a sí mismo o con sus datos.</p>
 <p><em>Ejemplo:</em> “Edificio, enciende tus luces”.</p>
 </section>
-<section id="funciones-asociadas-utilidadesconstructores" class="level3" data-number="14.2.2">
-<h3 data-number="14.2.2" class="anchored" data-anchor-id="funciones-asociadas-utilidadesconstructores"><span class="header-section-number">14.2.2</span> 2. Funciones Asociadas (Utilidades/Constructores)</h3>
+<section id="funciones-asociadas-utilidadesconstructores" class="level3" data-number="12.2.2">
+<h3 data-number="12.2.2" class="anchored" data-anchor-id="funciones-asociadas-utilidadesconstructores"><span class="header-section-number">12.2.2</span> 2. Funciones Asociadas (Utilidades/Constructores)</h3>
 <p>Son funciones relacionadas con el tipo, pero que no necesitan una instancia específica para funcionar. Se usan a menudo como “constructores” para crear nuevas instancias. No toman <code>self</code>.</p>
 <p><em>Ejemplo:</em> “Plano, crea un nuevo edificio”.</p>
 <hr>
 </section>
 </section>
-<section id="ejemplo-práctico-controlando-un-drone" class="level2" data-number="14.3">
-<h2 data-number="14.3" class="anchored" data-anchor-id="ejemplo-práctico-controlando-un-drone"><span class="header-section-number">14.3</span> Ejemplo Práctico: Controlando un Drone</h2>
+<section id="ejemplo-práctico-controlando-un-drone" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="ejemplo-práctico-controlando-un-drone"><span class="header-section-number">12.3</span> Ejemplo Práctico: Controlando un Drone</h2>
 <p>Siguiendo nuestra temática de ciudad y tecnología, usemos un <strong>Drone</strong> como ejemplo.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Drone <span class="op">{</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    nombre<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
@@ -528,7 +536,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="co">// MÉTODO (Lee el estado)</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Usa &amp;self (lectura inmutable)</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> describir(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">{</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> estado <span class="op">=</span> <span class="cf">if</span> <span class="kw">self</span><span class="op">.</span>en_vuelo <span class="op">{</span> <span class="st">"Voplando"</span> <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span> <span class="st">"En tierra"</span> <span class="op">};</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> estado <span class="op">=</span> <span class="cf">if</span> <span class="kw">self</span><span class="op">.</span>en_vuelo <span class="op">{</span> <span class="st">"Volando"</span> <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span> <span class="st">"En tierra"</span> <span class="op">};</span></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"Drone '{}': Batería {}% - Estado: {}"</span><span class="op">,</span> <span class="kw">self</span><span class="op">.</span>nombre<span class="op">,</span> <span class="kw">self</span><span class="op">.</span>bateria<span class="op">,</span> estado)<span class="op">;</span></span>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
@@ -554,11 +562,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    mi_drone<span class="op">.</span>describir()<span class="op">;</span></span>
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="comparación-con-r" class="level2" data-number="14.4">
-<h2 data-number="14.4" class="anchored" data-anchor-id="comparación-con-r"><span class="header-section-number">14.4</span> Comparación con R</h2>
+<section id="comparación-con-r" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="comparación-con-r"><span class="header-section-number">12.4</span> Comparación con R</h2>
 <p>Si vienes de R, especialmente de usar <strong>S3</strong>, notarás una diferencia clave en la organización.</p>
-<section id="en-r-estilo-s3-funcional" class="level3" data-number="14.4.1">
-<h3 data-number="14.4.1" class="anchored" data-anchor-id="en-r-estilo-s3-funcional"><span class="header-section-number">14.4.1</span> En R (Estilo S3 Funcional)</h3>
+<section id="en-r-estilo-s3-funcional" class="level3" data-number="12.4.1">
+<h3 data-number="12.4.1" class="anchored" data-anchor-id="en-r-estilo-s3-funcional"><span class="header-section-number">12.4.1</span> En R (Estilo S3 Funcional)</h3>
 <p>En R, los datos y las funciones suelen estar separados. Defines la estructura (una lista) y luego funciones sueltas que operan sobre esa lista.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Definición de datos</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>crear_drone <span class="ot">&lt;-</span> <span class="cf">function</span>(nombre) {</span>
@@ -576,8 +584,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>mi_drone <span class="ot">&lt;-</span> <span class="fu">despegar_drone</span>(mi_drone)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>El problema en R a veces es saber: <em>¿Qué funciones existen para este objeto?</em> Tienes que buscar en la documentación o adivinar el nombre.</p>
 </section>
-<section id="en-rust-impl" class="level3" data-number="14.4.2">
-<h3 data-number="14.4.2" class="anchored" data-anchor-id="en-rust-impl"><span class="header-section-number">14.4.2</span> En Rust (<code>impl</code>)</h3>
+<section id="en-rust-impl" class="level3" data-number="12.4.2">
+<h3 data-number="12.4.2" class="anchored" data-anchor-id="en-rust-impl"><span class="header-section-number">12.4.2</span> En Rust (<code>impl</code>)</h3>
 <p>Rust agrupa todas las funciones que pertenecen al <code>Drone</code> dentro del bloque <code>impl Drone</code>.</p>
 <ul>
 <li><strong>Organización</strong>: Sabes exactamente dónde buscar el código relacionado con <code>Drone</code>.</li>
@@ -585,9 +593,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Encapsulamiento</strong>: Queda claro qué lógica pertenece exclusivamente a este tipo de dato.</li>
 </ul>
 <p>El bloque <code>impl</code> actúa como el “hogar” de la lógica de tus datos.</p>
-
-
 </section>
+</section>
+<section id="resumen" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="resumen"><span class="header-section-number">12.5</span> Resumen</h2>
+<p>El bloque <code>impl</code> da comportamiento a los structs: métodos que toman <code>&amp;self</code> o <code>&amp;mut self</code>, y funciones asociadas (constructores) que no toman <code>self</code>. Mientras en R la lógica y los datos están separados (funciones sueltas que reciben listas), en Rust todo lo que un tipo puede hacer vive en su <code>impl</code>. Para análisis espacial esto significa structs como <code>Poligono</code> con métodos <code>.area()</code>, <code>.perimetro()</code> y <code>.contiene(&amp;punto)</code> — código autodocumentado y descubrible con autocompletado. En el siguiente capítulo veremos el <strong>ownership</strong>, el sistema que hace que toda esta gestión de memoria sea segura sin Garbage Collector.</p>
+</section>
+<section id="reto-práctico" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="reto-práctico"><span class="header-section-number">12.6</span> Reto Práctico</h2>
+<p>Crea un struct <code>Rectangulo</code> con campos <code>ancho: f64</code> y <code>alto: f64</code>. En su bloque <code>impl</code>, define: 1. <code>Rectangulo::nuevo(ancho, alto) -&gt; Rectangulo</code> (constructor) 2. <code>area(&amp;self) -&gt; f64</code> 3. <code>perimetro(&amp;self) -&gt; f64</code></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solución
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Rectangulo <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    ancho<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    alto<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> Rectangulo <span class="op">{</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> nuevo(ancho<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span> alto<span class="op">:</span> <span class="dt">f64</span>) <span class="op">-&gt;</span> Rectangulo <span class="op">{</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        Rectangulo <span class="op">{</span> ancho<span class="op">,</span> alto <span class="op">}</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> area(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">self</span><span class="op">.</span>ancho <span class="op">*</span> <span class="kw">self</span><span class="op">.</span>alto</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> perimetro(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        <span class="dv">2.0</span> <span class="op">*</span> (<span class="kw">self</span><span class="op">.</span>ancho <span class="op">+</span> <span class="kw">self</span><span class="op">.</span>alto)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> r <span class="op">=</span> <span class="pp">Rectangulo::</span>nuevo(<span class="dv">5.0</span><span class="op">,</span> <span class="dv">3.0</span>)<span class="op">;</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Área: {}"</span><span class="op">,</span> r<span class="op">.</span>area())<span class="op">;</span>        <span class="co">// Área: 15</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Perímetro: {}"</span><span class="op">,</span> r<span class="op">.</span>perimetro())<span class="op">;</span> <span class="co">// Perímetro: 16</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>Rectangulo::nuevo(...)</code> se llama sin instancia (función asociada). <code>r.area()</code> se llama sobre una instancia (método). Esta distinción es equivalente a <code>ClassName$new()</code> en R6 de R.</p>
+</div>
+</div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -993,12 +1049,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./traits.html" class="pagination-link" aria-label="Traits">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Traits</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Traits</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ownership.html" class="pagination-link" aria-label="Ownership y Borrowing">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./macros.html" class="pagination-link" aria-label="Macros">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Macros</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1006,7 +1062,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Copyright 2024, Denis Berroeta</p>
+<p>Copyright 2026, Denis Berroeta</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

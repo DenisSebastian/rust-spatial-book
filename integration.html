@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>27&nbsp; Integración de Rust con R – Rust Espacial</title>
+<title>28&nbsp; Integración de Rust con R – Rust Espacial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9b9bc5c6cf0e03258a6f875fe8ecbd1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d21c9a8da7bf5350d80c9d9136efc65f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./integration.html">Integración con R</a></li><li class="breadcrumb-item"><a href="./integration.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./integration.html">Integración con R</a></li><li class="breadcrumb-item"><a href="./integration.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -184,62 +184,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./colecciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Colecciones Esenciales</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./scope.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Scope</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./funcions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funciones</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./macros.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Macros</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./iterators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Iteradores</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./closures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closures</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./errors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./struct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Structs y Enums</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./traits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Traits</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./impl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Impl</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Scope</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ownership.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./funcions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Funciones</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./struct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Structs y Enums</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./traits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Traits</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./impl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Impl</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./macros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Macros</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./iterators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Iteradores</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./closures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Closures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./errors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Manejo de Errores</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,13 +262,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./optimization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./paralelization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Paralelización</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Paralelización</span></span></a>
   </div>
 </li>
       </ul>
@@ -279,55 +285,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./spatial_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geotypes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Datos Geoespaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Datos Geoespaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Operaciones Espaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Operaciones Espaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./osm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geocoding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geocodificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Geocodificación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./routing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geohash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Geohash e Indexación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Geohash e Indexación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./h3o.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></span></a>
   </div>
 </li>
       </ul>
@@ -344,13 +350,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./integration.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./h3o-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">H3 en R con h3o</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">H3 en R con h3o</span></span></a>
   </div>
 </li>
       </ul>
@@ -367,13 +373,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sqlite.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">SQLite en Rust</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">SQLite en Rust</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./duckdb.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">DuckDB en Rust</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">DuckDB en Rust</span></span></a>
   </div>
 </li>
       </ul>
@@ -390,13 +396,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Tu primera estructura espacial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Tu primera estructura espacial</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Optimización Espacial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Sistema de Optimización Espacial con Indexación H3</span></span></a>
   </div>
 </li>
       </ul>
@@ -413,7 +419,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functional.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
   </div>
 </li>
       </ul>
@@ -434,28 +440,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#el-puente-entre-dos-mundos" id="toc-el-puente-entre-dos-mundos" class="nav-link active" data-scroll-target="#el-puente-entre-dos-mundos"><span class="header-section-number">27.1</span> El puente entre dos mundos</a></li>
-  <li><a href="#extendr-la-puerta-trasera" id="toc-extendr-la-puerta-trasera" class="nav-link" data-scroll-target="#extendr-la-puerta-trasera"><span class="header-section-number">27.2</span> Extendr: La puerta trasera</a>
+  <li><a href="#el-puente-entre-dos-mundos" id="toc-el-puente-entre-dos-mundos" class="nav-link active" data-scroll-target="#el-puente-entre-dos-mundos"><span class="header-section-number">28.1</span> El puente entre dos mundos</a></li>
+  <li><a href="#extendr-la-puerta-trasera" id="toc-extendr-la-puerta-trasera" class="nav-link" data-scroll-target="#extendr-la-puerta-trasera"><span class="header-section-number">28.2</span> Extendr: La puerta trasera</a>
   <ul class="collapse">
-  <li><a href="#componentes-clave" id="toc-componentes-clave" class="nav-link" data-scroll-target="#componentes-clave"><span class="header-section-number">27.2.1</span> Componentes clave</a></li>
+  <li><a href="#componentes-clave" id="toc-componentes-clave" class="nav-link" data-scroll-target="#componentes-clave"><span class="header-section-number">28.2.1</span> Componentes clave</a></li>
   </ul></li>
-  <li><a href="#tu-primera-función-híbrida" id="toc-tu-primera-función-híbrida" class="nav-link" data-scroll-target="#tu-primera-función-híbrida"><span class="header-section-number">27.3</span> Tu primera función híbrida</a>
+  <li><a href="#tu-primera-función-híbrida" id="toc-tu-primera-función-híbrida" class="nav-link" data-scroll-target="#tu-primera-función-híbrida"><span class="header-section-number">28.3</span> Tu primera función híbrida</a>
   <ul class="collapse">
-  <li><a href="#preparación-en-r" id="toc-preparación-en-r" class="nav-link" data-scroll-target="#preparación-en-r"><span class="header-section-number">27.3.1</span> Preparación en R</a></li>
-  <li><a href="#el-código-rust" id="toc-el-código-rust" class="nav-link" data-scroll-target="#el-código-rust"><span class="header-section-number">27.3.2</span> El código Rust</a></li>
-  <li><a href="#ejecución-desde-r" id="toc-ejecución-desde-r" class="nav-link" data-scroll-target="#ejecución-desde-r"><span class="header-section-number">27.3.3</span> Ejecución desde R</a></li>
+  <li><a href="#preparación-en-r" id="toc-preparación-en-r" class="nav-link" data-scroll-target="#preparación-en-r"><span class="header-section-number">28.3.1</span> Preparación en R</a></li>
+  <li><a href="#el-código-rust" id="toc-el-código-rust" class="nav-link" data-scroll-target="#el-código-rust"><span class="header-section-number">28.3.2</span> El código Rust</a></li>
+  <li><a href="#ejecución-desde-r" id="toc-ejecución-desde-r" class="nav-link" data-scroll-target="#ejecución-desde-r"><span class="header-section-number">28.3.3</span> Ejecución desde R</a></li>
   </ul></li>
-  <li><a href="#pasando-datos-vectores-y-matrices" id="toc-pasando-datos-vectores-y-matrices" class="nav-link" data-scroll-target="#pasando-datos-vectores-y-matrices"><span class="header-section-number">27.4</span> Pasando Datos: Vectores y Matrices</a></li>
-  <li><a href="#resumen-de-integración" id="toc-resumen-de-integración" class="nav-link" data-scroll-target="#resumen-de-integración"><span class="header-section-number">27.5</span> Resumen de Integración</a></li>
+  <li><a href="#pasando-datos-vectores-y-matrices" id="toc-pasando-datos-vectores-y-matrices" class="nav-link" data-scroll-target="#pasando-datos-vectores-y-matrices"><span class="header-section-number">28.4</span> Pasando Datos: Vectores y Matrices</a></li>
+  <li><a href="#resumen-de-integración" id="toc-resumen-de-integración" class="nav-link" data-scroll-target="#resumen-de-integración"><span class="header-section-number">28.5</span> Resumen de Integración</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./integration.html">Integración con R</a></li><li class="breadcrumb-item"><a href="./integration.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./integration.html">Integración con R</a></li><li class="breadcrumb-item"><a href="./integration.html"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></h1>
+<h1 class="title"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></h1>
 </div>
 
 
@@ -472,34 +478,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="el-puente-entre-dos-mundos" class="level2" data-number="27.1">
-<h2 data-number="27.1" class="anchored" data-anchor-id="el-puente-entre-dos-mundos"><span class="header-section-number">27.1</span> El puente entre dos mundos</h2>
+<section id="el-puente-entre-dos-mundos" class="level2" data-number="28.1">
+<h2 data-number="28.1" class="anchored" data-anchor-id="el-puente-entre-dos-mundos"><span class="header-section-number">28.1</span> El puente entre dos mundos</h2>
 <p>Hasta ahora, hemos hablado de Rust como un lenguaje independiente. Pero para un analista espacial que vive en el ecosistema de R (tidyverse, sf, terra), abandonar R por completo no es práctico. R es insuperable en exploración de datos y visualización (¡ggplot2!), mientras que Rust es insuperable en cómputo crudo y gestión de memoria.</p>
 <p>¿La solución? <strong>Usar ambos</strong>.</p>
 <p>Imagina a R como el <strong>Jefe de Sala</strong> (Maître): gestiona los pedidos, habla con los clientes y presenta los platos. Rust es el <strong>Equipo de Cocina</strong>: procesa los ingredientes crudos a una velocidad vertiginosa y entrega el resultado listo para servir.</p>
 </section>
-<section id="extendr-la-puerta-trasera" class="level2" data-number="27.2">
-<h2 data-number="27.2" class="anchored" data-anchor-id="extendr-la-puerta-trasera"><span class="header-section-number">27.2</span> Extendr: La puerta trasera</h2>
+<section id="extendr-la-puerta-trasera" class="level2" data-number="28.2">
+<h2 data-number="28.2" class="anchored" data-anchor-id="extendr-la-puerta-trasera"><span class="header-section-number">28.2</span> Extendr: La puerta trasera</h2>
 <p><code>extendr</code> es el conjunto de herramientas que permite esta comunicación fluida. A diferencia de enfoques antiguos (como usar <code>.Call</code> directamente en C), <code>extendr</code> abstrae la complejidad de la API de C de R y nos permite escribir Rust que “se siente” como Rust, pero que R puede entender.</p>
-<section id="componentes-clave" class="level3" data-number="27.2.1">
-<h3 data-number="27.2.1" class="anchored" data-anchor-id="componentes-clave"><span class="header-section-number">27.2.1</span> Componentes clave</h3>
+<section id="componentes-clave" class="level3" data-number="28.2.1">
+<h3 data-number="28.2.1" class="anchored" data-anchor-id="componentes-clave"><span class="header-section-number">28.2.1</span> Componentes clave</h3>
 <ol type="1">
 <li><strong>rextendr</strong>: Un paquete de R que orquesta todo el proceso. Te permite crear proyectos, compilar código Rust y cargarlo en tu sesión de R automáticamente.</li>
-<li><strong>extendr-api</strong>: Una crate de Rust (librería) que proporciona tipos seguros para interactuar con objetos de R. Por ejemplo, convierte un <code>NumericVector</code> de R en algo que Rust puede iterar.</li>
+<li><strong>extendr-api</strong>: Una crate de Rust que proporciona tipos seguros para interactuar con objetos de R. Por ejemplo, convierte un <code>NumericVector</code> de R en algo que Rust puede iterar.</li>
 </ol>
 </section>
 </section>
-<section id="tu-primera-función-híbrida" class="level2" data-number="27.3">
-<h2 data-number="27.3" class="anchored" data-anchor-id="tu-primera-función-híbrida"><span class="header-section-number">27.3</span> Tu primera función híbrida</h2>
+<section id="tu-primera-función-híbrida" class="level2" data-number="28.3">
+<h2 data-number="28.3" class="anchored" data-anchor-id="tu-primera-función-híbrida"><span class="header-section-number">28.3</span> Tu primera función híbrida</h2>
 <p>Vamos a crear una función simple que sume dos números, pero ejecutándose en Rust.</p>
-<section id="preparación-en-r" class="level3" data-number="27.3.1">
-<h3 data-number="27.3.1" class="anchored" data-anchor-id="preparación-en-r"><span class="header-section-number">27.3.1</span> Preparación en R</h3>
+<section id="preparación-en-r" class="level3" data-number="28.3.1">
+<h3 data-number="28.3.1" class="anchored" data-anchor-id="preparación-en-r"><span class="header-section-number">28.3.1</span> Preparación en R</h3>
 <p>Primero, necesitas instalar <code>rextendr</code> en R:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"rextendr"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rextendr<span class="sc">::</span><span class="fu">rust_zit</span>() <span class="co"># Comprueba que tu entorno de Rust está listo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rextendr<span class="sc">::</span><span class="fu">rust_sitrep</span>() <span class="co"># Comprueba que tu entorno de Rust está listo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="el-código-rust" class="level3" data-number="27.3.2">
-<h3 data-number="27.3.2" class="anchored" data-anchor-id="el-código-rust"><span class="header-section-number">27.3.2</span> El código Rust</h3>
+<section id="el-código-rust" class="level3" data-number="28.3.2">
+<h3 data-number="28.3.2" class="anchored" data-anchor-id="el-código-rust"><span class="header-section-number">28.3.2</span> El código Rust</h3>
 <p>Una función típica compatible con R se ve así:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">extendr_api::prelude::</span><span class="op">*;</span> <span class="co">// Importamos las herramientas necesarias</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -516,8 +522,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> sum_rust;</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="ejecución-desde-r" class="level3" data-number="27.3.3">
-<h3 data-number="27.3.3" class="anchored" data-anchor-id="ejecución-desde-r"><span class="header-section-number">27.3.3</span> Ejecución desde R</h3>
+<section id="ejecución-desde-r" class="level3" data-number="28.3.3">
+<h3 data-number="28.3.3" class="anchored" data-anchor-id="ejecución-desde-r"><span class="header-section-number">28.3.3</span> Ejecución desde R</h3>
 <p>Podemos compilar y ejecutar esto al vuelo (inline) desde R:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rextendr<span class="sc">::</span><span class="fu">rust_function</span>(<span class="st">"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">fn sum_rust(x: i32, y: i32) -&gt; i32 {</span></span>
@@ -530,8 +536,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>¡Acabas de ejecutar código máquina optimizado desde tu consola de R!</p>
 </section>
 </section>
-<section id="pasando-datos-vectores-y-matrices" class="level2" data-number="27.4">
-<h2 data-number="27.4" class="anchored" data-anchor-id="pasando-datos-vectores-y-matrices"><span class="header-section-number">27.4</span> Pasando Datos: Vectores y Matrices</h2>
+<section id="pasando-datos-vectores-y-matrices" class="level2" data-number="28.4">
+<h2 data-number="28.4" class="anchored" data-anchor-id="pasando-datos-vectores-y-matrices"><span class="header-section-number">28.4</span> Pasando Datos: Vectores y Matrices</h2>
 <p>El verdadero poder viene cuando pasamos grandes volúmenes de datos. <code>extendr</code> trata de ser “Zero Copy” cuando es posible, pero debemos entender los tipos.</p>
 <table class="caption-top table">
 <thead>
@@ -576,8 +582,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>En este ejemplo, <code>Doubles</code> es un wrapper inteligente sobre el vector de R. Al usar <code>.iter()</code>, accedemos a los datos directamente en la memoria de R sin copiarlos, lo que es extremadamente eficiente.</p>
 </section>
-<section id="resumen-de-integración" class="level2" data-number="27.5">
-<h2 data-number="27.5" class="anchored" data-anchor-id="resumen-de-integración"><span class="header-section-number">27.5</span> Resumen de Integración</h2>
+<section id="resumen-de-integración" class="level2" data-number="28.5">
+<h2 data-number="28.5" class="anchored" data-anchor-id="resumen-de-integración"><span class="header-section-number">28.5</span> Resumen de Integración</h2>
 <ul>
 <li><strong>R</strong> gestiona la entrada/salida y la visualización.</li>
 <li><strong>Rust</strong> realiza el trabajo pesado de cálculo.</li>
@@ -991,12 +997,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./h3o.html" class="pagination-link" aria-label="Indexación Hexagonal H3">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./h3o-R.html" class="pagination-link" aria-label="H3 en R con h3o">
-        <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">H3 en R con h3o</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">H3 en R con h3o</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1004,7 +1010,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Copyright 2024, Denis Berroeta</p>
+<p>Copyright 2026, Denis Berroeta</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

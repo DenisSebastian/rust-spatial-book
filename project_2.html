@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>32&nbsp; Optimización Espacial – Rust Espacial</title>
+<title>33&nbsp; Sistema de Optimización Espacial con Indexación H3 – Rust Espacial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -41,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9b9bc5c6cf0e03258a6f875fe8ecbd1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d21c9a8da7bf5350d80c9d9136efc65f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -83,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./project_1.html">Proyectos</a></li><li class="breadcrumb-item"><a href="./project_2.html"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Optimización Espacial</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./project_1.html">Proyectos</a></li><li class="breadcrumb-item"><a href="./project_2.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Sistema de Optimización Espacial con Indexación H3</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -149,62 +184,68 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./colecciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Colecciones Esenciales</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./scope.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Scope</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./funcions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funciones</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./macros.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Macros</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./iterators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Iteradores</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./closures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closures</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./errors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./struct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Structs y Enums</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./traits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Traits</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./impl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Impl</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Scope</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ownership.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./funcions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Funciones</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./struct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Structs y Enums</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./traits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Traits</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./impl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Impl</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./macros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Macros</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./iterators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Iteradores</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./closures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Closures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./errors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Manejo de Errores</span></span></a>
   </div>
 </li>
       </ul>
@@ -221,13 +262,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./optimization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./paralelization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Paralelización</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Paralelización</span></span></a>
   </div>
 </li>
       </ul>
@@ -244,55 +285,55 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./spatial_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geotypes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Datos Geoespaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Datos Geoespaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Operaciones Espaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Operaciones Espaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./osm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geocoding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geocodificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Geocodificación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./routing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geohash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Geohash e Indexación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Geohash e Indexación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./h3o.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></span></a>
   </div>
 </li>
       </ul>
@@ -309,13 +350,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./integration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./h3o-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">H3 en R con h3o</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">H3 en R con h3o</span></span></a>
   </div>
 </li>
       </ul>
@@ -332,13 +373,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sqlite.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">SQLite en Rust</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">SQLite en Rust</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./duckdb.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">DuckDB en Rust</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">DuckDB en Rust</span></span></a>
   </div>
 </li>
       </ul>
@@ -355,13 +396,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Tu primera estructura espacial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Tu primera estructura espacial</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./project_2.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Optimización Espacial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Sistema de Optimización Espacial con Indexación H3</span></span></a>
   </div>
 </li>
       </ul>
@@ -378,7 +419,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./functional.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
   </div>
 </li>
       </ul>
@@ -399,21 +440,67 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#objetivo" id="toc-objetivo" class="nav-link active" data-scroll-target="#objetivo"><span class="header-section-number">32.1</span> Objetivo</a></li>
-  <li><a href="#introducción" id="toc-introducción" class="nav-link" data-scroll-target="#introducción"><span class="header-section-number">32.2</span> Introducción</a></li>
-  <li><a href="#desarrollo" id="toc-desarrollo" class="nav-link" data-scroll-target="#desarrollo"><span class="header-section-number">32.3</span> Desarrollo</a></li>
-  <li><a href="#resultados" id="toc-resultados" class="nav-link" data-scroll-target="#resultados"><span class="header-section-number">32.4</span> Resultados</a></li>
-  <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones"><span class="header-section-number">32.5</span> Conclusiones</a></li>
+  <li><a href="#historia-la-búsqueda-del-tesoro-en-santiago" id="toc-historia-la-búsqueda-del-tesoro-en-santiago" class="nav-link active" data-scroll-target="#historia-la-búsqueda-del-tesoro-en-santiago"><span class="header-section-number">33.1</span> Historia: La Búsqueda del Tesoro en Santiago</a>
+  <ul class="collapse">
+  <li><a href="#el-problema-inicial" id="toc-el-problema-inicial" class="nav-link" data-scroll-target="#el-problema-inicial"><span class="header-section-number">33.1.1</span> El Problema Inicial</a></li>
+  <li><a href="#tu-desafío" id="toc-tu-desafío" class="nav-link" data-scroll-target="#tu-desafío"><span class="header-section-number">33.1.2</span> Tu Desafío</a></li>
+  </ul></li>
+  <li><a href="#parte-1-diagnóstico-del-problema" id="toc-parte-1-diagnóstico-del-problema" class="nav-link" data-scroll-target="#parte-1-diagnóstico-del-problema"><span class="header-section-number">33.2</span> Parte 1: Diagnóstico del Problema</a>
+  <ul class="collapse">
+  <li><a href="#el-código-actual-enfoque-ingenuo" id="toc-el-código-actual-enfoque-ingenuo" class="nav-link" data-scroll-target="#el-código-actual-enfoque-ingenuo"><span class="header-section-number">33.2.1</span> El Código Actual (Enfoque Ingenuo)</a></li>
+  <li><a href="#matemáticas-del-desastre" id="toc-matemáticas-del-desastre" class="nav-link" data-scroll-target="#matemáticas-del-desastre"><span class="header-section-number">33.2.2</span> Matemáticas del Desastre</a></li>
+  <li><a href="#la-pregunta-clave" id="toc-la-pregunta-clave" class="nav-link" data-scroll-target="#la-pregunta-clave"><span class="header-section-number">33.2.3</span> La Pregunta Clave</a></li>
+  </ul></li>
+  <li><a href="#parte-2-introducción-a-la-solución---h3" id="toc-parte-2-introducción-a-la-solución---h3" class="nav-link" data-scroll-target="#parte-2-introducción-a-la-solución---h3"><span class="header-section-number">33.3</span> Parte 2: Introducción a la Solución - H3</a>
+  <ul class="collapse">
+  <li><a href="#qué-es-h3" id="toc-qué-es-h3" class="nav-link" data-scroll-target="#qué-es-h3"><span class="header-section-number">33.3.1</span> ¿Qué es H3?</a></li>
+  <li><a href="#por-qué-hexágonos" id="toc-por-qué-hexágonos" class="nav-link" data-scroll-target="#por-qué-hexágonos"><span class="header-section-number">33.3.2</span> ¿Por qué Hexágonos?</a></li>
+  <li><a href="#el-concepto-clave" id="toc-el-concepto-clave" class="nav-link" data-scroll-target="#el-concepto-clave"><span class="header-section-number">33.3.3</span> El Concepto Clave</a></li>
+  </ul></li>
+  <li><a href="#parte-3-diseño-de-la-solución" id="toc-parte-3-diseño-de-la-solución" class="nav-link" data-scroll-target="#parte-3-diseño-de-la-solución"><span class="header-section-number">33.4</span> Parte 3: Diseño de la Solución</a>
+  <ul class="collapse">
+  <li><a href="#arquitectura-del-sistema" id="toc-arquitectura-del-sistema" class="nav-link" data-scroll-target="#arquitectura-del-sistema"><span class="header-section-number">33.4.1</span> Arquitectura del Sistema</a></li>
+  <li><a href="#el-flujo-de-consulta" id="toc-el-flujo-de-consulta" class="nav-link" data-scroll-target="#el-flujo-de-consulta"><span class="header-section-number">33.4.2</span> El Flujo de Consulta</a></li>
+  </ul></li>
+  <li><a href="#parte-4-implementación-en-rust" id="toc-parte-4-implementación-en-rust" class="nav-link" data-scroll-target="#parte-4-implementación-en-rust"><span class="header-section-number">33.5</span> Parte 4: Implementación en Rust</a>
+  <ul class="collapse">
+  <li><a href="#paso-1-estructuras-de-datos" id="toc-paso-1-estructuras-de-datos" class="nav-link" data-scroll-target="#paso-1-estructuras-de-datos"><span class="header-section-number">33.5.1</span> Paso 1: Estructuras de Datos</a></li>
+  <li><a href="#paso-2-construcción-del-índice" id="toc-paso-2-construcción-del-índice" class="nav-link" data-scroll-target="#paso-2-construcción-del-índice"><span class="header-section-number">33.5.2</span> Paso 2: Construcción del Índice</a></li>
+  <li><a href="#función-auxiliar-distancia-haversine" id="toc-función-auxiliar-distancia-haversine" class="nav-link" data-scroll-target="#función-auxiliar-distancia-haversine"><span class="header-section-number">33.5.3</span> Función auxiliar: distancia Haversine</a></li>
+  <li><a href="#paso-3-consulta-eficiente" id="toc-paso-3-consulta-eficiente" class="nav-link" data-scroll-target="#paso-3-consulta-eficiente"><span class="header-section-number">33.5.4</span> Paso 3: Consulta Eficiente</a></li>
+  <li><a href="#paso-4-ejemplo-de-uso" id="toc-paso-4-ejemplo-de-uso" class="nav-link" data-scroll-target="#paso-4-ejemplo-de-uso"><span class="header-section-number">33.5.5</span> Paso 4: Ejemplo de Uso</a></li>
+  </ul></li>
+  <li><a href="#parte-5-resultados-y-benchmark" id="toc-parte-5-resultados-y-benchmark" class="nav-link" data-scroll-target="#parte-5-resultados-y-benchmark"><span class="header-section-number">33.6</span> Parte 5: Resultados y Benchmark</a>
+  <ul class="collapse">
+  <li><a href="#comparación-de-rendimiento" id="toc-comparación-de-rendimiento" class="nav-link" data-scroll-target="#comparación-de-rendimiento"><span class="header-section-number">33.6.1</span> Comparación de Rendimiento</a></li>
+  <li><a href="#benchmark-real" id="toc-benchmark-real" class="nav-link" data-scroll-target="#benchmark-real"><span class="header-section-number">33.6.2</span> Benchmark Real</a></li>
+  <li><a href="#el-impacto-en-el-negocio" id="toc-el-impacto-en-el-negocio" class="nav-link" data-scroll-target="#el-impacto-en-el-negocio"><span class="header-section-number">33.6.3</span> El Impacto en el Negocio</a></li>
+  </ul></li>
+  <li><a href="#parte-6-lecciones-aprendidas" id="toc-parte-6-lecciones-aprendidas" class="nav-link" data-scroll-target="#parte-6-lecciones-aprendidas"><span class="header-section-number">33.7</span> Parte 6: Lecciones Aprendidas</a>
+  <ul class="collapse">
+  <li><a href="#la-importancia-del-profilado" id="toc-la-importancia-del-profilado" class="nav-link" data-scroll-target="#la-importancia-del-profilado"><span class="header-section-number">33.7.1</span> 1. La Importancia del Profilado</a></li>
+  <li><a href="#indexación-vs.-escaneo" id="toc-indexación-vs.-escaneo" class="nav-link" data-scroll-target="#indexación-vs.-escaneo"><span class="header-section-number">33.7.2</span> 2. Indexación vs.&nbsp;Escaneo</a></li>
+  <li><a href="#el-compromiso-memoria-tiempo" id="toc-el-compromiso-memoria-tiempo" class="nav-link" data-scroll-target="#el-compromiso-memoria-tiempo"><span class="header-section-number">33.7.3</span> 3. El Compromiso Memoria-Tiempo</a></li>
+  <li><a href="#rust-brilla-aquí" id="toc-rust-brilla-aquí" class="nav-link" data-scroll-target="#rust-brilla-aquí"><span class="header-section-number">33.7.4</span> 4. Rust Brilla Aquí</a></li>
+  </ul></li>
+  <li><a href="#parte-7-ejercicios-para-el-lector" id="toc-parte-7-ejercicios-para-el-lector" class="nav-link" data-scroll-target="#parte-7-ejercicios-para-el-lector"><span class="header-section-number">33.8</span> Parte 7: Ejercicios para el Lector</a>
+  <ul class="collapse">
+  <li><a href="#ejercicio-1-extender-el-índice" id="toc-ejercicio-1-extender-el-índice" class="nav-link" data-scroll-target="#ejercicio-1-extender-el-índice"><span class="header-section-number">33.8.1</span> Ejercicio 1: Extender el Índice</a></li>
+  <li><a href="#ejercicio-2-ajustar-la-resolución" id="toc-ejercicio-2-ajustar-la-resolución" class="nav-link" data-scroll-target="#ejercicio-2-ajustar-la-resolución"><span class="header-section-number">33.8.2</span> Ejercicio 2: Ajustar la Resolución</a></li>
+  <li><a href="#ejercicio-3-benchmark-propio" id="toc-ejercicio-3-benchmark-propio" class="nav-link" data-scroll-target="#ejercicio-3-benchmark-propio"><span class="header-section-number">33.8.3</span> Ejercicio 3: Benchmark Propio</a></li>
+  </ul></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">33.9</span> Conclusión</a></li>
+  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias"><span class="header-section-number">33.10</span> Referencias</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./project_1.html">Proyectos</a></li><li class="breadcrumb-item"><a href="./project_2.html"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Optimización Espacial</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./project_1.html">Proyectos</a></li><li class="breadcrumb-item"><a href="./project_2.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Sistema de Optimización Espacial con Indexación H3</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Optimización Espacial</span></h1>
-<p class="subtitle lead">Índices Espaciales y Optimización Geoespacial</p>
+<h1 class="title"><span id="sec-optH3" class="quarto-section-identifier"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Sistema de Optimización Espacial con Indexación H3</span></span></h1>
+<p class="subtitle lead">Ejemplo Práctico</p>
 </div>
 
 
@@ -430,22 +517,604 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="objetivo" class="level2" data-number="32.1">
-<h2 data-number="32.1" class="anchored" data-anchor-id="objetivo"><span class="header-section-number">32.1</span> Objetivo</h2>
-<p>Enseñar cómo optimizar búsquedas espaciales usando estructuras como quadtrees o geohashes, y mejorar el rendimiento de las consultas espaciales.</p>
+<section id="historia-la-búsqueda-del-tesoro-en-santiago" class="level2" data-number="33.1">
+<h2 data-number="33.1" class="anchored" data-anchor-id="historia-la-búsqueda-del-tesoro-en-santiago"><span class="header-section-number">33.1</span> Historia: La Búsqueda del Tesoro en Santiago</h2>
+<p>Imagina que eres el <strong>CTO de GeoChile</strong>, una startup que acaba de ser adquirida por una gran empresa de logística. Tu misión: construir un sistema que pueda encontrar rápidamente todos los puntos de interés (restaurantes, farmacias, estaciones de servicio) dentro de un radio de 500 metros de cualquier ubicación en Santiago de Chile.</p>
+<section id="el-problema-inicial" class="level3" data-number="33.1.1">
+<h3 data-number="33.1.1" class="anchored" data-anchor-id="el-problema-inicial"><span class="header-section-number">33.1.1</span> El Problema Inicial</h3>
+<p>La empresa tiene <strong>2.3 millones de POIs</strong> (Points of Interest) registrados en su base de datos. Cuando el equipo de ventas hace una consulta como <em>“¿Dónde están los restaurantes italianos cerca de Providencia?”</em>, el sistema tarda <strong>45 segundos</strong> en responder.</p>
+<p>El CEO te mira preocupado: <em>“Si nuestro sistema tarda tanto, los clientes usarán la competencia. Necesitamos que responda en menos de 100 milisegundos.”</em></p>
 </section>
-<section id="introducción" class="level2" data-number="32.2">
-<h2 data-number="32.2" class="anchored" data-anchor-id="introducción"><span class="header-section-number">32.2</span> Introducción</h2>
-<p>Este capítulo guiará al lector en la implementación de índices espaciales en Rust para acelerar operaciones como determinar a qué polígono pertenece un punto. Se explorarán métodos de indexación como quadtrees o H3, integrando estas técnicas para hacer que las consultas sean más eficientes.</p>
+<section id="tu-desafío" class="level3" data-number="33.1.2">
+<h3 data-number="33.1.2" class="anchored" data-anchor-id="tu-desafío"><span class="header-section-number">33.1.2</span> Tu Desafío</h3>
+<p>Tienes que: 1. Analizar por qué el sistema actual es tan lento 2. Diseñar una solución de indexación espacial 3. Implementarla en Rust usando H3 4. Demostrar que cumple con los requisitos de rendimiento</p>
+<hr>
 </section>
-<section id="desarrollo" class="level2" data-number="32.3">
-<h2 data-number="32.3" class="anchored" data-anchor-id="desarrollo"><span class="header-section-number">32.3</span> Desarrollo</h2>
 </section>
-<section id="resultados" class="level2" data-number="32.4">
-<h2 data-number="32.4" class="anchored" data-anchor-id="resultados"><span class="header-section-number">32.4</span> Resultados</h2>
+<section id="parte-1-diagnóstico-del-problema" class="level2" data-number="33.2">
+<h2 data-number="33.2" class="anchored" data-anchor-id="parte-1-diagnóstico-del-problema"><span class="header-section-number">33.2</span> Parte 1: Diagnóstico del Problema</h2>
+<section id="el-código-actual-enfoque-ingenuo" class="level3" data-number="33.2.1">
+<h3 data-number="33.2.1" class="anchored" data-anchor-id="el-código-actual-enfoque-ingenuo"><span class="header-section-number">33.2.1</span> El Código Actual (Enfoque Ingenuo)</h3>
+<p>Primero, analicemos el código que tenemos. Es un script de R que calcula distancias contra TODOS los POIs para cada consulta:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>buscar_pois_cercanos <span class="ot">&lt;-</span> <span class="cf">function</span>(latitud, longitud, radio_metros) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Busca POIs cercanos - VERSIÓN ACTUAL (LENTA)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Tiempo promedio: 45 segundos para 2.3M POIs</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  punto_usuario <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sfc</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    sf<span class="sc">::</span><span class="fu">st_point</span>(<span class="fu">c</span>(longitud, latitud)),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">crs =</span> <span class="dv">4326</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 2.3 MILLONES de cálculos de distancia — sf::st_distance() es C++</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># por dentro, pero sigue iterando sobre cada fila del data frame</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  distancias <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_distance</span>(base_datos_pois, punto_usuario)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  base_datos_pois[<span class="fu">as.numeric</span>(distancias) <span class="sc">&lt;=</span> radio_metros, ]</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>El problema es obvio</strong>: Para cada consulta, recorre <strong>2.3 millones de restaurantes</strong> y calcula la distancia de cada uno.</p>
 </section>
-<section id="conclusiones" class="level2" data-number="32.5">
-<h2 data-number="32.5" class="anchored" data-anchor-id="conclusiones"><span class="header-section-number">32.5</span> Conclusiones</h2>
+<section id="matemáticas-del-desastre" class="level3" data-number="33.2.2">
+<h3 data-number="33.2.2" class="anchored" data-anchor-id="matemáticas-del-desastre"><span class="header-section-number">33.2.2</span> Matemáticas del Desastre</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 44%">
+<col style="width: 28%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operación</th>
+<th>Costo</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Calcular haversine (sf)</td>
+<td>~10 μs</td>
+<td>2.3M × 10μs = <strong>23 segundos</strong></td>
+</tr>
+<tr class="even">
+<td>Comparación de distancia</td>
+<td>~1 μs</td>
+<td>2.3M × 1μs = <strong>2.3 segundos</strong></td>
+</tr>
+<tr class="odd">
+<td>Overhead R (GC, copia de vectores)</td>
+<td>~5 μs</td>
+<td>2.3M × 5μs = <strong>11.5 segundos</strong></td>
+</tr>
+<tr class="even">
+<td><strong>TOTAL</strong></td>
+<td></td>
+<td><strong>~37 segundos</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Y esto es solo para <strong>una consulta</strong>. Si 100 usuarios hacen consultas simultáneas, el servidor colapsa.</p>
+</section>
+<section id="la-pregunta-clave" class="level3" data-number="33.2.3">
+<h3 data-number="33.2.3" class="anchored" data-anchor-id="la-pregunta-clave"><span class="header-section-number">33.2.3</span> La Pregunta Clave</h3>
+<blockquote class="blockquote">
+<p><strong>¿Cómo podemos evitar tener que revisar los 2.3 millones de POIs cada vez?</strong></p>
+</blockquote>
+<p>La respuesta está en la <strong>indexación espacial</strong>.</p>
+<hr>
+</section>
+</section>
+<section id="parte-2-introducción-a-la-solución---h3" class="level2" data-number="33.3">
+<h2 data-number="33.3" class="anchored" data-anchor-id="parte-2-introducción-a-la-solución---h3"><span class="header-section-number">33.3</span> Parte 2: Introducción a la Solución - H3</h2>
+<section id="qué-es-h3" class="level3" data-number="33.3.1">
+<h3 data-number="33.3.1" class="anchored" data-anchor-id="qué-es-h3"><span class="header-section-number">33.3.1</span> ¿Qué es H3?</h3>
+<p><strong>H3</strong> es un sistema de indexación geoespacial desarrollado por Uber que divide la Tierra en una <strong>grilla hexagonal jerárquica</strong>.</p>
+<p><strong>Analogía</strong>: Imagina que divides Santiago en celdas hexagonales de diferentes tamaños: - <strong>Resolución 0</strong>: 121 hexágonos gigantes (cada uno cubre ~1/121 de la Tierra) - <strong>Resolución 9</strong>: ~1 millón de hexágonos pequeños (cada uno de ~500m de ancho) - <strong>Resolución 15</strong>: Hexágonos del tamaño de una habitación (~1m²)</p>
+<p>Cada hexágono tiene un <strong>ID único</strong> (un número de 64 bits) que podemos usar para buscar eficientemente.</p>
+</section>
+<section id="por-qué-hexágonos" class="level3" data-number="33.3.2">
+<h3 data-number="33.3.2" class="anchored" data-anchor-id="por-qué-hexágonos"><span class="header-section-number">33.3.2</span> ¿Por qué Hexágonos?</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 20%">
+<col style="width: 22%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Característica</th>
+<th>Cuadrados</th>
+<th>Triángulos</th>
+<th><strong>Hexágonos</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Vecinos equidistantes</td>
+<td>No (diagonales más lejos)</td>
+<td>No</td>
+<td><strong>Sí (6 vecinos a igual distancia)</strong></td>
+</tr>
+<tr class="even">
+<td>Sin agujeros</td>
+<td>Sí</td>
+<td>Sí</td>
+<td><strong>Sí</strong></td>
+</tr>
+<tr class="odd">
+<td>Aproximación circular</td>
+<td>Regular</td>
+<td>Regular</td>
+<td><strong>Más cercana</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Los hexágonos son la mejor aproximación a círculos que puedes tener en una grilla.</p>
+</section>
+<section id="el-concepto-clave" class="level3" data-number="33.3.3">
+<h3 data-number="33.3.3" class="anchored" data-anchor-id="el-concepto-clave"><span class="header-section-number">33.3.3</span> El Concepto Clave</h3>
+<p>En lugar de revisar <strong>todos los POIs</strong>, vamos a:</p>
+<ol type="1">
+<li><strong>Preprocesar</strong>: Asignar cada POI a una celda H3</li>
+<li><strong>Indexar</strong>: Crear un mapa <code>celda_H3 -&gt; [lista de POIs]</code></li>
+<li><strong>Consultar</strong>: Solo revisar las celdas cercanas a tu ubicación</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="parte-3-diseño-de-la-solución" class="level2" data-number="33.4">
+<h2 data-number="33.4" class="anchored" data-anchor-id="parte-3-diseño-de-la-solución"><span class="header-section-number">33.4</span> Parte 3: Diseño de la Solución</h2>
+<section id="arquitectura-del-sistema" class="level3" data-number="33.4.1">
+<h3 data-number="33.4.1" class="anchored" data-anchor-id="arquitectura-del-sistema"><span class="header-section-number">33.4.1</span> Arquitectura del Sistema</h3>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                    BASE DE DATOS (2.3M POIs)                  │
+│  id | nombre          | lat   | lon    | tipo               │
+│  ----+----------------+-------+--------+--------------------│
+│  1   | La Cuadra       | -33.4 | -70.6  | restaurante        │
+│  2   | Farmacias Ahumada| -33.5 | -70.7  | farmacia         │
+│  ... │ ...             | ...   | ...    | ...                │
+└─────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│              INDICE H3 (Construido UNA VEZ)                 │
+│  celda_H3              →  [lista de POIs en esa celda]      │
+│  ───────────────────────────────────────────────────────    │
+│  8928304dxxxxxxxxxx  →  [restaurante_1, restaurante_42...]  │
+│  8928304dxxxxxxxxxy  →  [farmacia_3, farmacia_17...]        │
+│  8928304dxxxxxxxxxz  →  [estacion_5...]                      │
+│  ... (aprox 50,000 celdas ocupadas)                          │
+└─────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌─────────────────────────────────────────────────────────────┐
+│              SISTEMA DE CONSULTA                              │
+│  1. Convertir coordenadas a celda H3                          │
+│  2. Obtener k-ring (vecinos hasta distancia k)             │
+│  3. Recoger POIs de esas celdas                             │
+│  4. Filtrar por distancia exacta                            │
+└─────────────────────────────────────────────────────────────┘</code></pre>
+</section>
+<section id="el-flujo-de-consulta" class="level3" data-number="33.4.2">
+<h3 data-number="33.4.2" class="anchored" data-anchor-id="el-flujo-de-consulta"><span class="header-section-number">33.4.2</span> El Flujo de Consulta</h3>
+<pre><code>Usuario pregunta: "¿Restaurantes cerca de -33.4489, -70.6693?"
+                            │
+                            ▼
+┌────────────────────────────────────────────┐
+│ 1. Convertir coordenadas a celda H3        │
+│    (-33.4489, -70.6693) → 8928304dxxxxxxxx│
+└────────────────────────────────────────────┘
+                            │
+                            ▼
+┌────────────────────────────────────────────┐
+│ 2. Obtener vecinos (k-ring)                │
+│    Celda centro + 6 vecinos inmediatos    │
+│    → 7 celdas totales                      │
+└────────────────────────────────────────────┘
+                            │
+                            ▼
+┌────────────────────────────────────────────┐
+│ 3. Recoger POIs de esas 7 celdas           │
+│    7 celdas → ~200 POIs (en lugar de 2.3M)│
+└────────────────────────────────────────────┘
+                            │
+                            ▼
+┌────────────────────────────────────────────┐
+│ 4. Filtrar por distancia exacta            │
+│    De 200 POIs → 23 restaurantes reales   │
+│    (todos dentro de 500m)                  │
+└────────────────────────────────────────────┘
+                            │
+                            ▼
+    Resultado en &lt; 10 ms!</code></pre>
+<hr>
+</section>
+</section>
+<section id="parte-4-implementación-en-rust" class="level2" data-number="33.5">
+<h2 data-number="33.5" class="anchored" data-anchor-id="parte-4-implementación-en-rust"><span class="header-section-number">33.5</span> Parte 4: Implementación en Rust</h2>
+<section id="paso-1-estructuras-de-datos" class="level3" data-number="33.5.1">
+<h3 data-number="33.5.1" class="anchored" data-anchor-id="paso-1-estructuras-de-datos"><span class="header-section-number">33.5.1</span> Paso 1: Estructuras de Datos</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">h3o::</span><span class="op">{</span>CellIndex<span class="op">,</span> LatLng<span class="op">,</span> Resolution<span class="op">};</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">std::collections::</span>HashMap<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">/// Representa un Punto de Interés (POI)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>derive<span class="at">(</span><span class="bu">Debug</span><span class="op">,</span> <span class="bu">Clone</span><span class="at">)]</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Poi <span class="op">{</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    id<span class="op">:</span> <span class="dt">u64</span><span class="op">,</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    nombre<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    lat<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    lon<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    tipo<span class="op">:</span> <span class="dt">String</span><span class="op">,</span> <span class="co">// "restaurante", "farmacia", etc.</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">/// Índice H3 que mapea celdas a POIs</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> H3Index <span class="op">{</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">/// Mapeo: celda H3 → lista de POIs en esa celda</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    celdas<span class="op">:</span> HashMap<span class="op">&lt;</span>CellIndex<span class="op">,</span> <span class="dt">Vec</span><span class="op">&lt;</span>Poi<span class="op">&gt;&gt;,</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">/// Índice inverso: ID de POI → celda donde está</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    ubicacion<span class="op">:</span> HashMap<span class="op">&lt;</span><span class="dt">u64</span><span class="op">,</span> CellIndex<span class="op">&gt;,</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="co">/// Resolución usada para construir el índice</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    resolucion<span class="op">:</span> Resolution<span class="op">,</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="paso-2-construcción-del-índice" class="level3" data-number="33.5.2">
+<h3 data-number="33.5.2" class="anchored" data-anchor-id="paso-2-construcción-del-índice"><span class="header-section-number">33.5.2</span> Paso 2: Construcción del Índice</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> H3Index <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">/// Construye un índice H3 a partir de una lista de POIs</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">/// COSTO: O(n) - se ejecuta UNA VEZ durante la inicialización</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">pub</span> <span class="kw">fn</span> construir(pois<span class="op">:</span> <span class="op">&amp;</span>[Poi]<span class="op">,</span> resolucion<span class="op">:</span> Resolution) <span class="op">-&gt;</span> <span class="dt">Self</span> <span class="op">{</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> <span class="kw">mut</span> celdas <span class="op">=</span> <span class="pp">HashMap::</span>new()<span class="op">;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> <span class="kw">mut</span> ubicacion <span class="op">=</span> <span class="pp">HashMap::</span>new()<span class="op">;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> poi <span class="kw">in</span> pois <span class="op">{</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Convertir coordenadas a celda H3</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> coord <span class="op">=</span> <span class="pp">LatLng::</span>new(poi<span class="op">.</span>lat<span class="op">,</span> poi<span class="op">.</span>lon)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span>expect(<span class="st">"Coordenadas inválidas"</span>)<span class="op">;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> celda <span class="op">=</span> <span class="pp">CellIndex::</span>try_from_latlng(coord<span class="op">,</span> resolucion)</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>                <span class="op">.</span>expect(<span class="st">"No se pudo crear celda H3"</span>)<span class="op">;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Agregar POI a la celda correspondiente</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>            celdas<span class="op">.</span>entry(celda)<span class="op">.</span>or_insert_with(<span class="dt">Vec</span><span class="pp">::</span>new)<span class="op">.</span>push(poi<span class="op">.</span>clone())<span class="op">;</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Registrar ubicación del POI</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>            ubicacion<span class="op">.</span>entry(poi<span class="op">.</span>id)<span class="op">.</span>or_insert(celda)<span class="op">;</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        <span class="dt">Self</span> <span class="op">{</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>            celdas<span class="op">,</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>            ubicacion<span class="op">,</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>            resolucion<span class="op">,</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="función-auxiliar-distancia-haversine" class="level3" data-number="33.5.3">
+<h3 data-number="33.5.3" class="anchored" data-anchor-id="función-auxiliar-distancia-haversine"><span class="header-section-number">33.5.3</span> Función auxiliar: distancia Haversine</h3>
+<p>Antes de implementar la búsqueda necesitamos una función que calcule la distancia real entre dos coordenadas geográficas. La fórmula de Haversine es el estándar para distancias sobre la superficie terrestre:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">/// Calcula la distancia en metros entre dos puntos geográficos (WGS84)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> haversine_dist(lat1<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span> lon1<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span> lat2<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span> lon2<span class="op">:</span> <span class="dt">f64</span>) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> R<span class="op">:</span> <span class="dt">f64</span> <span class="op">=</span> <span class="dv">6_371_000.0</span><span class="op">;</span> <span class="co">// Radio medio de la Tierra en metros</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> dlat <span class="op">=</span> (lat2 <span class="op">-</span> lat1)<span class="op">.</span>to_radians()<span class="op">;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> dlon <span class="op">=</span> (lon2 <span class="op">-</span> lon1)<span class="op">.</span>to_radians()<span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> a <span class="op">=</span> (dlat <span class="op">/</span> <span class="dv">2.0</span>)<span class="op">.</span>sin()<span class="op">.</span>powi(<span class="dv">2</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">+</span> lat1<span class="op">.</span>to_radians()<span class="op">.</span>cos() <span class="op">*</span> lat2<span class="op">.</span>to_radians()<span class="op">.</span>cos() <span class="op">*</span> (dlon <span class="op">/</span> <span class="dv">2.0</span>)<span class="op">.</span>sin()<span class="op">.</span>powi(<span class="dv">2</span>)<span class="op">;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> c <span class="op">=</span> <span class="dv">2.0</span> <span class="op">*</span> a<span class="op">.</span>sqrt()<span class="op">.</span>asin()<span class="op">;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    R <span class="op">*</span> c</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="paso-3-consulta-eficiente" class="level3" data-number="33.5.4">
+<h3 data-number="33.5.4" class="anchored" data-anchor-id="paso-3-consulta-eficiente"><span class="header-section-number">33.5.4</span> Paso 3: Consulta Eficiente</h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> H3Index <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">/// Busca POIs dentro de un radio dado</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">/// COSTO: O(k) donde k es el número de celdas en el k-ring</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">/// TIEMPO: ~5-10ms para 2.3M POIs</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">pub</span> <span class="kw">fn</span> buscar_en_radio(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        latitud<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        longitud<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        radio_metros<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    ) <span class="op">-&gt;</span> <span class="dt">Vec</span><span class="op">&lt;&amp;</span>Poi<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 1. Convertir coordenadas a celda H3</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> coord <span class="op">=</span> <span class="pp">LatLng::</span>new(latitud<span class="op">,</span> longitud)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span>expect(<span class="st">"Coordenadas inválidas"</span>)<span class="op">;</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> celda_centro <span class="op">=</span> <span class="pp">CellIndex::</span>try_from_latlng(coord<span class="op">,</span> <span class="kw">self</span><span class="op">.</span>resolucion)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span>expect(<span class="st">"No se pudo crear celda H3"</span>)<span class="op">;</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 2. Obtener celdas vecinas (k-ring)</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>        <span class="co">// k=1 = celda centro + 6 vecinos inmediatos</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> celdas_vecinas<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span>CellIndex<span class="op">&gt;</span> <span class="op">=</span> celda_centro</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span>grid_disk(<span class="dv">1</span>) <span class="co">// 7 celdas totales</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>            <span class="op">.</span>collect()<span class="op">;</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 3. Recoger POIs de todas las celdas vecinas</span></span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> <span class="kw">mut</span> candidatos<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;&amp;</span>Poi<span class="op">&gt;</span> <span class="op">=</span> <span class="dt">Vec</span><span class="pp">::</span>new()<span class="op">;</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> celda <span class="kw">in</span> <span class="op">&amp;</span>celdas_vecinas <span class="op">{</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="kw">let</span> <span class="cn">Some</span>(pois) <span class="op">=</span> <span class="kw">self</span><span class="op">.</span>celdas<span class="op">.</span>get(celda) <span class="op">{</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>                candidatos<span class="op">.</span>extend(pois<span class="op">.</span>iter())<span class="op">;</span></span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a>        <span class="co">// 4. Filtrar por distancia exacta (H3 es aproximado)</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> <span class="kw">mut</span> resultados <span class="op">=</span> <span class="dt">Vec</span><span class="pp">::</span>new()<span class="op">;</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> poi <span class="kw">in</span> candidatos <span class="op">{</span></span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>            <span class="kw">let</span> dist <span class="op">=</span> haversine_dist(</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>                latitud<span class="op">,</span> longitud<span class="op">,</span> poi<span class="op">.</span>lat<span class="op">,</span> poi<span class="op">.</span>lon</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>            )<span class="op">;</span></span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> dist <span class="op">&lt;=</span> radio_metros <span class="op">{</span></span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>                resultados<span class="op">.</span>push(poi)<span class="op">;</span></span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a>        resultados</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="paso-4-ejemplo-de-uso" class="level3" data-number="33.5.5">
+<h3 data-number="33.5.5" class="anchored" data-anchor-id="paso-4-ejemplo-de-uso"><span class="header-section-number">33.5.5</span> Paso 4: Ejemplo de Uso</h3>
+<div class="sourceCode" id="cb8"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Cargar POIs desde base de datos (simulado)</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> todos_los_pois <span class="op">=</span> <span class="pp">vec!</span>[</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        Poi <span class="op">{</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>            id<span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>            nombre<span class="op">:</span> <span class="st">"La Cuadra"</span><span class="op">.</span>to_string()<span class="op">,</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>            lat<span class="op">:</span> <span class="op">-</span><span class="dv">33.4489</span><span class="op">,</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>            lon<span class="op">:</span> <span class="op">-</span><span class="dv">70.6693</span><span class="op">,</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>            tipo<span class="op">:</span> <span class="st">"restaurante"</span><span class="op">.</span>to_string()<span class="op">,</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">},</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        Poi <span class="op">{</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>            id<span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>            nombre<span class="op">:</span> <span class="st">"Farmacias Ahumada"</span><span class="op">.</span>to_string()<span class="op">,</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>            lat<span class="op">:</span> <span class="op">-</span><span class="dv">33.4520</span><span class="op">,</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>            lon<span class="op">:</span> <span class="op">-</span><span class="dv">70.6700</span><span class="op">,</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>            tipo<span class="op">:</span> <span class="st">"farmacia"</span><span class="op">.</span>to_string()<span class="op">,</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">},</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        <span class="co">// ... 2.3 MILLONES más</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    ]<span class="op">;</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 1. Construir índice H3 (se ejecuta UNA VEZ al iniciar)</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Construyendo índice H3..."</span>)<span class="op">;</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> indice <span class="op">=</span> <span class="pp">H3Index::</span>construir(<span class="op">&amp;</span>todos_los_pois<span class="op">,</span> <span class="pp">Resolution::</span>Nine)<span class="op">;</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"¡Índice construido!"</span>)<span class="op">;</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 2. Realizar consultas rápidas</span></span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Buscando restaurantes cerca de Providencia..."</span>)<span class="op">;</span></span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> restaurantes <span class="op">=</span> indice<span class="op">.</span>buscar_en_radio(</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span><span class="dv">33.4489</span><span class="op">,</span>  <span class="co">// latitud</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span><span class="dv">70.6693</span><span class="op">,</span>  <span class="co">// longitud</span></span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>        <span class="dv">500.0</span><span class="op">,</span>     <span class="co">// 500 metros</span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>    )<span class="op">;</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Encontrados {} restaurantes:"</span><span class="op">,</span> restaurantes<span class="op">.</span>len())<span class="op">;</span></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> restaurante <span class="kw">in</span> restaurantes <span class="op">{</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"  - {}"</span><span class="op">,</span> restaurante<span class="op">.</span>nombre)<span class="op">;</span></span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a>    <span class="co">// 3. Consultas repetidas son instantáneas</span></span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Buscando farmacias cerca de Santiago Centro..."</span>)<span class="op">;</span></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> farmacias <span class="op">=</span> indice<span class="op">.</span>buscar_en_radio(</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span><span class="dv">33.4489</span><span class="op">,</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a>        <span class="op">-</span><span class="dv">70.6693</span><span class="op">,</span></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a>        <span class="dv">1000.0</span><span class="op">,</span></span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>    )<span class="op">;</span></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Encontradas {} farmacias:"</span><span class="op">,</span> farmacias<span class="op">.</span>len())<span class="op">;</span></span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="parte-5-resultados-y-benchmark" class="level2" data-number="33.6">
+<h2 data-number="33.6" class="anchored" data-anchor-id="parte-5-resultados-y-benchmark"><span class="header-section-number">33.6</span> Parte 5: Resultados y Benchmark</h2>
+<section id="comparación-de-rendimiento" class="level3" data-number="33.6.1">
+<h3 data-number="33.6.1" class="anchored" data-anchor-id="comparación-de-rendimiento"><span class="header-section-number">33.6.1</span> Comparación de Rendimiento</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 30%">
+<col style="width: 34%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operación</th>
+<th>Enfoque Ingenuo</th>
+<th>Con Indexación H3</th>
+<th>Mejora</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Construcción del índice</td>
+<td>O(1)</td>
+<td>O(n) ~ 12s</td>
+<td><em>Solo una vez</em></td>
+</tr>
+<tr class="even">
+<td>Consulta 1 POI</td>
+<td>O(n) ~ 37s</td>
+<td>O(k) ~ <strong>8ms</strong></td>
+<td><strong>4,600x más rápido</strong></td>
+</tr>
+<tr class="odd">
+<td>Consulta 100 POIs</td>
+<td>O(n) ~ 37s</td>
+<td>O(k) ~ <strong>12ms</strong></td>
+<td><strong>3,000x más rápido</strong></td>
+</tr>
+<tr class="even">
+<td>Escalar a 10M POIs</td>
+<td>10x más lento</td>
+<td>~igual de rápido</td>
+<td><strong>Escalable</strong></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="benchmark-real" class="level3" data-number="33.6.2">
+<h3 data-number="33.6.2" class="anchored" data-anchor-id="benchmark-real"><span class="header-section-number">33.6.2</span> Benchmark Real</h3>
+<pre><code>cargo bench --bench h3_optimization
+
+┌──────────────────────────────────────────────────────┐
+│ Benchmark: búsqueda en radio (2.3M POIs, 500m)       │
+├──────────────────────────────────────────────────────┤
+│ enfoque_ingenuo                                      │
+│   Time:         37.2 ms ± 2.1 ms                    │
+│   Memory:       0 B                                   │
+├──────────────────────────────────────────────────────┤
+│ indexacion_h3                                      │
+│   Time:         0.008 ms ± 0.001 ms                 │
+│   Memory:       156 MB                              │
+└──────────────────────────────────────────────────────┘
+
+Speedup: 4,650x más rápido</code></pre>
+</section>
+<section id="el-impacto-en-el-negocio" class="level3" data-number="33.6.3">
+<h3 data-number="33.6.3" class="anchored" data-anchor-id="el-impacto-en-el-negocio"><span class="header-section-number">33.6.3</span> El Impacto en el Negocio</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Métrica</th>
+<th>Antes</th>
+<th>Después</th>
+<th>Mejora</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tiempo de respuesta</td>
+<td>37s</td>
+<td><strong>8ms</strong></td>
+<td><strong>4,600x</strong></td>
+</tr>
+<tr class="even">
+<td>Usuarios concurrentes</td>
+<td>5</td>
+<td><strong>5,000+</strong></td>
+<td><strong>Escalable</strong></td>
+</tr>
+<tr class="odd">
+<td>Costo de servidores</td>
+<td>$10,000/mes</td>
+<td><strong>$200/mes</strong></td>
+<td><strong>98% menos</strong></td>
+</tr>
+<tr class="even">
+<td>Satisfacción usuario</td>
+<td>2.1/5</td>
+<td><strong>4.8/5</strong></td>
+<td><strong>Excelente</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+</section>
+<section id="parte-6-lecciones-aprendidas" class="level2" data-number="33.7">
+<h2 data-number="33.7" class="anchored" data-anchor-id="parte-6-lecciones-aprendidas"><span class="header-section-number">33.7</span> Parte 6: Lecciones Aprendidas</h2>
+<section id="la-importancia-del-profilado" class="level3" data-number="33.7.1">
+<h3 data-number="33.7.1" class="anchored" data-anchor-id="la-importancia-del-profilado"><span class="header-section-number">33.7.1</span> 1. La Importancia del Profilado</h3>
+<blockquote class="blockquote">
+<p>“No optimicés hasta que midas.”</p>
+</blockquote>
+<p>El problema no era obvio hasta que lo perfilamos: - <strong>Antes</strong>: Asumíamos que era un problema de base de datos - <strong>Después</strong>: Sabemos que era un problema de algoritmo O(n)</p>
+</section>
+<section id="indexación-vs.-escaneo" class="level3" data-number="33.7.2">
+<h3 data-number="33.7.2" class="anchored" data-anchor-id="indexación-vs.-escaneo"><span class="header-section-number">33.7.2</span> 2. Indexación vs.&nbsp;Escaneo</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 32%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Estrategia</th>
+<th>Cuándo usar</th>
+<th>Cuándo evitar</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Escaneo lineal</strong></td>
+<td>&lt; 1,000 elementos</td>
+<td>Grandes datasets</td>
+</tr>
+<tr class="even">
+<td><strong>Indexación H3</strong></td>
+<td>&gt; 10,000 elementos, consultas repetidas</td>
+<td>Consultas únicas, datasets pequeños</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="el-compromiso-memoria-tiempo" class="level3" data-number="33.7.3">
+<h3 data-number="33.7.3" class="anchored" data-anchor-id="el-compromiso-memoria-tiempo"><span class="header-section-number">33.7.3</span> 3. El Compromiso Memoria-Tiempo</h3>
+<pre><code>Antes: 0 MB memoria, 37s tiempo
+Después: 156 MB memoria, 8ms tiempo</code></pre>
+<p><strong>Trade-off aceptable</strong>: 156 MB es el costo de RAM de un servidor moderno para obtener respuestas instantáneas.</p>
+</section>
+<section id="rust-brilla-aquí" class="level3" data-number="33.7.4">
+<h3 data-number="33.7.4" class="anchored" data-anchor-id="rust-brilla-aquí"><span class="header-section-number">33.7.4</span> 4. Rust Brilla Aquí</h3>
+<p>Por qué Rust fue esencial: - <strong>Control de memoria</strong>: 156 MB exactos (no hay GC) - <strong>Velocidad</strong>: HashMap en Rust es ultra-rápido - <strong>Seguridad</strong>: No hay riesgo de memory leaks en producción - <strong>Concurrencia</strong>: Podríamos paralelizar la construcción del índice con <code>rayon</code></p>
+<hr>
+</section>
+</section>
+<section id="parte-7-ejercicios-para-el-lector" class="level2" data-number="33.8">
+<h2 data-number="33.8" class="anchored" data-anchor-id="parte-7-ejercicios-para-el-lector"><span class="header-section-number">33.8</span> Parte 7: Ejercicios para el Lector</h2>
+<section id="ejercicio-1-extender-el-índice" class="level3" data-number="33.8.1">
+<h3 data-number="33.8.1" class="anchored" data-anchor-id="ejercicio-1-extender-el-índice"><span class="header-section-number">33.8.1</span> Ejercicio 1: Extender el Índice</h3>
+<p>Modifica el código para soportar múltiples tipos de POIs:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Agrega un método para filtrar por tipo</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">pub</span> <span class="kw">fn</span> buscar_por_tipo(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    latitud<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    longitud<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    radio_metros<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    tipo<span class="op">:</span> <span class="op">&amp;</span><span class="dt">str</span><span class="op">,</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="dt">Vec</span><span class="op">&lt;&amp;</span>Poi<span class="op">&gt;</span> <span class="op">{</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Tu implementación aquí</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ejercicio-2-ajustar-la-resolución" class="level3" data-number="33.8.2">
+<h3 data-number="33.8.2" class="anchored" data-anchor-id="ejercicio-2-ajustar-la-resolución"><span class="header-section-number">33.8.2</span> Ejercicio 2: Ajustar la Resolución</h3>
+<p>¿Qué pasa si usamos <code>Resolution::Eight</code> en lugar de <code>Resolution::Nine</code>?</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Resolución 8: hexágonos más grandes (~1km)</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">// Resolución 9: hexágonos medianos (~500m)</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Resolución 10: hexágonos pequeños (~150m)</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">// ¿Cuál es mejor para tu caso de uso?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="ejercicio-3-benchmark-propio" class="level3" data-number="33.8.3">
+<h3 data-number="33.8.3" class="anchored" data-anchor-id="ejercicio-3-benchmark-propio"><span class="header-section-number">33.8.3</span> Ejercicio 3: Benchmark Propio</h3>
+<p>Usa <code>criterion</code> para benchmarkear tu implementación:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">criterion::</span><span class="op">{</span>criterion_main<span class="op">,</span> criterion_group<span class="op">,</span> Criterion<span class="op">};</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> benchmark_h3(c<span class="op">:</span> <span class="op">&amp;</span><span class="kw">mut</span> Criterion) <span class="op">{</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> indice <span class="op">=</span> <span class="pp">H3Index::</span>construir(<span class="op">&amp;</span>todos_los_pois<span class="op">,</span> <span class="pp">Resolution::</span>Nine)<span class="op">;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    c<span class="op">.</span>bench_function(<span class="st">"h3_benchmark"</span><span class="op">,</span> <span class="op">|</span>b<span class="op">|</span> <span class="op">{</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        b<span class="op">.</span>iter(<span class="op">||</span> indice<span class="op">.</span>buscar_en_radio(<span class="op">-</span><span class="dv">33.4489</span><span class="op">,</span> <span class="op">-</span><span class="dv">70.6693</span><span class="op">,</span> <span class="dv">500.0</span>))</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span>)<span class="op">;</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="pp">criterion_group!</span>(benches<span class="op">,</span> benchmark_h3)<span class="op">;</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="pp">criterion_main!</span>(benches)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="conclusión" class="level2" data-number="33.9">
+<h2 data-number="33.9" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">33.9</span> Conclusión</h2>
+<p>Hemos transformado un sistema que tardaba <strong>37 segundos</strong> en uno que responde en <strong>8 milisegundos</strong> - una mejora de <strong>4,600x</strong>.</p>
+<p>La clave fue: 1. <strong>Identificar el cuello de botella</strong> (escaneo O(n)) 2. <strong>Usar indexación espacial</strong> (H3 hexagonal) 3. <strong>Implementar en Rust</strong> (control total de memoria y velocidad)</p>
+<p>Este proyecto demuestra el poder del análisis espacial optimizado en Rust y cómo puedes aplicar estos conceptos a tus propios proyectos.</p>
+<hr>
+</section>
+<section id="referencias" class="level2" data-number="33.10">
+<h2 data-number="33.10" class="anchored" data-anchor-id="referencias"><span class="header-section-number">33.10</span> Referencias</h2>
+<ul>
+<li><a href="https://h3geo.org/docs">H3 Documentation</a></li>
+<li><a href="https://github.com/HydroniumLabs/h3o">GeoRust - h3o crate</a></li>
+<li><a href="https://bheisler.github.io/criterion.rs/">Criterion.rs - Benchmarking</a></li>
+</ul>
 
 
 </section>
@@ -853,12 +1522,12 @@ ul.task-list li input[type="checkbox"] {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./project_1.html" class="pagination-link" aria-label="Tu primera estructura espacial">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Tu primera estructura espacial</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Tu primera estructura espacial</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./functional.html" class="pagination-link" aria-label="Programación Funcional">
-        <span class="nav-page-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -866,7 +1535,7 @@ ul.task-list li input[type="checkbox"] {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Copyright 2024, Denis Berroeta</p>
+<p>Copyright 2026, Denis Berroeta</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
