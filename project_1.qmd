@@ -77,12 +77,12 @@ impl Polygon {
         Polygon { exterior: points }
     }
 
-    // Método para calcular el área
-    // &self significa: "Me leo a mí mismo, pero no me modifico"
-    pub fn area(&self) -> f64 {
+    // Método privado con la lógica real (Algoritmo del Cordón / Shoelace)
+    // Al ser privado, no colisiona con el método `area` del trait SpatialObject
+    fn area_shoelace(&self) -> f64 {
         let points = &self.exterior;
         let n = points.len();
-        
+
         if n < 3 {
             return 0.0; // No es un polígono si tiene menos de 3 puntos
         }
@@ -92,13 +92,18 @@ impl Polygon {
         for i in 0..n {
             // Conectamos el punto actual (i) con el siguiente (j)
             // Si i es el último, j debe ser el primero (el índice 0)
-            let j = (i + 1) % n; 
-            
+            let j = (i + 1) % n;
+
             sum += points[i].x * points[j].y;
             sum -= points[j].x * points[i].y;
         }
 
         (sum / 2.0).abs()
+    }
+
+    // Método público que delega en el helper privado
+    pub fn area(&self) -> f64 {
+        self.area_shoelace()
     }
 }
 ```
@@ -147,8 +152,9 @@ Ahora, implementamos este "contrato" para nuestro Polígono:
 ```rust
 impl SpatialObject for Polygon {
     fn area(&self) -> f64 {
-        // Reusamos la lógica que ya escribimos arriba por conveniencia
-        self.area()
+        // Llamamos al helper privado, no al método del trait (evita recursión infinita)
+        // `self.area()` aquí resolvería al trait de nuevo → stack overflow
+        self.area_shoelace()
     }
 
     fn geometry_type(&self) -> &str {

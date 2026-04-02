@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>12&nbsp; Structs y Enums – Rust Espacial</title>
+<title>10&nbsp; Structs y Enums – Rust Espacial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./traits.html" rel="next">
-<link href="./errors.html" rel="prev">
+<link href="./funcions.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9b9bc5c6cf0e03258a6f875fe8ecbd1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d21c9a8da7bf5350d80c9d9136efc65f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./struct.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Structs y Enums</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./struct.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Structs y Enums</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -184,62 +184,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./colecciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Colecciones Esenciales</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./scope.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Scope</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./funcions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funciones</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./macros.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Macros</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./iterators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Iteradores</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./closures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closures</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./errors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./struct.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Structs y Enums</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./traits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Traits</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./impl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Impl</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Scope</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ownership.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./funcions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Funciones</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./struct.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Structs y Enums</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./traits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Traits</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./impl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Impl</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./macros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Macros</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./iterators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Iteradores</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./closures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Closures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./errors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Manejo de Errores</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,13 +262,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./optimization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./paralelization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Paralelización</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Paralelización</span></span></a>
   </div>
 </li>
       </ul>
@@ -279,55 +285,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./spatial_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geotypes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Datos Geoespaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Datos Geoespaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Operaciones Espaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Operaciones Espaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./osm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geocoding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geocodificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Geocodificación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./routing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geohash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Geohash e Indexación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Geohash e Indexación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./h3o.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></span></a>
   </div>
 </li>
       </ul>
@@ -344,13 +350,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./integration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./h3o-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">H3 en R con h3o</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">H3 en R con h3o</span></span></a>
   </div>
 </li>
       </ul>
@@ -367,13 +373,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sqlite.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">SQLite en Rust</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">SQLite en Rust</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./duckdb.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">DuckDB en Rust</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">DuckDB en Rust</span></span></a>
   </div>
 </li>
       </ul>
@@ -381,7 +387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Anexos</span></a>
+ <span class="menu-text">Proyectos</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -389,8 +395,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./project_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Tu primera estructura espacial</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./project_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Proyecto 2</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Anexos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./functional.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
   </div>
 </li>
       </ul>
@@ -411,26 +440,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#structs-los-planos-de-los-edificios" id="toc-structs-los-planos-de-los-edificios" class="nav-link active" data-scroll-target="#structs-los-planos-de-los-edificios"><span class="header-section-number">12.1</span> Structs: Los Planos de los Edificios</a>
+  <li><a href="#structs-los-planos-de-los-edificios" id="toc-structs-los-planos-de-los-edificios" class="nav-link active" data-scroll-target="#structs-los-planos-de-los-edificios"><span class="header-section-number">10.1</span> Structs: Los Planos de los Edificios</a>
   <ul class="collapse">
-  <li><a href="#qué-son-los-structs" id="toc-qué-son-los-structs" class="nav-link" data-scroll-target="#qué-son-los-structs"><span class="header-section-number">12.1.1</span> ¿Qué son los Structs?</a></li>
-  <li><a href="#tipos-de-structs" id="toc-tipos-de-structs" class="nav-link" data-scroll-target="#tipos-de-structs"><span class="header-section-number">12.1.2</span> Tipos de Structs</a></li>
+  <li><a href="#qué-son-los-structs" id="toc-qué-son-los-structs" class="nav-link" data-scroll-target="#qué-son-los-structs"><span class="header-section-number">10.1.1</span> ¿Qué son los Structs?</a></li>
+  <li><a href="#tipos-de-structs" id="toc-tipos-de-structs" class="nav-link" data-scroll-target="#tipos-de-structs"><span class="header-section-number">10.1.2</span> Tipos de Structs</a></li>
   </ul></li>
-  <li><a href="#enums-tipos-de-edificios-en-la-ciudad" id="toc-enums-tipos-de-edificios-en-la-ciudad" class="nav-link" data-scroll-target="#enums-tipos-de-edificios-en-la-ciudad"><span class="header-section-number">12.2</span> Enums: Tipos de Edificios en la Ciudad</a>
+  <li><a href="#enums-tipos-de-edificios-en-la-ciudad" id="toc-enums-tipos-de-edificios-en-la-ciudad" class="nav-link" data-scroll-target="#enums-tipos-de-edificios-en-la-ciudad"><span class="header-section-number">10.2</span> Enums: Tipos de Edificios en la Ciudad</a>
   <ul class="collapse">
-  <li><a href="#qué-son-los-enums" id="toc-qué-son-los-enums" class="nav-link" data-scroll-target="#qué-son-los-enums"><span class="header-section-number">12.2.1</span> ¿Qué son los Enums?</a></li>
+  <li><a href="#qué-son-los-enums" id="toc-qué-son-los-enums" class="nav-link" data-scroll-target="#qué-son-los-enums"><span class="header-section-number">10.2.1</span> ¿Qué son los Enums?</a></li>
   </ul></li>
-  <li><a href="#ejemplo-integrado-la-ciudad" id="toc-ejemplo-integrado-la-ciudad" class="nav-link" data-scroll-target="#ejemplo-integrado-la-ciudad"><span class="header-section-number">12.3</span> Ejemplo Integrado: La Ciudad</a></li>
-  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión"><span class="header-section-number">12.4</span> Conclusión</a></li>
+  <li><a href="#ejemplo-integrado-la-ciudad" id="toc-ejemplo-integrado-la-ciudad" class="nav-link" data-scroll-target="#ejemplo-integrado-la-ciudad"><span class="header-section-number">10.3</span> Ejemplo Integrado: La Ciudad</a></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="header-section-number">10.4</span> Resumen</a></li>
+  <li><a href="#reto-práctico" id="toc-reto-práctico" class="nav-link" data-scroll-target="#reto-práctico"><span class="header-section-number">10.5</span> Reto Práctico</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./struct.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Structs y Enums</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variables.html">Conceptos Básicos</a></li><li class="breadcrumb-item"><a href="./struct.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Structs y Enums</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Structs y Enums</span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Structs y Enums</span></h1>
 <p class="subtitle lead">Diseñando una Ciudad en Rust</p>
 </div>
 
@@ -450,14 +480,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>Rust ofrece herramientas poderosas para organizar datos. Los <strong>Structs</strong> y <strong>Enums</strong> son fundamentales para escribir código limpio y estructurado.</p>
 <p>En este capítulo, exploraremos cómo estos dos conceptos funcionan y se relacionan, utilizando la analogía de una <strong>ciudad</strong> para facilitar su comprensión.</p>
-<section id="structs-los-planos-de-los-edificios" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="structs-los-planos-de-los-edificios"><span class="header-section-number">12.1</span> Structs: Los Planos de los Edificios</h2>
-<section id="qué-son-los-structs" class="level3" data-number="12.1.1">
-<h3 data-number="12.1.1" class="anchored" data-anchor-id="qué-son-los-structs"><span class="header-section-number">12.1.1</span> ¿Qué son los Structs?</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Para usuarios de R: struct es como un <code>list()</code> con tipos fijos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En R, agrupas datos heterogéneos con <code>list()</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R: named list — tipos dinámicos, sin verificación en compilación</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>punto <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">lon =</span> <span class="sc">-</span><span class="fl">70.6693</span>, <span class="at">lat =</span> <span class="sc">-</span><span class="fl">33.4489</span>, <span class="at">nombre =</span> <span class="st">"Santiago"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>punto<span class="sc">$</span>lon      <span class="co"># -70.6693</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>punto<span class="sc">$</span>nombre   <span class="co"># "Santiago"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>En Rust, un <code>struct</code> hace lo mismo, pero con tipos declarados y verificados en compilación:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Rust: struct — cada campo tiene un tipo fijo</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Punto <span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    lon<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    lat<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    nombre<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> p <span class="op">=</span> Punto <span class="op">{</span> lon<span class="op">:</span> <span class="op">-</span><span class="dv">70.6693</span><span class="op">,</span> lat<span class="op">:</span> <span class="op">-</span><span class="dv">33.4489</span><span class="op">,</span> nombre<span class="op">:</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"Santiago"</span>) <span class="op">};</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>p<span class="op">.</span>lon     <span class="co">// -70.6693</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>p<span class="op">.</span>nombre  <span class="co">// "Santiago"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>La diferencia clave: el <code>list()</code> de R acepta cualquier tipo en cualquier campo y puede cambiar en tiempo de ejecución. El struct de Rust tiene una forma fija que el compilador conoce — si intentas guardar un texto en un campo <code>f64</code>, falla en compilación, no en tiempo de ejecución.</p>
+</div>
+</div>
+<section id="structs-los-planos-de-los-edificios" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="structs-los-planos-de-los-edificios"><span class="header-section-number">10.1</span> Structs: Los Planos de los Edificios</h2>
+<section id="qué-son-los-structs" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="qué-son-los-structs"><span class="header-section-number">10.1.1</span> ¿Qué son los Structs?</h3>
 <p>Un <code>struct</code> es una <strong>estructura de datos</strong> que agrupa múltiples valores bajo un solo nombre. Estos valores, conocidos como <strong>campos</strong>, pueden ser de diferentes tipos. Los structs se utilizan para representar entidades concretas, como objetos del mundo real o elementos lógicos.</p>
 </section>
-<section id="tipos-de-structs" class="level3" data-number="12.1.2">
-<h3 data-number="12.1.2" class="anchored" data-anchor-id="tipos-de-structs"><span class="header-section-number">12.1.2</span> Tipos de Structs</h3>
+<section id="tipos-de-structs" class="level3" data-number="10.1.2">
+<h3 data-number="10.1.2" class="anchored" data-anchor-id="tipos-de-structs"><span class="header-section-number">10.1.2</span> Tipos de Structs</h3>
 <p>Rust ofrece tres tipos principales de structs:</p>
 <ol type="1">
 <li><strong>Structs Nombrados</strong>: Tienen campos con nombres explícitos.</li>
@@ -486,25 +545,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Cada struct es un plano único que define cómo construir un tipo de edificio.</p>
 <p>Ejemplo de Structs</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Struct nombrado</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Edificio <span class="op">{</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    nombre<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    pisos<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    color<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Struct tuple</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Coordenadas(<span class="dt">f64</span><span class="op">,</span> <span class="dt">f64</span>)<span class="op">;</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">// Struct unitario</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> SeñalDeTrafico<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Struct nombrado</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Edificio <span class="op">{</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    nombre<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    pisos<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    color<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Struct tuple</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Coordenadas(<span class="dt">f64</span><span class="op">,</span> <span class="dt">f64</span>)<span class="op">;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">// Struct unitario</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> SeñalDeTrafico<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 </section>
-<section id="enums-tipos-de-edificios-en-la-ciudad" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="enums-tipos-de-edificios-en-la-ciudad"><span class="header-section-number">12.2</span> Enums: Tipos de Edificios en la Ciudad</h2>
-<section id="qué-son-los-enums" class="level3" data-number="12.2.1">
-<h3 data-number="12.2.1" class="anchored" data-anchor-id="qué-son-los-enums"><span class="header-section-number">12.2.1</span> ¿Qué son los Enums?</h3>
+<section id="enums-tipos-de-edificios-en-la-ciudad" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="enums-tipos-de-edificios-en-la-ciudad"><span class="header-section-number">10.2</span> Enums: Tipos de Edificios en la Ciudad</h2>
+<section id="qué-son-los-enums" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="qué-son-los-enums"><span class="header-section-number">10.2.1</span> ¿Qué son los Enums?</h3>
 <p>Un <code>enum</code> es un tipo de dato que representa un conjunto de <strong>variantes</strong>. Cada variante puede almacenar datos asociados, lo que permite modelar diferentes estados o tipos dentro de un mismo contexto.</p>
 <p><strong>Relación con el Código</strong></p>
 <p>Los enums son ideales para manejar situaciones en las que un valor puede tener múltiples formas o estados. Además, permiten incluir datos adicionales en cada variante.</p>
@@ -527,53 +586,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Ejemplo de Enums</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> TipoDeEdificio <span class="op">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    Casa <span class="op">{</span> habitaciones<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span> jardin<span class="op">:</span> <span class="dt">bool</span> <span class="op">},</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    Hospital <span class="op">{</span> camas<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span> tiene_emergencias<span class="op">:</span> <span class="dt">bool</span> <span class="op">},</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    Oficina <span class="op">{</span> empleados<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span> pisos<span class="op">:</span> <span class="dt">u32</span> <span class="op">},</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> TipoDeEdificio <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    Casa <span class="op">{</span> habitaciones<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span> jardin<span class="op">:</span> <span class="dt">bool</span> <span class="op">},</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    Hospital <span class="op">{</span> camas<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span> tiene_emergencias<span class="op">:</span> <span class="dt">bool</span> <span class="op">},</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    Oficina <span class="op">{</span> empleados<span class="op">:</span> <span class="dt">u32</span><span class="op">,</span> pisos<span class="op">:</span> <span class="dt">u32</span> <span class="op">},</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 </section>
-<section id="ejemplo-integrado-la-ciudad" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="ejemplo-integrado-la-ciudad"><span class="header-section-number">12.3</span> Ejemplo Integrado: La Ciudad</h2>
+<section id="ejemplo-integrado-la-ciudad" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="ejemplo-integrado-la-ciudad"><span class="header-section-number">10.3</span> Ejemplo Integrado: La Ciudad</h2>
 <p>Combinemos Structs y Enums para representar partes de nuestra ciudad.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Representamos un edificio concreto</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> EdificioConcreto <span class="op">{</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    nombre<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    ubicacion<span class="op">:</span> (<span class="dt">f64</span><span class="op">,</span> <span class="dt">f64</span>)<span class="op">,</span> <span class="co">// Una tupla simple para coordenadas</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    tipo<span class="op">:</span> TipoDeEdificio<span class="op">,</span>  <span class="co">// Usamos el Enum dentro del Struct</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Enum para representar el uso específico</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> TipoDeEdificio <span class="op">{</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    Residencial<span class="op">,</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    Comercial<span class="op">,</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    Industrial<span class="op">,</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> mi_casa <span class="op">=</span> EdificioConcreto <span class="op">{</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        nombre<span class="op">:</span> <span class="st">"Torre A"</span><span class="op">.</span>to_string()<span class="op">,</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        ubicacion<span class="op">:</span> (<span class="dv">10.5</span><span class="op">,</span> <span class="dv">20.3</span>)<span class="op">,</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        tipo<span class="op">:</span> <span class="pp">TipoDeEdificio::</span>Residencial<span class="op">,</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> mi_casa<span class="op">.</span>tipo <span class="op">{</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        <span class="pp">TipoDeEdificio::</span>Residencial <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Es una zona tranquila."</span>)<span class="op">,</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        _ <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Zona de actividad."</span>)<span class="op">,</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Representamos un edificio concreto</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> EdificioConcreto <span class="op">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    nombre<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    ubicacion<span class="op">:</span> (<span class="dt">f64</span><span class="op">,</span> <span class="dt">f64</span>)<span class="op">,</span> <span class="co">// Una tupla simple para coordenadas</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    tipo<span class="op">:</span> TipoDeEdificio<span class="op">,</span>  <span class="co">// Usamos el Enum dentro del Struct</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Enum para representar el uso específico</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">enum</span> TipoDeEdificio <span class="op">{</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    Residencial<span class="op">,</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    Comercial<span class="op">,</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    Industrial<span class="op">,</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> mi_casa <span class="op">=</span> EdificioConcreto <span class="op">{</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        nombre<span class="op">:</span> <span class="st">"Torre A"</span><span class="op">.</span>to_string()<span class="op">,</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        ubicacion<span class="op">:</span> (<span class="dv">10.5</span><span class="op">,</span> <span class="dv">20.3</span>)<span class="op">,</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        tipo<span class="op">:</span> <span class="pp">TipoDeEdificio::</span>Residencial<span class="op">,</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">match</span> mi_casa<span class="op">.</span>tipo <span class="op">{</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>        <span class="pp">TipoDeEdificio::</span>Residencial <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Es una zona tranquila."</span>)<span class="op">,</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>        _ <span class="op">=&gt;</span> <span class="pp">println!</span>(<span class="st">"Zona de actividad."</span>)<span class="op">,</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
-<section id="conclusión" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="conclusión"><span class="header-section-number">12.4</span> Conclusión</h2>
-<p>En Rust, <strong>Structs y Enums</strong> trabajan juntos para organizar datos.</p>
-<ul>
-<li>Los <strong>Structs</strong> permiten agrupar datos relacionados (como las propiedades de un edificio).</li>
-<li>Los <strong>Enums</strong> permiten enumerar las posibles variantes de una entidad (como los tipos de edificios).</li>
-</ul>
-<p>En el próximo capítulo, veremos los <strong>Traits</strong>, que nos permitirán dar vida y comportamiento a estas estructuras de datos.</p>
+<section id="resumen" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="resumen"><span class="header-section-number">10.4</span> Resumen</h2>
+<p>En Rust, los <code>struct</code> agrupan datos heterogéneos con tipos fijos — el equivalente de un <code>list()</code> nombrado en R, pero donde el compilador verifica cada campo. Los <code>enum</code> modelan variantes excluyentes con datos adjuntos, algo sin equivalente directo en R. Juntos son la base para tipos espaciales propios como <code>Punto { x: f64, y: f64 }</code> o <code>Geometria { Point(...), Polygon(...) }</code>. En el siguiente capítulo veremos los <strong>traits</strong>, que permiten definir comportamiento compartido entre structs distintos — el equivalente de métodos S3/S4 en R.</p>
+</section>
+<section id="reto-práctico" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="reto-práctico"><span class="header-section-number">10.5</span> Reto Práctico</h2>
+<p>En R, representas un punto geográfico como una lista nombrada:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>punto <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">lon =</span> <span class="sc">-</span><span class="fl">70.6693</span>, <span class="at">lat =</span> <span class="sc">-</span><span class="fl">33.4489</span>, <span class="at">nombre =</span> <span class="st">"Santiago"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste0</span>(punto<span class="sc">$</span>nombre, <span class="st">": ("</span>, punto<span class="sc">$</span>lon, <span class="st">", "</span>, punto<span class="sc">$</span>lat, <span class="st">")</span><span class="sc">\n</span><span class="st">"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Define un <code>struct Punto</code> en Rust con campos <code>lon: f64</code>, <code>lat: f64</code> y <code>nombre: String</code>. Crea una instancia con los datos de Santiago e imprímela con <code>println!</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Solución
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="sourceCode" id="cb7"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> Punto <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    lon<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    lat<span class="op">:</span> <span class="dt">f64</span><span class="op">,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    nombre<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> santiago <span class="op">=</span> Punto <span class="op">{</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        lon<span class="op">:</span> <span class="op">-</span><span class="dv">70.6693</span><span class="op">,</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>        lat<span class="op">:</span> <span class="op">-</span><span class="dv">33.4489</span><span class="op">,</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        nombre<span class="op">:</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"Santiago"</span>)<span class="op">,</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">};</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"{}: ({}, {})"</span><span class="op">,</span> santiago<span class="op">.</span>nombre<span class="op">,</span> santiago<span class="op">.</span>lon<span class="op">,</span> santiago<span class="op">.</span>lat)<span class="op">;</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Santiago: (-70.6693, -33.4489)</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A diferencia de R, el struct tiene un tipo fijo en tiempo de compilación. No puedes agregar campos después de su definición. <code>String::from("...")</code> crea un <code>String</code> poseído — necesario porque el campo <code>nombre</code> del struct debe poseer sus datos.</p>
+</div>
+</div>
+</div>
 
 
 </section>
@@ -980,13 +1073,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./errors.html" class="pagination-link" aria-label="Manejo de errores">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></span>
+      <a href="./funcions.html" class="pagination-link" aria-label="Funciones">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Funciones</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./traits.html" class="pagination-link" aria-label="Traits">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Traits</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Traits</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -994,7 +1087,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Copyright 2024, Denis Berroeta</p>
+<p>Copyright 2026, Denis Berroeta</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

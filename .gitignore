@@ -1,2 +1,37 @@
+# Quarto build artifacts
 /.quarto/
-.Rproj.user
+_book/
+
+# R project files
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# macOS
+.DS_Store
+
+# Backup files
+*.bak
+
+# Jupyter notebooks (borradores)
+*.ipynb
+
+# Archivos temporales / borradores sin contenido
+raster.qmd
+rtree.qmd
+adv_concepts.qmd
+spatial_objects.qmd
+scrapping.qmd
+languages.qmd
+colecciones.qmd
+concepts.qmd
+concepts_files/
+
+# Archivos de análisis interno no publicables
+tarea_1.qmd
+sistema_multiagente_libro_rust_analisis_espacial.md
+pages_reference/
+
+# Claude Code context (internal)
+.claude/

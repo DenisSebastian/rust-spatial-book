@@ -3,10 +3,37 @@
 
 El sistema de **Ownership** (propiedad) y **Borrowing** (préstamo) es el corazón de Rust y lo que garantiza su **seguridad en memoria** sin necesidad de un recolector de basura. Aunque puede sonar complejo al principio, usando analogías simples podemos descomponerlo en conceptos fáciles de entender.
 
-## Definción
+## Definición
 
 El ownership es un conjunto de reglas que definen cómo un programa de Rust administra la memoria. Todos los programas tienen que administrar la forma en que usan la memoria de un computador mientras se ejecutan. Algunos lenguajes tienen recolección de basura que busca regularmente la memoria que ya no se usa mientras el programa se ejecuta; en otros lenguajes, el programador debe asignar y liberar la memoria explícitamente. Rust usa un tercer enfoque: la memoria se administra a través de un sistema de ownership con un conjunto de reglas que el compilador verifica. Si alguna de las reglas se viola, el programa no se compilará. Ninguna de las características del ownership ralentizará su programa mientras se ejecuta.
 
+
+::: {.callout-note}
+## Para usuarios de R: ¿por qué Rust no necesita Garbage Collector?
+
+En R, la memoria se gestiona automáticamente: cuando un objeto deja de usarse, el **Garbage Collector (GC)** lo libera en algún momento futuro. Tú no decides cuándo; el runtime lo hace por ti.
+
+En Rust no existe GC. En su lugar, el compilador aplica reglas de **ownership** para saber exactamente cuándo liberar cada valor — sin costo en tiempo de ejecución.
+
+La diferencia más sorprendente para un usuario de R es la asignación:
+
+```r
+# R: copy-on-modify — x e y son independientes
+x <- c(1, 2, 3)
+y <- x        # y es una copia (lazy, pero semánticamente independiente)
+print(x)      # Funciona: x sigue existiendo
+```
+
+```rust
+// Rust: move semantics — x queda invalidado
+let x = vec![1, 2, 3];
+let y = x;        // la propiedad se TRANSFIERE a y
+// println!("{:?}", x); // Error de compilación: x ya no es válido
+println!("{:?}", y);    // Solo y es el dueño ahora
+```
+
+En R copias; en Rust *mueves*. Esta es la intuición central del capítulo.
+:::
 
 ## Ownership
 
@@ -306,3 +333,40 @@ Gracias al Borrow Checker, Rust garantiza seguridad de memoria en tiempo de comp
 ```
 
 - **Solución**: Asegúrate de que los préstamos no duren más que el valor original.
+
+## Reto Práctico
+
+En R, pasar un vector a una función no lo destruye:
+
+```r
+coordenadas <- c(-70.6693, -33.4489)
+imprimir_punto <- function(p) cat(p[1], p[2], "\n")
+imprimir_punto(coordenadas)
+print(coordenadas)  # Sigue existiendo
+```
+
+En Rust, pasar un `String` a una función transfiere el ownership. Escribe una función `imprimir_punto(nombre: String)` y llámala. Luego intenta usar la variable original — observa el error. Corrígelo usando una referencia (`&String` o `&str`).
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+```rust
+// Versión que falla (mueve el ownership):
+// fn imprimir_punto(nombre: String) { println!("{}", nombre); }
+
+// Versión correcta (préstamo inmutable):
+fn imprimir_punto(nombre: &str) {
+    println!("Punto: {}", nombre);
+}
+
+fn main() {
+    let ciudad = String::from("Santiago");
+    imprimir_punto(&ciudad);   // Prestamos, no movemos
+    println!("Sigue vivo: {}", ciudad); // ✓ ciudad todavía es válida
+}
+```
+
+Usar `&str` como argumento es la práctica estándar en Rust para funciones que solo leen texto. Acepta tanto `&String` como literales `"texto"` sin necesidad de conversión explícita (coerción `Deref`).
+:::
+
+Con ownership y borrowing claros, en el siguiente capítulo veremos las **funciones** — donde las firmas `&str`, `&mut Vec<T>` y `-> String` cobran pleno sentido como decisiones conscientes sobre quién posee qué.

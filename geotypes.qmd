@@ -1,6 +1,6 @@
 # Datos Geoespaciales
 
-En el ecosistema de Rust, la crate **`geo-types`** actúa como la *lingua franca* para datos geoespaciales. Define las estructuras de datos fundamentales que otras librerías (`geo`, `gdal`, `polars`, etc.) utilizan para intercambiar información geométrica.
+En el ecosistema de Rust, la crate **`geo-types`** actúa como la *lingua franca* para datos geoespaciales. Define las estructuras de datos fundamentales que otras crates (`geo`, `gdal`, `polars`, etc.) utilizan para intercambiar información geométrica.
 
 Para usar estos tipos en tu proyecto, comúnmente usarás la crate `geo`, que re-exporta estos tipos y añade algoritmos:
 
@@ -11,14 +11,14 @@ geo = "0.26"
 
 ## Primitivas Básicas
 
-### Coordenada (`Coordinate`)
+### Coordenada (`Coord`)
 
 Es la unidad atómica más liviana. Es simplemente una estructura con campos `x` e `y`. No tiene noción de sistema de referencia espacial (CRS), es pura matemática.
 
 ```rust
-use geo::Coordinate;
+use geo::Coord;
 
-let c = Coordinate { x: 10.0, y: 20.0 };
+let c = Coord { x: 10.0, y: 20.0 };
 println!("x: {}, y: {}", c.x, c.y);
 ```
 
@@ -155,6 +155,49 @@ let coleccion = GeometryCollection::from(vec![
     Geometry::LineString(l),
 ]);
 ```
+
+## Visualización de Debug con `geo-svg`
+
+Cuando construyes geometrías complejas en Rust, es útil poder verlas visualmente sin salir del entorno. La crate [`geo-svg`](https://crates.io/crates/geo-svg) convierte cualquier geometría de `geo-types` en un archivo SVG con una sola línea.
+
+```toml
+[dependencies]
+geo-svg = "0.1"
+```
+
+```rust
+use geo::{polygon, point};
+use geo_svg::ToSvg;
+use std::fs;
+
+fn main() {
+    // Polígono que representa una manzana en Santiago Centro
+    let manzana = polygon![
+        (x: -70.654, y: -33.441),
+        (x: -70.651, y: -33.441),
+        (x: -70.651, y: -33.444),
+        (x: -70.654, y: -33.444),
+        (x: -70.654, y: -33.441),
+    ];
+
+    let punto = point!(x: -70.652, y: -33.443);
+
+    // Generar SVG y guardar en archivo
+    let svg = manzana.to_svg()
+        .with_stroke_width(0.0001)
+        .with_fill_color("steelblue")
+        .with_fill_opacity(0.4);
+
+    fs::write("debug.svg", svg.to_string()).expect("No se pudo escribir SVG");
+    println!("Abre debug.svg en el navegador para ver la geometría");
+}
+```
+
+::: {.callout-tip}
+## Por qué esto importa en debug
+
+En R, `plot(sf_object)` visualiza en una línea. En Rust, no hay REPL ni visualización interactiva. `geo-svg` llena ese vacío: abre `debug.svg` en el navegador y ves exactamente qué construyó tu código — invaluable cuando un polígono no compila un buffer o un spatial join da resultados inesperados.
+:::
 
 ## Resumen de Tipos
 

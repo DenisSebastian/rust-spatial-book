@@ -2,7 +2,7 @@
 
 En el análisis espacial, a menudo nos enfrentamos a problemas "vergonzosamente paralelos": calcular el área de un millón de polígonos, reproyectar miles de puntos o procesar celdas de un raster. Cada elemento es independiente del otro.
 
-En R, paralelizar suele doler un poco. Tienes que configurar un cluster (`makeCluster`), exportar variables y librerías a cada worker (`clusterExport`), y lidiar con el overhead de copiar datos. Si usas `mclapply` (forking) en Linux/Mac es más fácil, pero en Windows es un problema. Además, R es monohilo por diseño, por lo que el paralelismo es multiproceso (pesado).
+En R, paralelizar suele doler un poco. Tienes que configurar un cluster (`makeCluster`), exportar variables y paquetes a cada worker (`clusterExport`), y lidiar con el overhead de copiar datos. Si usas `mclapply` (forking) en Linux/Mac es más fácil, pero en Windows es un problema. Además, R es monohilo por diseño, por lo que el paralelismo es multiproceso (pesado).
 
 En Rust, el paralelismo es **multihilo (ligero)** y, gracias al sistema de ownership, es **libre de condiciones de carrera (data races)**. Si tu código compila, es thread-safe.
 

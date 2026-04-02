@@ -71,3 +71,7 @@ fn main() -> Result<()> {
 ### ¿GeoPackage?
 
 Si quieres escribir archivos `.gpkg` (que son SQLite disfrazados), la lógica es similar, pero debes respetar rigurosamente la estructura de tablas de metaladatos de OGC (`gpkg_contents`, `gpkg_geometry_columns`). Para una solución "llave en mano", en Rust se suele usar la crate `gdal` (que veremos más adelante) en lugar de `rusqlite` crudo, similar a cómo usas `st_write` en R.
+
+## Resumen
+
+SQLite con `rusqlite` es la opción más simple para persistir datos espaciales sin infraestructura: un solo archivo, cero configuración, sin servidor. El patrón es `Connection::open()` → `execute()` / `query_map()` → iterar `Row`. Para datos vectoriales complejos (GeoPackage), la crate `gdal` gestiona la estructura OGC por ti. En el siguiente capítulo veremos **DuckDB**: la alternativa analítica de alto rendimiento para datasets de millones de filas.

@@ -78,13 +78,14 @@ Rust también permite pasar referencias a las funciones, lo que es útil cuando 
 
 
 ```rust
-fn longitud(texto: &String) -> usize {
+fn longitud(texto: &str) -> usize {
     texto.len()
 }
 ```
 
+En este ejemplo, `&str` indica que la función toma una referencia de solo lectura al texto sin transferir su propiedad.
 
-En este ejemplo, &String indica que la función toma una referencia al valor en lugar de transferir su propiedad.
+> En Rust, es preferible usar `&str` en lugar de `&String` para parámetros de función. `&str` acepta tanto `String` como literales de texto (`"hola"`), mientras que `&String` solo acepta referencias a `String`. Clippy (el linter de Rust) reporta `&String` como patrón a evitar.
 
 **Funciones Anidadas**
 
@@ -112,3 +113,41 @@ fn imprimir_dos_veces<T: std::fmt::Debug>(x: T) {
 ```
 
 Aquí, `T` es un tipo genérico, y `std::fmt::Debug` es un trait que indica que el tipo debe poder imprimirse con `{:?}`.
+
+## Resumen
+
+Las funciones en Rust siempre declaran el tipo de cada parámetro y del valor de retorno — sin inferencia implícita como en R. La regla `&str` para parámetros de texto y `String` para retornos es el patrón más común. Para análisis espacial, escribirás funciones como `calcular_area(poligono: &Polygon) -> f64` donde la firma hace explícito el contrato. Los genéricos permiten que una función trabaje con `f32` o `f64` sin duplicar código. Ahora que entiendes ownership y referencias, el uso de `&str` en las firmas tiene pleno sentido. En el siguiente capítulo veremos los **structs**, la herramienta para agrupar datos con tipos distintos.
+
+## Reto Práctico
+
+En R, una función que convierte grados decimales a radianes se escribe:
+
+```r
+grados_a_radianes <- function(grados) {
+  grados * pi / 180
+}
+
+cat(grados_a_radianes(-33.4489), "\n")  # latitud Santiago en radianes
+```
+
+Escribe la función equivalente en Rust con firma `fn grados_a_radianes(grados: f64) -> f64`. Llámala con la latitud de Santiago y muestra el resultado.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+```rust
+use std::f64::consts::PI;
+
+fn grados_a_radianes(grados: f64) -> f64 {
+    grados * PI / 180.0
+}
+
+fn main() {
+    let latitud_santiago = -33.4489;
+    println!("{:.6}", grados_a_radianes(latitud_santiago));
+    // -0.583780
+}
+```
+
+Rust requiere que el literal `180.0` sea flotante (no `180`) para operar con `f64`. La firma explicita el tipo de entrada y retorno — si intentas pasar un `i32`, el compilador lo rechaza en tiempo de compilación.
+:::

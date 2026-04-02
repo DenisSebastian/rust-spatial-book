@@ -9,7 +9,7 @@ execute:
 Este capítulo explica cómo instalar Rust, cómo escribir un programa “Hola, mundo!” Y cómo usar Cargo, el administrador de paquetes y herramienta de compilación de Rust. 
 
 
-## Intalar Rust
+## Instalar Rust
 
 
 El primer paso es instalar Rust. Descargaremos Rust a través de `rustup`, una
@@ -22,7 +22,7 @@ herramientas asociadas. Necesitarás una conexión a Internet para la descarga.
 
 Si estás utilizando Linux o macOS, abre una terminal y escribe lo siguiente
 
-```console
+```shell
 curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
 ```
 
@@ -73,7 +73,7 @@ PowerShell. Si hay diferencias específicas, explicaremos cuál usar.
 
 ### Solución de problemas
 
-Para verificar si has instalado Rust correctamente, abra una shell y escribe esta
+Para verificar si has instalado Rust correctamente, abre una shell y escribe esta
 línea:
 
 ```shell
@@ -147,12 +147,30 @@ la interfaz de programación de aplicaciones (API) para averiguarlo.
 
 ## Hello World
 
+Ahora que has instalado Rust, es hora de escribir tu primer programa. Crea un
+archivo llamado `main.rs` (la extensión `.rs` identifica archivos Rust) con el
+siguiente contenido:
 
-Ahora que has instalado Rust, es hora de escribir tu primer programa en Rust.
-Es tradicional cuando se aprende un nuevo lenguaje escribir un pequeño programa
-que imprima el texto `¡Hola, mundo!` en la pantalla.
+```rust
+fn main() {
+    println!("¡Hola, mundo!");
+}
+```
 
+Compílalo y ejecútalo desde la terminal:
 
+```console
+$ rustc main.rs
+$ ./main
+¡Hola, mundo!
+```
+
+`println!` es una **macro** (nota el `!`) que escribe texto en la terminal.
+`fn main()` es el punto de entrada de todo programa Rust: es la primera función
+que se ejecuta.
+
+En el resto del libro usaremos **Cargo** para gestionar proyectos, lo que
+simplifica la compilación y el manejo de dependencias.
 
 ## Instalar Cargo
 
@@ -262,7 +280,7 @@ fn main() {
 ```
 
 ¡Cargo ha generado un programa “Hello, world!”/“¡Hola, mundo!” para ti, 
-¡igual que el que escribimos enl Listado 1-1! Hasta ahora, las diferencias 
+¡igual que el que escribimos en el Listado 1-1! Hasta ahora, las diferencias 
 entre nuestro proyecto y el proyecto generado por Cargo son que Cargo 
 colocó el código en el directorio *src* y tenemos un archivo de 
 configuración *Cargo.toml* en el directorio superior.
@@ -351,7 +369,7 @@ $ cargo check
 ¿Por qué no querrías un ejecutable? A menudo, `cargo check` es mucho más rápido
 que `cargo build` porque omite el paso de producir un ejecutable. Si estás
 verificando continuamente tu trabajo mientras escribes el código, usar
-`cargo check` acelerará el proceso de informarte si tu proyecto todavía aún está
+`cargo check` acelerará el proceso de informarte si tu proyecto todavía está
 compilando. ¡Por lo tanto, muchos Rustaceans ejecutan `cargo check`
 periódicamente mientras escriben su programa para asegurarse de que compila!
 Luego ejecutan `cargo build` cuando están listos para usar el ejecutable.

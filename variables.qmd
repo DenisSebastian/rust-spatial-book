@@ -112,4 +112,36 @@ Aquí tienes una tabla para los tipos compuestos:
 | Tuplas | (T1, T2, T3, ...) | (500, 6.4, 'a') |
 | Arreglos | \[T; N\] (T es tipo, N es tamaño) | \[1, 2, 3, 4, 5\], \[3.14; 3\] (inicializa con 3.14 tres veces) |
 
+## Resumen
+
+Las variables en Rust son inmutables por defecto — declarar `let x = 5` crea un valor que no puede cambiar, a diferencia de R donde toda asignación es mutable. Rust distingue enteros (`i32`, `u64`), flotantes (`f64`), booleanos y caracteres con tipos fijos, lo que previene coerciones silenciosas como las de R. Para análisis espacial, los tipos más frecuentes son `f64` (coordenadas) y `String`/`&str` (nombres de capas o campos). En el siguiente capítulo veremos cómo controlar el flujo de ejecución con `if`, `loop` y `match`.
+
+## Reto Práctico
+
+En R, calculas el área de un círculo dado su radio así:
+
+```r
+radio <- 5.0
+area <- pi * radio^2
+cat("Área:", area, "\n")
+```
+
+Traduce este código a Rust. Declara `radio` como una variable `f64`, usa la constante `PI` de la biblioteca estándar (`std::f64::consts::PI`) y usa `println!` para mostrar el resultado con dos decimales.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+```rust
+use std::f64::consts::PI;
+
+fn main() {
+    let radio: f64 = 5.0;
+    let area = PI * radio.powi(2);
+    println!("Área: {:.2}", area); // Imprime: Área: 78.54
+}
+```
+
+Nota que en Rust usamos `.powi(2)` para elevar al cuadrado un número entero, o `.powf(2.0)` si el exponente es flotante. El especificador de formato `{:.2}` controla la cantidad de decimales al imprimir.
+:::
+
 

@@ -19,17 +19,18 @@ Transformar a analistas de datos y usuarios de R en **ingenieros de software esp
 ### Objetivos Específicos {.unnumbered}
 
 1.  **Pensar en Rust desde R**: Aprenderás a traducir tus flujos de trabajo de R (vectorización, dataframes) a las estructuras de Rust (iteradores, structs), entendiendo el *porqué* de las diferencias.
-2.  **Ingeniería Espacial**: Dominarás las librerías del ecosistema `geo-rust` (`geo`, `gdal`, `geos`) para manipular geometrías con precisión quirúrgica.
+2.  **Ingeniería Espacial**: Dominarás las crates del ecosistema `geo-rust` (`geo`, `gdal`, `geos`) para manipular geometrías con precisión quirúrgica.
 3.  **Integración Efectiva**: Aprenderás a usar `extendr` para empaquetar tu código Rust de alto rendimiento y llamarlo desde R como si fuera una función nativa más.
 4.  **Optimización**: Entenderás cómo el manejo de memoria (Ownership/Borrowing) impacta directamente en la velocidad de tus procesos espaciales.
 
 ## Descripción del Libro
 
-El viaje comienza configurando tu entorno (**Capítulo 3: Instalación**). Luego, construiremos los cimientos fundamentales (**Capítulo 4: Conceptos Básicos** y **Capítulo 5: Ownership**), donde entenderás por qué Rust es tan obsesivo con "quién posee el dato". 
+El viaje comienza configurando tu entorno (capítulo **Instalación**). Luego, construiremos los cimientos fundamentales (capítulos **Variables**, **Funciones** y **Ownership**), donde entenderás por qué Rust es tan obsesivo con "quién posee el dato".
 
-En el **Capítulo 6: Struct**, aprenderás a definir tus propios tipos de datos espaciales. El **Capítulo 7** aborda cómo llevar esto a producción.
+En el capítulo **Structs**, aprenderás a definir tus propios tipos de datos espaciales. Los capítulos de **Optimización** y **Paralelización** muestran cómo llevar esto a producción.
 
 El corazón del libro reside en las secciones nuevas:
+
 *   **Integración R-Rust**: Donde romperemos la barrera entre lenguajes.
 *   **Rust Espacial**: Donde aplicaremos todo lo aprendido a problemas reales como indexación espacial, geohashing y operaciones geométricas masivas.
 
@@ -38,8 +39,9 @@ Finalmente, cerramos con **Programación Funcional** (muy familiar para usuarios
 ## Perfil del Lector
 
 Este libro es para ti si:
+
 *   Usas R (o Python) y te has topado con un muro de rendimiento (tu script tarda días o se queda sin RAM).
-*   Quieres entender qué pasa "bajo el capó" de librerías como `sf` o `terra`.
+*   Quieres entender qué pasa "bajo el capó" de paquetes como `sf` o `terra`.
 *   Estás dispuesto a invertir tiempo en aprender un sistema estricto a cambio de un control y velocidad absolutos.
 
 ## Resumen

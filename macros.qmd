@@ -43,7 +43,7 @@ fn main() {
 La macro vec! permite crear un vector con varios elementos sin tener que declarar su tipo explícitamente.
 
 
-**Defincición de Macros**
+**Definición de Macros**
 
 Las macros se definen usando el macro sistema macro_rules!. A continuación, un ejemplo básico de cómo definir una macro que acepta dos expresiones y las imprime:
 
@@ -117,5 +117,35 @@ Las macros son útiles cuando:
 * Quieres realizar optimizaciones en tiempo de compilación.
 
 Sin embargo, las macros deben usarse con cuidado, ya que pueden hacer que el código sea más difícil de leer y depurar debido a su naturaleza de metaprogramación. Se recomienda usarlas solo cuando las funciones no sean suficientes para el caso en cuestión.
+
+## Resumen
+
+Las macros en Rust operan en tiempo de compilación y terminan en `!`: `println!`, `vec!`, `assert!`. A diferencia de las funciones, pueden aceptar un número variable de argumentos y tipos heterogéneos. `macro_rules!` permite crear macros de patrones propias — útil para eliminar código repetitivo al construir structs geoespaciales. En análisis espacial las verás principalmente como `assert_eq!` en tests y `vec!` para crear colecciones iniciales. En el siguiente capítulo veremos los **iteradores**, la herramienta más poderosa de Rust para procesar colecciones de datos espaciales.
+
+## Reto Práctico
+
+En R, usas `cat()` con `paste()` para construir mensajes formatados:
+
+```r
+coords <- c(-70.6693, -33.4489)
+cat(paste0("Punto: (", coords[1], ", ", coords[2], ")\n"))
+```
+
+Usa la macro `println!` de Rust para imprimir el mismo mensaje con las coordenadas de Santiago almacenadas en dos variables `f64`. Usa el especificador `{:.4}` para mostrar 4 decimales.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+```rust
+fn main() {
+    let lon: f64 = -70.6693;
+    let lat: f64 = -33.4489;
+    println!("Punto: ({:.4}, {:.4})", lon, lat);
+    // Punto: (-70.6693, -33.4489)
+}
+```
+
+`println!` acepta un número variable de argumentos — por eso es una macro y no una función. El especificador `{:.4}` controla la precisión decimal directamente en la cadena de formato, sin necesidad de `round()` como en R.
+:::
 
 

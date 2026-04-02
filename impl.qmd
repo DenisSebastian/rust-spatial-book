@@ -62,7 +62,7 @@ impl Drone {
     // MÉTODO (Lee el estado)
     // Usa &self (lectura inmutable)
     fn describir(&self) {
-        let estado = if self.en_vuelo { "Voplando" } else { "En tierra" };
+        let estado = if self.en_vuelo { "Volando" } else { "En tierra" };
         println!("Drone '{}': Batería {}% - Estado: {}", self.nombre, self.bateria, estado);
     }
 
@@ -123,3 +123,47 @@ Rust agrupa todas las funciones que pertenecen al `Drone` dentro del bloque `imp
 *   **Encapsulamiento**: Queda claro qué lógica pertenece exclusivamente a este tipo de dato.
 
 El bloque `impl` actúa como el "hogar" de la lógica de tus datos.
+
+## Resumen
+
+El bloque `impl` da comportamiento a los structs: métodos que toman `&self` o `&mut self`, y funciones asociadas (constructores) que no toman `self`. Mientras en R la lógica y los datos están separados (funciones sueltas que reciben listas), en Rust todo lo que un tipo puede hacer vive en su `impl`. Para análisis espacial esto significa structs como `Poligono` con métodos `.area()`, `.perimetro()` y `.contiene(&punto)` — código autodocumentado y descubrible con autocompletado. En el siguiente capítulo veremos el **ownership**, el sistema que hace que toda esta gestión de memoria sea segura sin Garbage Collector.
+
+## Reto Práctico
+
+Crea un struct `Rectangulo` con campos `ancho: f64` y `alto: f64`. En su bloque `impl`, define:
+1. `Rectangulo::nuevo(ancho, alto) -> Rectangulo` (constructor)
+2. `area(&self) -> f64`
+3. `perimetro(&self) -> f64`
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+```rust
+struct Rectangulo {
+    ancho: f64,
+    alto: f64,
+}
+
+impl Rectangulo {
+    fn nuevo(ancho: f64, alto: f64) -> Rectangulo {
+        Rectangulo { ancho, alto }
+    }
+
+    fn area(&self) -> f64 {
+        self.ancho * self.alto
+    }
+
+    fn perimetro(&self) -> f64 {
+        2.0 * (self.ancho + self.alto)
+    }
+}
+
+fn main() {
+    let r = Rectangulo::nuevo(5.0, 3.0);
+    println!("Área: {}", r.area());        // Área: 15
+    println!("Perímetro: {}", r.perimetro()); // Perímetro: 16
+}
+```
+
+`Rectangulo::nuevo(...)` se llama sin instancia (función asociada). `r.area()` se llama sobre una instancia (método). Esta distinción es equivalente a `ClassName$new()` en R6 de R.
+:::

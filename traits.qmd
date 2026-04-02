@@ -33,7 +33,7 @@ Si vienes del mundo de R, los Traits son conceptualmente muy similares a los **s
 
 En R, tienes funciones como `print()`, `plot()` o `summary()`. Estas funciones se comportan de manera diferente según el objeto que les pases.
 
-- Si haces `plot(mis_datos_geoespaciales)`, R busca internamente `plot.sf` (si usas la librería `sf`).
+- Si haces `plot(mis_datos_geoespaciales)`, R busca internamente `plot.sf` (si usas el paquete `sf`).
 - Si haces `plot(mi_modelo_lineal)`, R busca `plot.lm`.
 
 Esto es **Polimorfismo**.
@@ -151,3 +151,40 @@ struct Casa {
 - `PartialEq`: Permite comparar si `casa1 == casa2`.
 
 La instrucción `#[derive(...)]` le dice al compilador: "Por favor, escribe la implementación por defecto de estos traits por mí, no quiero escribirla manualmente". Es un ahorro de tiempo enorme para comportamientos estándar.
+
+## Resumen
+
+Los traits definen comportamiento que distintos tipos pueden compartir — equivalente a interfaces o métodos genéricos S3/S4 de R, pero verificados en tiempo de compilación. Un tipo implementa un trait con `impl MiTrait for MiStruct`. `#[derive(Debug, Clone, PartialEq)]` es la forma más común de obtener comportamiento estándar sin escribirlo a mano. En GeoRust, los traits como `Centroid`, `Area` y `Contains` permiten que el mismo código funcione con `Point`, `Polygon` o cualquier geometría. En el siguiente capítulo veremos los bloques **`impl`**, donde se escribe el comportamiento concreto.
+
+## Reto Práctico
+
+Define un trait `Descripcion` con un método `describir(&self) -> String`. Impleméntalo para un struct `Coordenada { lat: f64, lon: f64 }` de forma que retorne `"lat: X, lon: Y"`.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+```rust
+trait Descripcion {
+    fn describir(&self) -> String;
+}
+
+struct Coordenada {
+    lat: f64,
+    lon: f64,
+}
+
+impl Descripcion for Coordenada {
+    fn describir(&self) -> String {
+        format!("lat: {:.4}, lon: {:.4}", self.lat, self.lon)
+    }
+}
+
+fn main() {
+    let santiago = Coordenada { lat: -33.4489, lon: -70.6693 };
+    println!("{}", santiago.describir());
+    // lat: -33.4489, lon: -70.6693
+}
+```
+
+El trait solo declara la firma; el `impl` proporciona el cuerpo concreto. Si tienes múltiples tipos (Ciudad, Aeropuerto, Puerto) todos pueden implementar `Descripcion` y pasarse a la misma función que acepte `&impl Descripcion`.
+:::

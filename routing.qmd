@@ -9,7 +9,7 @@ Está diseñada para trabajar con varios tipos de "geografos" (redes): marítima
 `routrs` utiliza la fórmula de **Haversine** para distancias esféricas y el algoritmo de **Dijkstra** para encontrar el camino más corto en la red.
 
 > [!IMPORTANT]
-> **Aproximación vs Navegación**: Esta librería está pensada para **estimaciones** y visualización. No está diseñada para navegación precisa paso a paso (turn-by-turn) en tiempo real, ya que utiliza una red simplificada.
+> **Aproximación vs Navegación**: Esta crate está pensada para **estimaciones** y visualización. No está diseñada para navegación precisa paso a paso (turn-by-turn) en tiempo real, ya que utiliza una red simplificada.
 
 ## Instalación
 
@@ -26,7 +26,7 @@ Features disponibles:
 
 ## Uso Básico
 
-El flujo es simple: defines origen y destino, y la librería encuentra los puntos más cercanos en el grafo para calcular la ruta.
+El flujo es simple: defines origen y destino, y la crate encuentra los puntos más cercanos en el grafo para calcular la ruta.
 
 ### Ruteo en Carreteras (Highways)
 
@@ -35,8 +35,8 @@ use routrs::prelude::*;
 use routrs::highways::GEOGRAPH as highways;
 
 fn main() {
-    let from: Geoloc = (31.33068357, 120.902694); // Origen
-    let to: Geoloc = (31.05287995, 121.2232226);  // Destino
+    let from: Geoloc = (-33.4489, -70.6693); // Santiago centro
+    let to: Geoloc = (-33.3942, -70.7950);  // Aeropuerto de Santiago
 
     // Calcula: distancia total, vector de puntos, y tipo de ruta
     let (distance, path, path_type) = highways::shortest_path(&from, &to);
@@ -77,8 +77,8 @@ use routrs::highways::GEOGRAPH as highways;
 use routrs::prelude::*;
 
 let legs: Vec<Leg<Geoloc>> = vec![
-    Leg((31.3, 120.9), (31.0, 121.2)),
-    Leg((40.7, -74.0), (34.0, -118.2)),
+    Leg((-33.4489, -70.6693), (-33.3942, -70.7950)), // Santiago → Aeropuerto
+    Leg((-33.4270, -70.6100), (-33.5094, -70.7647)), // Providencia → Maipú
     // ... miles más ...
 ];
 
@@ -115,3 +115,7 @@ let grafo: Geograph = grafo_json.into();
 // Ahora úsalo igual que los built-ins
 let (dist, _, _) = grafo.shortest_path(&(179.5, 51.3), &(177.2, 52.1));
 ```
+
+## Resumen
+
+La crate `routrs` implementa Dijkstra sobre grafos marítimos, viales y ferroviarios preconstruidos desde OSM, devolviendo distancia de red (no línea recta) en milisegundos. Es ideal para estimaciones batch: calcular las distancias de 10.000 puntos a la red hospitalaria más cercana es una operación de segundos en Rust. Para navegación giro-a-giro en tiempo real se necesitaría una solución más especializada (OSRM, Valhalla). En el siguiente capítulo veremos **geohash**: indexación espacial por prefijos de cadena.

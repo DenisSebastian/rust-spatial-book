@@ -1,9 +1,9 @@
 ---
 title: "Operaciones Espaciales"
-subtitle: "Utilizando la librería GEOS"
+subtitle: "Utilizando la biblioteca GEOS"
 ---
 
-La crate [`geos`](https://github.com/georust/geos) es la herramienta definitiva en Rust para realizar operaciones geométricas complejas. Provee bindings a la librería C++ **GEOS** (Geometry Engine - Open Source), el mismo motor que potencia a PostGIS y QGIS.
+La crate [`geos`](https://github.com/georust/geos) es la herramienta definitiva en Rust para realizar operaciones geométricas complejas. Provee bindings a la biblioteca C++ **GEOS** (Geometry Engine - Open Source), el mismo motor que potencia a PostGIS y QGIS.
 
 A continuación, presentamos una guía de las operaciones más utilizadas, agrupadas por categoría.
 
@@ -11,14 +11,26 @@ A continuación, presentamos una guía de las operaciones más utilizadas, agrup
 
 Estas operaciones toman una o más geometrías y crean una *nueva* geometría modificada.
 
+::: {.callout-warning}
+## Las unidades dependen del CRS — esto es crítico
+
+GEOS opera con las coordenadas **tal como están**. Si tus geometrías están en coordenadas geográficas (latitud/longitud en grados, CRS EPSG:4326), las unidades del buffer y la distancia son **grados**, no metros.
+
+Un `buffer(10.0)` en coordenadas geográficas equivale a **~1.100 km** (no 10 metros).
+
+Para operaciones métricas correctas en Chile, reproyecta a **UTM zona 19S (EPSG:32719)** o **PSAD56 / UTM zone 19S (EPSG:24879)** antes de aplicar buffer o medir distancias. Usar coordenadas geográficas para estas operaciones produce resultados silenciosamente incorrectos.
+:::
+
 ### Buffer (Zona de Influencia)
 Expande (o contrae) una geometría por una distancia fija.
 
 ```rust
 use geos::Geom; // Trait necesario para usar los métodos
 
+// IMPORTANTE: 'polygon' debe estar en CRS proyectado (ej. EPSG:32719)
+// para que la distancia sea en metros.
 let geom = polygon.buffer(10.0, 8).expect("Error en buffer");
-// 10.0 = distancia
+// 10.0 = distancia en las unidades del CRS (metros si está proyectado)
 // 8 = 'quadsegs' (segmentos por cuadrante para suavizar curvas)
 ```
 
@@ -115,6 +127,7 @@ let area = geom.area().unwrap();
 let largo = geom.length().unwrap();
 
 // Distancia mínima Euclidiana entre dos geometrías
+// IMPORTANTE: resultado en unidades del CRS — reproyectar a UTM para obtener metros
 let dist = a.distance(&b).unwrap();
 ```
 
@@ -134,6 +147,79 @@ if !geom.is_valid() {
     }
 }
 ```
+
+## Spatial Join: Puntos en Polígonos
+
+La operación más frecuente en análisis vectorial es el **spatial join**: dado un conjunto de puntos, ¿en qué polígono cae cada uno? En R se hace con `sf::st_join(puntos, poligonos)`. En Rust, combinamos los predicados de GEOS con una iteración explícita.
+
+```rust
+use geos::Geometry;
+
+fn main() -> geos::GResult<()> {
+    // --- Comunas de Santiago (simplificadas como polígonos WKT) ---
+    let comunas: Vec<(&str, Geometry)> = vec![
+        ("Santiago Centro", Geometry::new_from_wkt(
+            "POLYGON ((-70.68 -33.43, -70.63 -33.43, -70.63 -33.46, -70.68 -33.46, -70.68 -33.43))"
+        )?),
+        ("Providencia", Geometry::new_from_wkt(
+            "POLYGON ((-70.63 -33.42, -70.59 -33.42, -70.59 -33.45, -70.63 -33.45, -70.63 -33.42))"
+        )?),
+        ("Ñuñoa", Geometry::new_from_wkt(
+            "POLYGON ((-70.63 -33.45, -70.59 -33.45, -70.59 -33.48, -70.63 -33.48, -70.63 -33.45))"
+        )?),
+    ];
+
+    // --- Puntos de interés ---
+    let puntos: Vec<(&str, Geometry)> = vec![
+        ("Palacio La Moneda",    Geometry::new_from_wkt("POINT (-70.654 -33.443)")?),
+        ("Plaza Italia",         Geometry::new_from_wkt("POINT (-70.638 -33.438)")?),
+        ("Estadio Nacional",     Geometry::new_from_wkt("POINT (-70.609 -33.466)")?),
+        ("Aeropuerto (fuera)",   Geometry::new_from_wkt("POINT (-70.795 -33.393)")?),
+    ];
+
+    // --- Spatial join: O(n·m), suficiente para datasets pequeños ---
+    println!("{:<25} | {}", "Punto", "Comuna");
+    println!("{}", "-".repeat(45));
+
+    for (nombre_punto, punto) in &puntos {
+        let comuna = comunas
+            .iter()
+            .find(|(_, poligono)| poligono.contains(punto).unwrap_or(false));
+
+        match comuna {
+            Some((nombre_comuna, _)) => println!("{:<25} | {}", nombre_punto, nombre_comuna),
+            None                     => println!("{:<25} | (sin cobertura)", nombre_punto),
+        }
+    }
+
+    Ok(())
+}
+```
+
+Salida esperada:
+
+```
+Punto                     | Comuna
+---------------------------------------------
+Palacio La Moneda         | Santiago Centro
+Plaza Italia              | Providencia
+Estadio Nacional          | Ñuñoa
+Aeropuerto (fuera)        | (sin cobertura)
+```
+
+::: {.callout-tip}
+## Equivalencia con R
+
+```r
+library(sf)
+# sf::st_join une por el predicado "intersects" por defecto
+resultado <- st_join(puntos_sf, comunas_sf)
+```
+
+La lógica es idéntica: para cada punto se busca el polígono que lo contiene. La diferencia es que en Rust el loop es explícito — puedes controlar exactamente qué predicado usar (`contains`, `intersects`, `within`) y cómo manejar puntos sin cobertura.
+
+Para conjuntos grandes (miles de polígonos), usa `PreparedGeometry` en el polígono o un R-tree (`rstar`) para acelerar la búsqueda — evita revisar todos los polígonos por cada punto.
+:::
 
 ## Referencias
 

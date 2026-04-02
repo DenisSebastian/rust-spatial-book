@@ -2,11 +2,11 @@
 
 En Rust, la interacción con formatos de archivos geoespaciales se realiza principalmente a través de **GDAL** (Geospatial Data Abstraction Library). Esta es la misma "navaja suiza" que impulsa a QGIS, GeoServer, y paquetes como `sf` o `rgdal` en R.
 
-La crate [`gdal`](https://github.com/georust/gdal) provee bindings de alto nivel en Rust para acceder a esta poderosa librería C++.
+La crate [`gdal`](https://github.com/georust/gdal) provee bindings de alto nivel en Rust para acceder a esta poderosa biblioteca C++.
 
 ## Capacidades de GDAL
 
-GDAL es una librería increíblemente poderosa. Sus capacidades principales incluyen:
+GDAL es una biblioteca increíblemente poderosa. Sus capacidades principales incluyen:
 
 *   **Apertura de formatos**: Lectura y escritura de cientos de formatos raster (GeoTIFF, COG, ECW) y vectoriales (Shapefile, GeoPackage, KML).
 *   **Traducción de formatos**: Conversión eficiente entre diferentes tipos de archivos (funcionalidad equivalente a `ogr2ogr`).
@@ -87,16 +87,148 @@ use gdal::DriverManager;
 fn guardar_shapefile() -> gdal::errors::Result<()> {
     // Obtener el driver "ESRI Shapefile"
     let driver = DriverManager::get_driver_by_name("ESRI Shapefile")?;
-    
+
     // Crear el dataset
     let mut dataset = driver.create_vector_only("salida.shp")?;
-    
+
     // Crear la capa
     let mut layer = dataset.create_layer(Default::default())?;
-    
-    // Crear una feature y añadirla...
-    // (Omitido por brevedad, requiere definir campos y geometría)
-    
+
+    // Definir un campo de texto "nombre"
+    let field_defn = gdal::vector::FieldDefn::new("nombre", gdal::vector::OGRFieldType::OFTString)?;
+    field_defn.set_width(50);
+    layer.create_defn_fields(&[field_defn])?;
+
+    // Crear una feature con geometría de punto
+    let mut feature = gdal::vector::Feature::new(layer.defn())?;
+
+    // Punto: Santiago de Chile (WGS84)
+    let punto = gdal::vector::Geometry::from_wkt("POINT (-70.6693 -33.4489)")?;
+    feature.set_geometry(punto)?;
+    feature.set_field_string("nombre", "Santiago")?;
+
+    // Escribir la feature a la capa
+    feature.create(&layer)?;
+
     Ok(())
 }
 ```
+
+## Reproyección de CRS
+
+Antes de calcular áreas, distancias o aplicar buffers, **el sistema de coordenadas importa**. Operar en grados (WGS84, EPSG:4326) y esperar resultados en metros es un error silencioso muy común.
+
+La crate [`proj`](https://crates.io/crates/proj) provee bindings a la biblioteca PROJ para transformar coordenadas entre sistemas de referencia.
+
+```toml
+[dependencies]
+proj = "0.27"
+```
+
+### Ejemplo: WGS84 → UTM Zona 19S (Chile)
+
+Para análisis en Chile, la proyección estándar es **UTM Zona 19S (EPSG:32719)**. Las unidades resultantes son metros.
+
+```rust
+use proj::Proj;
+
+fn main() -> Result<(), proj::ProjError> {
+    // Crear conversor WGS84 → UTM 19S
+    let conversor = Proj::new_known_crs("EPSG:4326", "EPSG:32719", None)?;
+
+    // Santiago de Chile: (latitud, longitud) en WGS84
+    // Nota: proj espera (longitud, latitud) — orden (x, y)
+    let santiago_wgs84 = (-70.6693_f64, -33.4489_f64);
+
+    let santiago_utm = conversor.convert(santiago_wgs84)?;
+
+    println!("WGS84:   lon={:.4}, lat={:.4}", santiago_wgs84.0, santiago_wgs84.1);
+    println!("UTM19S:  E={:.1} m, N={:.1} m", santiago_utm.0, santiago_utm.1);
+    // UTM19S:  E=344871.2 m, N=6299148.3 m
+
+    Ok(())
+}
+```
+
+::: {.callout-warning}
+## El orden de coordenadas importa
+
+PROJ usa el orden **longitud, latitud** (x, y), no latitud, longitud como la mayoría de las APIs de mapas. Para Santiago: `(-70.6693, -33.4489)` — longitud primero.
+:::
+
+### ¿Cuándo reprojectar?
+
+| Operación | CRS recomendado |
+|---|---|
+| Almacenar / intercambiar datos | WGS84 (EPSG:4326) |
+| Calcular distancias métricas | UTM 19S (EPSG:32719) para Chile |
+| Calcular áreas en m² o km² | UTM 19S (EPSG:32719) para Chile |
+| Aplicar buffer en metros | UTM 19S (EPSG:32719) para Chile |
+| Visualización web (Leaflet, etc.) | WGS84 (EPSG:4326) |
+
+## Lectura de Datos Raster
+
+Además de vectores, GDAL soporta cientos de formatos raster: GeoTIFF, COG (Cloud-Optimized GeoTIFF), NetCDF, HDF5, ECW, entre otros. En R, `terra::rast()` o `raster::raster()` abren estos archivos — en Rust, la crate `gdal` hace lo mismo.
+
+```rust
+use gdal::Dataset;
+
+fn leer_raster(ruta: &str) -> gdal::errors::Result<()> {
+    let dataset = Dataset::open(ruta)?;
+
+    // --- Metadatos del raster ---
+    let (ancho, alto) = dataset.raster_size();
+    let num_bandas = dataset.raster_count();
+
+    println!("Dimensiones: {} x {} píxeles", ancho, alto);
+    println!("Bandas: {}", num_bandas);
+
+    // CRS en formato WKT
+    let crs = dataset.spatial_ref()?;
+    println!("EPSG: {:?}", crs.auth_code().ok());
+
+    // Transformación geoespacial: [origen_x, res_x, rot_x, origen_y, rot_y, res_y]
+    let gt = dataset.geo_transform()?;
+    println!("Resolución: {:.4} x {:.4} grados", gt[1], gt[5].abs());
+    println!("Esquina NW: ({:.4}, {:.4})", gt[0], gt[3]);
+
+    // --- Leer valores de la banda 1 ---
+    let banda = dataset.rasterband(1)?;
+    println!("Tipo de dato: {:?}", banda.band_type());
+
+    // Leer un bloque de 5x5 píxeles desde el origen
+    let buffer = banda.read_as::<f32>((0, 0), (5, 5), (5, 5), None)?;
+    println!("Primeros valores: {:?}", &buffer.data[..5]);
+
+    // Estadísticas (si están precalculadas en el archivo)
+    if let Ok((min, max, media, std)) = banda.compute_raster_statistics(false, None) {
+        println!("Min={:.2}, Max={:.2}, Media={:.2}, Std={:.2}", min, max, media, std);
+    }
+
+    Ok(())
+}
+
+fn main() {
+    // Ejemplo con un DEM de Chile (cualquier GeoTIFF funciona)
+    leer_raster("dem_chile.tif").expect("No se pudo abrir el raster");
+}
+```
+
+::: {.callout-note}
+## Equivalencia con R
+
+```r
+library(terra)
+r <- rast("dem_chile.tif")
+dim(r)          # filas, columnas, bandas
+crs(r)          # sistema de coordenadas
+res(r)          # resolución
+values(r)[1:5]  # primeros valores
+```
+
+El flujo es el mismo: abrir → inspeccionar metadatos → extraer valores. La diferencia es que Rust lee directamente en memoria con tipo fijo (`f32`, `i16`, etc.), sin conversión implícita.
+:::
+
+## Resumen
+
+La crate `gdal` expone el poder de la biblioteca GDAL para leer y escribir cientos de formatos espaciales (Shapefile, GeoPackage, GeoTIFF, PBF) con el mismo patrón: `Dataset::open()` → iterar features → procesar. La crate `proj` completa el flujo con reproyección entre sistemas de referencia — fundamental antes de calcular distancias o aplicar buffers en Chile (WGS84 → UTM19S, EPSG:32719). En el siguiente capítulo veremos las **operaciones espaciales** con GEOS: buffer, intersección y predicados topológicos.

@@ -4,9 +4,9 @@ title: "Control de  Flujo"
 
 
 
-En Rust, el control de flujos permite dirigir la ejecución del programa basándose en condiciones y repeticiones. Rust ofrece varias estructuras para controlar el flujo de la ejecución del código, como if para condiciones y bucles para repetir bloques de código.
+En Rust, el control de flujo permite dirigir la ejecución del programa basándose en condiciones y repeticiones. Rust ofrece varias estructuras para controlar el flujo de la ejecución del código, como if para condiciones y bucles para repetir bloques de código.
 
-Aquí tienes una tabla con las operaciones lógicas y su sintaxis en Rust, qué se utilizan en control de flujos:
+Aquí tienes una tabla con las operaciones lógicas y su sintaxis en Rust, que se utilizan en control de flujo:
 
 | **Operación** | **Símbolo** | **Descripción** | **Ejemplo** |
 |---------------|---------------|----------------------------|---------------|
@@ -115,3 +115,48 @@ fn main() {
     }
 }
 ```
+## Reto Práctico
+
+En R, clasificas un conjunto de temperaturas y cuentas cuántas superan los 30°C así:
+
+```r
+temperaturas <- c(22.5, 35.1, 18.0, 31.4, 27.9, 40.2)
+calientes <- 0
+
+for (t in temperaturas) {
+  if (t > 30) {
+    calientes <- calientes + 1
+    cat("Temperatura caliente:", t, "\n")
+  }
+}
+
+cat("Total de temperaturas calientes:", calientes, "\n")
+```
+
+Traduce este código a Rust usando un array de `f64`, un bucle `for` y una expresión `if`. Acumula el conteo en una variable mutable.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+```rust
+fn main() {
+    let temperaturas: [f64; 6] = [22.5, 35.1, 18.0, 31.4, 27.9, 40.2];
+    let mut calientes = 0;
+
+    for t in temperaturas {
+        if t > 30.0 {
+            calientes += 1;
+            println!("Temperatura caliente: {}", t);
+        }
+    }
+
+    println!("Total de temperaturas calientes: {}", calientes);
+}
+```
+
+En Rust, el bucle `for` sobre un array toma posesión de los valores (o los copia, en el caso de `f64` que implementa `Copy`). Observa también que la comparación es `30.0` y no `30`, ya que Rust no convierte tipos automáticamente entre `i32` y `f64`.
+:::
+
+## Resumen
+
+Rust ofrece `if`/`else` sin paréntesis, tres tipos de bucles (`loop`, `while`, `for`) y `match` como estructura de control principal. El `match` es exhaustivo: el compilador garantiza que cubres todos los casos posibles, algo imposible en R. Para análisis espacial, `match` es fundamental para clasificar tipos de geometría (`Point`, `Polygon`, `LineString`) o manejar resultados de operaciones que pueden fallar. En el siguiente capítulo veremos las **colecciones esenciales** (`String`, `Vec`, `HashMap`) que contienen los datos que recorrerás con estos bucles.

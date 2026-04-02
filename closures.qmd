@@ -11,6 +11,32 @@ Los closures se definen usando la siguiente sintaxis:
 
 Son comunes en Rust para trabajar con iteradores y otras operaciones funcionales, como map y filter.
 
+::: {.callout-note}
+## Para usuarios de R: ya conoces los closures
+
+Los closures de Rust son exactamente las funciones anónimas de R — misma idea, sintaxis diferente:
+
+| R | Rust |
+|---|---|
+| `function(x) x * 2` | `\|x\| x * 2` |
+| `\(x) x * 2` (R ≥ 4.1) | `\|x\| x * 2` |
+| `\(x, y) x + y` | `\|x, y\| x + y` |
+
+```r
+# R: función anónima en map
+map_dbl(c(1, 2, 3), \(x) x * 2)   # [1] 2 4 6
+```
+
+```rust
+// Rust: closure en map
+let v = vec![1, 2, 3];
+let dobles: Vec<i32> = v.iter().map(|x| x * 2).collect();
+// [2, 4, 6]
+```
+
+La diferencia clave: los closures de Rust pueden **capturar variables del entorno** de forma explícita y tipada. En R, la captura es implícita y dinámica (lexical scoping). En Rust, el compilador verifica que la captura sea segura en tiempo de compilación.
+:::
+
 **Definición Básica**
 
 Aquí tienes un ejemplo básico de un closure que suma dos números:
@@ -161,4 +187,44 @@ fn main() {
     println!("{:?}", cuadrados);  // Imprime [1, 4, 9, 16]
 }
 ```
+
+## Resumen
+
+Los closures son funciones anónimas que capturan variables del entorno usando `|args| cuerpo`. Son los argumentos naturales de `.map()`, `.filter()` y `.sort_by()`. El compilador infiere cuándo un closure es `Fn` (solo lee), `FnMut` (modifica) o `FnOnce` (consume). Para análisis espacial, los usarás constantemente para transformar vectores de coordenadas, filtrar geometrías por atributo o comparar distancias. En el siguiente capítulo veremos el **manejo de errores** con `Result` y `Option`.
+
+## Reto Práctico
+
+En R, usas una función anónima con `lapply` para calcular la norma de un par de coordenadas:
+
+```r
+puntos <- list(c(-70.66, -33.44), c(-71.0, -34.0), c(-70.0, -33.0))
+normas <- sapply(puntos, function(p) sqrt(p[1]^2 + p[2]^2))
+print(normas)
+```
+
+Traduce esto a Rust. Crea un `Vec` de tuplas `(f64, f64)` y usa `.iter().map()` con un closure para calcular `(x² + y²).sqrt()` de cada par.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+```rust
+fn main() {
+    let puntos: Vec<(f64, f64)> = vec![
+        (-70.66, -33.44),
+        (-71.0,  -34.0),
+        (-70.0,  -33.0),
+    ];
+
+    let normas: Vec<f64> = puntos
+        .iter()
+        .map(|(x, y)| (x * x + y * y).sqrt())
+        .collect();
+
+    println!("{:.2?}", normas);
+    // [78.06, 78.31, 76.91]
+}
+```
+
+El closure `|(x, y)| ...` desestructura la tupla directamente en el argumento. Rust infiere que es `Fn` porque solo lee los valores sin capturar ni modificar el entorno.
+:::
 

@@ -1,68 +1,290 @@
-# Manejo de errores
+---
+title: "Manejo de Errores"
+---
 
-En Rust, el manejo de errores se divide en dos categorías principales: errores recuperables (gestionados con Result) y errores irrecuperables (gestionados con panic!).
+En R, los errores son eventos relativamente raros que se capturan con `tryCatch()` o se ignoran hasta que rompen el script. En Rust, el manejo de errores es parte central del diseño del lenguaje: el compilador te obliga a decidir qué hacer cuando algo puede fallar. Esto puede parecer verboso al principio, pero elimina toda una clase de bugs en tiempo de compilación.
 
-Result: Errores Recuperables
+## R vs Rust: la filosofía del error
 
-El tipo Result es usado cuando una operación puede tener éxito o fallar. Tiene dos variantes:
+| Concepto en R | Equivalente en Rust | Descripción |
+|---|---|---|
+| `tryCatch(expr, error = f)` | `match result { Ok(v) => ..., Err(e) => ... }` | Manejo explícito de éxito o falla |
+| `NULL` | `Option<T>` | Valor que puede estar presente o ausente |
+| `stop("mensaje")` | `panic!("mensaje")` | Error irrecuperable, termina el programa |
+| `warning("aviso")` | `eprintln!("aviso")` | Mensaje de advertencia (no hay tipo dedicado) |
+| La función devuelve `NULL` silenciosamente | `Result<T, E>` | Error explícito, el compilador te obliga a manejarlo |
 
-- Ok(T): Representa un éxito y contiene un valor.
-- Err(E): Representa un error y contiene información del mismo.
+La diferencia clave: en R puedes ignorar un error hasta que explota en producción. En Rust, si una función puede fallar, su tipo de retorno lo dice explícitamente, y el compilador no te deja ignorarlo.
 
-Ejemplo básico:
+---
+
+## `Result<T, E>`: Errores Recuperables
+
+`Result` es el tipo central del manejo de errores en Rust. Representa una operación que puede tener éxito (`Ok`) o fallar (`Err`):
+
+```rust
+// Result tiene dos variantes:
+// Ok(T)  -> la operación tuvo éxito y contiene un valor de tipo T
+// Err(E) -> la operación falló y contiene un error de tipo E
+```
+
+El ejemplo más clásico es abrir un archivo: puede que no exista, que no tengas permisos, o que el disco esté lleno.
 
 ```rust
 use std::fs::File;
 
 fn main() {
-    let archivo = File::open("archivo.txt");
+    let resultado = File::open("datos.csv");
 
-    match archivo {
-        Ok(_) => println!("Archivo abierto."),
-        Err(e) => println!("Error: {}", e),
+    match resultado {
+        Ok(archivo) => println!("Archivo abierto correctamente: {:?}", archivo),
+        Err(error) => println!("No se pudo abrir el archivo: {}", error),
     }
 }
 ```
 
-También puedes usar el operador ? para simplificar el manejo de errores, propagando el error si ocurre:
+Esto es equivalente a:
+
+```r
+# R
+resultado <- tryCatch(
+  readLines("datos.csv"),
+  error = function(e) paste("Error:", e$message)
+)
+```
+
+La ventaja del enfoque Rust: si te olvidas del `match`, el compilador emite una advertencia. En R, puedes olvidarte del `tryCatch` y el error solo aparece en ejecución.
+
+---
+
+## El Operador `?`: Propagación de Errores
+
+Escribir un `match` completo para cada operación que puede fallar se vuelve repetitivo. El operador `?` es un atajo idiomático: si el `Result` es `Ok`, extrae el valor; si es `Err`, retorna el error inmediatamente hacia quien llamó la función.
 
 ```rust
-fn leer_archivo() -> Result<String, std::io::Error> {
-    let mut archivo = File::open("archivo.txt")?;
+use std::fs::File;
+use std::io::Read; // necesario para el método read_to_string
+
+fn leer_archivo(ruta: &str) -> Result<String, std::io::Error> {
+    // Si File::open falla, el error se retorna de inmediato
+    let mut archivo = File::open(ruta)?;
+
     let mut contenido = String::new();
+    // Si read_to_string falla, el error se retorna de inmediato
     archivo.read_to_string(&mut contenido)?;
+
+    // Solo llegamos aquí si todo salió bien
     Ok(contenido)
+}
+
+fn main() {
+    match leer_archivo("datos.csv") {
+        Ok(texto) => println!("Contenido:\n{}", texto),
+        Err(e) => println!("Error al leer: {}", e),
+    }
 }
 ```
 
-**Option: Valores Opcionales**
+::: {.callout-note}
+**Que hace exactamente `?`**
 
-Option es usado para manejar valores que pueden estar presentes o no. Tiene dos variantes:
+La expresión `archivo.read_to_string(&mut contenido)?` es equivalente a:
 
-- Some(T): Representa un valor.
-- None: Representa la ausencia de un valor.
+```rust
+match archivo.read_to_string(&mut contenido) {
+    Ok(bytes) => bytes,   // extrae el valor y continúa
+    Err(e) => return Err(e.into()), // retorna el error al llamador
+}
+```
 
-Ejemplo:
+El `.into()` convierte automáticamente el tipo de error cuando sea necesario. Esto lo hace muy poderoso: puedes encadenar múltiples operaciones que pueden fallar sin anidar matches.
+:::
+
+---
+
+## `Option<T>`: Valores Opcionales
+
+`Option` modela la ausencia de un valor, lo que en R harías con `NULL`. Tiene dos variantes: `Some(valor)` cuando hay algo, y `None` cuando no hay nada.
 
 ```rust
 fn dividir(dividendo: f64, divisor: f64) -> Option<f64> {
     if divisor == 0.0 {
-        None
+        None // No existe un resultado válido
     } else {
         Some(dividendo / divisor)
     }
 }
-```
 
-**panic!: Errores Irrecuperables**
-
-Cuando ocurre un error grave del que el programa no puede recuperarse, se usa panic! para detener la ejecución:
-
-
-```rust
 fn main() {
-    panic!("¡Error grave!");
+    match dividir(10.0, 2.0) {
+        Some(resultado) => println!("Resultado: {}", resultado),
+        None => println!("No se puede dividir por cero"),
+    }
+
+    // También puedes usar if let para el caso que te importa
+    if let Some(r) = dividir(10.0, 0.0) {
+        println!("Resultado: {}", r);
+    } else {
+        println!("División no válida");
+    }
 }
 ```
 
+En R escribirías:
 
+```r
+dividir <- function(dividendo, divisor) {
+  if (divisor == 0) NULL else dividendo / divisor
+}
+
+resultado <- dividir(10, 0)
+if (is.null(resultado)) message("División no válida")
+```
+
+La diferencia: en Rust, el tipo `Option<f64>` aparece en la firma de la función. Quien llama a `dividir` sabe desde la declaración que puede no obtener un número.
+
+---
+
+## Cuándo Usar Qué
+
+Con cuatro mecanismos disponibles (`panic!`, `unwrap`, `expect`, `?`), es fácil confundirse. Esta es la política que el libro seguirá en todos los capítulos:
+
+::: {.callout-tip}
+**Política de manejo de errores**
+
+| Mecanismo | Cuándo usarlo |
+|---|---|
+| `panic!("mensaje")` | Solo cuando el fallo es imposible de recuperar y es un bug del programador (invariante violada). Nunca para errores de entrada del usuario o del sistema de archivos. |
+| `unwrap()` | Solo en prototipos rápidos o en ejemplos muy cortos donde el contexto hace obvio que no puede fallar. Evitar en código de producción. |
+| `expect("contexto")` | En código de aprendizaje y ejemplos del libro: más informativo que `unwrap` porque el mensaje aparece cuando falla. |
+| `?` | En código real: propaga el error hacia arriba para que el llamador decida. Es el patrón idiomático de Rust. |
+
+La regla simple: **en código de producción, usa `?`. En ejemplos pedagógicos, usa `expect`. Usa `panic!` y `unwrap` con mucha consciencia.**
+:::
+
+---
+
+## `Box<dyn Error>` para `main` y Funciones Genéricas
+
+Cuando una función puede producir distintos tipos de error (un `io::Error` aquí, un `ParseIntError` allá), no siempre quieres declarar un tipo de error específico. `Box<dyn Error>` es un tipo que puede contener *cualquier* error, lo que resulta muy cómodo en `main` y en código exploratorio.
+
+```rust
+use std::fs::File;
+use std::io::Read;
+
+// Box<dyn std::error::Error> significa "algún tipo que implementa Error"
+// El signo de interrogación al final indica que es un Result
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let mut archivo = File::open("datos.csv")?;
+
+    let mut contenido = String::new();
+    archivo.read_to_string(&mut contenido)?;
+
+    // parse::<i32>() retorna un tipo de error diferente (ParseIntError)
+    // pero ? lo convierte automáticamente a Box<dyn Error>
+    let numero: i32 = contenido.trim().parse::<i32>()?;
+
+    println!("El número del archivo es: {}", numero);
+
+    Ok(()) // main retorna Ok con el valor vacío ()
+}
+```
+
+::: {.callout-note}
+**Por qué `Box<dyn Error>` es común en los capítulos espaciales**
+
+Los capítulos de `geos`, `h3o`, `osm` y otros usan `Box<dyn std::error::Error>` frecuentemente porque combinan errores de diferentes fuentes: errores de I/O, errores de parseo, errores de la crate geoespacial. Con este tipo puedes usar `?` sin preocuparte por unificar manualmente los tipos de error.
+:::
+
+---
+
+## `map_err`: Transformar Errores
+
+A veces tienes un `Result` con un tipo de error que no encaja en lo que necesitas retornar. `map_err` te permite transformar el error sin tocar el valor `Ok`.
+
+```rust
+use std::num::ParseIntError;
+
+// Error propio para nuestro dominio
+#[derive(Debug)]
+enum ErrorCoordenada {
+    FormatoInvalido(String),
+}
+
+fn parsear_latitud(texto: &str) -> Result<f64, ErrorCoordenada> {
+    // parse::<f64>() retorna Result<f64, ParseFloatError>
+    // map_err convierte ParseFloatError en nuestro ErrorCoordenada
+    texto.trim().parse::<f64>().map_err(|e| {
+        ErrorCoordenada::FormatoInvalido(format!("'{}' no es una latitud válida: {}", texto, e))
+    })
+}
+
+fn main() {
+    match parsear_latitud("40.7128") {
+        Ok(lat) => println!("Latitud: {}", lat),
+        Err(ErrorCoordenada::FormatoInvalido(msg)) => println!("Error: {}", msg),
+    }
+
+    match parsear_latitud("cuarenta grados") {
+        Ok(lat) => println!("Latitud: {}", lat),
+        Err(ErrorCoordenada::FormatoInvalido(msg)) => println!("Error: {}", msg),
+    }
+}
+```
+
+`map_err` es especialmente útil en los capítulos espaciales, donde una crate como `geos` retorna su propio tipo de error y necesitas adaptarlo al tipo que tu función declara.
+
+---
+
+## Reto Práctico
+
+Escribe una función llamada `texto_a_entero` que:
+
+1. Reciba un `&str` como parámetro.
+2. Intente convertirlo a `i32` usando `parse::<i32>()`.
+3. Retorne `Result<i32, _>` (puedes usar `Box<dyn std::error::Error>` como tipo de error).
+4. En `main`, llama a la función con `?` y muestra el resultado.
+
+Prueba tu solución con los valores `"42"`, `"-7"`, y `"hola"`.
+
+::: {.callout-tip collapse="true"}
+**Solución**
+
+```rust
+fn texto_a_entero(texto: &str) -> Result<i32, Box<dyn std::error::Error>> {
+    let numero = texto.trim().parse::<i32>()?;
+    Ok(numero)
+}
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let a = texto_a_entero("42")?;
+    println!("42 como entero: {}", a);
+
+    let b = texto_a_entero("-7")?;
+    println!("-7 como entero: {}", b);
+
+    // Esta línea haría fallar main con un ParseIntError descriptivo:
+    // let c = texto_a_entero("hola")?;
+
+    Ok(())
+}
+```
+
+Para manejar el error de `"hola"` sin detener el programa, usa `match` o `unwrap_or` en lugar de `?`.
+:::
+
+---
+
+## Resumen
+
+| Patrón | Sintaxis | Cuándo usarlo |
+|---|---|---|
+| Match sobre Result | `match op() { Ok(v) => ..., Err(e) => ... }` | Cuando quieres manejar el error en el sitio |
+| Propagación con `?` | `let v = op()?;` | En funciones que retornan `Result`: deja que el llamador maneje el error |
+| `expect` con mensaje | `op().expect("contexto")` | En ejemplos pedagógicos; hace el panic informativo |
+| `unwrap` | `op().unwrap()` | Solo en prototipos; panic silencioso si falla |
+| `Box<dyn Error>` | `Result<T, Box<dyn std::error::Error>>` | Cuando la función puede producir distintos tipos de error |
+| `map_err` | `op().map_err(\|e\| MiError::from(e))` | Para convertir entre tipos de error |
+| `Option` | `match op() { Some(v) => ..., None => ... }` | Cuando la ausencia de valor no es un error, sino un caso válido |
+
+A partir del siguiente capítulo, el código espacial usará `?` y `Box<dyn Error>` con frecuencia. Con este modelo en mente, podrás leer esos ejemplos sin sorpresas.

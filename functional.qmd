@@ -7,16 +7,44 @@ Si eres fanático de `purrr` en R, te tenemos buenas noticias: **Rust es un leng
 
 En R, usas `purrr` para evitar bucles `for` y escribir código más declarativo (decir *qué* quieres hacer, no *cómo*). En Rust, usamos **Iteradores** por las mismas razones, pero con un beneficio extra: **Lazy Evaluation** (evaluación perezosa) y velocidad nativa.
 
-## El Diccionario de Traducción
+## Tabla de Equivalencias `purrr` ↔ Iteradores de Rust
 
-| Concepto | R (`purrr`) | Rust (`Iterator`) |
-|----------|-------------|-------------------|
-| Transformar | `map()` / `map_dbl()` | `.map()` |
-| Filtrar | `keep()` / `discard()` | `.filter()` |
-| Reducir | `reduce()` / `accumulate()` | `.fold()` / `.reduce()` |
-| Efectos | `walk()` | `.for_each()` |
-| Aplanar | `flatten()` | `.flatten()` |
-| Encadenar | `%>%` (pipe) | `.` (método encadenado) |
+| `purrr` / R base | Rust (iterador) | Qué hace |
+|---|---|---|
+| `map(.x, f)` | `.map(\|x\| f(x))` | Transforma cada elemento |
+| `map_dbl(.x, f)` | `.map(\|x\| f(x)).collect::<Vec<f64>>()` | Transforma → `f64` |
+| `map_chr(.x, f)` | `.map(\|x\| f(x)).collect::<Vec<String>>()` | Transforma → `String` |
+| `map_lgl(.x, f)` | `.map(\|x\| f(x)).collect::<Vec<bool>>()` | Transforma → `bool` |
+| `keep(.x, f)` | `.filter(\|x\| f(x))` | Filtra — conserva los que cumplen |
+| `discard(.x, f)` | `.filter(\|x\| !f(x))` | Filtra — descarta los que cumplen |
+| `reduce(.x, f)` | `.reduce(\|acc, x\| f(acc, x))` | Reduce sin valor inicial |
+| `reduce(.x, f, .init = v)` | `.fold(v, \|acc, x\| f(acc, x))` | Reduce con valor inicial |
+| `walk(.x, f)` | `.for_each(\|x\| f(x))` | Efecto secundario, sin retorno |
+| `some(.x, f)` | `.any(\|x\| f(x))` | ¿Algún elemento cumple? |
+| `every(.x, f)` | `.all(\|x\| f(x))` | ¿Todos los elementos cumplen? |
+| `none(.x, f)` | `!.any(\|x\| f(x))` | ¿Ningún elemento cumple? |
+| `detect(.x, f)` | `.find(\|x\| f(x))` | Primer elemento que cumple |
+| `detect_index(.x, f)` | `.position(\|x\| f(x))` | Índice del primer elemento que cumple |
+| `map2(.x, .y, f)` | `.zip(y).map(\|(a, b)\| f(a, b))` | Transforma dos vectores en paralelo |
+| `flatten(.x)` | `.flatten()` | Aplana un nivel de anidamiento |
+| `map(.x, f) \|> flatten()` | `.flat_map(\|x\| f(x))` | Transforma y aplana en un paso |
+| `head(x, n)` | `.take(n)` | Toma los primeros `n` elementos |
+| `tail(x, -n)` | `.skip(n)` | Salta los primeros `n` elementos |
+| `sum(x)` | `.sum()` | Suma todos los elementos |
+| `prod(x)` | `.product()` | Producto de todos los elementos |
+| `length(x)` | `.count()` | Cantidad de elementos |
+| `min(x)` | `.min()` | Mínimo (devuelve `Option`) |
+| `max(x)` | `.max()` | Máximo (devuelve `Option`) |
+| `which(f(x))` / `which.min` | `.enumerate().filter_map(...)` | Índices que cumplen condición |
+| `unique(x)` | (requiere `.collect()` + dedup) | Valores únicos |
+| `rev(x)` | `.rev()` | Invierte el orden |
+| `sort(x)` | `.collect()` + `.sort()` | Ordena (necesita materializar) |
+
+::: {.callout-note}
+## Coleccionar el resultado
+
+En R, las funciones de `purrr` devuelven un vector o lista directamente. En Rust, la mayoría de los métodos de iterador son **lazy** — no hacen nada hasta que se "consume" el iterador. La forma más común de consumir es `.collect::<Vec<_>>()`, que materializa el resultado en un vector. Otras formas de consumo: `.sum()`, `.fold()`, `.for_each()`, `.count()`, `.any()`, `.all()`.
+:::
 
 ## 1. Transformar: `map` vs `.map`
 

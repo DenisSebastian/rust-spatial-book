@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>23&nbsp; Geocodificación – Rust Espacial</title>
+<title>24&nbsp; Geocodificación – Rust Espacial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9b9bc5c6cf0e03258a6f875fe8ecbd1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d21c9a8da7bf5350d80c9d9136efc65f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spatial_chapter.html">Rust Espacial</a></li><li class="breadcrumb-item"><a href="./geocoding.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geocodificación</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spatial_chapter.html">Rust Espacial</a></li><li class="breadcrumb-item"><a href="./geocoding.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Geocodificación</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -184,62 +184,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./colecciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Colecciones Esenciales</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./scope.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Scope</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./funcions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funciones</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./macros.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Macros</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./iterators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Iteradores</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./closures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closures</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./errors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./struct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Structs y Enums</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./traits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Traits</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./impl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Impl</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Scope</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ownership.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./funcions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Funciones</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./struct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Structs y Enums</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./traits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Traits</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./impl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Impl</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./macros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Macros</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./iterators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Iteradores</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./closures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Closures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./errors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Manejo de Errores</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,13 +262,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./optimization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./paralelization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Paralelización</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Paralelización</span></span></a>
   </div>
 </li>
       </ul>
@@ -279,55 +285,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./spatial_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geotypes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Datos Geoespaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Datos Geoespaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Operaciones Espaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Operaciones Espaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./osm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geocoding.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geocodificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Geocodificación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./routing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geohash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Geohash e Indexación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Geohash e Indexación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./h3o.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></span></a>
   </div>
 </li>
       </ul>
@@ -344,13 +350,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./integration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./h3o-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">H3 en R con h3o</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">H3 en R con h3o</span></span></a>
   </div>
 </li>
       </ul>
@@ -367,13 +373,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sqlite.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">SQLite en Rust</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">SQLite en Rust</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./duckdb.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">DuckDB en Rust</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">DuckDB en Rust</span></span></a>
   </div>
 </li>
       </ul>
@@ -381,7 +387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Anexos</span></a>
+ <span class="menu-text">Proyectos</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -389,8 +395,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./project_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Tu primera estructura espacial</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./project_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Proyecto 2</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Anexos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./functional.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
   </div>
 </li>
       </ul>
@@ -411,21 +440,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#búsqueda-naive-fuerza-bruta" id="toc-búsqueda-naive-fuerza-bruta" class="nav-link active" data-scroll-target="#búsqueda-naive-fuerza-bruta"><span class="header-section-number">23.1</span> Búsqueda Naive (Fuerza Bruta)</a></li>
-  <li><a href="#estrategias-para-producción" id="toc-estrategias-para-producción" class="nav-link" data-scroll-target="#estrategias-para-producción"><span class="header-section-number">23.2</span> Estrategias para Producción</a>
+  <li><a href="#búsqueda-naive-fuerza-bruta" id="toc-búsqueda-naive-fuerza-bruta" class="nav-link active" data-scroll-target="#búsqueda-naive-fuerza-bruta"><span class="header-section-number">24.1</span> Búsqueda Naive (Fuerza Bruta)</a></li>
+  <li><a href="#estrategias-para-producción" id="toc-estrategias-para-producción" class="nav-link" data-scroll-target="#estrategias-para-producción"><span class="header-section-number">24.2</span> Estrategias para Producción</a>
   <ul class="collapse">
-  <li><a href="#ejemplo-conceptual-con-tantivy" id="toc-ejemplo-conceptual-con-tantivy" class="nav-link" data-scroll-target="#ejemplo-conceptual-con-tantivy"><span class="header-section-number">23.2.1</span> Ejemplo conceptual con Tantivy</a></li>
+  <li><a href="#ejemplo-conceptual-con-tantivy" id="toc-ejemplo-conceptual-con-tantivy" class="nav-link" data-scroll-target="#ejemplo-conceptual-con-tantivy"><span class="header-section-number">24.2.1</span> Ejemplo conceptual con Tantivy</a></li>
   </ul></li>
-  <li><a href="#geocodificación-inversa-reverse-geocoding" id="toc-geocodificación-inversa-reverse-geocoding" class="nav-link" data-scroll-target="#geocodificación-inversa-reverse-geocoding"><span class="header-section-number">23.3</span> Geocodificación Inversa (Reverse Geocoding)</a></li>
+  <li><a href="#geocodificación-inversa-reverse-geocoding" id="toc-geocodificación-inversa-reverse-geocoding" class="nav-link" data-scroll-target="#geocodificación-inversa-reverse-geocoding"><span class="header-section-number">24.3</span> Geocodificación Inversa (Reverse Geocoding)</a></li>
+  <li><a href="#resumen" id="toc-resumen" class="nav-link" data-scroll-target="#resumen"><span class="header-section-number">24.4</span> Resumen</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spatial_chapter.html">Rust Espacial</a></li><li class="breadcrumb-item"><a href="./geocoding.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geocodificación</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spatial_chapter.html">Rust Espacial</a></li><li class="breadcrumb-item"><a href="./geocoding.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Geocodificación</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geocodificación</span></h1>
+<h1 class="title"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Geocodificación</span></h1>
 </div>
 
 
@@ -445,8 +475,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>La geocodificación es el proceso de convertir texto (una dirección como “Av. Providencia 1234”) en coordenadas geográficas.</p>
 <p>Tradicionalmente, en R o Python, solemos llamar a APIs online (Google Maps, Nominatim, Mapbox). Sin embargo, Rust nos da la potencia para hacer <strong>geocodificación offline</strong> consultando directamente una base de datos local de OpenStreetMap (ej. <code>chile-latest.osm.pbf</code>).</p>
 <p>Esto tiene ventajas enormes: * <strong>Privacidad</strong>: Los datos de tus usuarios nunca salen de tu servidor. * <strong>Costo</strong>: Cero costo por request. * <strong>Velocidad</strong>: Latencia de red cero.</p>
-<section id="búsqueda-naive-fuerza-bruta" class="level2" data-number="23.1">
-<h2 data-number="23.1" class="anchored" data-anchor-id="búsqueda-naive-fuerza-bruta"><span class="header-section-number">23.1</span> Búsqueda Naive (Fuerza Bruta)</h2>
+<section id="búsqueda-naive-fuerza-bruta" class="level2" data-number="24.1">
+<h2 data-number="24.1" class="anchored" data-anchor-id="búsqueda-naive-fuerza-bruta"><span class="header-section-number">24.1</span> Búsqueda Naive (Fuerza Bruta)</h2>
 <p>Si tienes un archivo PBF de una región (ej. Santiago), puedes buscar una dirección específica iterando sobre el archivo y filtrando por los tags de dirección (<code>addr:street</code>, <code>addr:housenumber</code>).</p>
 <p>A continuación, un ejemplo concreto buscando una dirección en Chile:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">osmpbfreader::</span><span class="op">{</span>OsmPbfReader<span class="op">,</span> OsmObj<span class="op">};</span></span>
@@ -510,8 +540,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(())</span>
 <span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="estrategias-para-producción" class="level2" data-number="23.2">
-<h2 data-number="23.2" class="anchored" data-anchor-id="estrategias-para-producción"><span class="header-section-number">23.2</span> Estrategias para Producción</h2>
+<section id="estrategias-para-producción" class="level2" data-number="24.2">
+<h2 data-number="24.2" class="anchored" data-anchor-id="estrategias-para-producción"><span class="header-section-number">24.2</span> Estrategias para Producción</h2>
 <p>El método anterior es “naive” porque lee 200MB+ de archivo para <em>cada</em> búsqueda. Para un sistema de geocodificación real en Rust, seguirías estos pasos:</p>
 <ol type="1">
 <li><strong>Ingesta</strong>: Leer el PBF una vez (con <code>osmpbfreader</code>).</li>
@@ -522,8 +552,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><strong>Consulta</strong>: Tu programa Rust busca en el índice (milisegundos) en lugar de leer el PBF.</li>
 </ol>
-<section id="ejemplo-conceptual-con-tantivy" class="level3" data-number="23.2.1">
-<h3 data-number="23.2.1" class="anchored" data-anchor-id="ejemplo-conceptual-con-tantivy"><span class="header-section-number">23.2.1</span> Ejemplo conceptual con Tantivy</h3>
+<section id="ejemplo-conceptual-con-tantivy" class="level3" data-number="24.2.1">
+<h3 data-number="24.2.1" class="anchored" data-anchor-id="ejemplo-conceptual-con-tantivy"><span class="header-section-number">24.2.1</span> Ejemplo conceptual con Tantivy</h3>
 <div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// (Pseudocódigo conceptual)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> index <span class="op">=</span> <span class="bu">Index</span><span class="pp">::</span>create_in_dir(<span class="op">&amp;</span>path<span class="op">,</span> schema)<span class="op">?;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> <span class="kw">mut</span> writer <span class="op">=</span> index<span class="op">.</span>writer(<span class="dv">50_000_000</span>)<span class="op">?;</span></span>
@@ -541,14 +571,85 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>writer<span class="op">.</span>commit()<span class="op">?;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="geocodificación-inversa-reverse-geocoding" class="level2" data-number="23.3">
-<h2 data-number="23.3" class="anchored" data-anchor-id="geocodificación-inversa-reverse-geocoding"><span class="header-section-number">23.3</span> Geocodificación Inversa (Reverse Geocoding)</h2>
-<p>Si tienes una coordenada y quieres saber la dirección, el enfoque es espacial. Necesitas insertar tus datos en un <strong>R-Tree</strong> (usando la crate <code>rstar</code>).</p>
-<ol type="1">
-<li>Cargas todos los edificios con dirección en un R-Tree en memoria.</li>
-<li>Consultas <code>rtree.nearest_neighbor(&amp;mi_punto)</code>.</li>
-</ol>
-<p>Esto en Rust es órdenes de magnitud más rápido que hacerlo en PostGIS para consultas batch masivas, ya que todo ocurre en en el stack/heap sin overhead de red ni SQL parser.</p>
+<section id="geocodificación-inversa-reverse-geocoding" class="level2" data-number="24.3">
+<h2 data-number="24.3" class="anchored" data-anchor-id="geocodificación-inversa-reverse-geocoding"><span class="header-section-number">24.3</span> Geocodificación Inversa (Reverse Geocoding)</h2>
+<p>Si tienes una coordenada y quieres saber la dirección más cercana, el enfoque es espacial. Un <strong>R-Tree</strong> indexa puntos para búsquedas de vecinos más cercanos en O(log n) en lugar de O(n).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[dependencies]</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">rstar</span> <span class="op">=</span> <span class="st">"0.12"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">rstar::</span><span class="op">{</span>RTree<span class="op">,</span> RTreeObject<span class="op">,</span> AABB<span class="op">,</span> PointDistance<span class="op">};</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">/// Punto de interés con dirección asociada</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="at">#[</span>derive<span class="at">(</span><span class="bu">Debug</span><span class="op">,</span> <span class="bu">Clone</span><span class="at">)]</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">struct</span> POI <span class="op">{</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    coords<span class="op">:</span> [<span class="dt">f64</span><span class="op">;</span> <span class="dv">2</span>]<span class="op">,</span>   <span class="co">// [longitud, latitud] — WGS84</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    direccion<span class="op">:</span> <span class="dt">String</span><span class="op">,</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> RTreeObject <span class="cf">for</span> POI <span class="op">{</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">type</span> Envelope <span class="op">=</span> AABB<span class="op">&lt;</span>[<span class="dt">f64</span><span class="op">;</span> <span class="dv">2</span>]<span class="op">&gt;;</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> envelope(<span class="op">&amp;</span><span class="kw">self</span>) <span class="op">-&gt;</span> <span class="dt">Self</span><span class="pp">::</span>Envelope <span class="op">{</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        <span class="pp">AABB::</span>from_point(<span class="kw">self</span><span class="op">.</span>coords)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="kw">impl</span> PointDistance <span class="cf">for</span> POI <span class="op">{</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">fn</span> distance_2(<span class="op">&amp;</span><span class="kw">self</span><span class="op">,</span> point<span class="op">:</span> <span class="op">&amp;</span>[<span class="dt">f64</span><span class="op">;</span> <span class="dv">2</span>]) <span class="op">-&gt;</span> <span class="dt">f64</span> <span class="op">{</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> dx <span class="op">=</span> <span class="kw">self</span><span class="op">.</span>coords[<span class="dv">0</span>] <span class="op">-</span> point[<span class="dv">0</span>]<span class="op">;</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> dy <span class="op">=</span> <span class="kw">self</span><span class="op">.</span>coords[<span class="dv">1</span>] <span class="op">-</span> point[<span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>        dx <span class="op">*</span> dx <span class="op">+</span> dy <span class="op">*</span> dy  <span class="co">// distancia euclidiana al cuadrado</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">{</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Simular edificios con dirección en Providencia, Santiago</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> pois <span class="op">=</span> <span class="pp">vec!</span>[</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        POI <span class="op">{</span> coords<span class="op">:</span> [<span class="op">-</span><span class="dv">70.6358</span><span class="op">,</span> <span class="op">-</span><span class="dv">33.4172</span>]<span class="op">,</span> direccion<span class="op">:</span> <span class="st">"Av. Providencia 1234"</span><span class="op">.</span>to_string() <span class="op">},</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        POI <span class="op">{</span> coords<span class="op">:</span> [<span class="op">-</span><span class="dv">70.6400</span><span class="op">,</span> <span class="op">-</span><span class="dv">33.4200</span>]<span class="op">,</span> direccion<span class="op">:</span> <span class="st">"Av. Providencia 890"</span><span class="op">.</span>to_string() <span class="op">},</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>        POI <span class="op">{</span> coords<span class="op">:</span> [<span class="op">-</span><span class="dv">70.6300</span><span class="op">,</span> <span class="op">-</span><span class="dv">33.4150</span>]<span class="op">,</span> direccion<span class="op">:</span> <span class="st">"Av. Pedro de Valdivia 100"</span><span class="op">.</span>to_string() <span class="op">},</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>        POI <span class="op">{</span> coords<span class="op">:</span> [<span class="op">-</span><span class="dv">70.6450</span><span class="op">,</span> <span class="op">-</span><span class="dv">33.4250</span>]<span class="op">,</span> direccion<span class="op">:</span> <span class="st">"Av. Irarrázaval 321"</span><span class="op">.</span>to_string() <span class="op">},</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>    ]<span class="op">;</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>    <span class="co">// bulk_load es más eficiente que insertar uno a uno</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> rtree <span class="op">=</span> <span class="pp">RTree::</span>bulk_load(pois)<span class="op">;</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Geocodificación inversa: ¿qué dirección está más cerca de esta coordenada?</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> mi_ubicacion <span class="op">=</span> [<span class="op">-</span><span class="dv">70.6380_f64</span><span class="op">,</span> <span class="op">-</span><span class="dv">33.4190_f64</span>]<span class="op">;</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">let</span> <span class="cn">Some</span>(poi) <span class="op">=</span> rtree<span class="op">.</span>nearest_neighbor(<span class="op">&amp;</span>mi_ubicacion) <span class="op">{</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"Dirección más cercana: {}"</span><span class="op">,</span> poi<span class="op">.</span>direccion)<span class="op">;</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"Coordenadas: {:?}"</span><span class="op">,</span> poi<span class="op">.</span>coords)<span class="op">;</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Buscar todos los POIs dentro de un radio (~500m en grados ≈ 0.0045)</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> radio_2 <span class="op">=</span> <span class="dv">0.005_f64</span><span class="op">.</span>powi(<span class="dv">2</span>)<span class="op">;</span> <span class="co">// radio al cuadrado</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> cercanos<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span>_<span class="op">&gt;</span> <span class="op">=</span> rtree</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>locate_within_distance(mi_ubicacion<span class="op">,</span> radio_2)</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>        <span class="op">.</span>collect()<span class="op">;</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Direcciones en el radio:"</span>)<span class="op">;</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> poi <span class="kw">in</span> <span class="op">&amp;</span>cercanos <span class="op">{</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"  - {}"</span><span class="op">,</span> poi<span class="op">.</span>direccion)<span class="op">;</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+R-tree usa distancia euclidiana en grados
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>distance_2</code> opera sobre coordenadas WGS84 (grados), no metros. Para un R-tree de producción sobre Chile, reproyecta los puntos a UTM19S antes de insertar, o usa la fórmula de Haversine para el filtro final después de la consulta aproximada.</p>
+</div>
+</div>
+<p>Esto en Rust es órdenes de magnitud más rápido que hacerlo en PostGIS para consultas batch masivas, ya que todo ocurre en el stack/heap sin overhead de red ni SQL parser.</p>
+</section>
+<section id="resumen" class="level2" data-number="24.4">
+<h2 data-number="24.4" class="anchored" data-anchor-id="resumen"><span class="header-section-number">24.4</span> Resumen</h2>
+<p>La geocodificación offline en Rust combina tres piezas: <code>osmpbfreader</code> para leer el PBF, <code>tantivy</code> (o SQLite FTS5) para indexar texto libre, y <code>rstar</code> para búsqueda espacial inversa. El resultado es un sistema que responde en microsegundos sin llamadas a API externas, sin costos y con privacidad total. El patrón de ingesta-una-vez/consulta-muchas-veces es el núcleo de cualquier servicio de geocodificación de producción. En el siguiente capítulo veremos <strong>routing</strong>: cómo calcular distancias de red entre puntos.</p>
 
 
 </section>
@@ -956,12 +1057,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./osm.html" class="pagination-link" aria-label="OpenStreetMap (OSM)">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./routing.html" class="pagination-link" aria-label="Routing y Distancias">
-        <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -969,7 +1070,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Copyright 2024, Denis Berroeta</p>
+<p>Copyright 2026, Denis Berroeta</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

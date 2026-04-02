@@ -5,13 +5,14 @@ subtitle: "h3o"
 
 [H3](https://h3geo.org/) es un sistema de indexación geoespacial jerárquico basado en hexágonos, desarrollado originalmente por Uber. Es el estándar de facto para análisis espacial de grandes volúmenes de datos (big data), clustering y machine learning geoespacial.
 
-En Rust, la mejor opción es [`h3o`](https://github.com/HydroniumLabs/h3o). A diferencia de otras crates que son wrappers de la librería en C, **`h3o` es una reimplementación pura en Rust**. Esto garantiza mayor seguridad de memoria, mejor optimización y facilidad de compilación (especialmente para WebAssembly).
+En Rust, la mejor opción es [`h3o`](https://github.com/HydroniumLabs/h3o). A diferencia de otras crates que son wrappers de la biblioteca en C, **`h3o` es una reimplementación pura en Rust**. Esto garantiza mayor seguridad de memoria, mejor optimización y facilidad de compilación (especialmente para WebAssembly).
 
 ## Instalación
 
 ```toml
 [dependencies]
-h3o = "0.3"
+h3o = { version = "0.6", features = ["geo"] }
+geo-types = "0.7"
 ```
 
 ## Conceptos Clave
@@ -20,7 +21,7 @@ La unidad fundamental en `h3o` es el tipo `CellIndex`. Es un entero de 64 bits (
 
 ## Funciones Principales
 
-A continuación un recorrido por las capacidades de la librería.
+A continuación un recorrido por las capacidades de la crate.
 
 ### 1. Indexación (Coordenada ↔ Celda)
 
@@ -30,16 +31,18 @@ Convertir latitud/longitud a un hexágono y viceversa.
 use h3o::{CellIndex, LatLng, Resolution};
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let coord = LatLng::new(37.77, -122.42)?; // San Francisco
+    // Santiago de Chile
+    let coord = LatLng::new(-33.4489, -70.6693)?;
 
     // De Coordenada a Celda (Resolución 9)
-    let cell = CellIndex::try_from_latlng(coord, Resolution::Nine)?;
+    // to_cell() es infallible una vez que LatLng es válido
+    let cell: CellIndex = coord.to_cell(Resolution::Nine);
     println!("Cell Index: {}", cell);
 
     // De Celda a Coordenada (Centroide)
     let centro: LatLng = cell.into();
     println!("Centrolat: {}, Centrolon: {}", centro.lat(), centro.lng());
-    
+
     Ok(())
 }
 ```
@@ -49,11 +52,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 Consultar propiedades del índice sin decodificarlo.
 
 ```rust
-let res = cell.resolution(); // Resolution::Nine
-let es_valido = cell.is_valid(); // true
+let res = cell.resolution();          // Resolution::Nine
 let es_pentagono = cell.is_pentagon(); // H3 tiene 12 pentágonos por resolución
-let area_m2 = cell.area_m2(); // Área aproximada en metros cuadrados
+let area_m2 = cell.area_m2();         // Área aproximada en metros cuadrados
 ```
+
+> `CellIndex` garantiza su propia validez por construcción: si el valor no fuera un índice H3 legal, la conversión desde `LatLng` habría fallado antes de llegar aquí. No existe método `is_valid()`.
 
 ### 3. Jerarquía (Zoom In / Zoom Out)
 
@@ -79,17 +83,23 @@ Moverse por la grilla hexagonal es muy eficiente.
 
 ```rust
 // k-ring: Obtener el hexágono y sus vecinos hasta distancia k
-// k=1 retorna el anillo inmediato (6 vecinos + centro)
-let k = 1;
-for neighbor in cell.grid_disk(k) {
+// k=1 retorna el anillo inmediato (6 vecinos + centro = 7 celdas)
+let k = 1u32;
+for neighbor in cell.grid_disk::<Vec<_>>(k) {
     println!("Vecino: {}", neighbor);
 }
 
-// Solo el anillo (sin el interior)
-let anillo = cell.grid_ring(k).unwrap();
+// Solo el anillo exterior (sin el interior)
+// grid_ring_fast devuelve Option<CellIndex>: los pentágonos pueden
+// interrumpir el anillo y producir None en esas posiciones.
+for maybe_cell in cell.grid_ring_fast(k) {
+    if let Some(anillo_cell) = maybe_cell {
+        println!("Anillo: {}", anillo_cell);
+    }
+}
 
 // Distancia topológica (saltos de grilla)
-let destino = ...;
+let destino: CellIndex = LatLng::new(-33.4600, -70.6500)?.to_cell(Resolution::Nine);
 let saltos = cell.grid_distance(destino).unwrap(); // Ej: 5 saltos
 ```
 
@@ -98,8 +108,9 @@ let saltos = cell.grid_distance(destino).unwrap(); // Ej: 5 saltos
 H3 permite representar flujo o grafos usando "aristas dirigidas" (un índice que representa el movimiento de la celda A a la celda vecina B).
 
 ```rust
-// Obtener las 6 aristas salientes de una celda
-for edge in cell.directed_edges() {
+// Obtener las aristas salientes de una celda
+// (6 aristas para hexágonos, 5 para pentágonos)
+for edge in cell.edges() {
     println!("Arista hacia vecino: {}", edge.destination());
 }
 ```
@@ -108,45 +119,55 @@ for edge in cell.directed_edges() {
 
 Para convertir geometrías vectoriales (Polígonos) a un conjunto de hexágonos (H3 Set). Esto es vital para 'discretizar' regiones.
 
-`h3o` interactúa con la crate `geo-types` si activas la feature `geo`.
+`h3o` interactúa con la crate `geo-types` si activas la feature `geo` (declarada en `Cargo.toml`).
 
 ```rust
 use geo_types::{Polygon, LineString, Coord};
-use h3o::geom::PolygonIndex;
+use h3o::geom::{Polygon as H3Polygon, PolyfillConfig, ToCells};
+use h3o::Resolution;
 
+// Bounding box aproximado del centro de Santiago de Chile
+// Convención de geo_types: Coord { x: longitud, y: latitud }
 let exterior = LineString::from(vec![
-    Coord::from((0.0, 0.0)),
-    Coord::from((1.0, 1.0)),
-    Coord::from((1.0, 0.0)),
-    Coord::from((0.0, 0.0)),
+    Coord { x: -70.690, y: -33.465 }, // Suroeste
+    Coord { x: -70.640, y: -33.465 }, // Sureste
+    Coord { x: -70.640, y: -33.430 }, // Noreste
+    Coord { x: -70.690, y: -33.430 }, // Noroeste
+    Coord { x: -70.690, y: -33.465 }, // Cierre
 ]);
 let poli = Polygon::new(exterior, vec![]);
 
-// Rellenar polígono con hexágonos de resolución 5
-// Configurar el polyfill con opciones por defecto
-let builder = PolygonIndex::builder(poli);
-let iterador_celdas = builder.geo_to_cells(Resolution::Five);
+// Convertir a h3o::geom::Polygon (valida que las coordenadas sean finitas)
+let h3_poli = H3Polygon::from_degrees(poli)?;
 
-for cell in iterador_celdas {
+// Configurar resolución y ejecutar polyfill
+let config = PolyfillConfig::new(Resolution::Five);
+for cell in h3_poli.to_cells(config) {
     println!("Celda dentro del polígono: {}", cell);
 }
 ```
+
+> Se usa `Polygon as H3Polygon` para evitar colisión de nombres con `geo_types::Polygon`. Este patrón es habitual cuando dos crates exportan tipos con el mismo nombre.
 
 ### 7. Compactación
 
 Si tienes millones de celdas de alta resolución que cubren un área grande, puedes "compactarlos" en menos celdas de menor resolución (padres) para ahorrar espacio.
 
 ```rust
-use h3o::Resolution;
+use h3o::{CellIndex, Resolution};
 
-// Supón un set de celdas
-let muchas_celdas = vec![...];
+// Supón un set de celdas (todas deben ser únicas y de la misma resolución)
+let muchas_celdas: Vec<CellIndex> = vec![/* ... */];
 
-// Compactar
-let celdas_compactadas: Vec<CellIndex> = CellIndex::compact(muchas_celdas).collect();
+// Compactar — agrupa celdas hermanas en su celda padre cuando es posible
+// Falla si el conjunto tiene duplicados o celdas de distintas resoluciones
+let celdas_compactadas: Vec<CellIndex> = CellIndex::compact(muchas_celdas)
+    .expect("Las celdas deben ser únicas y de la misma resolución")
+    .collect();
 
-// Descompactar (llevar todo a la misma resolución base)
-let celdas_planas = CellIndex::uncompact(celdas_compactadas, Resolution::Nine);
+// Descompactar (expandir todo a la resolución objetivo)
+let celdas_planas: Vec<CellIndex> =
+    CellIndex::uncompact(celdas_compactadas, Resolution::Nine).collect();
 ```
 
 ## ¿Por qué indexación hexagonal?

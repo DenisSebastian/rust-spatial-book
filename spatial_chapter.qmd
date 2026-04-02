@@ -2,7 +2,7 @@
 
 ## El Potencial de Rust en el Análisis Espacial
 
-Rust está emergiendo como un lenguaje crítico en la infraestructura geoespacial moderna. Herramientas fundamentales como **PyQuante**, partes de **Mapbox**, y motores de bases de datos de alto rendimiento están migrando o escribiéndose en Rust.
+Rust está emergiendo como un lenguaje crítico en la infraestructura geoespacial moderna. Herramientas fundamentales como **GeoArrow**, partes de **Mapbox**, el formato **GeoParquet**, y motores de bases de datos de alto rendimiento como **DuckDB** están migrando o escribiéndose en Rust.
 
 ¿Por qué este cambio?
 
@@ -19,8 +19,8 @@ Las piezas fundamentales son:
 
 *   **`geo-types`**: Define las primitivas (`Point`, `Polygon`, etc.). Es el vocabulario común.
 *   **`geo`**: Algoritmos puros en Rust (área, distancia, intersección).
-*   **`gdal`**: Bindings a la librería C++ GDAL (potente corrección, lectura/escritura).
-*   **`geos`**: Bindings a la librería C++ GEOS (operaciones topológicas complejas).
+*   **`gdal`**: Bindings a la biblioteca C++ GDAL (potente corrección, lectura/escritura).
+*   **`geos`**: Bindings a la biblioteca C++ GEOS (operaciones topológicas complejas).
 
 ::: callout-note
 **Analogía**: En R, `sf` es como comprar una navaja suiza. En Rust, tú compras el bisturí, el martillo y la llave inglesa por separado para armar tu propio kit de herramientas optimizado.
@@ -36,11 +36,11 @@ En R: `st_point(c(x, y))`
 En Rust (`geo` crate):
 
 ```rust
-use geo_types::{Point, Coordinate};
+use geo_types::{Point, Coord};
 
 let p = Point::new(10.0, 20.0);
 // O usando coordenadas explícitas
-let c = Coordinate { x: 10.0, y: 20.0 };
+let c = Coord { x: 10.0, y: 20.0 };
 let p2: Point<f64> = c.into();
 ```
 
@@ -66,14 +66,46 @@ Aquí es donde Rust brilla. Las operaciones en la crate `geo` están implementad
 
 ### Distancia (Haversine vs Euclidiana)
 
+Elegir el tipo de distancia es una decisión de dominio, no solo de código:
+
+**Distancia Euclidiana**
+: Distancia en línea recta entre dos puntos en un plano 2D (`√((x₂-x₁)² + (y₂-y₁)²)`). Correcta solo cuando las coordenadas están en un sistema **proyectado** (metros, UTM). Usarla sobre grados lat/lon produce resultados incorrectos porque la Tierra es curva.
+
+**Distancia Haversine**
+: Calcula la distancia entre dos puntos sobre la superficie de una esfera usando sus coordenadas geográficas (lat/lon en grados). Devuelve el resultado en metros. Es el estándar para coordenadas WGS84 (EPSG:4326).
+
 ```rust
-use geo::prelude::*; // Importa traits como EuclideanDistance
+use geo::{point, EuclideanDistance, HaversineDistance};
 
-let p1 = Point::new(0.0, 0.0);
-let p2 = Point::new(1.0, 1.0);
+fn main() {
+    // Santiago de Chile y Valparaíso
+    let santiago   = point!(x: -70.6693, y: -33.4489); // (lon, lat)
+    let valparaiso = point!(x: -71.6197, y: -33.0472);
 
-let dist = p1.euclidean_distance(&p2);
+    // Haversine: para coordenadas geográficas (lon/lat) — resultado en metros
+    let dist_haversine = santiago.haversine_distance(&valparaiso);
+    println!("Haversine: {:.1} m ({:.1} km)", dist_haversine, dist_haversine / 1000.0);
+    // Haversine: ~112 000 m (~112 km) ✓
+
+    // Euclidiana sobre grados: resultado en "grados" — incorrecto para análisis real
+    let dist_euclidiana_grados = santiago.euclidean_distance(&valparaiso);
+    println!("Euclidiana (grados): {:.4}°", dist_euclidiana_grados);
+    // ~1.04° — número sin significado métrico directo ✗
+}
 ```
+
+::: {.callout-warning}
+## Error silencioso frecuente
+
+`euclidean_distance` sobre coordenadas WGS84 devuelve **grados**, no metros. El resultado compila y se ejecuta sin error, pero el valor es geográficamente incorrecto. Siempre usa `haversine_distance` con lat/lon, o reproyecta a UTM antes de aplicar distancia euclidiana.
+
+| Coordenadas | Distancia correcta |
+|---|---|
+| Lat/lon (WGS84, EPSG:4326) | `haversine_distance` |
+| Proyectadas en metros (UTM, EPSG:32719) | `euclidean_distance` |
+:::
+
+En R, `sf::st_distance()` elige automáticamente el método según el CRS del objeto. En Rust, **tú eliges explícitamente** — lo cual es más seguro porque no hay magia implícita.
 
 ### Pipelines de Procesamiento
 
@@ -94,38 +126,38 @@ La ventaja aquí es que Rust no crea copias intermedias de toda la lista de pol�
 
 ## Caso Práctico: Geohash
 
-El geohashing es una técnica para codificar coordenadas en strings. Es vital para indexación espacial rápida. En R, las librerías de geohash suelen ser wrappers de C o C++. En Rust, podemos interactuar con los bits directamente.
+El geohashing es una técnica para codificar coordenadas en strings. Es vital para indexación espacial rápida. En R, los paquetes de geohash suelen ser wrappers de C o C++. En Rust, podemos interactuar con los bits directamente.
+
+::: callout-note
+**Anticipación**: Este ejemplo usa la crate `geohash`, que estudiaremos en profundidad en el capítulo dedicado. Aquí lo usamos para ilustrar por qué Rust es ventajoso para este tipo de operaciones.
+:::
 
 ### El problema del Vecino
 
 Dado un geohash (ej. "u4pruyd"), ¿quién está al norte?
 
-Este problema requiere manipulación de bits y strings. Veamos una implementación simplificada usando una función que podríamos exponer a R.
+Este problema requiere manipulación de bits y strings. En el capítulo de Geohash veremos la implementación completa. Por ahora, observa cómo Rust garantiza en tiempo de compilación que se manejan todas las direcciones posibles:
 
 ```rust
-use geohash::{neighbor, Direction, decode, encode};
+use geohash::{neighbor, Direction};
 
-// Wrapper para R (conceptual, usando extendr)
-fn get_neighbor(hash_str: String, direction_str: String) -> String {
-    let dir = match direction_str.as_str() {
+fn get_neighbor(hash_str: &str, direction_str: &str) -> String {
+    let dir = match direction_str {
         "n" => Direction::N,
         "s" => Direction::S,
         "e" => Direction::E,
         "w" => Direction::W,
         _ => panic!("Dirección inválida"),
     };
-
-    let coord = decode(&hash_str).expect("Hash inválido");
-    // Calcular vecino... (la librería geohash tiene funciones optimizadas para esto)
-    let neighbor_hash = neighbor(&hash_str, dir).expect("Error calculando vecino");
-    neighbor_hash
+    // Si olvidaras alguna dirección, el compilador lo detecta
+    neighbor(hash_str, dir).expect("Error calculando vecino")
 }
 ```
 
 ### ¿Por qué Rust es mejor aquí?
 
-1.  **Manejo de Strings**: Rust maneja UTF-8 nativamente pero te obliga a manejar casos borde (¿qué pasa si el string no es válido?).
-2.  **Enums**: El `match` para la dirección es exhaustivo. Si olvidas el "Oeste", el código no compila. En R, descubrirías el error en producción cuando un usuario ingrese "w".
+1.  **Enums exhaustivos**: El `match` para la dirección es exhaustivo. Si olvidas el "Oeste", el código **no compila**. En R, descubrirías el error en producción cuando un usuario ingrese "w".
+2.  **Manejo de Strings**: Rust maneja UTF-8 nativamente pero te obliga a manejar casos borde explícitamente.
 3.  **Velocidad**: Calcular millones de vecinos en un bucle sería lentísimo en R. En Rust, es coste cero abstraer esto.
 
 ## Ingeniería de Sistemas Espaciales
@@ -133,7 +165,11 @@ fn get_neighbor(hash_str: String, direction_str: String) -> String {
 Para construir sistemas de alto rendimiento:
 
 1.  **Usa `RTree` (crate `rstar`)**: Para búsquedas espaciales (k-NN, intersecciones). Es mucho más rápido que recorrer listas.
-2.  **Paralelismo (`rayon`)**: Si tienes que reproyectar 10 millones de puntos, cambia `.iter()` por `.par_iter()`. Rust distribuirá el trabajo en todos tus núcleos automáticamente sin "race conditions".
+2.  **Paralelismo (`rayon`)**: Si tienes que reproyectar 10 millones de puntos, cambia `.iter()` por `.par_iter()`. Rust distribuirá el trabajo en todos tus núcleos automáticamente sin *race conditions*.
+
+::: callout-note
+**Anticipación**: El siguiente fragmento usa la crate `rayon` para paralelismo, que cubriremos en detalle en el capítulo de *Paralelización*. Por ahora, obsérvalo como una vista previa de lo que es posible.
+:::
 
 ```rust
 use rayon::prelude::*;
@@ -153,6 +189,6 @@ Rust te da las herramientas para construir la maquinaria pesada del análisis es
 El ecosistema de Rust para geoespacial está creciendo rápidamente. Aquí tienes los puntos de entrada esenciales para seguir aprendiendo y encontrar herramientas:
 
 *   **[GeoRust.org](https://georust.org/)**: La página principal de la organización que mantiene las crates `geo`, `geo-types`, `geos`, etc. Aquí encontrarás documentación oficial y guías.
-*   **[Awesome GeoRust](https://github.com/pka/awesome-georust)**: Una lista curada (y muy completa) de librerías, aplicaciones y recursos para desarrollo geoespacial en Rust. Es el mejor lugar para buscar si "ya existe una librería para X".
+*   **[Awesome GeoRust](https://github.com/pka/awesome-georust)**: Una lista curada (y muy completa) de crates, aplicaciones y recursos para desarrollo geoespacial en Rust. Es el mejor lugar para buscar si "ya existe una crate para X".
 *   **Discord de GeoRust**: La comunidad es muy activa y amigable. Es un excelente lugar para hacer preguntas específicas.
 

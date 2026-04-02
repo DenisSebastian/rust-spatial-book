@@ -83,7 +83,7 @@ El ecosistema de Rust para OSM es vasto y especializado. Aquí tienes una refere
 
 ### Lectura y Procesamiento General
 *   **[osmpbfreader-rs](https://github.com/TeXitoi/osmpbfreader-rs)**: La opción estándar para leer archivos PBF de forma segura y razonablemente rápida.
-*   **[osmpbf](https://github.com/b-r-u/osmpbf)**: Una librería de más bajo nivel para leer el formato.
+*   **[osmpbf](https://github.com/b-r-u/osmpbf)**: Una crate de más bajo nivel para leer el formato.
 *   **[osmx](https://github.com/jake-low/osmx-rs)**: Puerto de OSMExpress a Rust. Una base de datos archivo optimizada para lecturas aleatorias rápidas en OSM.
 
 ### Geometrías y Relaciones
@@ -97,3 +97,7 @@ El ecosistema de Rust para OSM es vasto y especializado. Aquí tienes una refere
 
 ### Formatos Alternativos
 *   **[osmflat](https://github.com/boxdot/osmflat-rs)**: Un formato "flatdata" para OSM. Permite acceso aleatorio a los datos mapeados en memoria, ideal para ruteo y renderizado de alto rendimiento.
+
+## Resumen
+
+OpenStreetMap ofrece datos geoespaciales masivos y gratuitos en formato PBF. En Rust, `osmpbfreader` permite iterar sobre nodos, vías y relaciones con ownership total — sin dependencias externas ni servicios de red. El patrón central es: leer PBF → filtrar por tags (`addr:street`, `amenity`) → construir índice espacial. Para datasets de todo Chile (~200 MB), esta cadena puede completarse en segundos. En el siguiente capítulo veremos cómo convertir esas direcciones en coordenadas con **geocodificación offline**.

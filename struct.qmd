@@ -9,6 +9,36 @@ Rust ofrece herramientas poderosas para organizar datos. Los **Structs** y **Enu
 En este capítulo, exploraremos cómo estos dos conceptos funcionan y se relacionan, utilizando la analogía de una **ciudad** para facilitar su comprensión.
 
 
+::: {.callout-note}
+## Para usuarios de R: struct es como un `list()` con tipos fijos
+
+En R, agrupas datos heterogéneos con `list()`:
+
+```r
+# R: named list — tipos dinámicos, sin verificación en compilación
+punto <- list(lon = -70.6693, lat = -33.4489, nombre = "Santiago")
+punto$lon      # -70.6693
+punto$nombre   # "Santiago"
+```
+
+En Rust, un `struct` hace lo mismo, pero con tipos declarados y verificados en compilación:
+
+```rust
+// Rust: struct — cada campo tiene un tipo fijo
+struct Punto {
+    lon: f64,
+    lat: f64,
+    nombre: String,
+}
+
+let p = Punto { lon: -70.6693, lat: -33.4489, nombre: String::from("Santiago") };
+p.lon     // -70.6693
+p.nombre  // "Santiago"
+```
+
+La diferencia clave: el `list()` de R acepta cualquier tipo en cualquier campo y puede cambiar en tiempo de ejecución. El struct de Rust tiene una forma fija que el compilador conoce — si intentas guardar un texto en un campo `f64`, falla en compilación, no en tiempo de ejecución.
+:::
+
 ## Structs: Los Planos de los Edificios
 
 ### ¿Qué son los Structs?
@@ -131,11 +161,42 @@ fn main() {
 
 ---
 
-## Conclusión
+## Resumen
 
-En Rust, **Structs y Enums** trabajan juntos para organizar datos.
+En Rust, los `struct` agrupan datos heterogéneos con tipos fijos — el equivalente de un `list()` nombrado en R, pero donde el compilador verifica cada campo. Los `enum` modelan variantes excluyentes con datos adjuntos, algo sin equivalente directo en R. Juntos son la base para tipos espaciales propios como `Punto { x: f64, y: f64 }` o `Geometria { Point(...), Polygon(...) }`. En el siguiente capítulo veremos los **traits**, que permiten definir comportamiento compartido entre structs distintos — el equivalente de métodos S3/S4 en R.
 
-*   Los **Structs** permiten agrupar datos relacionados (como las propiedades de un edificio).
-*   Los **Enums** permiten enumerar las posibles variantes de una entidad (como los tipos de edificios).
+## Reto Práctico
 
-En el próximo capítulo, veremos los **Traits**, que nos permitirán dar vida y comportamiento a estas estructuras de datos.
+En R, representas un punto geográfico como una lista nombrada:
+
+```r
+punto <- list(lon = -70.6693, lat = -33.4489, nombre = "Santiago")
+cat(paste0(punto$nombre, ": (", punto$lon, ", ", punto$lat, ")\n"))
+```
+
+Define un `struct Punto` en Rust con campos `lon: f64`, `lat: f64` y `nombre: String`. Crea una instancia con los datos de Santiago e imprímela con `println!`.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+```rust
+struct Punto {
+    lon: f64,
+    lat: f64,
+    nombre: String,
+}
+
+fn main() {
+    let santiago = Punto {
+        lon: -70.6693,
+        lat: -33.4489,
+        nombre: String::from("Santiago"),
+    };
+
+    println!("{}: ({}, {})", santiago.nombre, santiago.lon, santiago.lat);
+    // Santiago: (-70.6693, -33.4489)
+}
+```
+
+A diferencia de R, el struct tiene un tipo fijo en tiempo de compilación. No puedes agregar campos después de su definición. `String::from("...")` crea un `String` poseído — necesario porque el campo `nombre` del struct debe poseer sus datos.
+:::

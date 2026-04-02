@@ -63,6 +63,36 @@ fn main() {
 
 La variable x dentro del bloque es independiente de la x fuera del bloque, y la versión de x fuera del bloque no se ve afectada por los cambios realizados dentro del bloque interno.
 
-## Duración de Vida (Lifetimes)
+## Resumen
 
-El ámbito también está relacionado con el concepto de duración de vida en Rust, que se refiere a cuánto tiempo vive una referencia o variable. Aunque no se necesita usar anotaciones de tiempo de vida en muchos casos, se volverán importantes cuando trabajes con referencias y prestamistas en bloques más complejos.
+En este capítulo aprendiste que el ámbito (`scope`) en Rust controla la visibilidad y duración de las variables. Las variables existen desde su declaración hasta el cierre del bloque `{}` que las contiene. El *variable shadowing* permite redeclarar una variable en un bloque interno sin afectar la externa.
+
+Estos conceptos son la base del sistema de **ownership** de Rust, que veremos en el próximo capítulo. El ownership extiende la idea de ámbito para explicar exactamente cuándo se libera la memoria y por qué las referencias necesitan reglas estrictas.
+
+## Reto Práctico
+
+En R, puedes reutilizar el nombre de una variable para transformar su valor de unidad:
+
+```r
+distancia <- 3.7          # kilómetros
+distancia <- distancia * 1000  # ahora en metros
+cat("Distancia en metros:", distancia, "\n")
+```
+
+Traduce este código a Rust usando **shadowing**: declara `distancia` en kilómetros como `f64`, luego redeclárala en el mismo ámbito convirtiéndola a metros. Imprime ambos valores en sus respectivos momentos.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+```rust
+fn main() {
+    let distancia: f64 = 3.7; // kilómetros
+    println!("Distancia: {} km", distancia);
+
+    let distancia = distancia * 1000.0; // metros — shadowing en el mismo scope
+    println!("Distancia: {} m", distancia);
+}
+```
+
+El shadowing aquí no requiere `mut` porque no estamos modificando la variable original, sino creando una nueva ligada al mismo nombre. Esta distinción es importante: con `mut` cambias el valor pero el tipo debe ser el mismo; con shadowing puedes incluso cambiar el tipo (por ejemplo, de `f64` a `String`).
+:::

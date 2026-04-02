@@ -110,9 +110,80 @@ writer.commit()?;
 
 ## Geocodificación Inversa (Reverse Geocoding)
 
-Si tienes una coordenada y quieres saber la dirección, el enfoque es espacial. Necesitas insertar tus datos en un **R-Tree** (usando la crate `rstar`).
+Si tienes una coordenada y quieres saber la dirección más cercana, el enfoque es espacial. Un **R-Tree** indexa puntos para búsquedas de vecinos más cercanos en O(log n) en lugar de O(n).
 
-1.  Cargas todos los edificios con dirección en un R-Tree en memoria.
-2.  Consultas `rtree.nearest_neighbor(&mi_punto)`.
+```toml
+[dependencies]
+rstar = "0.12"
+```
 
-Esto en Rust es órdenes de magnitud más rápido que hacerlo en PostGIS para consultas batch masivas, ya que todo ocurre en en el stack/heap sin overhead de red ni SQL parser.
+```rust
+use rstar::{RTree, RTreeObject, AABB, PointDistance};
+
+/// Punto de interés con dirección asociada
+#[derive(Debug, Clone)]
+struct POI {
+    coords: [f64; 2],   // [longitud, latitud] — WGS84
+    direccion: String,
+}
+
+impl RTreeObject for POI {
+    type Envelope = AABB<[f64; 2]>;
+
+    fn envelope(&self) -> Self::Envelope {
+        AABB::from_point(self.coords)
+    }
+}
+
+impl PointDistance for POI {
+    fn distance_2(&self, point: &[f64; 2]) -> f64 {
+        let dx = self.coords[0] - point[0];
+        let dy = self.coords[1] - point[1];
+        dx * dx + dy * dy  // distancia euclidiana al cuadrado
+    }
+}
+
+fn main() {
+    // Simular edificios con dirección en Providencia, Santiago
+    let pois = vec![
+        POI { coords: [-70.6358, -33.4172], direccion: "Av. Providencia 1234".to_string() },
+        POI { coords: [-70.6400, -33.4200], direccion: "Av. Providencia 890".to_string() },
+        POI { coords: [-70.6300, -33.4150], direccion: "Av. Pedro de Valdivia 100".to_string() },
+        POI { coords: [-70.6450, -33.4250], direccion: "Av. Irarrázaval 321".to_string() },
+    ];
+
+    // bulk_load es más eficiente que insertar uno a uno
+    let rtree = RTree::bulk_load(pois);
+
+    // Geocodificación inversa: ¿qué dirección está más cerca de esta coordenada?
+    let mi_ubicacion = [-70.6380_f64, -33.4190_f64];
+
+    if let Some(poi) = rtree.nearest_neighbor(&mi_ubicacion) {
+        println!("Dirección más cercana: {}", poi.direccion);
+        println!("Coordenadas: {:?}", poi.coords);
+    }
+
+    // Buscar todos los POIs dentro de un radio (~500m en grados ≈ 0.0045)
+    let radio_2 = 0.005_f64.powi(2); // radio al cuadrado
+    let cercanos: Vec<_> = rtree
+        .locate_within_distance(mi_ubicacion, radio_2)
+        .collect();
+
+    println!("\nDirecciones en el radio:");
+    for poi in &cercanos {
+        println!("  - {}", poi.direccion);
+    }
+}
+```
+
+::: {.callout-warning}
+## R-tree usa distancia euclidiana en grados
+
+`distance_2` opera sobre coordenadas WGS84 (grados), no metros. Para un R-tree de producción sobre Chile, reproyecta los puntos a UTM19S antes de insertar, o usa la fórmula de Haversine para el filtro final después de la consulta aproximada.
+:::
+
+Esto en Rust es órdenes de magnitud más rápido que hacerlo en PostGIS para consultas batch masivas, ya que todo ocurre en el stack/heap sin overhead de red ni SQL parser.
+
+## Resumen
+
+La geocodificación offline en Rust combina tres piezas: `osmpbfreader` para leer el PBF, `tantivy` (o SQLite FTS5) para indexar texto libre, y `rstar` para búsqueda espacial inversa. El resultado es un sistema que responde en microsegundos sin llamadas a API externas, sin costos y con privacidad total. El patrón de ingesta-una-vez/consulta-muchas-veces es el núcleo de cualquier servicio de geocodificación de producción. En el siguiente capítulo veremos **routing**: cómo calcular distancias de red entre puntos.

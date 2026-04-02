@@ -94,3 +94,7 @@ fn main() -> Result<()> {
 
 En R, harías esto con `duckdb` y `dbplyr` o SQL directo.
 En Rust, tienes la ventaja de poder generar la geometría programáticamente con toda la potencia del sistema de tipos (`geo-types`) antes de enviarla a la base de datos, asegurando que lo que insertas es válido antes de salir de tu código.
+
+## Resumen
+
+DuckDB con `duckdb-rs` combina SQL analítico vectorizado con el sistema de tipos de Rust. Es la opción ideal para procesar millones de registros espaciales: agregar puntos por hexágono H3, calcular estadísticas por región o unir tablas de 10M filas en segundos. La integración espacial vía WKT permite usar DuckDB como motor de análisis y Rust como capa de validación y transformación. Con esto concluye la sección de bases de datos — en los siguientes capítulos aplicaremos todo lo aprendido en **proyectos completos**.

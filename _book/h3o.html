@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>26&nbsp; Indexación Hexagonal H3 – Rust Espacial</title>
+<title>27&nbsp; Indexación Hexagonal H3 – Rust Espacial</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -76,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9b9bc5c6cf0e03258a6f875fe8ecbd1d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d21c9a8da7bf5350d80c9d9136efc65f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spatial_chapter.html">Rust Espacial</a></li><li class="breadcrumb-item"><a href="./h3o.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spatial_chapter.html">Rust Espacial</a></li><li class="breadcrumb-item"><a href="./h3o.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -184,62 +184,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./colecciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Colecciones Esenciales</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./scope.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Scope</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./funcions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Funciones</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./macros.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Macros</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./iterators.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Iteradores</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./closures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Closures</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./errors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Manejo de errores</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./struct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Structs y Enums</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./traits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Traits</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./impl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Impl</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Scope</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ownership.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ownership y Borrowing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./funcions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Funciones</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./struct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Structs y Enums</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./traits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Traits</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./impl.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Impl</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./macros.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Macros</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./iterators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Iteradores</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./closures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Closures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./errors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Manejo de Errores</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,13 +262,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./optimization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Optimización</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./paralelization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Paralelización</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Paralelización</span></span></a>
   </div>
 </li>
       </ul>
@@ -279,55 +285,55 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./spatial_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Rust Espacial</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geotypes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Datos Geoespaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Datos Geoespaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Formatos Espaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Operaciones Espaciales</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Operaciones Espaciales</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./osm.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">OpenStreetMap (OSM)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geocoding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Geocodificación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Geocodificación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./routing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Routing y Distancias</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./geohash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Geohash e Indexación</span></span></a>
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Geohash e Indexación</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./h3o.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></span></a>
   </div>
 </li>
       </ul>
@@ -344,13 +350,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./integration.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./h3o-R.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">H3 en R con h3o</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">H3 en R con h3o</span></span></a>
   </div>
 </li>
       </ul>
@@ -367,13 +373,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sqlite.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">SQLite en Rust</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">SQLite en Rust</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./duckdb.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">DuckDB en Rust</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">DuckDB en Rust</span></span></a>
   </div>
 </li>
       </ul>
@@ -381,7 +387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Anexos</span></a>
+ <span class="menu-text">Proyectos</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -389,8 +395,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./project_1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Tu primera estructura espacial</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./project_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Proyecto 2</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Anexos</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./functional.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Programación Funcional</span></span></a>
   </div>
 </li>
       </ul>
@@ -411,28 +440,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#instalación" id="toc-instalación" class="nav-link active" data-scroll-target="#instalación"><span class="header-section-number">26.1</span> Instalación</a></li>
-  <li><a href="#conceptos-clave" id="toc-conceptos-clave" class="nav-link" data-scroll-target="#conceptos-clave"><span class="header-section-number">26.2</span> Conceptos Clave</a></li>
-  <li><a href="#funciones-principales" id="toc-funciones-principales" class="nav-link" data-scroll-target="#funciones-principales"><span class="header-section-number">26.3</span> Funciones Principales</a>
+  <li><a href="#instalación" id="toc-instalación" class="nav-link active" data-scroll-target="#instalación"><span class="header-section-number">27.1</span> Instalación</a></li>
+  <li><a href="#conceptos-clave" id="toc-conceptos-clave" class="nav-link" data-scroll-target="#conceptos-clave"><span class="header-section-number">27.2</span> Conceptos Clave</a></li>
+  <li><a href="#funciones-principales" id="toc-funciones-principales" class="nav-link" data-scroll-target="#funciones-principales"><span class="header-section-number">27.3</span> Funciones Principales</a>
   <ul class="collapse">
-  <li><a href="#indexación-coordenada-celda" id="toc-indexación-coordenada-celda" class="nav-link" data-scroll-target="#indexación-coordenada-celda"><span class="header-section-number">26.3.1</span> 1. Indexación (Coordenada ↔︎ Celda)</a></li>
-  <li><a href="#inspección" id="toc-inspección" class="nav-link" data-scroll-target="#inspección"><span class="header-section-number">26.3.2</span> 2. Inspección</a></li>
-  <li><a href="#jerarquía-zoom-in-zoom-out" id="toc-jerarquía-zoom-in-zoom-out" class="nav-link" data-scroll-target="#jerarquía-zoom-in-zoom-out"><span class="header-section-number">26.3.3</span> 3. Jerarquía (Zoom In / Zoom Out)</a></li>
-  <li><a href="#recorrido-y-vecindad-grid-traversal" id="toc-recorrido-y-vecindad-grid-traversal" class="nav-link" data-scroll-target="#recorrido-y-vecindad-grid-traversal"><span class="header-section-number">26.3.4</span> 4. Recorrido y Vecindad (Grid Traversal)</a></li>
-  <li><a href="#aristas-dirigidas-directed-edges" id="toc-aristas-dirigidas-directed-edges" class="nav-link" data-scroll-target="#aristas-dirigidas-directed-edges"><span class="header-section-number">26.3.5</span> 5. Aristas Dirigidas (Directed Edges)</a></li>
-  <li><a href="#regiones-y-polígonos-polyfill" id="toc-regiones-y-polígonos-polyfill" class="nav-link" data-scroll-target="#regiones-y-polígonos-polyfill"><span class="header-section-number">26.3.6</span> 6. Regiones y Polígonos (Polyfill)</a></li>
-  <li><a href="#compactación" id="toc-compactación" class="nav-link" data-scroll-target="#compactación"><span class="header-section-number">26.3.7</span> 7. Compactación</a></li>
+  <li><a href="#indexación-coordenada-celda" id="toc-indexación-coordenada-celda" class="nav-link" data-scroll-target="#indexación-coordenada-celda"><span class="header-section-number">27.3.1</span> 1. Indexación (Coordenada ↔︎ Celda)</a></li>
+  <li><a href="#inspección" id="toc-inspección" class="nav-link" data-scroll-target="#inspección"><span class="header-section-number">27.3.2</span> 2. Inspección</a></li>
+  <li><a href="#jerarquía-zoom-in-zoom-out" id="toc-jerarquía-zoom-in-zoom-out" class="nav-link" data-scroll-target="#jerarquía-zoom-in-zoom-out"><span class="header-section-number">27.3.3</span> 3. Jerarquía (Zoom In / Zoom Out)</a></li>
+  <li><a href="#recorrido-y-vecindad-grid-traversal" id="toc-recorrido-y-vecindad-grid-traversal" class="nav-link" data-scroll-target="#recorrido-y-vecindad-grid-traversal"><span class="header-section-number">27.3.4</span> 4. Recorrido y Vecindad (Grid Traversal)</a></li>
+  <li><a href="#aristas-dirigidas-directed-edges" id="toc-aristas-dirigidas-directed-edges" class="nav-link" data-scroll-target="#aristas-dirigidas-directed-edges"><span class="header-section-number">27.3.5</span> 5. Aristas Dirigidas (Directed Edges)</a></li>
+  <li><a href="#regiones-y-polígonos-polyfill" id="toc-regiones-y-polígonos-polyfill" class="nav-link" data-scroll-target="#regiones-y-polígonos-polyfill"><span class="header-section-number">27.3.6</span> 6. Regiones y Polígonos (Polyfill)</a></li>
+  <li><a href="#compactación" id="toc-compactación" class="nav-link" data-scroll-target="#compactación"><span class="header-section-number">27.3.7</span> 7. Compactación</a></li>
   </ul></li>
-  <li><a href="#por-qué-indexación-hexagonal" id="toc-por-qué-indexación-hexagonal" class="nav-link" data-scroll-target="#por-qué-indexación-hexagonal"><span class="header-section-number">26.4</span> ¿Por qué indexación hexagonal?</a></li>
+  <li><a href="#por-qué-indexación-hexagonal" id="toc-por-qué-indexación-hexagonal" class="nav-link" data-scroll-target="#por-qué-indexación-hexagonal"><span class="header-section-number">27.4</span> ¿Por qué indexación hexagonal?</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spatial_chapter.html">Rust Espacial</a></li><li class="breadcrumb-item"><a href="./h3o.html"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./spatial_chapter.html">Rust Espacial</a></li><li class="breadcrumb-item"><a href="./h3o.html"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></h1>
+<h1 class="title"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Indexación Hexagonal H3</span></h1>
 <p class="subtitle lead">h3o</p>
 </div>
 
@@ -451,48 +480,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><a href="https://h3geo.org/">H3</a> es un sistema de indexación geoespacial jerárquico basado en hexágonos, desarrollado originalmente por Uber. Es el estándar de facto para análisis espacial de grandes volúmenes de datos (big data), clustering y machine learning geoespacial.</p>
-<p>En Rust, la mejor opción es <a href="https://github.com/HydroniumLabs/h3o"><code>h3o</code></a>. A diferencia de otras crates que son wrappers de la librería en C, <strong><code>h3o</code> es una reimplementación pura en Rust</strong>. Esto garantiza mayor seguridad de memoria, mejor optimización y facilidad de compilación (especialmente para WebAssembly).</p>
-<section id="instalación" class="level2" data-number="26.1">
-<h2 data-number="26.1" class="anchored" data-anchor-id="instalación"><span class="header-section-number">26.1</span> Instalación</h2>
+<p>En Rust, la mejor opción es <a href="https://github.com/HydroniumLabs/h3o"><code>h3o</code></a>. A diferencia de otras crates que son wrappers de la biblioteca en C, <strong><code>h3o</code> es una reimplementación pura en Rust</strong>. Esto garantiza mayor seguridad de memoria, mejor optimización y facilidad de compilación (especialmente para WebAssembly).</p>
+<section id="instalación" class="level2" data-number="27.1">
+<h2 data-number="27.1" class="anchored" data-anchor-id="instalación"><span class="header-section-number">27.1</span> Instalación</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[dependencies]</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">h3o</span> <span class="op">=</span> <span class="st">"0.3"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">h3o</span> <span class="op">=</span> <span class="op">{ </span><span class="dt">version</span><span class="op"> =</span> <span class="st">"0.6"</span><span class="op">, </span><span class="dt">features</span><span class="op"> =</span> <span class="op">[</span><span class="st">"geo"</span><span class="op">] }</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">geo-types</span> <span class="op">=</span> <span class="st">"0.7"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="conceptos-clave" class="level2" data-number="26.2">
-<h2 data-number="26.2" class="anchored" data-anchor-id="conceptos-clave"><span class="header-section-number">26.2</span> Conceptos Clave</h2>
+<section id="conceptos-clave" class="level2" data-number="27.2">
+<h2 data-number="27.2" class="anchored" data-anchor-id="conceptos-clave"><span class="header-section-number">27.2</span> Conceptos Clave</h2>
 <p>La unidad fundamental en <code>h3o</code> es el tipo <code>CellIndex</code>. Es un entero de 64 bits (u64) que codifica la ubicación, resolución y jerarquía de un hexágono. Es extremadamente ligero (copy, stack-allocated).</p>
 </section>
-<section id="funciones-principales" class="level2" data-number="26.3">
-<h2 data-number="26.3" class="anchored" data-anchor-id="funciones-principales"><span class="header-section-number">26.3</span> Funciones Principales</h2>
-<p>A continuación un recorrido por las capacidades de la librería.</p>
-<section id="indexación-coordenada-celda" class="level3" data-number="26.3.1">
-<h3 data-number="26.3.1" class="anchored" data-anchor-id="indexación-coordenada-celda"><span class="header-section-number">26.3.1</span> 1. Indexación (Coordenada ↔︎ Celda)</h3>
+<section id="funciones-principales" class="level2" data-number="27.3">
+<h2 data-number="27.3" class="anchored" data-anchor-id="funciones-principales"><span class="header-section-number">27.3</span> Funciones Principales</h2>
+<p>A continuación un recorrido por las capacidades de la crate.</p>
+<section id="indexación-coordenada-celda" class="level3" data-number="27.3.1">
+<h3 data-number="27.3.1" class="anchored" data-anchor-id="indexación-coordenada-celda"><span class="header-section-number">27.3.1</span> 1. Indexación (Coordenada ↔︎ Celda)</h3>
 <p>Convertir latitud/longitud a un hexágono y viceversa.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">h3o::</span><span class="op">{</span>CellIndex<span class="op">,</span> LatLng<span class="op">,</span> Resolution<span class="op">};</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">fn</span> main() <span class="op">-&gt;</span> <span class="dt">Result</span><span class="op">&lt;</span>()<span class="op">,</span> <span class="dt">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="pp">std::error::</span><span class="bu">Error</span><span class="op">&gt;&gt;</span> <span class="op">{</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> coord <span class="op">=</span> <span class="pp">LatLng::</span>new(<span class="dv">37.77</span><span class="op">,</span> <span class="op">-</span><span class="dv">122.42</span>)<span class="op">?;</span> <span class="co">// San Francisco</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">// De Coordenada a Celda (Resolución 9)</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> cell <span class="op">=</span> <span class="pp">CellIndex::</span>try_from_latlng(coord<span class="op">,</span> <span class="pp">Resolution::</span>Nine)<span class="op">?;</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Cell Index: {}"</span><span class="op">,</span> cell)<span class="op">;</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// De Celda a Coordenada (Centroide)</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> centro<span class="op">:</span> LatLng <span class="op">=</span> cell<span class="op">.</span>into()<span class="op">;</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Centrolat: {}, Centrolon: {}"</span><span class="op">,</span> centro<span class="op">.</span>lat()<span class="op">,</span> centro<span class="op">.</span>lng())<span class="op">;</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(())</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Santiago de Chile</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> coord <span class="op">=</span> <span class="pp">LatLng::</span>new(<span class="op">-</span><span class="dv">33.4489</span><span class="op">,</span> <span class="op">-</span><span class="dv">70.6693</span>)<span class="op">?;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">// De Coordenada a Celda (Resolución 9)</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// to_cell() es infallible una vez que LatLng es válido</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> cell<span class="op">:</span> CellIndex <span class="op">=</span> coord<span class="op">.</span>to_cell(<span class="pp">Resolution::</span>Nine)<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Cell Index: {}"</span><span class="op">,</span> cell)<span class="op">;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// De Celda a Coordenada (Centroide)</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> centro<span class="op">:</span> LatLng <span class="op">=</span> cell<span class="op">.</span>into()<span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Centrolat: {}, Centrolon: {}"</span><span class="op">,</span> centro<span class="op">.</span>lat()<span class="op">,</span> centro<span class="op">.</span>lng())<span class="op">;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="cn">Ok</span>(())</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="inspección" class="level3" data-number="26.3.2">
-<h3 data-number="26.3.2" class="anchored" data-anchor-id="inspección"><span class="header-section-number">26.3.2</span> 2. Inspección</h3>
+<section id="inspección" class="level3" data-number="27.3.2">
+<h3 data-number="27.3.2" class="anchored" data-anchor-id="inspección"><span class="header-section-number">27.3.2</span> 2. Inspección</h3>
 <p>Consultar propiedades del índice sin decodificarlo.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> res <span class="op">=</span> cell<span class="op">.</span>resolution()<span class="op">;</span> <span class="co">// Resolution::Nine</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> es_valido <span class="op">=</span> cell<span class="op">.</span>is_valid()<span class="op">;</span> <span class="co">// true</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> es_pentagono <span class="op">=</span> cell<span class="op">.</span>is_pentagon()<span class="op">;</span> <span class="co">// H3 tiene 12 pentágonos por resolución</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> area_m2 <span class="op">=</span> cell<span class="op">.</span>area_m2()<span class="op">;</span> <span class="co">// Área aproximada en metros cuadrados</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> res <span class="op">=</span> cell<span class="op">.</span>resolution()<span class="op">;</span>          <span class="co">// Resolution::Nine</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> es_pentagono <span class="op">=</span> cell<span class="op">.</span>is_pentagon()<span class="op">;</span> <span class="co">// H3 tiene 12 pentágonos por resolución</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> area_m2 <span class="op">=</span> cell<span class="op">.</span>area_m2()<span class="op">;</span>         <span class="co">// Área aproximada en metros cuadrados</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p><code>CellIndex</code> garantiza su propia validez por construcción: si el valor no fuera un índice H3 legal, la conversión desde <code>LatLng</code> habría fallado antes de llegar aquí. No existe método <code>is_valid()</code>.</p>
+</blockquote>
 </section>
-<section id="jerarquía-zoom-in-zoom-out" class="level3" data-number="26.3.3">
-<h3 data-number="26.3.3" class="anchored" data-anchor-id="jerarquía-zoom-in-zoom-out"><span class="header-section-number">26.3.3</span> 3. Jerarquía (Zoom In / Zoom Out)</h3>
+<section id="jerarquía-zoom-in-zoom-out" class="level3" data-number="27.3.3">
+<h3 data-number="27.3.3" class="anchored" data-anchor-id="jerarquía-zoom-in-zoom-out"><span class="header-section-number">27.3.3</span> 3. Jerarquía (Zoom In / Zoom Out)</h3>
 <p>H3 es jerárquico. Un hexágono padre contiene (aproximadamente) 7 hijos.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Obtener el padre (Zoom Out)</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> parent <span class="op">=</span> cell<span class="op">.</span>parent(<span class="pp">Resolution::</span>Eight)<span class="op">.</span>unwrap()<span class="op">;</span></span>
@@ -506,72 +540,90 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">// Obtener el hijo central</span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> center_child <span class="op">=</span> cell<span class="op">.</span>center_child(<span class="pp">Resolution::</span>Ten)<span class="op">.</span>unwrap()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="recorrido-y-vecindad-grid-traversal" class="level3" data-number="26.3.4">
-<h3 data-number="26.3.4" class="anchored" data-anchor-id="recorrido-y-vecindad-grid-traversal"><span class="header-section-number">26.3.4</span> 4. Recorrido y Vecindad (Grid Traversal)</h3>
+<section id="recorrido-y-vecindad-grid-traversal" class="level3" data-number="27.3.4">
+<h3 data-number="27.3.4" class="anchored" data-anchor-id="recorrido-y-vecindad-grid-traversal"><span class="header-section-number">27.3.4</span> 4. Recorrido y Vecindad (Grid Traversal)</h3>
 <p>Moverse por la grilla hexagonal es muy eficiente.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// k-ring: Obtener el hexágono y sus vecinos hasta distancia k</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">// k=1 retorna el anillo inmediato (6 vecinos + centro)</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> k <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> neighbor <span class="kw">in</span> cell<span class="op">.</span>grid_disk(k) <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">// k=1 retorna el anillo inmediato (6 vecinos + centro = 7 celdas)</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> k <span class="op">=</span> <span class="dv">1u32</span><span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> neighbor <span class="kw">in</span> cell<span class="op">.</span><span class="pp">grid_disk::</span><span class="op">&lt;</span><span class="dt">Vec</span><span class="op">&lt;</span>_<span class="op">&gt;&gt;</span>(k) <span class="op">{</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Vecino: {}"</span><span class="op">,</span> neighbor)<span class="op">;</span></span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Solo el anillo (sin el interior)</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> anillo <span class="op">=</span> cell<span class="op">.</span>grid_ring(k)<span class="op">.</span>unwrap()<span class="op">;</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">// Distancia topológica (saltos de grilla)</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> destino <span class="op">=</span> <span class="op">...;</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> saltos <span class="op">=</span> cell<span class="op">.</span>grid_distance(destino)<span class="op">.</span>unwrap()<span class="op">;</span> <span class="co">// Ej: 5 saltos</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Solo el anillo exterior (sin el interior)</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">// grid_ring_fast devuelve Option&lt;CellIndex&gt;: los pentágonos pueden</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">// interrumpir el anillo y producir None en esas posiciones.</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> maybe_cell <span class="kw">in</span> cell<span class="op">.</span>grid_ring_fast(k) <span class="op">{</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">let</span> <span class="cn">Some</span>(anillo_cell) <span class="op">=</span> maybe_cell <span class="op">{</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="pp">println!</span>(<span class="st">"Anillo: {}"</span><span class="op">,</span> anillo_cell)<span class="op">;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">// Distancia topológica (saltos de grilla)</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> destino<span class="op">:</span> CellIndex <span class="op">=</span> <span class="pp">LatLng::</span>new(<span class="op">-</span><span class="dv">33.4600</span><span class="op">,</span> <span class="op">-</span><span class="dv">70.6500</span>)<span class="op">?.</span>to_cell(<span class="pp">Resolution::</span>Nine)<span class="op">;</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> saltos <span class="op">=</span> cell<span class="op">.</span>grid_distance(destino)<span class="op">.</span>unwrap()<span class="op">;</span> <span class="co">// Ej: 5 saltos</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="aristas-dirigidas-directed-edges" class="level3" data-number="26.3.5">
-<h3 data-number="26.3.5" class="anchored" data-anchor-id="aristas-dirigidas-directed-edges"><span class="header-section-number">26.3.5</span> 5. Aristas Dirigidas (Directed Edges)</h3>
+<section id="aristas-dirigidas-directed-edges" class="level3" data-number="27.3.5">
+<h3 data-number="27.3.5" class="anchored" data-anchor-id="aristas-dirigidas-directed-edges"><span class="header-section-number">27.3.5</span> 5. Aristas Dirigidas (Directed Edges)</h3>
 <p>H3 permite representar flujo o grafos usando “aristas dirigidas” (un índice que representa el movimiento de la celda A a la celda vecina B).</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Obtener las 6 aristas salientes de una celda</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> edge <span class="kw">in</span> cell<span class="op">.</span>directed_edges() <span class="op">{</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Arista hacia vecino: {}"</span><span class="op">,</span> edge<span class="op">.</span>destination())<span class="op">;</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Obtener las aristas salientes de una celda</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">// (6 aristas para hexágonos, 5 para pentágonos)</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> edge <span class="kw">in</span> cell<span class="op">.</span>edges() <span class="op">{</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Arista hacia vecino: {}"</span><span class="op">,</span> edge<span class="op">.</span>destination())<span class="op">;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="regiones-y-polígonos-polyfill" class="level3" data-number="26.3.6">
-<h3 data-number="26.3.6" class="anchored" data-anchor-id="regiones-y-polígonos-polyfill"><span class="header-section-number">26.3.6</span> 6. Regiones y Polígonos (Polyfill)</h3>
+<section id="regiones-y-polígonos-polyfill" class="level3" data-number="27.3.6">
+<h3 data-number="27.3.6" class="anchored" data-anchor-id="regiones-y-polígonos-polyfill"><span class="header-section-number">27.3.6</span> 6. Regiones y Polígonos (Polyfill)</h3>
 <p>Para convertir geometrías vectoriales (Polígonos) a un conjunto de hexágonos (H3 Set). Esto es vital para ‘discretizar’ regiones.</p>
-<p><code>h3o</code> interactúa con la crate <code>geo-types</code> si activas la feature <code>geo</code>.</p>
+<p><code>h3o</code> interactúa con la crate <code>geo-types</code> si activas la feature <code>geo</code> (declarada en <code>Cargo.toml</code>).</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">geo_types::</span><span class="op">{</span>Polygon<span class="op">,</span> LineString<span class="op">,</span> Coord<span class="op">};</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">h3o::geom::</span>PolygonIndex<span class="op">;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> exterior <span class="op">=</span> <span class="pp">LineString::</span>from(<span class="pp">vec!</span>[</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Coord::</span>from((<span class="dv">0.0</span><span class="op">,</span> <span class="dv">0.0</span>))<span class="op">,</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Coord::</span>from((<span class="dv">1.0</span><span class="op">,</span> <span class="dv">1.0</span>))<span class="op">,</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Coord::</span>from((<span class="dv">1.0</span><span class="op">,</span> <span class="dv">0.0</span>))<span class="op">,</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="pp">Coord::</span>from((<span class="dv">0.0</span><span class="op">,</span> <span class="dv">0.0</span>))<span class="op">,</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>])<span class="op">;</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> poli <span class="op">=</span> <span class="pp">Polygon::</span>new(exterior<span class="op">,</span> <span class="pp">vec!</span>[])<span class="op">;</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co">// Rellenar polígono con hexágonos de resolución 5</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co">// Configurar el polyfill con opciones por defecto</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> builder <span class="op">=</span> <span class="pp">PolygonIndex::</span>builder(poli)<span class="op">;</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> iterador_celdas <span class="op">=</span> builder<span class="op">.</span>geo_to_cells(<span class="pp">Resolution::</span>Five)<span class="op">;</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cell <span class="kw">in</span> iterador_celdas <span class="op">{</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Celda dentro del polígono: {}"</span><span class="op">,</span> cell)<span class="op">;</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">h3o::geom::</span><span class="op">{</span>Polygon <span class="kw">as</span> H3Polygon<span class="op">,</span> PolyfillConfig<span class="op">,</span> ToCells<span class="op">};</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">h3o::</span>Resolution<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">// Bounding box aproximado del centro de Santiago de Chile</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">// Convención de geo_types: Coord { x: longitud, y: latitud }</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> exterior <span class="op">=</span> <span class="pp">LineString::</span>from(<span class="pp">vec!</span>[</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    Coord <span class="op">{</span> x<span class="op">:</span> <span class="op">-</span><span class="dv">70.690</span><span class="op">,</span> y<span class="op">:</span> <span class="op">-</span><span class="dv">33.465</span> <span class="op">},</span> <span class="co">// Suroeste</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    Coord <span class="op">{</span> x<span class="op">:</span> <span class="op">-</span><span class="dv">70.640</span><span class="op">,</span> y<span class="op">:</span> <span class="op">-</span><span class="dv">33.465</span> <span class="op">},</span> <span class="co">// Sureste</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    Coord <span class="op">{</span> x<span class="op">:</span> <span class="op">-</span><span class="dv">70.640</span><span class="op">,</span> y<span class="op">:</span> <span class="op">-</span><span class="dv">33.430</span> <span class="op">},</span> <span class="co">// Noreste</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    Coord <span class="op">{</span> x<span class="op">:</span> <span class="op">-</span><span class="dv">70.690</span><span class="op">,</span> y<span class="op">:</span> <span class="op">-</span><span class="dv">33.430</span> <span class="op">},</span> <span class="co">// Noroeste</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    Coord <span class="op">{</span> x<span class="op">:</span> <span class="op">-</span><span class="dv">70.690</span><span class="op">,</span> y<span class="op">:</span> <span class="op">-</span><span class="dv">33.465</span> <span class="op">},</span> <span class="co">// Cierre</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>])<span class="op">;</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> poli <span class="op">=</span> <span class="pp">Polygon::</span>new(exterior<span class="op">,</span> <span class="pp">vec!</span>[])<span class="op">;</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="co">// Convertir a h3o::geom::Polygon (valida que las coordenadas sean finitas)</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> h3_poli <span class="op">=</span> <span class="pp">H3Polygon::</span>from_degrees(poli)<span class="op">?;</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co">// Configurar resolución y ejecutar polyfill</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> config <span class="op">=</span> <span class="pp">PolyfillConfig::</span>new(<span class="pp">Resolution::</span>Five)<span class="op">;</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cell <span class="kw">in</span> h3_poli<span class="op">.</span>to_cells(config) <span class="op">{</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>    <span class="pp">println!</span>(<span class="st">"Celda dentro del polígono: {}"</span><span class="op">,</span> cell)<span class="op">;</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Se usa <code>Polygon as H3Polygon</code> para evitar colisión de nombres con <code>geo_types::Polygon</code>. Este patrón es habitual cuando dos crates exportan tipos con el mismo nombre.</p>
+</blockquote>
 </section>
-<section id="compactación" class="level3" data-number="26.3.7">
-<h3 data-number="26.3.7" class="anchored" data-anchor-id="compactación"><span class="header-section-number">26.3.7</span> 7. Compactación</h3>
+<section id="compactación" class="level3" data-number="27.3.7">
+<h3 data-number="27.3.7" class="anchored" data-anchor-id="compactación"><span class="header-section-number">27.3.7</span> 7. Compactación</h3>
 <p>Si tienes millones de celdas de alta resolución que cubren un área grande, puedes “compactarlos” en menos celdas de menor resolución (padres) para ahorrar espacio.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">h3o::</span>Resolution<span class="op">;</span></span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode rust code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">use</span> <span class="pp">h3o::</span><span class="op">{</span>CellIndex<span class="op">,</span> Resolution<span class="op">};</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Supón un set de celdas</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> muchas_celdas <span class="op">=</span> <span class="pp">vec!</span>[<span class="op">...</span>]<span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Supón un set de celdas (todas deben ser únicas y de la misma resolución)</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> muchas_celdas<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span>CellIndex<span class="op">&gt;</span> <span class="op">=</span> <span class="pp">vec!</span>[<span class="co">/* ... */</span>]<span class="op">;</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">// Compactar</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> celdas_compactadas<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span>CellIndex<span class="op">&gt;</span> <span class="op">=</span> <span class="pp">CellIndex::</span>compact(muchas_celdas)<span class="op">.</span>collect()<span class="op">;</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">// Descompactar (llevar todo a la misma resolución base)</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> celdas_planas <span class="op">=</span> <span class="pp">CellIndex::</span>uncompact(celdas_compactadas<span class="op">,</span> <span class="pp">Resolution::</span>Nine)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">// Compactar — agrupa celdas hermanas en su celda padre cuando es posible</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">// Falla si el conjunto tiene duplicados o celdas de distintas resoluciones</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> celdas_compactadas<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span>CellIndex<span class="op">&gt;</span> <span class="op">=</span> <span class="pp">CellIndex::</span>compact(muchas_celdas)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>expect(<span class="st">"Las celdas deben ser únicas y de la misma resolución"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>collect()<span class="op">;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">// Descompactar (expandir todo a la resolución objetivo)</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> celdas_planas<span class="op">:</span> <span class="dt">Vec</span><span class="op">&lt;</span>CellIndex<span class="op">&gt;</span> <span class="op">=</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="pp">CellIndex::</span>uncompact(celdas_compactadas<span class="op">,</span> <span class="pp">Resolution::</span>Nine)<span class="op">.</span>collect()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
-<section id="por-qué-indexación-hexagonal" class="level2" data-number="26.4">
-<h2 data-number="26.4" class="anchored" data-anchor-id="por-qué-indexación-hexagonal"><span class="header-section-number">26.4</span> ¿Por qué indexación hexagonal?</h2>
+<section id="por-qué-indexación-hexagonal" class="level2" data-number="27.4">
+<h2 data-number="27.4" class="anchored" data-anchor-id="por-qué-indexación-hexagonal"><span class="header-section-number">27.4</span> ¿Por qué indexación hexagonal?</h2>
 <ol type="1">
 <li><strong>Vecinos equidistantes</strong>: En una grilla cuadrada, las diagonales están más lejos. En hexágonos, los 6 vecinos están a la misma distancia.</li>
 <li><strong>Suavizado</strong>: Ideal para mapas de calor.</li>
@@ -984,12 +1036,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./geohash.html" class="pagination-link" aria-label="Geohash e Indexación">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Geohash e Indexación</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Geohash e Indexación</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./integration.html" class="pagination-link" aria-label="Integración de Rust con R">
-        <span class="nav-page-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Integración de Rust con R</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -997,7 +1049,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Copyright 2024, Denis Berroeta</p>
+<p>Copyright 2026, Denis Berroeta</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

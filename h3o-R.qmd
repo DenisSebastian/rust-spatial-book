@@ -3,7 +3,7 @@ title: "H3 en R con h3o"
 subtitle: "Integración vía extendr"
 ---
 
-El paquete [`{h3o}`](https://github.com/extendr/h3o) es una librería ligera de R para interactuar con el sistema de indexación geoespacial H3.
+El paquete [`{h3o}`](https://github.com/extendr/h3o) es un paquete ligero de R para interactuar con el sistema de indexación geoespacial H3.
 
 La magia de este paquete reside en que utiliza [extendr](https://extendr.rs/) para envolver la crate de Rust `h3o`, de la cual hablamos en el capítulo anterior. Esto significa que ofrece una **implementación en Rust puro** de H3, sin necesidad de linkear la librería C de Uber. Además, está diseñado para trabajar fluidamente con [`{sf}`](https://github.com/r-spatial/sf) y [`{tidyverse}`](https://www.tidyverse.org/).
 
@@ -34,10 +34,10 @@ library(dplyr)
 library(sf)
 library(tibble)
 
-# 1. Crear datos de ejemplo
+# 1. Crear datos de ejemplo — coordenadas en Chile (área Santiago-Valparaíso)
 xy <- data.frame(
-  x = runif(100, -5, 10),
-  y = runif(100, 40, 50)
+  x = runif(100, -71.5, -69.5),
+  y = runif(100, -34.5, -32.5)
 )
 
 pnts <- st_as_sf(xy, coords = c("x", "y"), crs = 4326)

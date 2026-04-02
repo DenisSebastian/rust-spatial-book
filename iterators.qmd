@@ -4,6 +4,25 @@ title: "Iteradores"
 
 Un iterador es una estructura que permite recorrer una secuencia de elementos, como un arreglo, una lista o cualquier colección de datos, uno a la vez. En Rust, los iteradores son una herramienta poderosa y flexible, que se pueden usar para manipular y procesar colecciones de manera eficiente y expresiva.
 
+::: callout-tip
+## Para usuarios de R: ¡Ya conoces esto!
+
+Si usas `purrr` en R, ya tienes el modelo mental correcto. Los iteradores de Rust son el equivalente directo de las funciones de `purrr`, con una ventaja extra: **evaluación perezosa** (lazy evaluation) y velocidad nativa sin overhead de GC.
+
+| Concepto | R (`purrr`) | Rust (`Iterator`) |
+|----------|-------------|-------------------|
+| Transformar | `map()` / `map_dbl()` | `.map()` |
+| Filtrar | `keep()` / `discard()` | `.filter()` |
+| Reducir | `reduce()` / `accumulate()` | `.fold()` / `.reduce()` |
+| Efectos secundarios | `walk()` | `.for_each()` |
+| Aplanar | `flatten()` | `.flatten()` |
+| Indexar | `seq_along(vec)` | `.enumerate()` |
+| Encadenar operaciones | `%>%` (pipe) | `.` (método encadenado) |
+
+La clave conceptual: en R, `map(vec, f)` ejecuta `f` sobre todo el vector inmediatamente. En Rust, `.map(f)` es **lazy** — no hace nada hasta que llamas a `.collect()` o un método consumidor. Esto permite que Rust optimice toda la cadena en un solo bucle sin vectores intermedios.
+:::
+
+
 **¿Qué es un Iterador?**
 
 En Rust, un iterador es cualquier tipo que implemente el trait Iterator. Los iteradores proporcionan dos funciones principales:
@@ -67,7 +86,8 @@ fn main() {
 ```rust
 fn main() {
     let numeros = vec![1, 2, 3, 4, 5];
-    let pares: Vec<i32> = numeros.iter().filter(|&&x| x % 2 == 0).collect();
+    // into_iter() consume el vector y produce i32 (no referencias)
+    let pares: Vec<i32> = numeros.into_iter().filter(|x| x % 2 == 0).collect();
     println!("{:?}", pares);  // Imprime [2, 4]
 }
 ```
@@ -180,3 +200,49 @@ fn main() {
 ```
 En este ejemplo, se define un iterador personalizado Contador que genera una secuencia de números de 1 a limite.
 
+## Resumen
+
+Los iteradores en Rust son la forma idiomática de procesar colecciones:
+
+- `.iter()` produce referencias (`&T`); usa `.copied()` o `.into_iter()` si necesitas valores propios
+- Los métodos como `.map()` y `.filter()` son **lazy**: no hacen nada hasta que se consume el iterador con `.collect()`, `.sum()`, `.find()`, etc.
+- Encadenar operaciones (como los pipes `%>%` de R) es eficiente: Rust compila toda la cadena en un solo bucle sin vectores intermedios
+
+En el siguiente capítulo veremos los **closures**, que son las funciones anónimas que se pasan a `.map()`, `.filter()` y demás métodos de iterador.
+
+## Reto Práctico
+
+En R, filtras y transformas un vector de coordenadas así:
+
+```r
+latitudes <- c(-33.4, -23.5, -41.2, -18.5, -36.7)
+# Conservar solo las latitudes de Chile continental (sur del trópico, aprox < -18)
+# y convertir a radianes
+chile <- latitudes[latitudes < -18] * pi / 180
+print(chile)
+```
+
+Traduce este código a Rust usando `.iter()`, `.filter()` y `.map()` encadenados, seguidos de `.collect()`. Almacena el resultado en un `Vec<f64>`.
+
+::: {.callout-tip collapse="true"}
+## Solución
+
+```rust
+use std::f64::consts::PI;
+
+fn main() {
+    let latitudes = vec![-33.4_f64, -23.5, -41.2, -18.5, -36.7];
+
+    let chile_rad: Vec<f64> = latitudes
+        .iter()
+        .filter(|&&lat| lat < -18.0)
+        .map(|&lat| lat * PI / 180.0)
+        .collect();
+
+    println!("{:.4?}", chile_rad);
+    // [-0.5829, -0.7190, -0.6406]
+}
+```
+
+El doble `&&` en el filter (`|&&lat|`) des-referencia dos veces: `.iter()` produce `&f64`, y el closure recibe `&&f64`. La alternativa es escribir `|lat| **lat < -18.0`. Encadenar `.filter()` y `.map()` es cero-costo: Rust compila todo en un único recorrido del vector.
+:::

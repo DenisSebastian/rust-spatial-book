@@ -15,7 +15,7 @@ Imagina a R como el **Jefe de Sala** (Maître): gestiona los pedidos, habla con 
 ### Componentes clave
 
 1.  **rextendr**: Un paquete de R que orquesta todo el proceso. Te permite crear proyectos, compilar código Rust y cargarlo en tu sesión de R automáticamente.
-2.  **extendr-api**: Una crate de Rust (librería) que proporciona tipos seguros para interactuar con objetos de R. Por ejemplo, convierte un `NumericVector` de R en algo que Rust puede iterar.
+2.  **extendr-api**: Una crate de Rust que proporciona tipos seguros para interactuar con objetos de R. Por ejemplo, convierte un `NumericVector` de R en algo que Rust puede iterar.
 
 ## Tu primera función híbrida
 
@@ -27,7 +27,7 @@ Primero, necesitas instalar `rextendr` en R:
 
 ```r
 install.packages("rextendr")
-rextendr::rust_zit() # Comprueba que tu entorno de Rust está listo
+rextendr::rust_sitrep() # Comprueba que tu entorno de Rust está listo
 ```
 
 ### El código Rust
