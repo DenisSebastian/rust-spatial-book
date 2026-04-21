@@ -1,0 +1,1461 @@
+[
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "spatial_chapter.qmd",
+    "chapter_slug": "spatial-chapter",
+    "block_index": 1,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Rust Espacial",
+      "Objetos Espaciales",
+      "Puntos y Coordenadas"
+    ],
+    "source_start_line": 38,
+    "source_end_line": 45,
+    "output_path": "examples/rust-espacial/spatial-chapter/01-puntos-y-coordenadas.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "spatial_chapter.qmd",
+    "chapter_slug": "spatial-chapter",
+    "block_index": 2,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Rust Espacial",
+      "Objetos Espaciales",
+      "Polígonos"
+    ],
+    "source_start_line": 53,
+    "source_end_line": 61,
+    "output_path": "examples/rust-espacial/spatial-chapter/02-poligonos.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "spatial_chapter.qmd",
+    "chapter_slug": "spatial-chapter",
+    "block_index": 3,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Rust Espacial",
+      "Operaciones Espaciales",
+      "Distancia (Haversine vs Euclidiana)"
+    ],
+    "source_start_line": 77,
+    "source_end_line": 95,
+    "output_path": "examples/rust-espacial/spatial-chapter/03-distancia-haversine-vs-euclidiana.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "spatial_chapter.qmd",
+    "chapter_slug": "spatial-chapter",
+    "block_index": 4,
+    "language": "r",
+    "extension": "R",
+    "heading_path": [
+      "Rust Espacial",
+      "Error silencioso frecuente",
+      "Pipelines de Procesamiento"
+    ],
+    "source_start_line": 115,
+    "source_end_line": 117,
+    "output_path": "examples/rust-espacial/spatial-chapter/04-pipelines-de-procesamiento.R"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "spatial_chapter.qmd",
+    "chapter_slug": "spatial-chapter",
+    "block_index": 5,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Rust Espacial",
+      "Error silencioso frecuente",
+      "Pipelines de Procesamiento"
+    ],
+    "source_start_line": 120,
+    "source_end_line": 124,
+    "output_path": "examples/rust-espacial/spatial-chapter/05-pipelines-de-procesamiento.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "spatial_chapter.qmd",
+    "chapter_slug": "spatial-chapter",
+    "block_index": 6,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Rust Espacial",
+      "Caso Práctico: Geohash",
+      "El problema del Vecino"
+    ],
+    "source_start_line": 141,
+    "source_end_line": 155,
+    "output_path": "examples/rust-espacial/spatial-chapter/06-el-problema-del-vecino.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "spatial_chapter.qmd",
+    "chapter_slug": "spatial-chapter",
+    "block_index": 7,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Rust Espacial",
+      "Ingeniería de Sistemas Espaciales"
+    ],
+    "source_start_line": 174,
+    "source_end_line": 180,
+    "output_path": "examples/rust-espacial/spatial-chapter/07-ingenieria-de-sistemas-espaciales.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geotypes.qmd",
+    "chapter_slug": "geotypes",
+    "block_index": 1,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Datos Geoespaciales",
+      "Primitivas Básicas",
+      "Coordenada (`Coord`)"
+    ],
+    "source_start_line": 18,
+    "source_end_line": 23,
+    "output_path": "examples/rust-espacial/geotypes/01-coordenada-coord.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geotypes.qmd",
+    "chapter_slug": "geotypes",
+    "block_index": 2,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Datos Geoespaciales",
+      "Primitivas Básicas",
+      "Punto (`Point`)"
+    ],
+    "source_start_line": 29,
+    "source_end_line": 36,
+    "output_path": "examples/rust-espacial/geotypes/02-punto-point.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geotypes.qmd",
+    "chapter_slug": "geotypes",
+    "block_index": 3,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Datos Geoespaciales",
+      "Primitivas Básicas",
+      "Línea (`Line`) y Cadena de Líneas (`LineString`)"
+    ],
+    "source_start_line": 43,
+    "source_end_line": 58,
+    "output_path": "examples/rust-espacial/geotypes/03-linea-line-y-cadena-de-lineas-linestring.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geotypes.qmd",
+    "chapter_slug": "geotypes",
+    "block_index": 4,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Datos Geoespaciales",
+      "Primitivas Básicas",
+      "Polígono (`Polygon`)"
+    ],
+    "source_start_line": 64,
+    "source_end_line": 78,
+    "output_path": "examples/rust-espacial/geotypes/04-poligono-polygon.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geotypes.qmd",
+    "chapter_slug": "geotypes",
+    "block_index": 5,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Datos Geoespaciales",
+      "Colecciones y Multi-Geometrías",
+      "MultiPoint"
+    ],
+    "source_start_line": 88,
+    "source_end_line": 95,
+    "output_path": "examples/rust-espacial/geotypes/05-multipoint.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geotypes.qmd",
+    "chapter_slug": "geotypes",
+    "block_index": 6,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Datos Geoespaciales",
+      "Colecciones y Multi-Geometrías",
+      "MultiLineString"
+    ],
+    "source_start_line": 101,
+    "source_end_line": 108,
+    "output_path": "examples/rust-espacial/geotypes/06-multilinestring.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geotypes.qmd",
+    "chapter_slug": "geotypes",
+    "block_index": 7,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Datos Geoespaciales",
+      "Colecciones y Multi-Geometrías",
+      "MultiPolygon"
+    ],
+    "source_start_line": 114,
+    "source_end_line": 122,
+    "output_path": "examples/rust-espacial/geotypes/07-multipolygon.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geotypes.qmd",
+    "chapter_slug": "geotypes",
+    "block_index": 8,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Datos Geoespaciales",
+      "Tipos Genéricos",
+      "Geometría (`Geometry`)"
+    ],
+    "source_start_line": 130,
+    "source_end_line": 141,
+    "output_path": "examples/rust-espacial/geotypes/08-geometria-geometry.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geotypes.qmd",
+    "chapter_slug": "geotypes",
+    "block_index": 9,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Datos Geoespaciales",
+      "Tipos Genéricos",
+      "Colección de Geometrías (`GeometryCollection`)"
+    ],
+    "source_start_line": 147,
+    "source_end_line": 157,
+    "output_path": "examples/rust-espacial/geotypes/09-coleccion-de-geometrias-geometrycollection.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geotypes.qmd",
+    "chapter_slug": "geotypes",
+    "block_index": 10,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Datos Geoespaciales",
+      "Visualización de Debug con `geo-svg`"
+    ],
+    "source_start_line": 168,
+    "source_end_line": 194,
+    "output_path": "examples/rust-espacial/geotypes/10-visualizacion-de-debug-con-geo-svg.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "formats.qmd",
+    "chapter_slug": "formats",
+    "block_index": 1,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Formatos Espaciales",
+      "Lectura de Datos Vectoriales",
+      "Ejemplo: Leyendo un Shapefile o GeoPackage"
+    ],
+    "source_start_line": 24,
+    "source_end_line": 48,
+    "output_path": "examples/rust-espacial/formats/01-ejemplo-leyendo-un-shapefile-o-geopackage.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "formats.qmd",
+    "chapter_slug": "formats",
+    "block_index": 2,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Formatos Espaciales",
+      "Lectura de Datos Vectoriales",
+      "Ejemplo: Leyendo un CSV con Latitud/Longitud"
+    ],
+    "source_start_line": 56,
+    "source_end_line": 75,
+    "output_path": "examples/rust-espacial/formats/02-ejemplo-leyendo-un-csv-con-latitud-longitud.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "formats.qmd",
+    "chapter_slug": "formats",
+    "block_index": 3,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Formatos Espaciales",
+      "Escritura y Conversión"
+    ],
+    "source_start_line": 84,
+    "source_end_line": 115,
+    "output_path": "examples/rust-espacial/formats/03-escritura-y-conversion.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "formats.qmd",
+    "chapter_slug": "formats",
+    "block_index": 4,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Formatos Espaciales",
+      "Reproyección de CRS",
+      "Ejemplo: WGS84 → UTM Zona 19S (Chile)"
+    ],
+    "source_start_line": 132,
+    "source_end_line": 151,
+    "output_path": "examples/rust-espacial/formats/04-ejemplo-wgs84-utm-zona-19s-chile.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "formats.qmd",
+    "chapter_slug": "formats",
+    "block_index": 5,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Formatos Espaciales",
+      "Lectura de Datos Raster"
+    ],
+    "source_start_line": 173,
+    "source_end_line": 215,
+    "output_path": "examples/rust-espacial/formats/05-lectura-de-datos-raster.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "formats.qmd",
+    "chapter_slug": "formats",
+    "block_index": 6,
+    "language": "r",
+    "extension": "R",
+    "heading_path": [
+      "Formatos Espaciales",
+      "Equivalencia con R"
+    ],
+    "source_start_line": 220,
+    "source_end_line": 227,
+    "output_path": "examples/rust-espacial/formats/06-equivalencia-con-r.R"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geos.qmd",
+    "chapter_slug": "geos",
+    "block_index": 1,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Las unidades dependen del CRS — esto es crítico",
+      "Buffer (Zona de Influencia)"
+    ],
+    "source_start_line": 27,
+    "source_end_line": 35,
+    "output_path": "examples/rust-espacial/geos/01-buffer-zona-de-influencia.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geos.qmd",
+    "chapter_slug": "geos",
+    "block_index": 2,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Las unidades dependen del CRS — esto es crítico",
+      "Convex Hull (Cierre Convexo)"
+    ],
+    "source_start_line": 40,
+    "source_end_line": 42,
+    "output_path": "examples/rust-espacial/geos/02-convex-hull-cierre-convexo.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geos.qmd",
+    "chapter_slug": "geos",
+    "block_index": 3,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Las unidades dependen del CRS — esto es crítico",
+      "Envelope (Bounding Box)"
+    ],
+    "source_start_line": 47,
+    "source_end_line": 49,
+    "output_path": "examples/rust-espacial/geos/03-envelope-bounding-box.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geos.qmd",
+    "chapter_slug": "geos",
+    "block_index": 4,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Las unidades dependen del CRS — esto es crítico",
+      "Simplify (Simplificación)"
+    ],
+    "source_start_line": 54,
+    "source_end_line": 57,
+    "output_path": "examples/rust-espacial/geos/04-simplify-simplificacion.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geos.qmd",
+    "chapter_slug": "geos",
+    "block_index": 5,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Predicados (Relaciones Espaciales)"
+    ],
+    "source_start_line": 63,
+    "source_end_line": 81,
+    "output_path": "examples/rust-espacial/geos/05-predicados-relaciones-espaciales.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geos.qmd",
+    "chapter_slug": "geos",
+    "block_index": 6,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Operaciones de Conjuntos (Set Operations)",
+      "Intersección"
+    ],
+    "source_start_line": 93,
+    "source_end_line": 95,
+    "output_path": "examples/rust-espacial/geos/06-interseccion.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geos.qmd",
+    "chapter_slug": "geos",
+    "block_index": 7,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Operaciones de Conjuntos (Set Operations)",
+      "Unión"
+    ],
+    "source_start_line": 100,
+    "source_end_line": 102,
+    "output_path": "examples/rust-espacial/geos/07-union.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geos.qmd",
+    "chapter_slug": "geos",
+    "block_index": 8,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Operaciones de Conjuntos (Set Operations)",
+      "Diferencia"
+    ],
+    "source_start_line": 107,
+    "source_end_line": 109,
+    "output_path": "examples/rust-espacial/geos/08-diferencia.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geos.qmd",
+    "chapter_slug": "geos",
+    "block_index": 9,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Operaciones de Conjuntos (Set Operations)",
+      "Diferencia Simétrica"
+    ],
+    "source_start_line": 114,
+    "source_end_line": 116,
+    "output_path": "examples/rust-espacial/geos/09-diferencia-simetrica.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geos.qmd",
+    "chapter_slug": "geos",
+    "block_index": 10,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Análisis Escalar"
+    ],
+    "source_start_line": 122,
+    "source_end_line": 132,
+    "output_path": "examples/rust-espacial/geos/10-analisis-escalar.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geos.qmd",
+    "chapter_slug": "geos",
+    "block_index": 11,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Topología y Validación"
+    ],
+    "source_start_line": 138,
+    "source_end_line": 149,
+    "output_path": "examples/rust-espacial/geos/11-topologia-y-validacion.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geos.qmd",
+    "chapter_slug": "geos",
+    "block_index": 12,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Spatial Join: Puntos en Polígonos"
+    ],
+    "source_start_line": 155,
+    "source_end_line": 197,
+    "output_path": "examples/rust-espacial/geos/12-spatial-join-puntos-en-poligonos.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geos.qmd",
+    "chapter_slug": "geos",
+    "block_index": 13,
+    "language": "r",
+    "extension": "R",
+    "heading_path": [
+      "Equivalencia con R"
+    ],
+    "source_start_line": 213,
+    "source_end_line": 217,
+    "output_path": "examples/rust-espacial/geos/13-equivalencia-con-r.R"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "osm.qmd",
+    "chapter_slug": "osm",
+    "block_index": 1,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "OpenStreetMap (OSM)",
+      "Lectura de Archivos PBF",
+      "Ejemplo: Contando Nodos"
+    ],
+    "source_start_line": 18,
+    "source_end_line": 39,
+    "output_path": "examples/rust-espacial/osm/01-ejemplo-contando-nodos.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "osm.qmd",
+    "chapter_slug": "osm",
+    "block_index": 2,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "OpenStreetMap (OSM)",
+      "Lectura de Archivos PBF",
+      "Ejemplo: Filtrado y Extracción"
+    ],
+    "source_start_line": 45,
+    "source_end_line": 78,
+    "output_path": "examples/rust-espacial/osm/02-ejemplo-filtrado-y-extraccion.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geocoding.qmd",
+    "chapter_slug": "geocoding",
+    "block_index": 1,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Geocodificación",
+      "Búsqueda Naive (Fuerza Bruta)"
+    ],
+    "source_start_line": 18,
+    "source_end_line": 79,
+    "output_path": "examples/rust-espacial/geocoding/01-busqueda-naive-fuerza-bruta.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geocoding.qmd",
+    "chapter_slug": "geocoding",
+    "block_index": 2,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Geocodificación",
+      "Estrategias para Producción",
+      "Ejemplo conceptual con Tantivy"
+    ],
+    "source_start_line": 93,
+    "source_end_line": 109,
+    "output_path": "examples/rust-espacial/geocoding/02-ejemplo-conceptual-con-tantivy.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geocoding.qmd",
+    "chapter_slug": "geocoding",
+    "block_index": 3,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Geocodificación",
+      "Geocodificación Inversa (Reverse Geocoding)"
+    ],
+    "source_start_line": 120,
+    "source_end_line": 177,
+    "output_path": "examples/rust-espacial/geocoding/03-geocodificacion-inversa-reverse-geocoding.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "routing.qmd",
+    "chapter_slug": "routing",
+    "block_index": 1,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Routing y Distancias",
+      "Uso Básico",
+      "Ruteo en Carreteras (Highways)"
+    ],
+    "source_start_line": 33,
+    "source_end_line": 49,
+    "output_path": "examples/rust-espacial/routing/01-ruteo-en-carreteras-highways.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "routing.qmd",
+    "chapter_slug": "routing",
+    "block_index": 2,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Routing y Distancias",
+      "Uso Básico",
+      "Ruteo Marítimo y Ferroviario"
+    ],
+    "source_start_line": 55,
+    "source_end_line": 68,
+    "output_path": "examples/rust-espacial/routing/02-ruteo-maritimo-y-ferroviario.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "routing.qmd",
+    "chapter_slug": "routing",
+    "block_index": 3,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Routing y Distancias",
+      "Cálculo Concurrente (Batch Processing)"
+    ],
+    "source_start_line": 74,
+    "source_end_line": 91,
+    "output_path": "examples/rust-espacial/routing/03-calculo-concurrente-batch-processing.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "routing.qmd",
+    "chapter_slug": "routing",
+    "block_index": 4,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Routing y Distancias",
+      "Grafos Personalizados"
+    ],
+    "source_start_line": 97,
+    "source_end_line": 117,
+    "output_path": "examples/rust-espacial/routing/04-grafos-personalizados.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geohash.qmd",
+    "chapter_slug": "geohash",
+    "block_index": 1,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Geohash e Indexación",
+      "Operaciones Básicas",
+      "Codificar (Encode)"
+    ],
+    "source_start_line": 25,
+    "source_end_line": 38,
+    "output_path": "examples/rust-espacial/geohash/01-codificar-encode.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geohash.qmd",
+    "chapter_slug": "geohash",
+    "block_index": 2,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Geohash e Indexación",
+      "Operaciones Básicas",
+      "Decodificar (Decode)"
+    ],
+    "source_start_line": 44,
+    "source_end_line": 52,
+    "output_path": "examples/rust-espacial/geohash/02-decodificar-decode.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "geohash.qmd",
+    "chapter_slug": "geohash",
+    "block_index": 3,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Geohash e Indexación",
+      "El problema de borde: buscar solo la celda propia es un bug"
+    ],
+    "source_start_line": 68,
+    "source_end_line": 81,
+    "output_path": "examples/rust-espacial/geohash/03-el-problema-de-borde-buscar-solo-la-celda-propia-es-un-bug.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "h3o.qmd",
+    "chapter_slug": "h3o",
+    "block_index": 1,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Funciones Principales",
+      "1. Indexación (Coordenada ↔ Celda)"
+    ],
+    "source_start_line": 30,
+    "source_end_line": 48,
+    "output_path": "examples/rust-espacial/h3o/01-indexacion-coordenada-celda.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "h3o.qmd",
+    "chapter_slug": "h3o",
+    "block_index": 2,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Funciones Principales",
+      "2. Inspección"
+    ],
+    "source_start_line": 54,
+    "source_end_line": 58,
+    "output_path": "examples/rust-espacial/h3o/02-inspeccion.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "h3o.qmd",
+    "chapter_slug": "h3o",
+    "block_index": 3,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Funciones Principales",
+      "3. Jerarquía (Zoom In / Zoom Out)"
+    ],
+    "source_start_line": 66,
+    "source_end_line": 78,
+    "output_path": "examples/rust-espacial/h3o/03-jerarquia-zoom-in-zoom-out.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "h3o.qmd",
+    "chapter_slug": "h3o",
+    "block_index": 4,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Funciones Principales",
+      "4. Recorrido y Vecindad (Grid Traversal)"
+    ],
+    "source_start_line": 84,
+    "source_end_line": 104,
+    "output_path": "examples/rust-espacial/h3o/04-recorrido-y-vecindad-grid-traversal.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "h3o.qmd",
+    "chapter_slug": "h3o",
+    "block_index": 5,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Funciones Principales",
+      "5. Aristas Dirigidas (Directed Edges)"
+    ],
+    "source_start_line": 110,
+    "source_end_line": 116,
+    "output_path": "examples/rust-espacial/h3o/05-aristas-dirigidas-directed-edges.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "h3o.qmd",
+    "chapter_slug": "h3o",
+    "block_index": 6,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Funciones Principales",
+      "6. Regiones y Polígonos (Polyfill)"
+    ],
+    "source_start_line": 124,
+    "source_end_line": 148,
+    "output_path": "examples/rust-espacial/h3o/06-regiones-y-poligonos-polyfill.rs"
+  },
+  {
+    "part_title": "Rust Espacial",
+    "part_slug": "rust-espacial",
+    "chapter_file": "h3o.qmd",
+    "chapter_slug": "h3o",
+    "block_index": 7,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Funciones Principales",
+      "7. Compactación"
+    ],
+    "source_start_line": 156,
+    "source_end_line": 171,
+    "output_path": "examples/rust-espacial/h3o/07-compactacion.rs"
+  },
+  {
+    "part_title": "Integracion con R",
+    "part_slug": "integracion-con-r",
+    "chapter_file": "integration.qmd",
+    "chapter_slug": "integration",
+    "block_index": 1,
+    "language": "r",
+    "extension": "R",
+    "heading_path": [
+      "Integración de Rust con R",
+      "Tu primera función híbrida",
+      "Preparación en R"
+    ],
+    "source_start_line": 28,
+    "source_end_line": 31,
+    "output_path": "examples/integracion-con-r/integration/01-preparacion-en-r.R"
+  },
+  {
+    "part_title": "Integracion con R",
+    "part_slug": "integracion-con-r",
+    "chapter_file": "integration.qmd",
+    "chapter_slug": "integration",
+    "block_index": 2,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Integración de Rust con R",
+      "Tu primera función híbrida",
+      "El código Rust"
+    ],
+    "source_start_line": 37,
+    "source_end_line": 52,
+    "output_path": "examples/integracion-con-r/integration/02-el-codigo-rust.rs"
+  },
+  {
+    "part_title": "Integracion con R",
+    "part_slug": "integracion-con-r",
+    "chapter_file": "integration.qmd",
+    "chapter_slug": "integration",
+    "block_index": 3,
+    "language": "r",
+    "extension": "R",
+    "heading_path": [
+      "Integración de Rust con R",
+      "Tu primera función híbrida",
+      "Ejecución desde R"
+    ],
+    "source_start_line": 58,
+    "source_end_line": 67,
+    "output_path": "examples/integracion-con-r/integration/03-ejecucion-desde-r.R"
+  },
+  {
+    "part_title": "Integracion con R",
+    "part_slug": "integracion-con-r",
+    "chapter_file": "integration.qmd",
+    "chapter_slug": "integration",
+    "block_index": 4,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Integración de Rust con R",
+      "Pasando Datos: Vectores y Matrices"
+    ],
+    "source_start_line": 84,
+    "source_end_line": 94,
+    "output_path": "examples/integracion-con-r/integration/04-pasando-datos-vectores-y-matrices.rs"
+  },
+  {
+    "part_title": "Integracion con R",
+    "part_slug": "integracion-con-r",
+    "chapter_file": "h3o-R.qmd",
+    "chapter_slug": "h3o-r",
+    "block_index": 1,
+    "language": "r",
+    "extension": "R",
+    "heading_path": [
+      "Instalación"
+    ],
+    "source_start_line": 14,
+    "source_end_line": 16,
+    "output_path": "examples/integracion-con-r/h3o-r/01-instalacion.R"
+  },
+  {
+    "part_title": "Integracion con R",
+    "part_slug": "integracion-con-r",
+    "chapter_file": "h3o-R.qmd",
+    "chapter_slug": "h3o-r",
+    "block_index": 2,
+    "language": "r",
+    "extension": "R",
+    "heading_path": [
+      "Instalación"
+    ],
+    "source_start_line": 20,
+    "source_end_line": 23,
+    "output_path": "examples/integracion-con-r/h3o-r/02-instalacion.R"
+  },
+  {
+    "part_title": "Integracion con R",
+    "part_slug": "integracion-con-r",
+    "chapter_file": "h3o-R.qmd",
+    "chapter_slug": "h3o-r",
+    "block_index": 3,
+    "language": "r",
+    "extension": "R",
+    "heading_path": [
+      "Ejemplo de Flujo de Trabajo",
+      "De Puntos a Celdas H3"
+    ],
+    "source_start_line": 31,
+    "source_end_line": 47,
+    "output_path": "examples/integracion-con-r/h3o-r/03-de-puntos-a-celdas-h3.R"
+  },
+  {
+    "part_title": "Integracion con R",
+    "part_slug": "integracion-con-r",
+    "chapter_file": "h3o-R.qmd",
+    "chapter_slug": "h3o-r",
+    "block_index": 4,
+    "language": "r",
+    "extension": "R",
+    "heading_path": [
+      "Ejemplo de Flujo de Trabajo",
+      "Visualización (Celdas a Polígonos)"
+    ],
+    "source_start_line": 53,
+    "source_end_line": 63,
+    "output_path": "examples/integracion-con-r/h3o-r/04-visualizacion-celdas-a-poligonos.R"
+  },
+  {
+    "part_title": "Integracion con R",
+    "part_slug": "integracion-con-r",
+    "chapter_file": "h3o-R.qmd",
+    "chapter_slug": "h3o-r",
+    "block_index": 5,
+    "language": "r",
+    "extension": "R",
+    "heading_path": [
+      "Ejemplo de Flujo de Trabajo",
+      "Centroides"
+    ],
+    "source_start_line": 69,
+    "source_end_line": 75,
+    "output_path": "examples/integracion-con-r/h3o-r/05-centroides.R"
+  },
+  {
+    "part_title": "Integracion con R",
+    "part_slug": "integracion-con-r",
+    "chapter_file": "h3o-R.qmd",
+    "chapter_slug": "h3o-r",
+    "block_index": 6,
+    "language": "r",
+    "extension": "R",
+    "heading_path": [
+      "Ejemplo de Flujo de Trabajo",
+      "Aristas (Edges)"
+    ],
+    "source_start_line": 81,
+    "source_end_line": 88,
+    "output_path": "examples/integracion-con-r/h3o-r/06-aristas-edges.R"
+  },
+  {
+    "part_title": "Integracion con R",
+    "part_slug": "integracion-con-r",
+    "chapter_file": "h3o-R.qmd",
+    "chapter_slug": "h3o-r",
+    "block_index": 7,
+    "language": "r",
+    "extension": "R",
+    "heading_path": [
+      "Rendimiento (Benchmarks)",
+      "Creación de Polígonos"
+    ],
+    "source_start_line": 98,
+    "source_end_line": 104,
+    "output_path": "examples/integracion-con-r/h3o-r/07-creacion-de-poligonos.R"
+  },
+  {
+    "part_title": "Integracion con R",
+    "part_slug": "integracion-con-r",
+    "chapter_file": "h3o-R.qmd",
+    "chapter_slug": "h3o-r",
+    "block_index": 8,
+    "language": "r",
+    "extension": "R",
+    "heading_path": [
+      "Rendimiento (Benchmarks)",
+      "Polígonos a Celdas (Polyfill)"
+    ],
+    "source_start_line": 110,
+    "source_end_line": 120,
+    "output_path": "examples/integracion-con-r/h3o-r/08-poligonos-a-celdas-polyfill.R"
+  },
+  {
+    "part_title": "Integracion con DDBB",
+    "part_slug": "integracion-con-ddbb",
+    "chapter_file": "sqlite.qmd",
+    "chapter_slug": "sqlite",
+    "block_index": 1,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "SQLite en Rust",
+      "La Crate `rusqlite`",
+      "Ejemplo: Guardando Puntos y Polígonos"
+    ],
+    "source_start_line": 25,
+    "source_end_line": 69,
+    "output_path": "examples/integracion-con-ddbb/sqlite/01-ejemplo-guardando-puntos-y-poligonos.rs"
+  },
+  {
+    "part_title": "Integracion con DDBB",
+    "part_slug": "integracion-con-ddbb",
+    "chapter_file": "duckdb.qmd",
+    "chapter_slug": "duckdb",
+    "block_index": 1,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "El Poder de `spatial` Extension",
+      "Ejemplo: Inserción de Objetos Espaciales"
+    ],
+    "source_start_line": 29,
+    "source_end_line": 91,
+    "output_path": "examples/integracion-con-ddbb/duckdb/01-ejemplo-insercion-de-objetos-espaciales.rs"
+  },
+  {
+    "part_title": "Proyectos",
+    "part_slug": "proyectos",
+    "chapter_file": "project_1.qmd",
+    "chapter_slug": "project-1",
+    "block_index": 1,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Introducción",
+      "1. El Átomo Espacial: El Punto (`Point`)"
+    ],
+    "source_start_line": 29,
+    "source_end_line": 45,
+    "output_path": "examples/proyectos/project-1/01-el-atomo-espacial-el-punto-point.rs"
+  },
+  {
+    "part_title": "Proyectos",
+    "part_slug": "proyectos",
+    "chapter_file": "project_1.qmd",
+    "chapter_slug": "project-1",
+    "block_index": 2,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Introducción",
+      "2. Construyendo Geometrías: El Polígono (`Polygon`)"
+    ],
+    "source_start_line": 56,
+    "source_end_line": 63,
+    "output_path": "examples/proyectos/project-1/02-construyendo-geometrias-el-poligono-polygon.rs"
+  },
+  {
+    "part_title": "Proyectos",
+    "part_slug": "proyectos",
+    "chapter_file": "project_1.qmd",
+    "chapter_slug": "project-1",
+    "block_index": 3,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Introducción",
+      "3. Dando Vida: Cálculo de Área (`impl`)"
+    ],
+    "source_start_line": 73,
+    "source_end_line": 109,
+    "output_path": "examples/proyectos/project-1/03-dando-vida-calculo-de-area-impl.rs"
+  },
+  {
+    "part_title": "Proyectos",
+    "part_slug": "proyectos",
+    "chapter_file": "project_1.qmd",
+    "chapter_slug": "project-1",
+    "block_index": 4,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Introducción",
+      "3. Dando Vida: Cálculo de Área (`impl`)",
+      "Probémoslo"
+    ],
+    "source_start_line": 115,
+    "source_end_line": 130,
+    "output_path": "examples/proyectos/project-1/04-probemoslo.rs"
+  },
+  {
+    "part_title": "Proyectos",
+    "part_slug": "proyectos",
+    "chapter_file": "project_1.qmd",
+    "chapter_slug": "project-1",
+    "block_index": 5,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Introducción",
+      "4. El Contrato Espacial (`trait`)"
+    ],
+    "source_start_line": 140,
+    "source_end_line": 148,
+    "output_path": "examples/proyectos/project-1/05-el-contrato-espacial-trait.rs"
+  },
+  {
+    "part_title": "Proyectos",
+    "part_slug": "proyectos",
+    "chapter_file": "project_1.qmd",
+    "chapter_slug": "project-1",
+    "block_index": 6,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Introducción",
+      "4. El Contrato Espacial (`trait`)"
+    ],
+    "source_start_line": 152,
+    "source_end_line": 164,
+    "output_path": "examples/proyectos/project-1/06-el-contrato-espacial-trait.rs"
+  },
+  {
+    "part_title": "Proyectos",
+    "part_slug": "proyectos",
+    "chapter_file": "project_1.qmd",
+    "chapter_slug": "project-1",
+    "block_index": 7,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Introducción",
+      "4. El Contrato Espacial (`trait`)",
+      "Probémoslo en `main`"
+    ],
+    "source_start_line": 172,
+    "source_end_line": 195,
+    "output_path": "examples/proyectos/project-1/07-probemoslo-en-main.rs"
+  },
+  {
+    "part_title": "Proyectos",
+    "part_slug": "proyectos",
+    "chapter_file": "project_1.qmd",
+    "chapter_slug": "project-1",
+    "block_index": 8,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Introducción",
+      "5. Validación y Robustez: Evitando Geometrías Imposibles"
+    ],
+    "source_start_line": 208,
+    "source_end_line": 230,
+    "output_path": "examples/proyectos/project-1/08-validacion-y-robustez-evitando-geometrias-imposibles.rs"
+  },
+  {
+    "part_title": "Proyectos",
+    "part_slug": "proyectos",
+    "chapter_file": "project_1.qmd",
+    "chapter_slug": "project-1",
+    "block_index": 9,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Introducción",
+      "5. Validación y Robustez: Evitando Geometrías Imposibles",
+      "Probémoslo en `main`"
+    ],
+    "source_start_line": 238,
+    "source_end_line": 266,
+    "output_path": "examples/proyectos/project-1/09-probemoslo-en-main.rs"
+  },
+  {
+    "part_title": "Proyectos",
+    "part_slug": "proyectos",
+    "chapter_file": "project_1.qmd",
+    "chapter_slug": "project-1",
+    "block_index": 10,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Introducción",
+      "6. Integración con Base de Datos (Simulación)"
+    ],
+    "source_start_line": 274,
+    "source_end_line": 288,
+    "output_path": "examples/proyectos/project-1/10-integracion-con-base-de-datos-simulacion.rs"
+  },
+  {
+    "part_title": "Proyectos",
+    "part_slug": "proyectos",
+    "chapter_file": "project_1.qmd",
+    "chapter_slug": "project-1",
+    "block_index": 11,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Introducción",
+      "6. Integración con Base de Datos (Simulación)",
+      "El Flujo Completo"
+    ],
+    "source_start_line": 296,
+    "source_end_line": 338,
+    "output_path": "examples/proyectos/project-1/11-el-flujo-completo.rs"
+  },
+  {
+    "part_title": "Proyectos",
+    "part_slug": "proyectos",
+    "chapter_file": "project_2.qmd",
+    "chapter_slug": "project-2",
+    "block_index": 1,
+    "language": "r",
+    "extension": "R",
+    "heading_path": [
+      "Sistema de Optimización Espacial con Indexación H3",
+      "Parte 1: Diagnóstico del Problema",
+      "El Código Actual (Enfoque Ingenuo)"
+    ],
+    "source_start_line": 33,
+    "source_end_line": 49,
+    "output_path": "examples/proyectos/project-2/01-el-codigo-actual-enfoque-ingenuo.R"
+  },
+  {
+    "part_title": "Proyectos",
+    "part_slug": "proyectos",
+    "chapter_file": "project_2.qmd",
+    "chapter_slug": "project-2",
+    "block_index": 2,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Sistema de Optimización Espacial con Indexación H3",
+      "Parte 4: Implementación en Rust",
+      "Paso 1: Estructuras de Datos"
+    ],
+    "source_start_line": 181,
+    "source_end_line": 204,
+    "output_path": "examples/proyectos/project-2/02-paso-1-estructuras-de-datos.rs"
+  },
+  {
+    "part_title": "Proyectos",
+    "part_slug": "proyectos",
+    "chapter_file": "project_2.qmd",
+    "chapter_slug": "project-2",
+    "block_index": 3,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Sistema de Optimización Espacial con Indexación H3",
+      "Parte 4: Implementación en Rust",
+      "Paso 2: Construcción del Índice"
+    ],
+    "source_start_line": 208,
+    "source_end_line": 238,
+    "output_path": "examples/proyectos/project-2/03-paso-2-construccion-del-indice.rs"
+  },
+  {
+    "part_title": "Proyectos",
+    "part_slug": "proyectos",
+    "chapter_file": "project_2.qmd",
+    "chapter_slug": "project-2",
+    "block_index": 4,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Sistema de Optimización Espacial con Indexación H3",
+      "Parte 4: Implementación en Rust",
+      "Función auxiliar: distancia Haversine"
+    ],
+    "source_start_line": 246,
+    "source_end_line": 257,
+    "output_path": "examples/proyectos/project-2/04-funcion-auxiliar-distancia-haversine.rs"
+  },
+  {
+    "part_title": "Proyectos",
+    "part_slug": "proyectos",
+    "chapter_file": "project_2.qmd",
+    "chapter_slug": "project-2",
+    "block_index": 5,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Sistema de Optimización Espacial con Indexación H3",
+      "Parte 4: Implementación en Rust",
+      "Paso 3: Consulta Eficiente"
+    ],
+    "source_start_line": 261,
+    "source_end_line": 307,
+    "output_path": "examples/proyectos/project-2/05-paso-3-consulta-eficiente.rs"
+  },
+  {
+    "part_title": "Proyectos",
+    "part_slug": "proyectos",
+    "chapter_file": "project_2.qmd",
+    "chapter_slug": "project-2",
+    "block_index": 6,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Sistema de Optimización Espacial con Indexación H3",
+      "Parte 4: Implementación en Rust",
+      "Paso 4: Ejemplo de Uso"
+    ],
+    "source_start_line": 311,
+    "source_end_line": 359,
+    "output_path": "examples/proyectos/project-2/06-paso-4-ejemplo-de-uso.rs"
+  },
+  {
+    "part_title": "Proyectos",
+    "part_slug": "proyectos",
+    "chapter_file": "project_2.qmd",
+    "chapter_slug": "project-2",
+    "block_index": 7,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Sistema de Optimización Espacial con Indexación H3",
+      "Parte 7: Ejercicios para el Lector",
+      "Ejercicio 1: Extender el Índice"
+    ],
+    "source_start_line": 447,
+    "source_end_line": 458,
+    "output_path": "examples/proyectos/project-2/07-ejercicio-1-extender-el-indice.rs"
+  },
+  {
+    "part_title": "Proyectos",
+    "part_slug": "proyectos",
+    "chapter_file": "project_2.qmd",
+    "chapter_slug": "project-2",
+    "block_index": 8,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Sistema de Optimización Espacial con Indexación H3",
+      "Parte 7: Ejercicios para el Lector",
+      "Ejercicio 2: Ajustar la Resolución"
+    ],
+    "source_start_line": 464,
+    "source_end_line": 470,
+    "output_path": "examples/proyectos/project-2/08-ejercicio-2-ajustar-la-resolucion.rs"
+  },
+  {
+    "part_title": "Proyectos",
+    "part_slug": "proyectos",
+    "chapter_file": "project_2.qmd",
+    "chapter_slug": "project-2",
+    "block_index": 9,
+    "language": "rust",
+    "extension": "rs",
+    "heading_path": [
+      "Sistema de Optimización Espacial con Indexación H3",
+      "Parte 7: Ejercicios para el Lector",
+      "Ejercicio 3: Benchmark Propio"
+    ],
+    "source_start_line": 476,
+    "source_end_line": 489,
+    "output_path": "examples/proyectos/project-2/09-ejercicio-3-benchmark-propio.rs"
+  }
+]

@@ -5,6 +5,7 @@ La geocodificación es el proceso de convertir texto (una dirección como "Av. P
 Tradicionalmente, en R o Python, solemos llamar a APIs online (Google Maps, Nominatim, Mapbox). Sin embargo, Rust nos da la potencia para hacer **geocodificación offline** consultando directamente una base de datos local de OpenStreetMap (ej. `chile-latest.osm.pbf`).
 
 Esto tiene ventajas enormes:
+
 *   **Privacidad**: Los datos de tus usuarios nunca salen de tu servidor.
 *   **Costo**: Cero costo por request.
 *   **Velocidad**: Latencia de red cero.

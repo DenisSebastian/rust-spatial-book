@@ -19,6 +19,7 @@ routrs = { version = "2.0.0", features = ["all"] }
 ```
 
 Features disponibles:
+
 *   `maritime`: habilita el grafo marítimo (basado en MARNET).
 *   `highways`: habilita el grafo de carreteras (basado en OSM).
 *   `railways`: habilita el grafo ferroviario (basado en OSM).
@@ -29,6 +30,7 @@ Features disponibles:
 El flujo es simple: defines origen y destino, y la crate encuentra los puntos más cercanos en el grafo para calcular la ruta.
 
 ### Ruteo en Carreteras (Highways)
+
 
 ```rust
 use routrs::prelude::*;
