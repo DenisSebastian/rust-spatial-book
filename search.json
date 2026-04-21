@@ -1464,7 +1464,7 @@
     "href": "geocoding.html",
     "title": "24  Geocodificación",
     "section": "",
-    "text": "24.1 Búsqueda Naive (Fuerza Bruta)\nLa geocodificación es el proceso de convertir texto (una dirección como “Av. Providencia 1234”) en coordenadas geográficas.\nTradicionalmente, en R o Python, solemos llamar a APIs online (Google Maps, Nominatim, Mapbox). Sin embargo, Rust nos da la potencia para hacer geocodificación offline consultando directamente una base de datos local de OpenStreetMap (ej. chile-latest.osm.pbf).\nEsto tiene ventajas enormes: * Privacidad: Los datos de tus usuarios nunca salen de tu servidor. * Costo: Cero costo por request. * Velocidad: Latencia de red cero.\nSi tienes un archivo PBF de una región (ej. Santiago), puedes buscar una dirección específica iterando sobre el archivo y filtrando por los tags de dirección (addr:street, addr:housenumber).\nA continuación, un ejemplo concreto buscando una dirección en Chile:",
+    "text": "24.1 Búsqueda Naive (Fuerza Bruta)\nLa geocodificación es el proceso de convertir texto (una dirección como “Av. Providencia 1234”) en coordenadas geográficas.\nTradicionalmente, en R o Python, solemos llamar a APIs online (Google Maps, Nominatim, Mapbox). Sin embargo, Rust nos da la potencia para hacer geocodificación offline consultando directamente una base de datos local de OpenStreetMap (ej. chile-latest.osm.pbf).\nEsto tiene ventajas enormes:\nSi tienes un archivo PBF de una región (ej. Santiago), puedes buscar una dirección específica iterando sobre el archivo y filtrando por los tags de dirección (addr:street, addr:housenumber).\nA continuación, un ejemplo concreto buscando una dirección en Chile:",
     "crumbs": [
       "Rust Espacial",
       "<span class='chapter-number'>24</span>  <span class='chapter-title'>Geocodificación</span>"
@@ -1541,7 +1541,7 @@
     "href": "routing.html#instalación",
     "title": "25  Routing y Distancias",
     "section": "25.2 Instalación",
-    "text": "25.2 Instalación\n[dependencies]\nroutrs = { version = \"2.0.0\", features = [\"all\"] }\nFeatures disponibles: * maritime: habilita el grafo marítimo (basado en MARNET). * highways: habilita el grafo de carreteras (basado en OSM). * railways: habilita el grafo ferroviario (basado en OSM). * concurrency: habilita el cálculo paralelo con rayon.",
+    "text": "25.2 Instalación\n[dependencies]\nroutrs = { version = \"2.0.0\", features = [\"all\"] }\nFeatures disponibles:\n\nmaritime: habilita el grafo marítimo (basado en MARNET).\nhighways: habilita el grafo de carreteras (basado en OSM).\nrailways: habilita el grafo ferroviario (basado en OSM).\nconcurrency: habilita el cálculo paralelo con rayon.",
     "crumbs": [
       "Rust Espacial",
       "<span class='chapter-number'>25</span>  <span class='chapter-title'>Routing y Distancias</span>"

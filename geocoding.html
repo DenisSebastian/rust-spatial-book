@@ -474,7 +474,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>La geocodificación es el proceso de convertir texto (una dirección como “Av. Providencia 1234”) en coordenadas geográficas.</p>
 <p>Tradicionalmente, en R o Python, solemos llamar a APIs online (Google Maps, Nominatim, Mapbox). Sin embargo, Rust nos da la potencia para hacer <strong>geocodificación offline</strong> consultando directamente una base de datos local de OpenStreetMap (ej. <code>chile-latest.osm.pbf</code>).</p>
-<p>Esto tiene ventajas enormes: * <strong>Privacidad</strong>: Los datos de tus usuarios nunca salen de tu servidor. * <strong>Costo</strong>: Cero costo por request. * <strong>Velocidad</strong>: Latencia de red cero.</p>
+<p>Esto tiene ventajas enormes:</p>
+<ul>
+<li><strong>Privacidad</strong>: Los datos de tus usuarios nunca salen de tu servidor.</li>
+<li><strong>Costo</strong>: Cero costo por request.</li>
+<li><strong>Velocidad</strong>: Latencia de red cero.</li>
+</ul>
 <section id="búsqueda-naive-fuerza-bruta" class="level2" data-number="24.1">
 <h2 data-number="24.1" class="anchored" data-anchor-id="búsqueda-naive-fuerza-bruta"><span class="header-section-number">24.1</span> Búsqueda Naive (Fuerza Bruta)</h2>
 <p>Si tienes un archivo PBF de una región (ej. Santiago), puedes buscar una dirección específica iterando sobre el archivo y filtrando por los tags de dirección (<code>addr:street</code>, <code>addr:housenumber</code>).</p>
